@@ -12,6 +12,7 @@ from scipy import special
 import itertools
 import time
 import datetime
+import matplotlib.pyplot as plt
 
 
 
@@ -335,6 +336,46 @@ def data_split(data, amount, args):
     output = len(data.classes)  # number of classes
 
     return input, output, train_data, val_loader
+
+def plot_graphs(paths_dict: dict):
+    """
+    Plots graphs for the given paths dictionary.
+
+    Args:
+        paths_dict (dict): A dictionary containing mathods names as keys and paths as values.
+
+    Returns:
+        None
+    """
+    
+    for key, value in paths_dict:
+        paths_dict[key] = torch.load(value)
+    
+    fig, ax = plt.subplots(2,2, figsize=(15,15))
+
+    for key, value in paths_dict.items():
+        ax[0,0].plot(value["global_epochs_time_list"], value['val_losses_list'], label = f"{key} validation loss")
+        ax[0,1].plot(value["global_epochs_time_list"], value['val_acc_list'], label = f"{key} validation accuracy")
+        ax[1,0].plot(value["global_epochs_time_list"], value['train_loss_list'], label = f"{key} avg train loss")
+    
+    ax[0,0].set_title("val loss over time")
+    ax[0,0].set_xlabel("time(sec)")
+    ax[0,0].set_ylabel("val loss")
+    ax[0,0].legend()
+
+    ax[0,1].set_title("val acc over time")
+    ax[0,1].set_xlabel("time(sec)")
+    ax[0,1].set_ylabel("val acc")
+    ax[0,1].legend()
+
+    ax[1,0].set_title("avg train loss over time")
+    ax[1,0].set_xlabel("time(sec)")
+    ax[1,0].set_ylabel("train loss")
+    ax[1,0].legend()
+
+    plt.show()
+
+
 
 
 

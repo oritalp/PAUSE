@@ -11,7 +11,7 @@ class arguments:
                  local_iterations = 100, global_epochs = 200, tau_min = 0.05, privacy_noise = "laplace",
                    epsilon = 4, optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = True,
                  device = "cpu", seed = 0, zeta_coeff = 3/2, alpha = 1, beta = 2, gamma = 1, max_seconds = 200,
-                 method_choosing_users = "random", data_truncation = 700,
+                 method_choosing_users = "random", data_truncation = 900,
                   choosing_users_verbose = False):
         self.exp_name = exp_name
         self.eval = eval
