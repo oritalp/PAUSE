@@ -108,7 +108,7 @@ def update_data_equility_partititon(local_models, args):
                                                    *args.num_users_per_round/sum)
 
 
-def choose_users(local_models, args, method = "brute force", privacy = False, initiated_delay = 0):
+def choose_users(local_models, args, method = "brute force", privacy = False):
     """
     Chooses the users that will be used for the current round.
 
@@ -125,6 +125,8 @@ def choose_users(local_models, args, method = "brute force", privacy = False, in
 
     if method == "brute force":
         users_idxs_comb = list(itertools.combinations([x for x in range(args.num_users)], args.num_users_per_round))
+        #permute the users_idxs_comb to make the order of the users random
+        np.random.shuffle(users_idxs_comb)
         winning_comb = None
         best_score = 0
         for comb in users_idxs_comb:
@@ -141,17 +143,12 @@ def choose_users(local_models, args, method = "brute force", privacy = False, in
         return winning_comb
     
     if method == "random":
-        #sleeps for 0.1 seconds to make the running time for this and 20 choose 5 abput the same running time
-        #need to be careful that this is only true for 20 choose 5, other values may lead to other running time
-        time.sleep(initiated_delay)
         return tuple(np.random.choice(args.num_users, args.num_users_per_round, replace = False))
     
     if method == "all users":
-        time.sleep(initiated_delay)
         return tuple(range(args.num_users))
     
     if method == "first ones":
-        time.sleep(initiated_delay)
         return tuple(range(args.num_users_per_round))
 
 

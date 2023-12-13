@@ -11,7 +11,8 @@ class arguments:
                  local_iterations = 100, global_epochs = 200, tau_min = 0.05, privacy_noise = "laplace",
                    epsilon = 4, optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = True,
                  device = "cpu", seed = 0, zeta_coeff = 3/2, alpha = 1, beta = 2, gamma = 1, max_seconds = 200,
-                 method_choosing_users = "brute force", data_truncation = 700, initiated_delay = 0.0):
+                 method_choosing_users = "random", data_truncation = 700,
+                  choosing_users_verbose = False):
         self.exp_name = exp_name
         self.eval = eval
         self.data = data
@@ -41,7 +42,7 @@ class arguments:
         self.max_seconds = max_seconds
         self.method_choosing_users = method_choosing_users
         self.data_truncation = data_truncation
-        self.initiated_delay = initiated_delay
+        self.choosing_users_verbose = choosing_users_verbose
         
 
 
@@ -53,6 +54,8 @@ def args_parser():
                         help="the name of the current experiment")
     parser.add_argument('--eval', action='store_true',
                         help="weather to perform inference of training")
+    parser.add_argument('--choosing_users_verbose', action='store_true',
+                        help="weather to print the chosen users for each round with their g, delay, and ucb values")
 
     # data arguments
     parser.add_argument('--data', type=str, default='mnist',
