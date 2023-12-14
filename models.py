@@ -110,13 +110,19 @@ class CNN5Layer(nn.Module):
         self.dropout1 = nn.Dropout(p=0.2, inplace=False)
         self.dropout2 = nn.Dropout(p=0.2, inplace=False)
         self.dropout3 = nn.Dropout(p=0.2, inplace=False)
+        self.batch_norm1 = nn.BatchNorm2d(32)
+        self.batch_norm2 = nn.BatchNorm2d(64)
+        self.batch_norm3 = nn.BatchNorm2d(64)
 
 
     def forward(self, x):
         x = F.relu(self.conv1(x))
+        x = self.batch_norm1(x)
         x = self.pool(F.relu(self.conv2(x)))
         x = F.relu(self.conv3(x))
+        x = self.batch_norm2(x)
         x = self.pool(F.relu(self.conv4(x)))
+        x = self.batch_norm3(x)
         x = self.pool(F.relu(self.conv5(x)))
         x = x.view(-1, 128)
         x = self.dropout1(x)

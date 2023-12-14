@@ -5,13 +5,13 @@ import numpy as np
 
 class arguments:
 
-    def __init__(self, exp_name = "random selection", eval = False, data = "mnist", norm_std = 0.5,
+    def __init__(self, exp_name = "random selection", eval = False, data = "cifar10", norm_std = 0.5,
                   norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, 
-                  model = "cnn2", num_users = 30, num_users_per_round = 5, local_epochs = 1,
+                  model = "cnn5", num_users = 1, num_users_per_round = 1, local_epochs = 1,
                  local_iterations = 100, global_epochs = 200, tau_min = 0.05, privacy_noise = "laplace",
                    epsilon = 4, optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = True,
                  device = "cpu", seed = 0, zeta_coeff = 3/2, alpha = 1, beta = 2, gamma = 1, max_seconds = 200,
-                 method_choosing_users = "random", data_truncation = 900,
+                 method_choosing_users = "random", data_truncation = None,
                   choosing_users_verbose = False):
         self.exp_name = exp_name
         self.eval = eval
@@ -125,7 +125,7 @@ def args_parser():
     parser.add_argument('--gamma', type=float, default=2,
                         help="gamma parameter for the MAB")
     parser.add_argument('--data_truncation', default=False,
-                        help="if False, the data is not truncated, if a number is given, the data is truncated to that number")
+                        help="if None, the data is not truncated, if a number is given, the data is truncated to that number")
 
     args = parser.parse_args()
     return args

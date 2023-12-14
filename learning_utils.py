@@ -53,11 +53,11 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, privacy = Fals
             if privacy:
                 #TODO: here should be the noise addition to delta_theta
                 continue          
-            delta_theta_average += delta_theta * ((local_models[user_idx].data_quality*
-                                      len(local_models[user_idx].data_loader.dataset))/data_length_sum)
+            delta_theta_average += (delta_theta * ((local_models[user_idx].data_quality*
+                                      len(local_models[user_idx].data_loader.dataset))/data_length_sum)).to(state_dict[key].dtype)
 
         returned_delta_thetas[key] = delta_theta_average       
-        state_dict[key] += delta_theta_average.to(state_dict[key].dtype)
+        state_dict[key] += delta_theta_average
 
     global_model.load_state_dict(copy.deepcopy(state_dict))
     return returned_delta_thetas

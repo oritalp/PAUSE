@@ -326,7 +326,7 @@ def data_split(data, amount, args):
     # split train, validation
     train_data, val_data = torch.utils.data.random_split(data, [len(data) - amount, amount])
     #the train data is truncated to the first args.data_truncation samples
-    if args.data_truncation:
+    if args.data_truncation is not None:
         train_data = torch.utils.data.Subset(train_data, range(args.data_truncation))
     val_loader = torch.utils.data.DataLoader(val_data, batch_size=args.test_batch_size, shuffle=False)
 
@@ -348,7 +348,7 @@ def plot_graphs(paths_dict: dict):
         None
     """
     
-    for key, value in paths_dict:
+    for key, value in paths_dict.items():
         paths_dict[key] = torch.load(value)
     
     fig, ax = plt.subplots(2,2, figsize=(15,15))
