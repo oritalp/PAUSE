@@ -5,15 +5,15 @@ import numpy as np
 
 class arguments:
 
-    def __init__(self, exp_name = "random selection", eval = False, data = "cifar10", norm_std = 0.5,
+    def __init__(self, exp_name = "BSFL brute", eval = False, data = "fashion mnist", norm_std = 0.5,
                   norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, 
-                  model = "cnn5", num_users = 1, num_users_per_round = 1, local_epochs = 1,
-                 local_iterations = 100, global_epochs = 200, tau_min = 0.05, privacy_noise = "laplace",
-                   epsilon = 4, optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = True,
-                 device = "cpu", seed = 0, zeta_coeff = 3/2, alpha = 1, beta = 2, gamma = 1, max_seconds = 200,
-                 method_choosing_users = "random", data_truncation = None,
+                  model = "cnn3", num_users = 30, num_users_per_round = 5, local_epochs = 1,
+                 local_iterations = 100, global_epochs = 2000, tau_min = 0.05, privacy_noise = "laplace",
+                   epsilon = 4, optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = False,
+                 device = "cpu", seed = 0, zeta_coeff = 3/2, alpha = 1, beta = 2, gamma = 1, max_seconds = 300,
+                 method_choosing_users = "BSFL brute", data_truncation = 800,
                   choosing_users_verbose = False):
-        self.exp_name = exp_name
+        self.exp_name = exp_name  #currently there is no use in that
         self.eval = eval
         self.data = data
         self.norm_std = norm_std
@@ -59,8 +59,8 @@ def args_parser():
 
     # data arguments
     parser.add_argument('--data', type=str, default='mnist',
-                        choices=['mnist', 'cifar10'],
-                        help="dataset to use (mnist or cifar)")
+                        choices=['mnist', 'cifar10', "fashion mnist"],
+                        help="dataset to use (mnist, cifar10, fashion mnist)")
     parser.add_argument('--norm_mean', type=float, default=0.5,
                         help="normalize the data to norm_mean")
     parser.add_argument('--norm_std', type=float, default=0.5,
@@ -86,7 +86,7 @@ def args_parser():
                         help="number of global epochs")
     parser.add_argument('--tau_min', type=float, default=0.5)
     parser.add_argument('--method_choosing_users', type=str, default='brute force',
-                        choices=['brute force', 'random', 'all users', "first ones"],
+                        choices=['BSFL brute', 'random', 'all users', "fastest ones"],
                         help="method to choose users for each round")
 
     # privacy arguments

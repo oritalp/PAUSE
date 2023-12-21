@@ -37,35 +37,64 @@ class CNN2Layer(nn.Module):
     def __init__(self, in_channels, output_size, data_type, n_feature=6):
         super(CNN2Layer, self).__init__()
         self.n_feature = n_feature
-        self.intemidiate_size = 4 if data_type == 'mnist' else 5
+        self.intemidiate_size = 5 if data_type == 'cifar10' else 4
         self.conv1 = nn.Conv2d(in_channels=in_channels, out_channels=n_feature, kernel_size=5)
         self.conv2 = nn.Conv2d(n_feature, n_feature, kernel_size=5)
         self.fc1 = nn.Linear(n_feature * self.intemidiate_size * self.intemidiate_size, 50)  # 4*4 for MNIST 5*5 for CIFAR10
         self.fc2 = nn.Linear(50, output_size)
         self.dropout1 = nn.Dropout(p=0.2, inplace=False)
         self.dropout2 = nn.Dropout(p=0.2, inplace=False)
+        self.batch_norm_2d = nn.BatchNorm2d(n_feature)
+        self.batch_norm = nn.BatchNorm1d(50)
 
     def forward(self, x, verbose=False):
         x = self.conv1(x)
         x = F.relu(x)
         x = F.max_pool2d(x, kernel_size=2)
+        x = self.batch_norm_2d(x)
         x = self.conv2(x)
         x = F.relu(x)
         x = F.max_pool2d(x, kernel_size=2)
         x = x.view(-1, self.n_feature * self.intemidiate_size * self.intemidiate_size)  # 4*4 for MNIST 5*5 for CIFAR10
-        x = self.dropout1(x)
+        #x = self.dropout1(x)
         x = self.fc1(x)
         x = F.relu(x)
-        x = self.dropout2(x)
+        x = self.batch_norm(x)
+        #x = self.dropout2(x)
         x = self.fc2(x)
         return x
 
-
-
-#only for cifar10 because it mnist has different resulution and greyscale images
-class CNN3Layer(nn.Module):
+class CNN3LayerMnist(nn.Module):
     def __init__(self):
-        super(CNN3Layer, self).__init__()
+        super().__init__()
+        self.conv1 = nn.Conv2d(1,16,5)
+        self.conv2 = nn.Conv2d(16,16,5)
+        self.conv3 = nn.Conv2d(16,32,5)
+        self.linear1 = nn.Linear(32*3*3, 32)
+        self.linear2 = nn.Linear(32, 10)
+        self.batch_norm_2d_1 = nn.BatchNorm2d(16)
+        self.batch_norm_2d_2 = nn.BatchNorm2d(16)
+        self.batch_norm_1d = nn.BatchNorm1d(32)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = self.batch_norm_2d_1(x)
+        x = F.relu(self.conv2(x))
+        x = F.max_pool2d(x, kernel_size=2)
+        x = self.batch_norm_2d_2(x)
+        x = F.relu(self.conv3(x))
+        x = F.max_pool2d(x, kernel_size=2)
+        x = x.view(-1,32*3*3)
+        x = F.relu(self.linear1(x))
+        x = self.batch_norm_1d(x)
+        x = self.linear2(x)
+
+        return x
+
+
+class CNN3LayerCifar(nn.Module):
+    def __init__(self):
+        super().__init__()
         self.conv1 = nn.Conv2d(3, 32, 3)
         self.conv2 = nn.Conv2d(32, 64, 3)
         self.conv3 = nn.Conv2d(64, 128, 3)

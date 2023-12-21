@@ -99,6 +99,8 @@ class user:
 
 
 def update_data_equility_partititon(local_models, args):
+    """updates the data equility partition for each user according to the data quality and the number of samples after 
+    the models for each user are created"""
     sum = 0 
     for i in range(len(local_models)):
         local_models[i].data_equility_partition = (local_models[i].data_quality
@@ -109,49 +111,59 @@ def update_data_equility_partititon(local_models, args):
                                                    *args.num_users_per_round/sum)
 
 
-def choose_users(local_models, args, method = "brute force", privacy = False):
+import itertools
+import numpy as np
+
+def choose_users(local_models, args, method="BSFL brute", privacy=False):
     """
-    Chooses the users that will be used for the current round.
+    Selects a group of users based on the specified method.
 
     Args:
-        initiated_delay (int): time in seconds to pause the other methods than brute force to make the running time
-        of all methods about the same
-        local_models (dict): A dictionary containing the local models for each user.
-        args: Additional arguments for configuring the federated setup.
+        local_models (list): List of local models.
+        args: Arguments for user selection.
+        method (str, optional): The method for user selection. Defaults to "BSFL brute".
+        privacy (bool, optional): Flag indicating whether privacy is considered. Defaults to False.
 
     Returns:
-        list: A list containing the user indices of the chosen users.
-
+        tuple: A tuple containing the indices of the selected users.
+    Raises:
+        ValueError: If an invalid method is specified.
     """
 
-    if method == "brute force":
+    if method == "BSFL brute":
         users_idxs_comb = list(itertools.combinations([x for x in range(args.num_users)], args.num_users_per_round))
-        #permute the users_idxs_comb to make the order of the users random
+        # permute the users_idxs_comb to make the order of the users random
         np.random.shuffle(users_idxs_comb)
         winning_comb = None
         best_score = 0
         for comb in users_idxs_comb:
             min_ucb = min([local_models[i].ucb for i in comb])
-            sum_g = args.alpha*sum([local_models[i].g for i in comb])/args.num_users_per_round
-            sum_privacy_reward = (args.gamma*sum([local_models[i].privacy_reward for i in comb])
-                                  /args.num_users_per_round)
-            
+            sum_g = args.alpha * sum([local_models[i].g for i in comb]) / args.num_users_per_round
+            sum_privacy_reward = (args.gamma * sum([local_models[i].privacy_reward for i in comb])
+                                  / args.num_users_per_round)
+
             score = min_ucb + sum_g + (sum_privacy_reward if privacy else 0)
             if score > best_score:
                 best_score = score
                 winning_comb = comb
-        
+
         return winning_comb
-    
-    if method == "random":
-        return tuple(np.random.choice(args.num_users, args.num_users_per_round, replace = False))
-    
-    if method == "all users":
-        return tuple(range(args.num_users))
-    
-    if method == "first ones":
+
+    elif method == "random":
+        return tuple(np.random.choice(args.num_users, args.num_users_per_round, replace=False))
+
+    elif method == "all users":
+        ret_val = list(range(args.num_users))
+        np.random.shuffle(ret_val)
+        return tuple(ret_val)
+
+    elif method == "fastest ones":
         return tuple(range(args.num_users_per_round))
 
+    else:
+        raise ValueError(f"There is no such method as {method}, choose a method from:\nBSFL brute, random, all users, fastest ones ")
+        
+
 
 
 
@@ -159,7 +171,7 @@ def choose_users(local_models, args, method = "brute force", privacy = False):
 
     
 
-#TODO: check if the non-i.i.d partition is doing fine
+
 def federated_setup(global_model, train_data: torch.utils.data.Dataset , args, i_i_d = True):
     """
     Sets up the federated learning environment by creating local models for each user.
@@ -239,13 +251,13 @@ def initializations(args):
     #make a string for the current datetime (for the folder name) using datetime module
     now = datetime.datetime.now()
     now = str(now.strftime("%d-%m-%Y_%H-%M-%S"))
-    (Path.cwd() / 'checkpoints' / args.exp_name / args.model / now).mkdir(exist_ok=True, parents=True)
-    boardio = SummaryWriter(log_dir='checkpoints/' + args.exp_name+ '/' + args.model + "/" + now)
-    textio = IOStream('checkpoints/' + args.exp_name +"/" + args.model + "/" + now + '/run.log')
+    (Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now).mkdir(exist_ok=True, parents=True)
+    boardio = SummaryWriter(log_dir='checkpoints/' + args.method_choosing_users+ '/' + args.model + "/" + now)
+    textio = IOStream('checkpoints/' + args.method_choosing_users +"/" + args.model + "/" + now + '/run.log')
 
     best_val_acc = np.NINF
-    path_best_model = Path.cwd() / 'checkpoints' / args.exp_name / args.model / now  /'best_model.pth.tar'
-    last_model_path = Path.cwd() / 'checkpoints' / args.exp_name / args.model / now  /'last_model.pth.tar'
+    path_best_model = Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now  /'best_model.pth.tar'
+    last_model_path = Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now  /'last_model.pth.tar'
 
 
     return boardio, textio, best_val_acc, path_best_model, last_model_path
@@ -286,6 +298,19 @@ def data(args):
             ])),
             batch_size=args.test_batch_size, shuffle=False)
         
+    elif args.data == 'fashion mnist':
+        train_data = datasets.FashionMNIST('./data', train=True, download=True,
+                                    transform=transforms.Compose([
+                                        transforms.ToTensor(),
+                                        transforms.Normalize((args.norm_mean,), (args.norm_std,))
+                                    ]))
+
+        test_loader = torch.utils.data.DataLoader(
+            datasets.FashionMNIST('./data', train=False, transform=transforms.Compose([
+                transforms.ToTensor(),
+                transforms.Normalize((args.norm_mean,), (args.norm_std,))
+            ])),
+            batch_size=args.test_batch_size, shuffle=False)
 
     else:
         train_data = datasets.CIFAR10('./data', train=True, download=True,
@@ -308,7 +333,7 @@ def data(args):
 
 def data_split(data, amount, args):
     """
-    Splits the given data into train and validation sets.
+    Splits the given data into train and validation sets with possible truncation set by the args.data_truncation argument.
 
     Args:
         data (torch.utils.data.Dataset): The dataset to be split.
@@ -359,17 +384,17 @@ def plot_graphs(paths_dict: dict):
         ax[1,0].plot(value["global_epochs_time_list"], value['train_loss_list'], label = f"{key} avg train loss")
     
     ax[0,0].set_title("val loss over time")
-    ax[0,0].set_xlabel("time(sec)")
+    ax[0,0].set_xlabel("time(sec)", fontsize=10)
     ax[0,0].set_ylabel("val loss")
     ax[0,0].legend()
 
     ax[0,1].set_title("val acc over time")
-    ax[0,1].set_xlabel("time(sec)")
+    ax[0,1].set_xlabel("time(sec)", fontsize=10)
     ax[0,1].set_ylabel("val acc")
     ax[0,1].legend()
 
     ax[1,0].set_title("avg train loss over time")
-    ax[1,0].set_xlabel("time(sec)")
+    ax[1,0].set_xlabel("time(sec)", fontsize=10)
     ax[1,0].set_ylabel("train loss")
     ax[1,0].legend()
 
