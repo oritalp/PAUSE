@@ -38,7 +38,7 @@ def distribute_model(local_models, global_model):
         local_models[usr_idx].model.load_state_dict(copy.deepcopy(global_model.state_dict()))
 
 
-def Fed_avg_models(local_models, global_model, chosen_users_idxs, args, privacy = False): 
+def Fed_avg_models(local_models, global_model, chosen_users_idxs, args, l1_norms_verbose = False): 
     """this is a fed avg that averages according to the data length and quality for the non i.i.d case, in oppose
     to nataly's implementation"""
     #mean = lambda x: sum(x) / len(x)
@@ -48,38 +48,65 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, args, privacy 
         data_length_sum += local_models[j].data_quality*len(local_models[j].data_loader.dataset)
     
     returned_delta_thetas = {}
-    l1_norms_arr = np.zeros((2,args.num_users))
-    l1_norms_arr[0,:] = np.arange(args.num_users)
+    if l1_norms_verbose:
+        l1_norms_arr = np.zeros((2,args.num_users))
+        l1_norms_arr[0,:] = np.arange(args.num_users)
+
+    users_delta_thetas = {}
+
 
 
     for key in state_dict.keys():
-        delta_theta_average = torch.zeros_like(state_dict[key])
+        delta_theta_average = (torch.zeros_like(state_dict[key])).type(torch.float32) 
         for user_idx in chosen_users_idxs:
-            delta_theta = local_models[user_idx].model.state_dict()[key] - state_dict[key]
-            #checking yhe l1 norm of the delta theta over the last global epoch for each user,
-            #this is for testing purposes and can be removed later on
-            #l1_norms_arr[1,user_idx] += LA.norm(delta_theta.flatten(), ord=1).detach().numpy()
+            delta_theta = (local_models[user_idx].model.state_dict()[key] - state_dict[key]).type(torch.float32)
+            if l1_norms_verbose:
+                #checking yhe l1 norm of the delta theta over the last global epoch for each user,
+                #this is for testing purposes and can be removed later on
+                l1_norms_arr[1,user_idx] += LA.norm(delta_theta.flatten(), ord=1).detach().numpy()
+  
+            if args.privacy:
+                #delta f is fixed as 10^-3 for now
+                lap_noise = Laplace(torch.tensor([0.0]), torch.tensor(10**-3/local_models[user_idx].next_privacy_term))
+                added_noise = lap_noise.sample(delta_theta.shape).squeeze(-1)
+                delta_theta += added_noise
 
-            if privacy:
-                #delta f is fixed as 2 for now
-                lap_noise = Laplace(torch.tensor([0.0]), torch.tensor(2/local_models[user_idx].next_privacy_term))
-                delta_theta += lap_noise.sample(delta_theta.shape).to(state_dict[key].dtype)
-                #this might be a problem with parameters that supposed to be int 
-                #like number of batches in the batchnorm layer but it has been ran and worked before
+
+            try:
+                users_delta_thetas[user_idx] = torch.cat((users_delta_thetas[user_idx], torch.abs(delta_theta.flatten())), 0)
+            except KeyError:
+                users_delta_thetas[user_idx] = torch.abs(delta_theta.flatten())
+
+            
 
             delta_theta_average += (delta_theta * ((local_models[user_idx].data_quality*
-                                      len(local_models[user_idx].data_loader.dataset))/data_length_sum)).to(state_dict[key].dtype)
+                                      len(local_models[user_idx].data_loader.dataset))/data_length_sum))
+        
 
+
+        delta_theta_average = delta_theta_average.to(state_dict[key].dtype) #we cast it back to the original dtype
+                                                                            #because for trainable parmeters that are int
+                                                                            #like the number of batches in the batchnorm layer
+                                                                            #the aggregation is made in float32 (even though 
+                                                                            #we use momentum in BN layers so num_betaches_tracked
+                                                                            #has no meaning for us and this is the only int parameter)
         returned_delta_thetas[key] = delta_theta_average       
         state_dict[key] += delta_theta_average
-    
-    #filter only the len(chosen_users_idxs) largest l1 norms
-    #l1_norms_arr = l1_norms_arr[:,np.argsort(l1_norms_arr[1,:])[::-1]][:,:len(chosen_users_idxs)]
-    #for i in range(len(chosen_users_idxs)):
-    #    print("user {}'s l1 norm is {}".format(l1_norms_arr[0,i], l1_norms_arr[1,i]))
+
+    if l1_norms_verbose:
+        #filter only the len(chosen_users_idxs) largest l1 norms
+        l1_norms_arr = l1_norms_arr[:,np.argsort(l1_norms_arr[1,:])[::-1]][:,:len(chosen_users_idxs)]
+        for i in range(len(chosen_users_idxs)):
+           print("user {}'s l1 norm is {}".format(l1_norms_arr[0,i], l1_norms_arr[1,i]))
 
 
     global_model.load_state_dict(copy.deepcopy(state_dict))
+
+
+    # for key in users_delta_thetas.keys():
+    #     print(f"user {key}'s delta theta's mean is {torch.mean(users_delta_thetas[key])} and var is {torch.var(users_delta_thetas[key], correction=0)}")
+
+
     return returned_delta_thetas
 
 

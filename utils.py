@@ -36,6 +36,7 @@ class user:
         self.privacy_reward = 1
         self.last_access_time = 0
         self.next_privacy_term = 0
+        self.inf_sum = np.exp(-self.args.epsilon_sum_deascent_coeff)/(1-np.exp(-self.args.epsilon_sum_deascent_coeff))
     
     def update_acceess_time(self):
             """
@@ -81,17 +82,17 @@ class user:
         self.g = (abs(inner_diff)**self.args.beta)*math.copysign(1,inner_diff)
 
     def partial_sum_series(self):
-        i = 0
         partial_sum = 0
+        i = 0
         while True:
             i += 1
-            new_term = self.args.epsilon/((i**self.args.zeta_coeff)*special.zeta(self.args.zeta_coeff))
+            new_term = (self.args.epsilon_bar/self.inf_sum) * np.exp(-self.args.epsilon_sum_deascent_coeff*i)
             partial_sum += new_term
             yield new_term ,partial_sum
 
     def update_privacy_violation_and_reward(self):
         self.next_privacy_term, self.privacy_violation = next(self.privacy_series)
-        self.privacy_reward = 1 - self.privacy_violation/self.args.epsilon
+        self.privacy_reward = 1 - self.privacy_violation/self.args.epsilon_bar
         
 
         
@@ -114,7 +115,9 @@ def update_data_equility_partititon(local_models, args):
 import itertools
 import numpy as np
 
-def choose_users(local_models, args, method="BSFL brute", privacy=False):
+
+#TODO: after privacy issue is solved, need to change args.privacy_choosing_usersand unite it with args.privacy
+def choose_users(local_models, args, method="BSFL brute"):
     """
     Selects a group of users based on the specified method.
 
@@ -142,7 +145,7 @@ def choose_users(local_models, args, method="BSFL brute", privacy=False):
             sum_privacy_reward = (args.gamma * sum([local_models[i].privacy_reward for i in comb])
                                   / args.num_users_per_round)
 
-            score = min_ucb + sum_g + (sum_privacy_reward if privacy else 0)
+            score = min_ucb + sum_g + (sum_privacy_reward if args.privacy_choosing_users else 0)
             if score > best_score:
                 best_score = score
                 winning_comb = comb
@@ -205,7 +208,6 @@ def federated_setup(global_model, train_data: torch.utils.data.Dataset , args, i
         idxs_of_indices = np.insert(idxs_of_indices, 0, 0)
 
     user_data_len = math.floor(len(train_data) / args.num_users)
-    #TODO: why using deepcopy for the model?
     for user_idx in range(args.num_users):
         user_dict = {'data': torch.utils.data.DataLoader(
             torch.utils.data.Subset(train_data,
@@ -362,15 +364,14 @@ def data_split(data, amount, args):
 
     return input, output, train_data, val_loader
 
-def plot_graphs(paths_dict: dict):
+def plot_graphs(paths_dict: dict, x_axis_time = True):
     """
-    Plots graphs for the given paths dictionary.
-
+    Plots graphs for validation loss, validation accuracy, and average train loss over time or epochs.
+    
     Args:
-        paths_dict (dict): A dictionary containing mathods names as keys and paths as values.
-
-    Returns:
-        None
+        paths_dict (dict): A dictionary containing the paths to the data for each graph.
+        x_axis_time (bool, optional): Determines whether the x-axis represents time or epochs. 
+                                      Defaults to True (time).
     """
     
     for key, value in paths_dict.items():
@@ -379,22 +380,23 @@ def plot_graphs(paths_dict: dict):
     fig, ax = plt.subplots(2,2, figsize=(15,15))
 
     for key, value in paths_dict.items():
-        ax[0,0].plot(value["global_epochs_time_list"], value['val_losses_list'], label = f"{key} validation loss")
-        ax[0,1].plot(value["global_epochs_time_list"], value['val_acc_list'], label = f"{key} validation accuracy")
-        ax[1,0].plot(value["global_epochs_time_list"], value['train_loss_list'], label = f"{key} avg train loss")
+        x_var = value["global_epochs_time_list"] if x_axis_time else range(1, value["global_epoch"]+1)
+        ax[0,0].plot(x_var, value['val_losses_list'], label = f"{key} validation loss")
+        ax[0,1].plot(x_var, value['val_acc_list'], label = f"{key} validation accuracy")
+        ax[1,0].plot(x_var, value['train_loss_list'], label = f"{key} avg train loss")
     
-    ax[0,0].set_title("val loss over time")
-    ax[0,0].set_xlabel("time(sec)", fontsize=10)
+    ax[0,0].set_title("val loss over time") if x_axis_time else ax[0,0].set_title("val loss over epochs")
+    ax[0,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,0].set_xlabel("epochs", fontsize=10)
     ax[0,0].set_ylabel("val loss")
     ax[0,0].legend()
 
-    ax[0,1].set_title("val acc over time")
-    ax[0,1].set_xlabel("time(sec)", fontsize=10)
+    ax[0,1].set_title("val acc over time") if x_axis_time else ax[0,1].set_title("val acc over epochs")
+    ax[0,1].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,1].set_xlabel("epochs", fontsize=10)
     ax[0,1].set_ylabel("val acc")
     ax[0,1].legend()
 
-    ax[1,0].set_title("avg train loss over time")
-    ax[1,0].set_xlabel("time(sec)", fontsize=10)
+    ax[1,0].set_title("avg train loss over time") if x_axis_time else ax[1,0].set_title("avg train loss over epochs")
+    ax[1,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[1,0].set_xlabel("epochs", fontsize=10)
     ax[1,0].set_ylabel("train loss")
     ax[1,0].legend()
 
