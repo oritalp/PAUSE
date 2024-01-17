@@ -1,0 +1,16 @@
+{'exp_name': 'BSFL brute', 'eval': False, 'data': 'mnist', 'norm_std': 0.5, 'norm_mean': 0.5, 'train_batch_size': 20, 'test_batch_size': 1000, 'model': 'cnn2', 'num_users': 30, 'num_users_per_round': 5, 'local_epochs': 1, 'local_iterations': 100, 'global_epochs': 200, 'tau_min': 0.05, 'privacy_noise': 'laplace', 'epsilon': 4, 'optimizer': 'sgd', 'lr': 0.01, 'momentum': 0.5, 'lr_scheduler': True, 'device': 'cpu', 'seed': 0, 'zeta_coeff': 1.5, 'alpha': 1, 'beta': 2, 'gamma': 1, 'max_seconds': 200, 'method_choosing_users': 'brute force', 'data_truncation': 700, 'choosing_users_verbose': False}
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN2Layer                                --
+├─Conv2d: 1-1                            156
+├─Conv2d: 1-2                            906
+├─Linear: 1-3                            4,850
+├─Linear: 1-4                            510
+├─Dropout: 1-5                           --
+├─Dropout: 1-6                           --
+=================================================================
+Total params: 6,422
+Trainable params: 6,422
+Non-trainable params: 0
+=================================================================
