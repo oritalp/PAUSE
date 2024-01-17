@@ -38,7 +38,7 @@ def distribute_model(local_models, global_model):
         local_models[usr_idx].model.load_state_dict(copy.deepcopy(global_model.state_dict()))
 
 
-def Fed_avg_models(local_models, global_model, chosen_users_idxs, args, l1_norms_verbose = False): 
+def Fed_avg_models(local_models, global_model, chosen_users_idxs, args, l1_norms_verbose = False, snr_verbose = False): 
     """this is a fed avg that averages according to the data length and quality for the non i.i.d case, in oppose
     to nataly's implementation"""
     #mean = lambda x: sum(x) / len(x)
@@ -64,18 +64,23 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, args, l1_norms
                 #checking yhe l1 norm of the delta theta over the last global epoch for each user,
                 #this is for testing purposes and can be removed later on
                 l1_norms_arr[1,user_idx] += LA.norm(delta_theta.flatten(), ord=1).detach().numpy()
+
+            if snr_verbose:
+                delta_theta_copy = copy.deepcopy(delta_theta)
+                try:
+                    users_delta_thetas[user_idx] = torch.cat((users_delta_thetas[user_idx], torch.abs(delta_theta_copy.flatten())), 0)
+                except KeyError:
+                    users_delta_thetas[user_idx] = torch.abs(delta_theta_copy.flatten())
   
             if args.privacy:
                 #delta f is fixed as 10^-3 for now
-                lap_noise = Laplace(torch.tensor([0.0]), torch.tensor(10**-3/local_models[user_idx].next_privacy_term))
-                added_noise = lap_noise.sample(delta_theta.shape).squeeze(-1)
+                lap_noise = Laplace(torch.tensor([0.0]),
+                                     torch.tensor(args.delta_f/local_models[user_idx].next_privacy_term))
+                added_noise = lap_noise.sample(delta_theta.shape).squeeze(-1).to(args.device)
                 delta_theta += added_noise
 
 
-            try:
-                users_delta_thetas[user_idx] = torch.cat((users_delta_thetas[user_idx], torch.abs(delta_theta.flatten())), 0)
-            except KeyError:
-                users_delta_thetas[user_idx] = torch.abs(delta_theta.flatten())
+            
 
             
 
@@ -102,9 +107,10 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, args, l1_norms
 
     global_model.load_state_dict(copy.deepcopy(state_dict))
 
-
-    # for key in users_delta_thetas.keys():
-    #     print(f"user {key}'s delta theta's mean is {torch.mean(users_delta_thetas[key])} and var is {torch.var(users_delta_thetas[key], correction=0)}")
+    if snr_verbose:
+        for key in users_delta_thetas.keys():
+            print(f"user No.{key} has been picked {local_models[user_idx].num_of_obs} and his deltas theta's mean is {torch.mean(users_delta_thetas[key])}, the added laplace noise var is {args.delta_f/local_models[user_idx].next_privacy_term}")
+            #print(f"and the empirical var of deltas thetas is {torch.var(users_delta_thetas[key], correction=0)}")
 
 
     return returned_delta_thetas
