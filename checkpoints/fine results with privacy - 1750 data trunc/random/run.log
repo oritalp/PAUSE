@@ -1,0 +1,18 @@
+{'exp_name': None, 'eval': False, 'data': 'mnist', 'norm_std': 0.5, 'norm_mean': 0.5, 'train_batch_size': 20, 'test_batch_size': 1000, 'model': 'cnn2', 'num_users': 30, 'num_users_per_round': 5, 'local_epochs': 1, 'local_iterations': 100, 'global_epochs': 200, 'tau_min': 0.05, 'privacy_noise': 'laplace', 'epsilon_bar': 400, 'optimizer': 'sgd', 'lr': 0.01, 'momentum': 0.5, 'lr_scheduler': False, 'device': device(type='cuda'), 'seed': 0, 'zeta_coeff': 1.05, 'alpha': 5, 'beta': 2, 'gamma': 0.1, 'max_seconds': 300, 'method_choosing_users': 'random', 'data_truncation': 1750, 'choosing_users_verbose': False, 'save_best_model': False, 'privacy': True, 'privacy_choosing_users': True, 'epsilon_sum_deascent_coeff': 0.02, 'delta_f': 0.0008, 'snr_verbose': True}
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN2Layer                                --
+├─Conv2d: 1-1                            156
+├─Conv2d: 1-2                            906
+├─Linear: 1-3                            4,850
+├─Linear: 1-4                            510
+├─Dropout: 1-5                           --
+├─Dropout: 1-6                           --
+├─BatchNorm2d: 1-7                       12
+├─BatchNorm1d: 1-8                       100
+=================================================================
+Total params: 6,534
+Trainable params: 6,534
+Non-trainable params: 0
+=================================================================

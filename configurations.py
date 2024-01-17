@@ -1,19 +1,21 @@
 import argparse
+import torch
 import numpy as np
 
 
 
 class arguments:
 
-    def __init__(self, method_choosing_users = "BSFL brute", data_truncation = 1000, model = "cnn2",
+    def __init__(self, method_choosing_users = "fastest ones", data_truncation = 1750, model = "cnn2",
                   num_users = 30, num_users_per_round = 5, eval = False, data = "mnist", 
-                  save_best_model = False, global_epochs = 200, max_seconds = 300, privacy = False,
-                  privacy_choosing_users = True, epsilon_bar = 400, epsilon_sum_deascent_coeff = 0.01,
+                  save_best_model = False, global_epochs = 200, max_seconds = 300, privacy = True,
+                  privacy_choosing_users = True, epsilon_bar = 400, epsilon_sum_deascent_coeff = 0.02,
+                  delta_f = 0.8*(10**-3), snr_verbose = True, choosing_users_verbose = False, 
                   norm_std = 0.5, norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, local_epochs = 1,
                  local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
                   optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = False,
-                 device = "cpu", seed = 0, zeta_coeff = 1.05, alpha = 1, beta = 2, gamma = 0.1, 
-                  choosing_users_verbose = True,  exp_name = None):
+                 device = "cpu", seed = 0, zeta_coeff = 1.05, alpha = 5, beta = 2, gamma = 0.1, 
+                 exp_name = None):
         self.exp_name = exp_name  #currently there is no use in that, set to None
         self.eval = eval
         self.data = data
@@ -48,6 +50,9 @@ class arguments:
         self.privacy = privacy
         self.privacy_choosing_users = privacy_choosing_users
         self.epsilon_sum_deascent_coeff = epsilon_sum_deascent_coeff #the coefficient for the deascent of the epsilon sum
+        self.delta_f = delta_f #constant delta f
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.snr_verbose = snr_verbose  #weather to print the snr of the deltas theta for each user
 
 
 
