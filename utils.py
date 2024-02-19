@@ -43,8 +43,8 @@ class user:
             Updates the last access time for the user.
 
             if the user index is smaller than half the number of users, the last access time is sampled from a gaussian
-            with mean between 0.05 and 0.2 and std of 1/(2*num_of_users).
-            else, the last access time is sampled from a gaussian with mean between 0.7 and 0.9 and std of 1/(2*num_of_users).
+            with mean between 0.05 and 0.2 and std of 1/(2*num_users).
+            else, the last access time is sampled from a gaussian with mean between 0.7 and 0.9 and std of 1/(2*num_users).
             meaning the first half is the fast achievable users and the second half is the slow achievable users.
             """
             
@@ -115,9 +115,44 @@ def update_data_equility_partititon(local_models, args):
 import itertools
 import numpy as np
 
+def compute_energy(users_idxes, local_models, args):
+    """An auxilary function for the ALSA method, computes the energy of a given group of users according to the ALSA"""
+    min_ucb = min([local_models[i].ucb for i in users_idxes])
+    sum_g = args.alpha * (sum([local_models[i].g for i in users_idxes]) / args.num_users_per_round)
+    sum_privacy_reward = (args.gamma * sum([local_models[i].privacy_reward for i in users_idxes])
+                            / args.num_users_per_round)
 
-#TODO: after privacy issue is solved, need to change args.privacy_choosing_usersand unite it with args.privacy
-def choose_users(local_models, args, method="BSFL brute"):
+    return min_ucb + sum_g + (sum_privacy_reward if args.privacy_choosing_users else 0)
+
+def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without_replaced_user, current_state, local_models, args, current_energy, neigbors_dict):
+
+    """An auxilary function for the ALSA method, computes the relative energy of a neighboring set of the current state and
+      adds it to the neighboring set dictionary. In addition, it returns the new enrgy and the new state."""
+  
+    copied_current_state = current_state.copy()
+    copied_current_state.remove(replaced_user)
+    copied_current_state.append(new_user)
+    new_state = ",".join(str(user) for user in sorted(copied_current_state))
+    new_energy = current_energy + (args.alpha * (local_models[new_user].g - local_models[replaced_user].g) 
+                                    / args.num_users_per_round)
+    if args.privacy_choosing_users:
+        new_energy += (args.gamma * (local_models[new_user].privacy_reward - local_models[replaced_user].privacy_reward)
+                        / args.num_users_per_round)
+
+    if local_models[new_user].ucb < min_ucb_without_replaced_user:
+        new_energy += (local_models[new_user].ucb - min_ucb_without_replaced_user)
+    
+    if neigbors_dict.get(new_state) is not None and neigbors_dict[new_state] != new_energy:
+        raise ValueError(("the same state has different energies,\
+                            something is broken with the energies calculations"))
+    neigbors_dict[new_state] = new_energy
+
+    return new_state, new_energy
+
+
+#TODO: after privacy issue is sealed, before publishing the code,
+# need to change args.privacy_choosing_usersand unite it with args.privacy
+def choose_users(local_models, args, global_epoch, method="BSFL brute"):
     """
     Selects a group of users based on the specified method.
 
@@ -133,19 +168,73 @@ def choose_users(local_models, args, method="BSFL brute"):
         ValueError: If an invalid method is specified.
     """
 
-    if method == "BSFL brute":
+    if method == "ALSA":
+        max_energy = float('-inf')
+        winning_comb = None
+        # before each user is chosen at least once, we choose the users randomly, because they all set
+        # to have ucb which is eauals to inf
+        if global_epoch < math.floor(args.num_users/args.num_users_per_round) + 1:
+            list_of_unchosen_users = [i for i in range(args.num_users) if local_models[i].num_of_obs == 0]
+            return tuple(np.random.choice(list_of_unchosen_users, args.num_users_per_round, replace=False))
+
+        else:
+            current_state  = list(np.random.choice(args.num_users, args.num_users_per_round, replace=False))
+            sorted_ucb = [model.user_idx for model in sorted([local_models[i] for i in range(args.num_users)], key = lambda x: x.ucb)]
+            sorted_g = [model.user_idx for model in sorted([local_models[i] for i in range(args.num_users)], key = lambda x: x.g)]  
+            sorted_privacy_reward = [model.user_idx for model in sorted([local_models[i] for i in range(args.num_users)], key = lambda x: x.privacy_reward)]  
+            current_energy = compute_energy(current_state, local_models, args)
+
+            for iter in range(args.max_iterations_alsa):
+                #the neighbors_dict is for debugging purposes, can probably be removed later on
+                neigbors_dict = {}
+                #find all the users with minimal value of ucb from current indexes
+                min_ucb = min([local_models[i].ucb for i in current_state])
+                min_g = min([local_models[i].g for i in current_state])
+                min_privacy_reward = min([local_models[i].privacy_reward for i in current_state])                
+                ### part 1: cheking for active neighbors
+                """Active neigbors are neighbors when the replaced user from the current state is the one with either 
+                the minimal ucb, the minimal g or the minimal privacy reward"""
+                for replaced_user in current_state:                                      
+                    if (local_models[replaced_user].ucb == min_ucb) or (local_models[replaced_user].g == min_g) or (local_models[replaced_user].privacy_reward == min_privacy_reward):
+                        min_ucb_without_replaced_user = min([local_models[i].ucb for i in current_state if i != replaced_user])                        
+                        range_of_users = list(range(args.num_users))
+                        np.random.shuffle(range_of_users)
+                        for new_user in range_of_users:
+                            if new_user not in current_state:
+                                new_state, new_energy = compute_relative_energy_of_neighbor(new_user, replaced_user, 
+                                                                                            min_ucb_without_replaced_user,
+                                                                     current_state, local_models, args, current_energy,
+                                                                       neigbors_dict)
+
+                                if new_energy > max_energy:
+                                    max_energy = new_energy
+                                    winning_comb = new_state.split(",")
+
+                ### part 2: cheking for passive neighbors
+                #TODO: write this piece of code
+                
+
+                #after part 2 is set:
+                current_state = winning_comb
+            if winning_comb is not None:
+                return tuple([int(x) for x in winning_comb])
+            else:
+                raise ValueError("no winning combination was chosen, this is a bug")
+                    
+
+                
+
+                    
+
+
+    elif method == "BSFL brute":
         users_idxs_comb = list(itertools.combinations([x for x in range(args.num_users)], args.num_users_per_round))
         # permute the users_idxs_comb to make the order of the users random
         np.random.shuffle(users_idxs_comb)
         winning_comb = None
         best_score = 0
         for comb in users_idxs_comb:
-            min_ucb = min([local_models[i].ucb for i in comb])
-            sum_g = args.alpha * sum([local_models[i].g for i in comb]) / args.num_users_per_round
-            sum_privacy_reward = (args.gamma * sum([local_models[i].privacy_reward for i in comb])
-                                  / args.num_users_per_round)
-
-            score = min_ucb + sum_g + (sum_privacy_reward if args.privacy_choosing_users else 0)
+            score = compute_energy(comb, local_models, args)
             if score > best_score:
                 best_score = score
                 winning_comb = comb

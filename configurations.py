@@ -6,11 +6,12 @@ import numpy as np
 
 class arguments:
 
-    def __init__(self, method_choosing_users = "fastest ones", data_truncation = 1750, model = "cnn2",
+    def __init__(self, method_choosing_users = "ALSA", data_truncation = 1750, model = "cnn2",
                   num_users = 30, num_users_per_round = 5, eval = False, data = "mnist", 
                   save_best_model = False, global_epochs = 200, max_seconds = 300, privacy = True,
                   privacy_choosing_users = True, epsilon_bar = 400, epsilon_sum_deascent_coeff = 0.02,
                   delta_f = 0.8*(10**-3), snr_verbose = True, choosing_users_verbose = False, 
+                  max_iterations_alsa = 100,
                   norm_std = 0.5, norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, local_epochs = 1,
                  local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
                   optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = False,
@@ -53,6 +54,7 @@ class arguments:
         self.delta_f = delta_f #constant delta f
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.snr_verbose = snr_verbose  #weather to print the snr of the deltas theta for each user
+        self.max_iterations_alsa = max_iterations_alsa
 
 
 
@@ -99,7 +101,7 @@ def args_parser():
                         help="number of global epochs")
     parser.add_argument('--tau_min', type=float, default=0.5)
     parser.add_argument('--method_choosing_users', type=str, default='brute force',
-                        choices=['BSFL brute', 'random', 'all users', "fastest ones"],
+                        choices=["ALSA",'BSFL brute', 'random', 'all users', "fastest ones"],
                         help="method to choose users for each round")
 
     # privacy arguments
