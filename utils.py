@@ -193,7 +193,7 @@ def choose_users(local_models, args, global_epoch, method="BSFL brute"):
                 min_privacy_reward = min([local_models[i].privacy_reward for i in current_state])                
                 ### part 1: cheking for active neighbors
                 """Active neigbors are neighbors when the replaced user from the current state is the one with either 
-                the minimal ucb, the minimal g or the minimal privacy reward"""
+                the minimal ucb, the minimal g, or the minimal privacy reward"""
                 for replaced_user in current_state:                                      
                     if (local_models[replaced_user].ucb == min_ucb) or (local_models[replaced_user].g == min_g) or (local_models[replaced_user].privacy_reward == min_privacy_reward):
                         min_ucb_without_replaced_user = min([local_models[i].ucb for i in current_state if i != replaced_user])                        
