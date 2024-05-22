@@ -16,7 +16,7 @@ class arguments:
                   norm_std = 0.5, norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, local_epochs = 1,
                  local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
                   optimizer = "Adam", lr = 0.01, momentum = 0.5, lr_scheduler = False,
-                 device = "cpu", seed = 0, zeta_coeff = 1.05, alpha = 10, beta = 2, gamma = 1, 
+                 device = "cpu", seed = 0, zeta_coeff = 1.05, alpha = 10, beta = 2, gamma = 0.5, 
                  exp_name = None):
         self.exp_name = exp_name  #currently there is no use in that, set to None
         self.eval = eval
