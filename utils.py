@@ -112,8 +112,6 @@ def update_data_equility_partititon(local_models, args):
                                                    *args.num_users_per_round/sum)
 
 
-import itertools
-import numpy as np
 
 def compute_energy(users_idxes, local_models, args):
     """An auxilary function for the ALSA method, computes the energy of a given group of users according to the ALSA"""
@@ -124,7 +122,8 @@ def compute_energy(users_idxes, local_models, args):
 
     return min_ucb + sum_g + (sum_privacy_reward if args.privacy_choosing_users else 0)
 
-def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without_replaced_user, current_state, local_models, args, current_energy, neigbors_dict):
+def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without_replaced_user,
+                                        current_state, local_models, args, current_energy, neigbors_dict):
 
     """An auxilary function for the ALSA method, computes the relative energy of a neighboring set of the current state and
       adds it to the neighboring set dictionary. In addition, it returns the new enrgy and the new state."""
@@ -142,17 +141,80 @@ def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without
     if local_models[new_user].ucb < min_ucb_without_replaced_user:
         new_energy += (local_models[new_user].ucb - min_ucb_without_replaced_user)
     
-    if neigbors_dict.get(new_state) is not None and neigbors_dict[new_state] != new_energy:
-        raise ValueError(("the same state has different energies,\
-                            something is broken with the energies calculations"))
-    neigbors_dict[new_state] = new_energy
 
     return new_state, new_energy
 
+def create_neighbor_state(new_user, replaced_user, current_state, local_models, axis_to_sort_by = "ucb"):
+    """An auxilary function for the ALSA method, gets a list of users as a current state and returns a new state
+    as a string to be a key in the neigbors_dict dictionary."""
+    copied_current_state = current_state.copy()
+    copied_current_state.remove(replaced_user)
+    copied_current_state.append(new_user)
+    if axis_to_sort_by == "ucb":
+        return ",".join(str(user) for user in sorted(copied_current_state, key = lambda x: local_models[x].ucb))
+    
+    elif axis_to_sort_by == "g":
+        return ",".join(str(user) for user in sorted(copied_current_state, key = lambda x: local_models[x].g))
+    elif axis_to_sort_by == "p":
+        return ",".join(str(user) for user in sorted(copied_current_state, key = lambda x: local_models[x].privacy_reward))
+    elif axis_to_sort_by == "user_idx":
+        return ",".join(str(user) for user in sorted(copied_current_state))
+    
+    else:
+        raise ValueError(f"the axis to sort by {axis_to_sort_by} is not valid, choose from ucb, g, p")
+    
+
+def create_passive_neighbor_states(sorted_current_state, sorted_all_users, current_state, local_models, axis_to_sort_by="ucb"):
+    """
+    Creates a dictionary of passive neighbor states based on the given parameters.
+
+    Parameters:
+    - sorted_current_state (list): A sorted list of the current state.
+    - sorted_all_users (list): A sorted list of all users.
+    - current_state (dict): The current state.
+    - local_models (dict): A dictionary of local models.
+    - axis_to_sort_by (str): The axis to sort the states by. Defaults to "ucb".
+
+    Returns:
+    - passive_neigbors_dict (dict): A dictionary of passive neighbor states.
+    """
+    min_current_state = sorted_current_state[0]
+    second_min_current_state = sorted_current_state[1]
+
+    passive_neigbors_dict = {}
+
+    for nominated_new_user in sorted_all_users:
+        if nominated_new_user == min_current_state:
+            continue
+        elif nominated_new_user == second_min_current_state:
+            break
+        else:
+            replaced_user = min_current_state
+            new_state = create_neighbor_state(nominated_new_user, replaced_user, current_state, local_models, axis_to_sort_by)
+            passive_neigbors_dict[new_state] = None
+
+    for replaced_user in sorted_current_state[1:]:
+        for nominated_new_user in sorted_all_users:
+            if nominated_new_user == min_current_state:
+                break
+            else:
+                new_state = create_neighbor_state(nominated_new_user, replaced_user, current_state, local_models, axis_to_sort_by)
+                passive_neigbors_dict[new_state] = None
+    
+    return passive_neigbors_dict
+
+def sort_dict_keys_by_idx(original_dict):
+    res_dict = {}
+    for key in original_dict.keys():
+        new_key = sorted(key.split(","))
+        res_dict[",".join(new_key)] = original_dict[key]
+    return res_dict
+
+
 
 #TODO: after privacy issue is sealed, before publishing the code,
-# need to change args.privacy_choosing_usersand unite it with args.privacy
-def choose_users(local_models, args, global_epoch, method="BSFL brute"):
+# need to change args.privacy_choosing_users and unite it with args.privacy
+def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_per_round = None, method="ALSA"):
     """
     Selects a group of users based on the specified method.
 
@@ -168,63 +230,211 @@ def choose_users(local_models, args, global_epoch, method="BSFL brute"):
         ValueError: If an invalid method is specified.
     """
 
+
+
     if method == "ALSA":
-        max_energy = float('-inf')
-        winning_comb = None
+        
+
+
+        if not args.ALSA_simulation:
+            num_users_per_round = args.num_users_per_round
+            num_users = args.num_users
         # before each user is chosen at least once, we choose the users randomly, because they all set
         # to have ucb which is eauals to inf
-        if global_epoch < math.floor(args.num_users/args.num_users_per_round) + 1:
-            list_of_unchosen_users = [i for i in range(args.num_users) if local_models[i].num_of_obs == 0]
-            return tuple(np.random.choice(list_of_unchosen_users, args.num_users_per_round, replace=False))
+
+        #if we are in simulation mode, skip the initial random choosing
+        3
+        condition = global_epoch < math.floor(num_users/num_users_per_round) + 1 if  not args.ALSA_simulation else False
+        #TODO: the condition for random initial starting is good if the number of users is a multiple of the number of 
+        # users per round, otherwise, the condition should be changed (maybe with a change in the initialization of the
+        # values of p and g in the user class)
+
+        if condition:
+            list_of_unchosen_users = [i for i in range(num_users) if local_models[i].num_of_obs == 0]
+            print(list_of_unchosen_users)
+            return tuple(np.random.choice(list_of_unchosen_users, num_users_per_round, replace=False))
 
         else:
-            current_state  = list(np.random.choice(args.num_users, args.num_users_per_round, replace=False))
-            sorted_ucb = [model.user_idx for model in sorted([local_models[i] for i in range(args.num_users)], key = lambda x: x.ucb)]
-            sorted_g = [model.user_idx for model in sorted([local_models[i] for i in range(args.num_users)], key = lambda x: x.g)]  
-            sorted_privacy_reward = [model.user_idx for model in sorted([local_models[i] for i in range(args.num_users)], key = lambda x: x.privacy_reward)]  
-            current_energy = compute_energy(current_state, local_models, args)
+            #create a uniform rnadom noise for the g and p axes, the noise should be uniformly bewtween -10^-7 and 10^-7
+            g_noise = np.random.uniform(-10**-8, 10**-8, num_users)
+            p_noise = np.random.uniform(-10**-8, 10**-8, num_users)
+
+            for i in range(num_users):
+                local_models[i].g += g_noise[i]
+                local_models[i].privacy_reward += p_noise[i]
+
+
+            current_state  = list(np.random.choice(num_users, num_users_per_round, replace=False))
+            sorted_ucb = [model.user_idx for model in sorted([local_models[i] for i in range(num_users)], key = lambda x: x.ucb)]
+            sorted_g = [model.user_idx for model in sorted([local_models[i] for i in range(num_users)], key = lambda x: x.g)]  
+            sorted_privacy_reward = [model.user_idx for model in sorted([local_models[i] for i in range(num_users)], key = lambda x: x.privacy_reward)]  
+            energy_list = []
+
+            # computing the upper bound on the maximum of energy gap as beta_max
+
+            upper_bound_energy = 0
+            upper_bound_energy += local_models[sorted_ucb[-num_users_per_round]].ucb
+            upper_bound_energy += (args.alpha/num_users_per_round) * sum([local_models[i].g for i in sorted_g[-num_users_per_round:]]) 
+            upper_bound_energy += (args.gamma/num_users_per_round) * sum([local_models[i].privacy_reward for i in sorted_privacy_reward[-num_users_per_round:]])
+
+            lower_bound_energy = 0
+            lower_bound_energy += local_models[sorted_ucb[0]].ucb
+            lower_bound_energy += (args.alpha/num_users_per_round) * sum([local_models[i].g for i in sorted_g[:num_users_per_round]])
+            lower_bound_energy += (args.gamma/num_users_per_round) * sum([local_models[i].privacy_reward for i in sorted_privacy_reward[:num_users_per_round]])
+
+            beta_max = upper_bound_energy - lower_bound_energy
+
+            beta_max /= args.beta_max_reduction
+
+            winning_comb = None
+            best_score = 0
+
+            if args.ALSA_verbose:
+                print(f"iter: 0, current_state: {current_state}")
 
             for iter in range(args.max_iterations_alsa):
-                #the neighbors_dict is for debugging purposes, can probably be removed later on
-                neigbors_dict = {}
-                #find all the users with minimal value of ucb from current indexes
-                min_ucb = min([local_models[i].ucb for i in current_state])
-                min_g = min([local_models[i].g for i in current_state])
-                min_privacy_reward = min([local_models[i].privacy_reward for i in current_state])                
+                
+            
                 ### part 1: cheking for active neighbors
                 """Active neigbors are neighbors when the replaced user from the current state is the one with either 
                 the minimal ucb, the minimal g, or the minimal privacy reward"""
+
+                sorted_ucb_users_current_state = [model.user_idx for model in sorted([local_models[i] for i in current_state], key = lambda x: x.ucb)]
+                sorted_g_users_current_state = [model.user_idx for model in sorted([local_models[i] for i in current_state], key = lambda x: x.g)]
+                sorted_p_users_current_state = [model.user_idx for model in sorted([local_models[i] for i in current_state], key = lambda x: x.privacy_reward)]    
+
+
+                min_ucb_value_current_state = local_models[sorted_ucb_users_current_state[0]].ucb
+                min_g_value_current_state = local_models[sorted_g_users_current_state[0]].g
+                min_privacy_reward_value_current_state = local_models[sorted_p_users_current_state[0]].privacy_reward
+
+                active_neighbors_dict = {}
                 for replaced_user in current_state:                                      
-                    if (local_models[replaced_user].ucb == min_ucb) or (local_models[replaced_user].g == min_g) or (local_models[replaced_user].privacy_reward == min_privacy_reward):
-                        min_ucb_without_replaced_user = min([local_models[i].ucb for i in current_state if i != replaced_user])                        
-                        range_of_users = list(range(args.num_users))
-                        np.random.shuffle(range_of_users)
+                    if ((local_models[replaced_user].ucb == min_ucb_value_current_state)
+                         or (local_models[replaced_user].g == min_g_value_current_state)
+                         or (local_models[replaced_user].privacy_reward == min_privacy_reward_value_current_state)):                        
+                        range_of_users = list(range(num_users))
                         for new_user in range_of_users:
                             if new_user not in current_state:
-                                new_state, new_energy = compute_relative_energy_of_neighbor(new_user, replaced_user, 
-                                                                                            min_ucb_without_replaced_user,
-                                                                     current_state, local_models, args, current_energy,
-                                                                       neigbors_dict)
+                                # beacuse its actibe neighbor's part' we don't need to check for the energy of 
+                                # new states yet
+                                new_state = create_neighbor_state(new_user, replaced_user, current_state, local_models,
+                                                                  axis_to_sort_by="user_idx")
+                                # A None in neigbors_dict means that the new state is an active neighborand its energy wasnt
+                                # computed yet
+                                active_neighbors_dict[new_state] = None
 
-                                if new_energy > max_energy:
-                                    max_energy = new_energy
-                                    winning_comb = new_state.split(",")
+
+                    else:
+                        continue
+
+                    #for debugging purposes
+
+                if args.ALSA_verbose:
+                    print("*"*10 + "active neighbors" + "*"*10)
+                    print(f"iter: {iter}, current_state: {sorted(current_state)}")
+                    print(f"min_ucb_idx_current_state: {sorted_ucb_users_current_state[0]}")
+                    print(f"min_g_idx_current_state: {sorted_g_users_current_state[0]}")
+                    print(f"min_privacy_reward_idx_current_state: {sorted_p_users_current_state[0]}")
+                    for key in active_neighbors_dict.keys():
+                        print(key)
 
                 ### part 2: cheking for passive neighbors
-                #TODO: write this piece of code
+                """Passive neigbors are neighbors we take out one user and add another one, the new one has the minimal value in 
+                one of the axes of the g, ucb, or privacy reward in the new neighbor state we created."""
+
+
+                #find the indexes of the users with the minimal ucb in the sorted ucb
+                # in the average case, we are supposed to find about 3(K-m) passive neigbors, and after sorting the axes,
+                # every such search is O(1)
+
+
+                passive_neighbors_dict_ucb = create_passive_neighbor_states(sorted_ucb_users_current_state,
+                                                                            sorted_ucb, current_state, local_models, 
+                                                                            axis_to_sort_by="ucb")
+                
+                passive_neighbors_dict_g = create_passive_neighbor_states(sorted_g_users_current_state,
+                                                                            sorted_g, current_state, local_models, 
+                                                                            axis_to_sort_by="g")
+                
+                passive_neighbors_dict_p = create_passive_neighbor_states(sorted_p_users_current_state,  
+                                                                            sorted_privacy_reward, current_state, local_models, 
+                                                                            axis_to_sort_by="p")
+                
+                # sort the keys of the passive neighbors dict by the user_idx to be presented in an uniform order
+
+                if args.ALSA_verbose:
+                    print("*"*10 + "passive neighbors ucb" + "*"*10)
+                    print(f"iter: {iter}, sorted_ucb_current_state: {sorted_ucb_users_current_state}")
+                    print(f"sorted_ucb: {sorted_ucb}")
+                    for key in passive_neighbors_dict_ucb.keys():
+                        print(key)
+
+                    print("*"*10 + "passive neighbors g" + "*"*10)
+                    print(f"iter: {iter}, sorted_g_current_state: {sorted_g_users_current_state}")
+                    print(f"sorted_g: {sorted_g}")
+                    for key in passive_neighbors_dict_g.keys():
+                        print(key)
+
+                    print("*"*10 + "passive neighbors privacy" + "*"*10)
+                    print(f"iter: {iter}, sorted_p_current_state: {sorted_p_users_current_state}")
+                    print(f"sorted_privacy_reward: {sorted_privacy_reward}")
+                    for key in passive_neighbors_dict_p.keys():
+                        print(key)
+
+
+                all_neighbors_dict = {**sort_dict_keys_by_idx(active_neighbors_dict),
+                                      **sort_dict_keys_by_idx(passive_neighbors_dict_ucb),
+                                       **sort_dict_keys_by_idx(passive_neighbors_dict_g),
+                                         **sort_dict_keys_by_idx(passive_neighbors_dict_p)}
                 
 
-                #after part 2 is set:
-                current_state = winning_comb
-            if winning_comb is not None:
-                return tuple([int(x) for x in winning_comb])
+
+                current_energy = compute_energy(current_state, local_models, args)
+
+                energy_list.append(current_energy)
+                # print(f"iter: {iter}, current_state: {current_state}, current_energy: {current_energy}")
+
+                # choose at random the next state from the neighbors dict
+                next_state = np.random.choice(list(all_neighbors_dict.keys()))
+
+                next_state = [int(x) for x in next_state.split(",")]
+                next_energy = compute_energy(next_state, local_models, args)
+                # print(f"iter: {iter}, next__propodes_state: {next_state}, next_energy: {next_energy}")
+
+                if next_energy >= current_energy:
+                    current_state = next_state
+                    if next_energy > best_score:
+                        best_score = next_energy
+                        winning_comb = next_state
+
+
+                else:
+                    temp = beta_max / np.log(iter+1) if iter > 0 else float('inf')
+                    prob = np.exp((next_energy - current_energy) / temp)
+                    # print(f"temp: {temp}")
+                    # print(f"iter: {iter}, prob: {prob}")
+
+                    #flip a coin with the probability of prob
+                    if np.random.rand() < prob:
+                        current_state = next_state 
+
+
+                    else:
+                        continue
+                
+            for i in range(num_users):
+                local_models[i].g -= g_noise[i]
+                local_models[i].privacy_reward -= p_noise[i]
+
+            if not args.ALSA_simulation:
+                if len(set(winning_comb)) != args.num_users_per_round:
+                    print(f"something went wrong, the winning comb is of the size {len(set(winning_comb))} and should be of the size {args.num_users_per_round}")
+                return tuple(winning_comb)
             else:
-                raise ValueError("no winning combination was chosen, this is a bug")
-                    
+                return energy_list, tuple(winning_comb), best_score
 
                 
-
-                    
 
 
     elif method == "BSFL brute":
@@ -253,7 +463,7 @@ def choose_users(local_models, args, global_epoch, method="BSFL brute"):
         return tuple(range(args.num_users_per_round))
 
     else:
-        raise ValueError(f"There is no such method as {method}, choose a method from:\nBSFL brute, random, all users, fastest ones ")
+        raise ValueError(f"There is no such method as {method}, choose a method from:\nALSA, BSFL brute, random, all users, fastest ones ")
         
 
 

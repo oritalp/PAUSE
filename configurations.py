@@ -10,12 +10,13 @@ class arguments:
                   num_users = 30, num_users_per_round = 5, eval = False, data = "mnist", 
                   save_best_model = False, global_epochs = 200, max_seconds = 300, privacy = True,
                   privacy_choosing_users = True, epsilon_bar = 400, epsilon_sum_deascent_coeff = 0.02,
-                  delta_f = 0.8*(10**-3), snr_verbose = True, choosing_users_verbose = False, 
-                  max_iterations_alsa = 100,
+                  delta_f = 0.8*(10**-3), snr_verbose = True, choosing_users_verbose = True, 
+                  max_iterations_alsa = 500, ALSA_simulation = False, ALSA_verbose = False,
+                  beta_max_reduction = 20,
                   norm_std = 0.5, norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, local_epochs = 1,
                  local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
-                  optimizer = "sgd", lr = 0.01, momentum = 0.5, lr_scheduler = False,
-                 device = "cpu", seed = 0, zeta_coeff = 1.05, alpha = 5, beta = 2, gamma = 0.1, 
+                  optimizer = "Adam", lr = 0.01, momentum = 0.5, lr_scheduler = False,
+                 device = "cpu", seed = 0, zeta_coeff = 1.05, alpha = 10, beta = 2, gamma = 1, 
                  exp_name = None):
         self.exp_name = exp_name  #currently there is no use in that, set to None
         self.eval = eval
@@ -55,6 +56,9 @@ class arguments:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.snr_verbose = snr_verbose  #weather to print the snr of the deltas theta for each user
         self.max_iterations_alsa = max_iterations_alsa
+        self.ALSA_simulation = ALSA_simulation
+        self.ALSA_verbose = ALSA_verbose
+        self.beta_max_reduction = beta_max_reduction
 
 
 
