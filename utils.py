@@ -1,3 +1,4 @@
+from turtle import color
 import numpy as np
 import torch
 import torch.optim as optim
@@ -25,6 +26,7 @@ class user:
         self.opt = opt
         self.scheduler = scheduler
         self.args = args
+        self.ucb_generalization = 0 #the term in ucb that corresponds to the generalization (namely h)
         self.ucb = float('inf')
         self.g = 0
         self.num_of_obs = 0
@@ -37,6 +39,8 @@ class user:
         self.last_access_time = 0
         self.next_privacy_term = 0
         self.inf_sum = np.exp(-self.args.epsilon_sum_deascent_coeff)/(1-np.exp(-self.args.epsilon_sum_deascent_coeff))
+
+        # pay attention that the summation of \epsilon_i is starting from i=1
     
     def update_acceess_time(self):
             """
@@ -52,21 +56,29 @@ class user:
             if self.user_idx < self.args.num_users//2:
                 self.last_access_time = max(self.args.tau_min,
                                         (self.args.tau_min + ((0.2-self.args.tau_min)/num_of_half_the_users)*(self.user_idx+1)) 
-                                         + (1/(2*self.args.num_users))*np.random.randn())
+                                         + (1/20)*np.random.randn())
             else:
                 self.last_access_time = max(self.args.tau_min,
                                             (0.7 + (0.2/(self.args.num_users - num_of_half_the_users))*(self.user_idx+1 - num_of_half_the_users)
-                                             + (1/(2*self.args.num_users))*np.random.randn()))
+                                             + (1/20)*np.random.randn()))
 
         
             return self.args.tau_min/self.last_access_time
+    
+            # self.last_access_time = max(self.args.tau_min,
+            #                              self.args.tau_min + ((1-self.args.tau_min)/self.args.num_users)*(self.user_idx+1) 
+            #                              + (1/20)*np.random.randn())
+            
+            # return self.args.tau_min/self.last_access_time
+
         
     
     def update_ucb(self, global_epoch):
         if self.num_of_obs == 0:
             return float('inf')
         else:
-            self.ucb = self.emp_avg + math.sqrt((self.args.num_users*math.log(global_epoch))/self.num_of_obs)
+            self.ucb_generalization = math.sqrt(((self.args.num_users_per_round+1)*math.log(global_epoch))/self.num_of_obs)
+            self.ucb = self.args.accel_ucb_coeff*self.emp_avg + self.ucb_generalization
             return self.ucb
     
     def update_emp_avg(self):
@@ -214,7 +226,7 @@ def sort_dict_keys_by_idx(original_dict):
 
 #TODO: after privacy issue is sealed, before publishing the code,
 # need to change args.privacy_choosing_users and unite it with args.privacy
-def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_per_round = None, method="ALSA"):
+def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_users_per_round = 1, method="ALSA"):
     """
     Selects a group of users based on the specified method.
 
@@ -242,20 +254,24 @@ def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_
         # before each user is chosen at least once, we choose the users randomly, because they all set
         # to have ucb which is eauals to inf
 
+        
+
         #if we are in simulation mode, skip the initial random choosing
-        3
-        condition = global_epoch < math.floor(num_users/num_users_per_round) + 1 if  not args.ALSA_simulation else False
+        condition = (global_epoch <= (args.pre_ALSA_rounds * args.num_users/args.num_users_per_round)
+                      if not args.ALSA_simulation else False)
         #TODO: the condition for random initial starting is good if the number of users is a multiple of the number of 
         # users per round, otherwise, the condition should be changed (maybe with a change in the initialization of the
         # values of p and g in the user class)
+ 
 
         if condition:
-            list_of_unchosen_users = [i for i in range(num_users) if local_models[i].num_of_obs == 0]
-            print(list_of_unchosen_users)
+            round_no = (global_epoch-1) // (args.num_users/args.num_users_per_round)
+            list_of_unchosen_users = [i for i in range(num_users) if local_models[i].num_of_obs == round_no]
             return tuple(np.random.choice(list_of_unchosen_users, num_users_per_round, replace=False))
 
         else:
-            #create a uniform rnadom noise for the g and p axes, the noise should be uniformly bewtween -10^-7 and 10^-7
+            start_time = time.time()
+            #create a uniform random noise for the g and p axes, the noise should be uniformly bewtween -10^-7 and 10^-7
             g_noise = np.random.uniform(-10**-8, 10**-8, num_users)
             p_noise = np.random.uniform(-10**-8, 10**-8, num_users)
 
@@ -286,7 +302,7 @@ def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_
 
             beta_max /= args.beta_max_reduction
 
-            winning_comb = None
+            winning_comb = []
             best_score = 0
 
             if args.ALSA_verbose:
@@ -311,15 +327,15 @@ def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_
                 active_neighbors_dict = {}
                 for replaced_user in current_state:                                      
                     if ((local_models[replaced_user].ucb == min_ucb_value_current_state)
-                         or (local_models[replaced_user].g == min_g_value_current_state)
-                         or (local_models[replaced_user].privacy_reward == min_privacy_reward_value_current_state)):                        
+                        or (local_models[replaced_user].g == min_g_value_current_state)
+                        or (local_models[replaced_user].privacy_reward == min_privacy_reward_value_current_state)):                        
                         range_of_users = list(range(num_users))
                         for new_user in range_of_users:
                             if new_user not in current_state:
                                 # beacuse its actibe neighbor's part' we don't need to check for the energy of 
                                 # new states yet
                                 new_state = create_neighbor_state(new_user, replaced_user, current_state, local_models,
-                                                                  axis_to_sort_by="user_idx")
+                                                                axis_to_sort_by="user_idx")
                                 # A None in neigbors_dict means that the new state is an active neighborand its energy wasnt
                                 # computed yet
                                 active_neighbors_dict[new_state] = None
@@ -384,9 +400,9 @@ def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_
 
 
                 all_neighbors_dict = {**sort_dict_keys_by_idx(active_neighbors_dict),
-                                      **sort_dict_keys_by_idx(passive_neighbors_dict_ucb),
-                                       **sort_dict_keys_by_idx(passive_neighbors_dict_g),
-                                         **sort_dict_keys_by_idx(passive_neighbors_dict_p)}
+                                    **sort_dict_keys_by_idx(passive_neighbors_dict_ucb),
+                                    **sort_dict_keys_by_idx(passive_neighbors_dict_g),
+                                        **sort_dict_keys_by_idx(passive_neighbors_dict_p)}
                 
 
 
@@ -422,7 +438,12 @@ def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_
 
                     else:
                         continue
-                
+
+                if (time.time()-start_time > args.max_time_alsa) and not args.ALSA_simulation:
+                    textio.cprint(f"ALSA took more than {args.max_time_alsa} seconds to run, we're breaking at iter: {iter}")
+                    break
+
+
             for i in range(num_users):
                 local_models[i].g -= g_noise[i]
                 local_models[i].privacy_reward -= p_noise[i]
@@ -430,8 +451,10 @@ def choose_users(local_models,  args, global_epoch ,num_users = None, num_users_
             if not args.ALSA_simulation:
                 if len(set(winning_comb)) != args.num_users_per_round:
                     print(f"something went wrong, the winning comb is of the size {len(set(winning_comb))} and should be of the size {args.num_users_per_round}")
+                print(f"ALSA took {(time.time()-start_time)//60} minutes and {(time.time()-start_time)%60} seconds to run")
                 return tuple(winning_comb)
             else:
+                print(f"ALSA took {(time.time()-start_time)//60} minutes and {(time.time()-start_time)%60} seconds to run")
                 return energy_list, tuple(winning_comb), best_score
 
                 
@@ -543,13 +566,13 @@ def initializations(args):
 
     """
     #  reproducibility
-    # torch.backends.cudnn.deterministic = True
-    # torch.manual_seed(args.seed)
-    # torch.cuda.manual_seed_all(args.seed)
-    # np.random.seed(args.seed)
+    torch.backends.cudnn.deterministic = True
+    torch.manual_seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
+    np.random.seed(args.seed)
 
     #  documentation
-    #make a string for the current datetime (for the folder name) using datetime module
+
     now = datetime.datetime.now()
     now = str(now.strftime("%d-%m-%Y_%H-%M-%S"))
     (Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now).mkdir(exist_ok=True, parents=True)
@@ -675,18 +698,28 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
     
     for key, value in paths_dict.items():
         paths_dict[key] = torch.load(value)
+
+    colors_list = ["C0", "orange", "green", "indigo", "olive", "brown"]
+    line_styles = ["-", "--", "-."]
     
     fig, ax = plt.subplots(2,2, figsize=(15,15))
 
-    for key, value in paths_dict.items():
-        x_var = value["global_epochs_time_list"] if x_axis_time else range(1, value["global_epoch"]+1)
-        ax[0,0].plot(x_var, value['val_losses_list'], label = f"{key} validation loss")
-        ax[0,1].plot(x_var, value['val_acc_list'], label = f"{key} validation accuracy")
-        ax[1,0].plot(x_var, value['train_loss_list'], label = f"{key} avg train loss")
-    
-    ax[0,0].set_title("val loss over time") if x_axis_time else ax[0,0].set_title("val loss over epochs")
-    ax[0,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,0].set_xlabel("epochs", fontsize=10)
-    ax[0,0].set_ylabel("val loss")
+    for idx, zipped_key_value in enumerate(paths_dict.items()):
+        key, value = zipped_key_value
+        x_var = value["global_epochs_time_list"] if x_axis_time else list(range(1, value["global_epoch"]+1))
+        ax[0,0].stairs(value["privacy_violations_list"],edges=[0] + x_var, baseline=None,
+                       label = f"{key} privacy violation", ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+        ax[0,1].plot(x_var, value['val_acc_list'], label = f"{key} validation accuracy",
+                     ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+        ax[1,0].plot(x_var, value['train_loss_list'], label = f"{key} avg train loss",
+                     ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+        ax[1,1].plot(x_var, value['val_losses_list'], label = f"{key} validation loss",
+                     ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+
+
+    ax[0,0].set_title(r"privacy violation over time (max $\epsilon$ budget exceeded)") if x_axis_time else ax[1,1].set_title("privacy violation over epochs")
+    ax[0,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[1,1].set_xlabel("epochs", fontsize=10)
+    ax[0,0].set_ylabel("privacy violation")
     ax[0,0].legend()
 
     ax[0,1].set_title("val acc over time") if x_axis_time else ax[0,1].set_title("val acc over epochs")
@@ -698,7 +731,16 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
     ax[1,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[1,0].set_xlabel("epochs", fontsize=10)
     ax[1,0].set_ylabel("train loss")
     ax[1,0].legend()
+    ax[1,0].set_ylim(0,3)
 
+    ax[1,1].set_title("val loss over time") if x_axis_time else ax[0,0].set_title("val loss over epochs")
+    ax[1,1].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,0].set_xlabel("epochs", fontsize=10)
+    ax[1,1].set_ylabel("val loss")
+    ax[1,1].legend()
+    ax[1,1].set_ylim(0,3)
+
+    fig.suptitle("Metrics over time" if x_axis_time else "Metrics over epochs", fontsize=20)
+    fig.tight_layout()
     plt.show()
 
 

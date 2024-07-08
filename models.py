@@ -51,16 +51,16 @@ class CNN2Layer(nn.Module):
         x = self.conv1(x)
         x = F.relu(x)
         x = F.max_pool2d(x, kernel_size=2)
-        #x = self.batch_norm_2d(x)
+        # x = self.batch_norm_2d(x)
         x = self.conv2(x)
         x = F.relu(x)
         x = F.max_pool2d(x, kernel_size=2)
         x = x.view(-1, self.n_feature * self.intemidiate_size * self.intemidiate_size)  # 4*4 for MNIST 5*5 for CIFAR10
-        #x = self.dropout1(x)
+        # x = self.dropout1(x)
         x = self.fc1(x)
         x = F.relu(x)
-        #x = self.batch_norm(x)
-        #x = self.dropout2(x)
+        # x = self.batch_norm(x)
+        # x = self.dropout2(x)
         x = self.fc2(x)
         return x
 
