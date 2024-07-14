@@ -14,6 +14,7 @@ import itertools
 import time
 import datetime
 import matplotlib.pyplot as plt
+import random
 
 
 
@@ -604,10 +605,13 @@ class IOStream:
         self.f.close()
 
 
+
 def data(args):
     """Returns train dataset and test loader (which is set to be with no shuffling, need to check why)
     the data is pictures with pixels normalized to be between 0 and 1, the normalizing mean and std are 0.5 both so 
     pixel with value 0 is -1 and pixel with value 1 is 1. this applies only a linear invertible transformation to the data"""
+    
+    
     if args.data == 'mnist':
         train_data = datasets.MNIST('./data', train=True, download=True,
                                     transform=transforms.Compose([
@@ -699,10 +703,12 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
     for key, value in paths_dict.items():
         paths_dict[key] = torch.load(value)
 
-    colors_list = ["C0", "orange", "green", "indigo", "olive", "brown"]
+    colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
     line_styles = ["-", "--", "-."]
     
-    fig, ax = plt.subplots(2,2, figsize=(15,15))
+    fig, ax = plt.subplots(2,2, figsize=(10,10))
+    max_acc =  0
+    min_acc =100
 
     for idx, zipped_key_value in enumerate(paths_dict.items()):
         key, value = zipped_key_value
@@ -715,28 +721,36 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
                      ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
         ax[1,1].plot(x_var, value['val_losses_list'], label = f"{key} validation loss",
                      ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+        
+        if max(value['val_acc_list']) > max_acc:
+            max_acc = max(value['val_acc_list'])
+        if min(value['val_acc_list']) < min_acc:
+            min_acc = min(value['val_acc_list'])
+        
 
 
     ax[0,0].set_title(r"privacy violation over time (max $\epsilon$ budget exceeded)") if x_axis_time else ax[1,1].set_title("privacy violation over epochs")
     ax[0,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[1,1].set_xlabel("epochs", fontsize=10)
     ax[0,0].set_ylabel("privacy violation")
-    ax[0,0].legend()
+    ax[0,0].legend(fontsize=7)
 
     ax[0,1].set_title("val acc over time") if x_axis_time else ax[0,1].set_title("val acc over epochs")
     ax[0,1].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,1].set_xlabel("epochs", fontsize=10)
     ax[0,1].set_ylabel("val acc")
-    ax[0,1].legend()
+    ax[0,1].set_yticks(list(np.arange(0,int(max_acc) + 5,5)))
+    ax[0,1].set_ylim(min_acc-1, max_acc + 1)
+    ax[0,1].legend(fontsize=7)
 
     ax[1,0].set_title("avg train loss over time") if x_axis_time else ax[1,0].set_title("avg train loss over epochs")
     ax[1,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[1,0].set_xlabel("epochs", fontsize=10)
     ax[1,0].set_ylabel("train loss")
-    ax[1,0].legend()
+    ax[1,0].legend(fontsize=7)
     ax[1,0].set_ylim(0,3)
 
     ax[1,1].set_title("val loss over time") if x_axis_time else ax[0,0].set_title("val loss over epochs")
     ax[1,1].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,0].set_xlabel("epochs", fontsize=10)
     ax[1,1].set_ylabel("val loss")
-    ax[1,1].legend()
+    ax[1,1].legend(fontsize=7)
     ax[1,1].set_ylim(0,3)
 
     fig.suptitle("Metrics over time" if x_axis_time else "Metrics over epochs", fontsize=20)

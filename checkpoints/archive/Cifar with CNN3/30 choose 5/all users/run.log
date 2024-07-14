@@ -1,0 +1,2099 @@
+{'eval': <built-in function eval>, 'data': 'cifar10', 'model': 'cnn3', 'num_users': 30, 'num_users_per_round': 5, 'local_epochs': 1, 'local_iterations': 100, 'global_epochs': 300, 'tau_min': 0.05, 'privacy_noise': 'laplace', 'epsilon_bar': 100, 'optimizer': 'Adam', 'lr': 0.01, 'momentum': 0.5, 'lr_scheduler': False, 'seed': 0, 'alpha': 100, 'beta': 2, 'gamma': 5, 'max_seconds': 300, 'method_choosing_users': 'all users', 'data_truncation': None, 'choosing_users_verbose': False, 'save_best_model': False, 'privacy': True, 'privacy_choosing_users': True, 'epsilon_sum_deascent_coeff': 0.04, 'delta_f': 0.012, 'device': device(type='cuda'), 'snr_verbose': True, 'max_iterations_alsa': 500, 'ALSA_simulation': False, 'ALSA_verbose': False, 'beta_max_reduction': 30, 'accel_ucb_coeff': 1, 'max_time_alsa': 600, 'pre_ALSA_rounds': 1, 'norm_std': 0.5, 'norm_mean': 0.5, 'train_batch_size': 20, 'test_batch_size': 1000}
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN3LayerCifar                           --
+├─Conv2d: 1-1                            896
+├─BatchNorm2d: 1-2                       64
+├─Conv2d: 1-3                            18,496
+├─BatchNorm2d: 1-4                       128
+├─Conv2d: 1-5                            73,856
+├─BatchNorm2d: 1-6                       256
+├─MaxPool2d: 1-7                         --
+├─Linear: 1-8                            65,664
+├─BatchNorm1d: 1-9                       256
+├─Linear: 1-10                           8,256
+├─BatchNorm1d: 1-11                      128
+├─Linear: 1-12                           2,080
+├─BatchNorm1d: 1-13                      64
+├─Linear: 1-14                           330
+├─Dropout: 1-15                          --
+├─Dropout: 1-16                          --
+├─Dropout: 1-17                          --
+=================================================================
+Total params: 170,474
+Trainable params: 170,474
+Non-trainable params: 0
+=================================================================
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.2 has been picked 1, his deltas theta's mean
+ is -0.0006463671452365816,
+the empirical var of deltas thetas is 0.003982466645538807
+the minimum of the deltas theta is -0.25982600450515747 and the maximum is 0.34222981333732605
+the added laplace noise var is 0.003060399989333737
+global epoch 1 has been done artifficialy in 0.92 secs, the total time by now is 0.92 
+ with avg train loss 2.076, val loss 2.344, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.23 has been picked 2, his deltas theta's mean
+ is 0.0012009096099063754,
+the empirical var of deltas thetas is 0.003497316734865308
+the minimum of the deltas theta is -0.2795897424221039 and the maximum is 0.293414443731308
+the added laplace noise var is 0.0031852972822368235
+global epoch 2 has been done artifficialy in 0.94 secs, the total time by now is 1.86 
+ with avg train loss 2.039, val loss 2.331, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.2 has been picked 3, his deltas theta's mean
+ is -0.0013604024425148964,
+the empirical var of deltas thetas is 0.0035682048182934523
+the minimum of the deltas theta is -0.31090977787971497 and the maximum is 0.2959323525428772
+the added laplace noise var is 0.0033152917303578187
+global epoch 3 has been done artifficialy in 0.92 secs, the total time by now is 2.78 
+ with avg train loss 2.015, val loss 2.327, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.17 has been picked 4, his deltas theta's mean
+ is -5.769391646026634e-05,
+the empirical var of deltas thetas is 0.0034221315290778875
+the minimum of the deltas theta is -0.25049418210983276 and the maximum is 0.2896213233470917
+the added laplace noise var is 0.0034505913525473436
+global epoch 4 has been done artifficialy in 0.94 secs, the total time by now is 3.72 
+ with avg train loss 1.989, val loss 2.326, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.9 has been picked 5, his deltas theta's mean
+ is -0.0014581629075109959,
+the empirical var of deltas thetas is 0.0025881605688482523
+the minimum of the deltas theta is -0.26395270228385925 and the maximum is 0.2825796902179718
+the added laplace noise var is 0.0035914126570663605
+global epoch 5 has been done artifficialy in 0.91 secs, the total time by now is 4.63 
+ with avg train loss 1.974, val loss 2.327, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 6, his deltas theta's mean
+ is 0.000248713098699227,
+the empirical var of deltas thetas is 0.002530164085328579
+the minimum of the deltas theta is -0.27996447682380676 and the maximum is 0.33768242597579956
+the added laplace noise var is 0.0037379809880455804
+global epoch 6 has been done artifficialy in 0.89 secs, the total time by now is 5.52 
+ with avg train loss 1.959, val loss 2.329, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.25 has been picked 7, his deltas theta's mean
+ is 0.000719917647074908,
+the empirical var of deltas thetas is 0.002218725625425577
+the minimum of the deltas theta is -0.22172202169895172 and the maximum is 0.29034510254859924
+the added laplace noise var is 0.003890530886084149
+global epoch 7 has been done artifficialy in 1.00 secs, the total time by now is 6.52 
+ with avg train loss 1.937, val loss 2.330, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.17 has been picked 8, his deltas theta's mean
+ is 0.0007123692776076496,
+the empirical var of deltas thetas is 0.0019666641019284725
+the minimum of the deltas theta is -0.24222654104232788 and the maximum is 0.30347567796707153
+the added laplace noise var is 0.0040493064635646414
+global epoch 8 has been done artifficialy in 0.95 secs, the total time by now is 7.47 
+ with avg train loss 1.932, val loss 2.334, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.6 has been picked 9, his deltas theta's mean
+ is -0.0012869082856923342,
+the empirical var of deltas thetas is 0.0017907744040712714
+the minimum of the deltas theta is -0.2701271176338196 and the maximum is 0.32529476284980774
+the added laplace noise var is 0.004214561795284956
+global epoch 9 has been done artifficialy in 0.94 secs, the total time by now is 8.41 
+ with avg train loss 1.923, val loss 2.336, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.21 has been picked 10, his deltas theta's mean
+ is 0.0002007389412028715,
+the empirical var of deltas thetas is 0.0020122211426496506
+the minimum of the deltas theta is -0.3117559850215912 and the maximum is 0.3239956200122833
+the added laplace noise var is 0.004386561325032196
+global epoch 10 has been done artifficialy in 0.91 secs, the total time by now is 9.33 
+ with avg train loss 1.912, val loss 2.333, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 11, his deltas theta's mean
+ is 0.00037844834150746465,
+the empirical var of deltas thetas is 0.0017171473009511828
+the minimum of the deltas theta is -0.22304679453372955 and the maximum is 0.2951495051383972
+the added laplace noise var is 0.004565580288749148
+global epoch 11 has been done artifficialy in 0.90 secs, the total time by now is 10.23 
+ with avg train loss 1.905, val loss 2.340, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.2 has been picked 12, his deltas theta's mean
+ is -0.00034906831569969654,
+the empirical var of deltas thetas is 0.001926714670844376
+the minimum of the deltas theta is -0.23404476046562195 and the maximum is 0.31708624958992004
+the added laplace noise var is 0.004751905154970509
+global epoch 12 has been done artifficialy in 0.96 secs, the total time by now is 11.19 
+ with avg train loss 1.884, val loss 2.346, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 13, his deltas theta's mean
+ is -4.2922867578454316e-05,
+the empirical var of deltas thetas is 0.0017660814337432384
+the minimum of the deltas theta is -0.23769810795783997 and the maximum is 0.25638043880462646
+the added laplace noise var is 0.004945834083233656
+global epoch 13 has been done artifficialy in 0.91 secs, the total time by now is 12.10 
+ with avg train loss 1.887, val loss 2.341, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.2 has been picked 14, his deltas theta's mean
+ is 0.0001987947034649551,
+the empirical var of deltas thetas is 0.0019289653282612562
+the minimum of the deltas theta is -0.25615206360816956 and the maximum is 0.26531532406806946
+the added laplace noise var is 0.005147677401197522
+global epoch 14 has been done artifficialy in 0.89 secs, the total time by now is 12.99 
+ with avg train loss 1.864, val loss 2.341, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.15 has been picked 15, his deltas theta's mean
+ is -0.0008369775605387986,
+the empirical var of deltas thetas is 0.0018685428658500314
+the minimum of the deltas theta is -0.2823076546192169 and the maximum is 0.3292519748210907
+the added laplace noise var is 0.005357758101233054
+global epoch 15 has been done artifficialy in 0.97 secs, the total time by now is 13.95 
+ with avg train loss 1.860, val loss 2.327, avg val acc 10.01%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.28 has been picked 16, his deltas theta's mean
+ is 0.00020753902208525687,
+the empirical var of deltas thetas is 0.0018187162932008505
+the minimum of the deltas theta is -0.30953359603881836 and the maximum is 0.3173372149467468
+the added laplace noise var is 0.005576412357279915
+global epoch 16 has been done artifficialy in 0.92 secs, the total time by now is 14.87 
+ with avg train loss 1.841, val loss 2.311, avg val acc 10.50%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.23 has been picked 17, his deltas theta's mean
+ is 0.00029687178903259337,
+the empirical var of deltas thetas is 0.0018238932825624943
+the minimum of the deltas theta is -0.24150821566581726 and the maximum is 0.33703896403312683
+the added laplace noise var is 0.0058039900627965095
+global epoch 17 has been done artifficialy in 0.93 secs, the total time by now is 15.80 
+ with avg train loss 1.827, val loss 2.271, avg val acc 12.95%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.26 has been picked 18, his deltas theta's mean
+ is 0.0003057743306271732,
+the empirical var of deltas thetas is 0.0017652555834501982
+the minimum of the deltas theta is -0.2651633024215698 and the maximum is 0.35919106006622314
+the added laplace noise var is 0.006040855390664162
+global epoch 18 has been done artifficialy in 0.99 secs, the total time by now is 16.79 
+ with avg train loss 1.812, val loss 2.282, avg val acc 15.37%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.12 has been picked 19, his deltas theta's mean
+ is 0.0011412621242925525,
+the empirical var of deltas thetas is 0.0020387875847518444
+the minimum of the deltas theta is -0.406358003616333 and the maximum is 0.44200173020362854
+the added laplace noise var is 0.006287387375941429
+global epoch 19 has been done artifficialy in 0.92 secs, the total time by now is 17.71 
+ with avg train loss 1.810, val loss 2.272, avg val acc 15.28%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.5 has been picked 20, his deltas theta's mean
+ is -0.00015350396279245615,
+the empirical var of deltas thetas is 0.0018730340525507927
+the minimum of the deltas theta is -0.2814505398273468 and the maximum is 0.29850730299949646
+the added laplace noise var is 0.006543980522401047
+global epoch 20 has been done artifficialy in 0.94 secs, the total time by now is 18.66 
+ with avg train loss 1.799, val loss 2.219, avg val acc 16.98%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.16 has been picked 21, his deltas theta's mean
+ is 0.00029120591352693737,
+the empirical var of deltas thetas is 0.00235575414262712
+the minimum of the deltas theta is -0.2986610531806946 and the maximum is 0.35287535190582275
+the added laplace noise var is 0.006811045433820142
+global epoch 21 has been done artifficialy in 0.92 secs, the total time by now is 19.58 
+ with avg train loss 1.783, val loss 2.197, avg val acc 16.91%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.16 has been picked 22, his deltas theta's mean
+ is -0.00016741783474572003,
+the empirical var of deltas thetas is 0.0024507285561412573
+the minimum of the deltas theta is -0.2941853106021881 and the maximum is 0.3765861988067627
+the added laplace noise var is 0.007089009471033874
+global epoch 22 has been done artifficialy in 0.93 secs, the total time by now is 20.51 
+ with avg train loss 1.772, val loss 2.172, avg val acc 18.39%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 23, his deltas theta's mean
+ is -0.0016443940112367272,
+the empirical var of deltas thetas is 0.0018561023753136396
+the minimum of the deltas theta is -0.28926706314086914 and the maximum is 0.2938748300075531
+the added laplace noise var is 0.0073783174358039395
+global epoch 23 has been done artifficialy in 0.91 secs, the total time by now is 21.42 
+ with avg train loss 1.755, val loss 2.164, avg val acc 18.63%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.11 has been picked 24, his deltas theta's mean
+ is -0.0006119517493061721,
+the empirical var of deltas thetas is 0.0016169376904144883
+the minimum of the deltas theta is -0.23776867985725403 and the maximum is 0.3055436313152313
+the added laplace noise var is 0.007679432282596293
+global epoch 24 has been done artifficialy in 0.91 secs, the total time by now is 22.33 
+ with avg train loss 1.748, val loss 2.124, avg val acc 20.91%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.21 has been picked 25, his deltas theta's mean
+ is 0.0001302792370552197,
+the empirical var of deltas thetas is 0.0015627079410478473
+the minimum of the deltas theta is -0.2411934733390808 and the maximum is 0.32968443632125854
+the added laplace noise var is 0.007992835859407068
+global epoch 25 has been done artifficialy in 0.99 secs, the total time by now is 23.32 
+ with avg train loss 1.738, val loss 2.094, avg val acc 21.37%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.6 has been picked 26, his deltas theta's mean
+ is -0.002613167278468609,
+the empirical var of deltas thetas is 0.0026996396481990814
+the minimum of the deltas theta is -0.3790489137172699 and the maximum is 0.38876771926879883
+the added laplace noise var is 0.008319029678822153
+global epoch 26 has been done artifficialy in 0.92 secs, the total time by now is 24.23 
+ with avg train loss 1.731, val loss 2.073, avg val acc 21.37%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.29 has been picked 27, his deltas theta's mean
+ is 0.00010192762420047075,
+the empirical var of deltas thetas is 0.0022023648489266634
+the minimum of the deltas theta is -0.3682096302509308 and the maximum is 0.33853402733802795
+the added laplace noise var is 0.008658535720544341
+global epoch 27 has been done artifficialy in 0.90 secs, the total time by now is 25.13 
+ with avg train loss 1.712, val loss 2.061, avg val acc 22.56%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 28, his deltas theta's mean
+ is -0.0013666810700669885,
+the empirical var of deltas thetas is 0.0022318465635180473
+the minimum of the deltas theta is -0.3359556496143341 and the maximum is 0.40340110659599304
+the added laplace noise var is 0.009011897266672203
+global epoch 28 has been done artifficialy in 0.91 secs, the total time by now is 26.05 
+ with avg train loss 1.706, val loss 2.020, avg val acc 23.97%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 29, his deltas theta's mean
+ is -0.0012127273948863149,
+the empirical var of deltas thetas is 0.0021858327090740204
+the minimum of the deltas theta is -0.32540959119796753 and the maximum is 0.3721800744533539
+the added laplace noise var is 0.009379679771067361
+global epoch 29 has been done artifficialy in 0.91 secs, the total time by now is 26.96 
+ with avg train loss 1.691, val loss 2.006, avg val acc 23.82%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.24 has been picked 30, his deltas theta's mean
+ is -0.0013173335464671254,
+the empirical var of deltas thetas is 0.0021233330480754375
+the minimum of the deltas theta is -0.32133346796035767 and the maximum is 0.3468748927116394
+the added laplace noise var is 0.009762471764201303
+global epoch 30 has been done artifficialy in 0.93 secs, the total time by now is 27.88 
+ with avg train loss 1.684, val loss 1.996, avg val acc 24.46%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.3 has been picked 31, his deltas theta's mean
+ is -0.00029349903343245387,
+the empirical var of deltas thetas is 0.0019027679227292538
+the minimum of the deltas theta is -0.3077174127101898 and the maximum is 0.3001486361026764
+the added laplace noise var is 0.010160885794929691
+global epoch 31 has been done artifficialy in 1.00 secs, the total time by now is 28.88 
+ with avg train loss 1.679, val loss 1.948, avg val acc 28.05%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 32, his deltas theta's mean
+ is -0.0010760424192994833,
+the empirical var of deltas thetas is 0.0021227337419986725
+the minimum of the deltas theta is -0.26611027121543884 and the maximum is 0.4099023938179016
+the added laplace noise var is 0.01057555941070121
+global epoch 32 has been done artifficialy in 0.90 secs, the total time by now is 29.78 
+ with avg train loss 1.668, val loss 1.892, avg val acc 29.70%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.22 has been picked 33, his deltas theta's mean
+ is -0.00018126914801541716,
+the empirical var of deltas thetas is 0.002159289550036192
+the minimum of the deltas theta is -0.2775350511074066 and the maximum is 0.41581448912620544
+the added laplace noise var is 0.011007156177769524
+global epoch 33 has been done artifficialy in 0.97 secs, the total time by now is 30.75 
+ with avg train loss 1.658, val loss 1.894, avg val acc 28.83%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.25 has been picked 34, his deltas theta's mean
+ is -0.00035869888961315155,
+the empirical var of deltas thetas is 0.0018430229974910617
+the minimum of the deltas theta is -0.31982311606407166 and the maximum is 0.37318408489227295
+the added laplace noise var is 0.011456366743040828
+global epoch 34 has been done artifficialy in 0.95 secs, the total time by now is 31.71 
+ with avg train loss 1.650, val loss 1.870, avg val acc 31.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 35, his deltas theta's mean
+ is -0.0012731472961604595,
+the empirical var of deltas thetas is 0.0026438795030117035
+the minimum of the deltas theta is -0.35063251852989197 and the maximum is 0.32771965861320496
+the added laplace noise var is 0.011923909939256253
+global epoch 35 has been done artifficialy in 0.92 secs, the total time by now is 32.62 
+ with avg train loss 1.642, val loss 1.845, avg val acc 32.27%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 36, his deltas theta's mean
+ is -7.758540596114472e-05,
+the empirical var of deltas thetas is 0.002293338067829609
+the minimum of the deltas theta is -0.3135814368724823 and the maximum is 0.37777936458587646
+the added laplace noise var is 0.012410533935277612
+global epoch 36 has been done artifficialy in 0.89 secs, the total time by now is 33.51 
+ with avg train loss 1.634, val loss 1.853, avg val acc 31.34%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.21 has been picked 37, his deltas theta's mean
+ is -0.0008083297871053219,
+the empirical var of deltas thetas is 0.0020479694940149784
+the minimum of the deltas theta is -0.3635692596435547 and the maximum is 0.30504468083381653
+the added laplace noise var is 0.012917017433317197
+global epoch 37 has been done artifficialy in 0.93 secs, the total time by now is 34.44 
+ with avg train loss 1.628, val loss 1.824, avg val acc 32.34%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 38, his deltas theta's mean
+ is -0.0010373510885983706,
+the empirical var of deltas thetas is 0.002355595352128148
+the minimum of the deltas theta is -0.29887592792510986 and the maximum is 0.35663530230522156
+the added laplace noise var is 0.01344417091502745
+global epoch 38 has been done artifficialy in 0.97 secs, the total time by now is 35.40 
+ with avg train loss 1.621, val loss 1.779, avg val acc 36.29%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 39, his deltas theta's mean
+ is -0.0016148264985531569,
+the empirical var of deltas thetas is 0.0021019484847784042
+the minimum of the deltas theta is -0.38185203075408936 and the maximum is 0.39260411262512207
+the added laplace noise var is 0.013992837938444509
+global epoch 39 has been done artifficialy in 0.91 secs, the total time by now is 36.32 
+ with avg train loss 1.609, val loss 1.745, avg val acc 37.54%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.25 has been picked 40, his deltas theta's mean
+ is -0.00023711964604444802,
+the empirical var of deltas thetas is 0.002001663902774453
+the minimum of the deltas theta is -0.3578137755393982 and the maximum is 0.324737012386322
+the added laplace noise var is 0.014563896487861052
+global epoch 40 has been done artifficialy in 0.94 secs, the total time by now is 37.25 
+ with avg train loss 1.600, val loss 1.737, avg val acc 37.68%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.13 has been picked 41, his deltas theta's mean
+ is -0.0005274123977869749,
+the empirical var of deltas thetas is 0.002142121084034443
+the minimum of the deltas theta is -0.33917808532714844 and the maximum is 0.41573768854141235
+the added laplace noise var is 0.015158260378788464
+global epoch 41 has been done artifficialy in 0.90 secs, the total time by now is 38.16 
+ with avg train loss 1.595, val loss 1.755, avg val acc 36.32%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.3 has been picked 42, his deltas theta's mean
+ is -0.0009740839595906436,
+the empirical var of deltas thetas is 0.002229513833299279
+the minimum of the deltas theta is -0.29817995429039 and the maximum is 0.3491879999637604
+the added laplace noise var is 0.015776880720256625
+global epoch 42 has been done artifficialy in 0.90 secs, the total time by now is 39.06 
+ with avg train loss 1.592, val loss 1.747, avg val acc 37.77%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.9 has been picked 43, his deltas theta's mean
+ is -0.0013971584849059582,
+the empirical var of deltas thetas is 0.0026875960174947977
+the minimum of the deltas theta is -0.41897377371788025 and the maximum is 0.40003058314323425
+the added laplace noise var is 0.016420747436791262
+global epoch 43 has been done artifficialy in 0.93 secs, the total time by now is 39.99 
+ with avg train loss 1.587, val loss 1.714, avg val acc 38.76%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 44, his deltas theta's mean
+ is -1.5641782056263764e-06,
+the empirical var of deltas thetas is 0.0021432668436318636
+the minimum of the deltas theta is -0.26331210136413574 and the maximum is 0.3598025441169739
+the added laplace noise var is 0.017090890852504384
+global epoch 44 has been done artifficialy in 0.98 secs, the total time by now is 40.97 
+ with avg train loss 1.579, val loss 1.686, avg val acc 39.13%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.18 has been picked 45, his deltas theta's mean
+ is -0.0019135180627927184,
+the empirical var of deltas thetas is 0.0024496917612850666
+the minimum of the deltas theta is -0.29887670278549194 and the maximum is 0.33046358823776245
+the added laplace noise var is 0.017788383339832698
+global epoch 45 has been done artifficialy in 0.95 secs, the total time by now is 41.91 
+ with avg train loss 1.571, val loss 1.661, avg val acc 41.38%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.2 has been picked 46, his deltas theta's mean
+ is -0.00013610810856334865,
+the empirical var of deltas thetas is 0.0023634994868189096
+the minimum of the deltas theta is -0.29279229044914246 and the maximum is 0.28987351059913635
+the added laplace noise var is 0.01851434103556225
+global epoch 46 has been done artifficialy in 1.01 secs, the total time by now is 42.92 
+ with avg train loss 1.562, val loss 1.650, avg val acc 41.33%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.23 has been picked 47, his deltas theta's mean
+ is -0.001961824484169483,
+the empirical var of deltas thetas is 0.002379565266892314
+the minimum of the deltas theta is -0.3161376714706421 and the maximum is 0.33568471670150757
+the added laplace noise var is 0.019269925626885447
+global epoch 47 has been done artifficialy in 1.04 secs, the total time by now is 43.96 
+ with avg train loss 1.564, val loss 1.617, avg val acc 42.59%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 48, his deltas theta's mean
+ is 0.0002966446045320481,
+the empirical var of deltas thetas is 0.0021392584312707186
+the minimum of the deltas theta is -0.25166669487953186 and the maximum is 0.3532499074935913
+the added laplace noise var is 0.02005634621034838
+global epoch 48 has been done artifficialy in 0.93 secs, the total time by now is 44.88 
+ with avg train loss 1.555, val loss 1.604, avg val acc 43.15%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 49, his deltas theta's mean
+ is -0.000319078826578334,
+the empirical var of deltas thetas is 0.0023390743881464005
+the minimum of the deltas theta is -0.25748151540756226 and the maximum is 0.29392609000205994
+the added laplace noise var is 0.02087486122666327
+global epoch 49 has been done artifficialy in 0.98 secs, the total time by now is 45.87 
+ with avg train loss 1.554, val loss 1.605, avg val acc 43.06%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 50, his deltas theta's mean
+ is -0.0006962308543734252,
+the empirical var of deltas thetas is 0.0022649855818599463
+the minimum of the deltas theta is -0.2816478908061981 and the maximum is 0.33839863538742065
+the added laplace noise var is 0.021726780474482066
+global epoch 50 has been done artifficialy in 0.95 secs, the total time by now is 46.82 
+ with avg train loss 1.537, val loss 1.621, avg val acc 42.80%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 51, his deltas theta's mean
+ is -0.0017840407090261579,
+the empirical var of deltas thetas is 0.002565444679930806
+the minimum of the deltas theta is -0.308899462223053 and the maximum is 0.3557126522064209
+the added laplace noise var is 0.022613467206353745
+global epoch 51 has been done artifficialy in 0.96 secs, the total time by now is 47.78 
+ with avg train loss 1.536, val loss 1.579, avg val acc 45.06%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.3 has been picked 52, his deltas theta's mean
+ is -0.000868375354912132,
+the empirical var of deltas thetas is 0.0025431278627365828
+the minimum of the deltas theta is -0.29158085584640503 and the maximum is 0.34234127402305603
+the added laplace noise var is 0.023536340310219228
+global epoch 52 has been done artifficialy in 0.96 secs, the total time by now is 48.74 
+ with avg train loss 1.532, val loss 1.573, avg val acc 44.77%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 53, his deltas theta's mean
+ is -0.0005009811138734221,
+the empirical var of deltas thetas is 0.0028097815811634064
+the minimum of the deltas theta is -0.37981998920440674 and the maximum is 0.48099803924560547
+the added laplace noise var is 0.02449687657993479
+global epoch 53 has been done artifficialy in 0.93 secs, the total time by now is 49.67 
+ with avg train loss 1.524, val loss 1.570, avg val acc 44.22%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.17 has been picked 54, his deltas theta's mean
+ is -0.0022670356556773186,
+the empirical var of deltas thetas is 0.0029599883127957582
+the minimum of the deltas theta is -0.44859743118286133 and the maximum is 0.5209786891937256
+the added laplace noise var is 0.025496613078457308
+global epoch 54 has been done artifficialy in 0.93 secs, the total time by now is 50.60 
+ with avg train loss 1.520, val loss 1.536, avg val acc 46.84%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.9 has been picked 55, his deltas theta's mean
+ is -0.0011920110555365682,
+the empirical var of deltas thetas is 0.0031481494661420584
+the minimum of the deltas theta is -0.4289224445819855 and the maximum is 0.35732004046440125
+the added laplace noise var is 0.026537149597472925
+global epoch 55 has been done artifficialy in 0.97 secs, the total time by now is 51.57 
+ with avg train loss 1.508, val loss 1.512, avg val acc 48.04%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 56, his deltas theta's mean
+ is -0.00210117781534791,
+the empirical var of deltas thetas is 0.002973721129819751
+the minimum of the deltas theta is -0.3789154887199402 and the maximum is 0.49196696281433105
+the added laplace noise var is 0.02762015121740502
+global epoch 56 has been done artifficialy in 0.94 secs, the total time by now is 52.51 
+ with avg train loss 1.516, val loss 1.535, avg val acc 47.33%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 57, his deltas theta's mean
+ is 3.926839417545125e-05,
+the empirical var of deltas thetas is 0.002314123325049877
+the minimum of the deltas theta is -0.2944924235343933 and the maximum is 0.33993229269981384
+the added laplace noise var is 0.028747350971898154
+global epoch 57 has been done artifficialy in 0.95 secs, the total time by now is 53.46 
+ with avg train loss 1.500, val loss 1.480, avg val acc 48.91%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.22 has been picked 58, his deltas theta's mean
+ is -0.0014504494611173868,
+the empirical var of deltas thetas is 0.0027119694277644157
+the minimum of the deltas theta is -0.32838788628578186 and the maximum is 0.35802826285362244
+the added laplace noise var is 0.02992055262104161
+global epoch 58 has been done artifficialy in 1.00 secs, the total time by now is 54.46 
+ with avg train loss 1.499, val loss 1.493, avg val acc 48.35%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.25 has been picked 59, his deltas theta's mean
+ is -0.001598566072061658,
+the empirical var of deltas thetas is 0.0029289794620126486
+the minimum of the deltas theta is -0.37882718443870544 and the maximum is 0.3856871724128723
+the added laplace noise var is 0.031141633537770413
+global epoch 59 has been done artifficialy in 0.93 secs, the total time by now is 55.39 
+ with avg train loss 1.496, val loss 1.489, avg val acc 48.66%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 60, his deltas theta's mean
+ is -0.0011853083269670606,
+the empirical var of deltas thetas is 0.0025187870487570763
+the minimum of the deltas theta is -0.25493133068084717 and the maximum is 0.33580735325813293
+the added laplace noise var is 0.032412547712062464
+global epoch 60 has been done artifficialy in 0.90 secs, the total time by now is 56.29 
+ with avg train loss 1.497, val loss 1.469, avg val acc 49.56%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 61, his deltas theta's mean
+ is -0.000538461550604552,
+the empirical var of deltas thetas is 0.0030440669506788254
+the minimum of the deltas theta is -0.43834996223449707 and the maximum is 0.4054287075996399
+the added laplace noise var is 0.03373532887773946
+global epoch 61 has been done artifficialy in 0.90 secs, the total time by now is 57.19 
+ with avg train loss 1.491, val loss 1.463, avg val acc 49.57%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 62, his deltas theta's mean
+ is -0.00038718368159607053,
+the empirical var of deltas thetas is 0.0030123316682875156
+the minimum of the deltas theta is -0.3524100184440613 and the maximum is 0.4699607789516449
+the added laplace noise var is 0.03511209376687483
+global epoch 62 has been done artifficialy in 0.97 secs, the total time by now is 58.16 
+ with avg train loss 1.478, val loss 1.480, avg val acc 49.02%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.15 has been picked 63, his deltas theta's mean
+ is 0.001233416493050754,
+the empirical var of deltas thetas is 0.0076897768303751945
+the minimum of the deltas theta is -0.5179067254066467 and the maximum is 0.4137842357158661
+the added laplace noise var is 0.036545045497016725
+global epoch 63 has been done artifficialy in 0.94 secs, the total time by now is 59.10 
+ with avg train loss 1.482, val loss 1.502, avg val acc 48.02%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 64, his deltas theta's mean
+ is -0.0013381482567638159,
+the empirical var of deltas thetas is 0.0036071622744202614
+the minimum of the deltas theta is -0.4408852159976959 and the maximum is 0.4070466160774231
+the added laplace noise var is 0.03803647709664604
+global epoch 64 has been done artifficialy in 0.93 secs, the total time by now is 60.03 
+ with avg train loss 1.473, val loss 1.467, avg val acc 49.62%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.22 has been picked 65, his deltas theta's mean
+ is -0.002443061675876379,
+the empirical var of deltas thetas is 0.005443794187158346
+the minimum of the deltas theta is -0.44871342182159424 and the maximum is 0.45915862917900085
+the added laplace noise var is 0.039588775174511204
+global epoch 65 has been done artifficialy in 0.92 secs, the total time by now is 60.95 
+ with avg train loss 1.479, val loss 1.496, avg val acc 48.24%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.3 has been picked 66, his deltas theta's mean
+ is -0.0016814642585814,
+the empirical var of deltas thetas is 0.0038599479012191296
+the minimum of the deltas theta is -0.3523775339126587 and the maximum is 0.4113273024559021
+the added laplace noise var is 0.0412044237387114
+global epoch 66 has been done artifficialy in 0.91 secs, the total time by now is 61.86 
+ with avg train loss 1.462, val loss 1.468, avg val acc 49.36%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.18 has been picked 67, his deltas theta's mean
+ is -0.002340545877814293,
+the empirical var of deltas thetas is 0.0030576966237276793
+the minimum of the deltas theta is -0.2789298892021179 and the maximum is 0.38626861572265625
+the added laplace noise var is 0.042886008171639435
+global epoch 67 has been done artifficialy in 0.94 secs, the total time by now is 62.81 
+ with avg train loss 1.457, val loss 1.419, avg val acc 51.22%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.11 has been picked 68, his deltas theta's mean
+ is -0.0019022562773898244,
+the empirical var of deltas thetas is 0.003010838758200407
+the minimum of the deltas theta is -0.2949160933494568 and the maximum is 0.42247071862220764
+the added laplace noise var is 0.04463621936714514
+global epoch 68 has been done artifficialy in 1.03 secs, the total time by now is 63.83 
+ with avg train loss 1.460, val loss 1.420, avg val acc 51.56%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.15 has been picked 69, his deltas theta's mean
+ is -0.0033258635085076094,
+the empirical var of deltas thetas is 0.003046685364097357
+the minimum of the deltas theta is -0.38032740354537964 and the maximum is 0.4210170805454254
+the added laplace noise var is 0.0464578580365396
+global epoch 69 has been done artifficialy in 1.00 secs, the total time by now is 64.83 
+ with avg train loss 1.452, val loss 1.386, avg val acc 53.12%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 70, his deltas theta's mean
+ is -0.0015647775726392865,
+the empirical var of deltas thetas is 0.0025557305198162794
+the minimum of the deltas theta is -0.2799859642982483 and the maximum is 0.28722450137138367
+the added laplace noise var is 0.04835383919033085
+global epoch 70 has been done artifficialy in 0.91 secs, the total time by now is 65.74 
+ with avg train loss 1.446, val loss 1.387, avg val acc 52.13%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.25 has been picked 71, his deltas theta's mean
+ is -0.001691814512014389,
+the empirical var of deltas thetas is 0.003315209411084652
+the minimum of the deltas theta is -0.3413201868534088 and the maximum is 0.42174243927001953
+the added laplace noise var is 0.050327196802862476
+global epoch 71 has been done artifficialy in 0.96 secs, the total time by now is 66.71 
+ with avg train loss 1.446, val loss 1.405, avg val acc 51.84%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.22 has been picked 72, his deltas theta's mean
+ is -0.001935514621436596,
+the empirical var of deltas thetas is 0.003381006419658661
+the minimum of the deltas theta is -0.3174380958080292 and the maximum is 0.3262237310409546
+the added laplace noise var is 0.05238108866731998
+global epoch 72 has been done artifficialy in 0.95 secs, the total time by now is 67.65 
+ with avg train loss 1.441, val loss 1.383, avg val acc 52.30%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.18 has been picked 73, his deltas theta's mean
+ is -0.0005863431724719703,
+the empirical var of deltas thetas is 0.0031825732439756393
+the minimum of the deltas theta is -0.345205694437027 and the maximum is 0.35972633957862854
+the added laplace noise var is 0.054518801448873444
+global epoch 73 has been done artifficialy in 0.87 secs, the total time by now is 68.52 
+ with avg train loss 1.434, val loss 1.393, avg val acc 52.44%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 74, his deltas theta's mean
+ is -0.0014861200470477343,
+the empirical var of deltas thetas is 0.003006604965776205
+the minimum of the deltas theta is -0.28919070959091187 and the maximum is 0.29000139236450195
+the added laplace noise var is 0.05674375594404307
+global epoch 74 has been done artifficialy in 0.92 secs, the total time by now is 69.44 
+ with avg train loss 1.429, val loss 1.363, avg val acc 53.04%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.4 has been picked 75, his deltas theta's mean
+ is -0.002269228221848607,
+the empirical var of deltas thetas is 0.0034542919602245092
+the minimum of the deltas theta is -0.3775717318058014 and the maximum is 0.42677825689315796
+the added laplace noise var is 0.0590595125547034
+global epoch 75 has been done artifficialy in 0.94 secs, the total time by now is 70.37 
+ with avg train loss 1.429, val loss 1.396, avg val acc 51.36%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.5 has been picked 76, his deltas theta's mean
+ is -0.0016276048263534904,
+the empirical var of deltas thetas is 0.003438883926719427
+the minimum of the deltas theta is -0.36730584502220154 and the maximum is 0.46037280559539795
+the added laplace noise var is 0.061469776985485926
+global epoch 76 has been done artifficialy in 0.94 secs, the total time by now is 71.32 
+ with avg train loss 1.431, val loss 1.377, avg val acc 51.39%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.28 has been picked 77, his deltas theta's mean
+ is -0.0006298355874605477,
+the empirical var of deltas thetas is 0.0030892924405634403
+the minimum of the deltas theta is -0.29873955249786377 and the maximum is 0.3429398238658905
+the added laplace noise var is 0.06397840617369704
+global epoch 77 has been done artifficialy in 0.95 secs, the total time by now is 72.26 
+ with avg train loss 1.421, val loss 1.340, avg val acc 53.60%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.29 has been picked 78, his deltas theta's mean
+ is -0.0003892729291692376,
+the empirical var of deltas thetas is 0.003718714928254485
+the minimum of the deltas theta is -0.3587629795074463 and the maximum is 0.3972915709018707
+the added laplace noise var is 0.0665894144612407
+global epoch 78 has been done artifficialy in 0.91 secs, the total time by now is 73.17 
+ with avg train loss 1.418, val loss 1.364, avg val acc 51.35%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 79, his deltas theta's mean
+ is -0.002886514412239194,
+the empirical var of deltas thetas is 0.004095479380339384
+the minimum of the deltas theta is -0.42028337717056274 and the maximum is 0.47206366062164307
+the added laplace noise var is 0.06930698001842174
+global epoch 79 has been done artifficialy in 0.92 secs, the total time by now is 74.09 
+ with avg train loss 1.419, val loss 1.362, avg val acc 52.94%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.10 has been picked 80, his deltas theta's mean
+ is -0.0018136672442778945,
+the empirical var of deltas thetas is 0.0033460459671914577
+the minimum of the deltas theta is -0.30471521615982056 and the maximum is 0.4742424488067627
+the added laplace noise var is 0.07213545152990992
+global epoch 80 has been done artifficialy in 0.91 secs, the total time by now is 74.99 
+ with avg train loss 1.421, val loss 1.343, avg val acc 53.12%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.4 has been picked 81, his deltas theta's mean
+ is -0.0023937809746712446,
+the empirical var of deltas thetas is 0.0034960913471877575
+the minimum of the deltas theta is -0.3329019546508789 and the maximum is 0.40030792355537415
+the added laplace noise var is 0.07507935515356305
+global epoch 81 has been done artifficialy in 0.93 secs, the total time by now is 75.92 
+ with avg train loss 1.411, val loss 1.354, avg val acc 52.33%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.24 has been picked 82, his deltas theta's mean
+ is -0.002595119643956423,
+the empirical var of deltas thetas is 0.0038069095462560654
+the minimum of the deltas theta is -0.3567013144493103 and the maximum is 0.38264164328575134
+the added laplace noise var is 0.07814340176324523
+global epoch 82 has been done artifficialy in 0.96 secs, the total time by now is 76.89 
+ with avg train loss 1.404, val loss 1.350, avg val acc 53.79%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.26 has been picked 83, his deltas theta's mean
+ is -0.000909587717615068,
+the empirical var of deltas thetas is 0.0033170930109918118
+the minimum of the deltas theta is -0.2955597937107086 and the maximum is 0.3459470272064209
+the added laplace noise var is 0.08133249448723011
+global epoch 83 has been done artifficialy in 0.97 secs, the total time by now is 77.86 
+ with avg train loss 1.409, val loss 1.325, avg val acc 54.75%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.18 has been picked 84, his deltas theta's mean
+ is -0.002245551673695445,
+the empirical var of deltas thetas is 0.0038868007250130177
+the minimum of the deltas theta is -0.3463976979255676 and the maximum is 0.35500892996788025
+the added laplace noise var is 0.08465173655425208
+global epoch 84 has been done artifficialy in 0.95 secs, the total time by now is 78.82 
+ with avg train loss 1.398, val loss 1.334, avg val acc 53.78%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 85, his deltas theta's mean
+ is -0.0008835351327434182,
+the empirical var of deltas thetas is 0.0037920388858765364
+the minimum of the deltas theta is -0.3606317341327667 and the maximum is 0.41262051463127136
+the added laplace noise var is 0.0881064394597612
+global epoch 85 has been done artifficialy in 0.90 secs, the total time by now is 79.72 
+ with avg train loss 1.406, val loss 1.325, avg val acc 54.76%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.21 has been picked 86, his deltas theta's mean
+ is -0.0017443365650251508,
+the empirical var of deltas thetas is 0.004205811303108931
+the minimum of the deltas theta is -0.40313026309013367 and the maximum is 0.5027071237564087
+the added laplace noise var is 0.09170213146544885
+global epoch 86 has been done artifficialy in 0.92 secs, the total time by now is 80.64 
+ with avg train loss 1.401, val loss 1.359, avg val acc 53.21%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 87, his deltas theta's mean
+ is -0.00148527801502496,
+the empirical var of deltas thetas is 0.003960206173360348
+the minimum of the deltas theta is -0.3930754065513611 and the maximum is 0.3993111848831177
+the added laplace noise var is 0.09544456644564597
+global epoch 87 has been done artifficialy in 0.96 secs, the total time by now is 81.60 
+ with avg train loss 1.396, val loss 1.315, avg val acc 54.99%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.28 has been picked 88, his deltas theta's mean
+ is -0.0017966747982427478,
+the empirical var of deltas thetas is 0.005271249450743198
+the minimum of the deltas theta is -0.4515095353126526 and the maximum is 0.4577576220035553
+the added laplace noise var is 0.09933973309474964
+global epoch 88 has been done artifficialy in 0.98 secs, the total time by now is 82.58 
+ with avg train loss 1.399, val loss 1.332, avg val acc 54.40%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 89, his deltas theta's mean
+ is -0.0011181076988577843,
+the empirical var of deltas thetas is 0.004223143681883812
+the minimum of the deltas theta is -0.4158691465854645 and the maximum is 0.4003385007381439
+the added laplace noise var is 0.10339386451041159
+global epoch 89 has been done artifficialy in 0.89 secs, the total time by now is 83.46 
+ with avg train loss 1.392, val loss 1.386, avg val acc 52.38%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.5 has been picked 90, his deltas theta's mean
+ is -0.0008821113733574748,
+the empirical var of deltas thetas is 0.004394182004034519
+the minimum of the deltas theta is -0.4163133203983307 and the maximum is 0.47065073251724243
+the added laplace noise var is 0.10761344816782437
+global epoch 90 has been done artifficialy in 0.94 secs, the total time by now is 84.41 
+ with avg train loss 1.383, val loss 1.344, avg val acc 54.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 91, his deltas theta's mean
+ is -0.002815966960042715,
+the empirical var of deltas thetas is 0.004825631622225046
+the minimum of the deltas theta is -0.3984977602958679 and the maximum is 0.4390025734901428
+the added laplace noise var is 0.11200523630106572
+global epoch 91 has been done artifficialy in 0.92 secs, the total time by now is 85.32 
+ with avg train loss 1.395, val loss 1.376, avg val acc 52.74%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.25 has been picked 92, his deltas theta's mean
+ is -0.0017712169792503119,
+the empirical var of deltas thetas is 0.003827434265986085
+the minimum of the deltas theta is -0.41368377208709717 and the maximum is 0.3837890028953552
+the added laplace noise var is 0.1165762567081136
+global epoch 92 has been done artifficialy in 0.95 secs, the total time by now is 86.27 
+ with avg train loss 1.386, val loss 1.338, avg val acc 54.46%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 93, his deltas theta's mean
+ is -0.0017546532908454537,
+the empirical var of deltas thetas is 0.004125374834984541
+the minimum of the deltas theta is -0.3554225564002991 and the maximum is 0.3719739317893982
+the added laplace noise var is 0.12133382399682234
+global epoch 93 has been done artifficialy in 0.90 secs, the total time by now is 87.18 
+ with avg train loss 1.395, val loss 1.342, avg val acc 54.10%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 94, his deltas theta's mean
+ is -0.0012459420831874013,
+the empirical var of deltas thetas is 0.0038510120939463377
+the minimum of the deltas theta is -0.3879810571670532 and the maximum is 0.3416336476802826
+the added laplace noise var is 0.1262855512898556
+global epoch 94 has been done artifficialy in 0.92 secs, the total time by now is 88.09 
+ with avg train loss 1.390, val loss 1.343, avg val acc 54.50%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.24 has been picked 95, his deltas theta's mean
+ is -0.001970247831195593,
+the empirical var of deltas thetas is 0.004106426611542702
+the minimum of the deltas theta is -0.40322327613830566 and the maximum is 0.3703736960887909
+the added laplace noise var is 0.1314393624073072
+global epoch 95 has been done artifficialy in 0.93 secs, the total time by now is 89.02 
+ with avg train loss 1.387, val loss 1.303, avg val acc 55.07%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.11 has been picked 96, his deltas theta's mean
+ is -0.0014087704475969076,
+the empirical var of deltas thetas is 0.0049501508474349976
+the minimum of the deltas theta is -0.419116348028183 and the maximum is 0.4043441116809845
+the added laplace noise var is 0.13680350454650322
+global epoch 96 has been done artifficialy in 0.96 secs, the total time by now is 89.98 
+ with avg train loss 1.383, val loss 1.307, avg val acc 55.01%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.9 has been picked 97, his deltas theta's mean
+ is -0.0018953395774587989,
+the empirical var of deltas thetas is 0.0038989607710391283
+the minimum of the deltas theta is -0.3953762650489807 and the maximum is 0.4014378786087036
+the added laplace noise var is 0.14238656147927792
+global epoch 97 has been done artifficialy in 0.93 secs, the total time by now is 90.91 
+ with avg train loss 1.382, val loss 1.305, avg val acc 54.19%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 98, his deltas theta's mean
+ is -0.0023784313816577196,
+the empirical var of deltas thetas is 0.004304725211113691
+the minimum of the deltas theta is -0.3450222313404083 and the maximum is 0.40817707777023315
+the added laplace noise var is 0.14819746728783936
+global epoch 98 has been done artifficialy in 0.98 secs, the total time by now is 91.89 
+ with avg train loss 1.385, val loss 1.313, avg val acc 55.04%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.16 has been picked 99, his deltas theta's mean
+ is -0.001952658174559474,
+the empirical var of deltas thetas is 0.003804275067523122
+the minimum of the deltas theta is -0.3344613015651703 and the maximum is 0.3519030213356018
+the added laplace noise var is 0.15424552066120722
+global epoch 99 has been done artifficialy in 0.91 secs, the total time by now is 92.81 
+ with avg train loss 1.379, val loss 1.310, avg val acc 55.30%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.29 has been picked 100, his deltas theta's mean
+ is -0.0017283319029957056,
+the empirical var of deltas thetas is 0.005418458022177219
+the minimum of the deltas theta is -0.4336633086204529 and the maximum is 0.39724767208099365
+the added laplace noise var is 0.16054039977509912
+global epoch 100 has been done artifficialy in 0.93 secs, the total time by now is 93.74 
+ with avg train loss 1.372, val loss 1.356, avg val acc 50.99%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 101, his deltas theta's mean
+ is -0.00040050235111266375,
+the empirical var of deltas thetas is 0.004248151555657387
+the minimum of the deltas theta is -0.35465189814567566 and the maximum is 0.3779645264148712
+the added laplace noise var is 0.1670921777790764
+global epoch 101 has been done artifficialy in 0.95 secs, the total time by now is 94.69 
+ with avg train loss 1.382, val loss 1.365, avg val acc 51.54%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 102, his deltas theta's mean
+ is -0.001283125253394246,
+the empirical var of deltas thetas is 0.003924402873963118
+the minimum of the deltas theta is -0.3924674093723297 and the maximum is 0.37632572650909424
+the added laplace noise var is 0.17391133891573268
+global epoch 102 has been done artifficialy in 0.94 secs, the total time by now is 95.64 
+ with avg train loss 1.391, val loss 1.408, avg val acc 49.03%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.13 has been picked 103, his deltas theta's mean
+ is 0.00011822950909845531,
+the empirical var of deltas thetas is 0.004135809373110533
+the minimum of the deltas theta is -0.3373735249042511 and the maximum is 0.3289671540260315
+the added laplace noise var is 0.18100879529771854
+global epoch 103 has been done artifficialy in 0.95 secs, the total time by now is 96.59 
+ with avg train loss 1.382, val loss 1.442, avg val acc 48.24%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.4 has been picked 104, his deltas theta's mean
+ is -0.0009053608519025147,
+the empirical var of deltas thetas is 0.004018579144030809
+the minimum of the deltas theta is -0.43153131008148193 and the maximum is 0.43790149688720703
+the added laplace noise var is 0.18839590436945
+global epoch 104 has been done artifficialy in 0.97 secs, the total time by now is 97.56 
+ with avg train loss 1.386, val loss 1.383, avg val acc 51.28%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.6 has been picked 105, his deltas theta's mean
+ is -0.0018478746060281992,
+the empirical var of deltas thetas is 0.004441908095031977
+the minimum of the deltas theta is -0.41672831773757935 and the maximum is 0.45897620916366577
+the added laplace noise var is 0.19608448708144238
+global epoch 105 has been done artifficialy in 0.97 secs, the total time by now is 98.53 
+ with avg train loss 1.392, val loss 1.392, avg val acc 51.37%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 106, his deltas theta's mean
+ is -0.0006061698659323156,
+the empirical var of deltas thetas is 0.004322339780628681
+the minimum of the deltas theta is -0.32221758365631104 and the maximum is 0.36055314540863037
+the added laplace noise var is 0.2040868468063534
+global epoch 106 has been done artifficialy in 0.93 secs, the total time by now is 99.46 
+ with avg train loss 1.391, val loss 1.364, avg val acc 52.49%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.6 has been picked 107, his deltas theta's mean
+ is -0.0030506222974509,
+the empirical var of deltas thetas is 0.004362709820270538
+the minimum of the deltas theta is -0.39094799757003784 and the maximum is 0.41750413179397583
+the added laplace noise var is 0.21241578902700403
+global epoch 107 has been done artifficialy in 0.91 secs, the total time by now is 100.37 
+ with avg train loss 1.390, val loss 1.342, avg val acc 54.31%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 108, his deltas theta's mean
+ is -0.0030552134849131107,
+the empirical var of deltas thetas is 0.009386491030454636
+the minimum of the deltas theta is -0.4885261654853821 and the maximum is 0.5009952187538147
+the added laplace noise var is 0.2210846418278831
+global epoch 108 has been done artifficialy in 0.90 secs, the total time by now is 101.27 
+ with avg train loss 1.391, val loss 1.461, avg val acc 50.36%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.10 has been picked 109, his deltas theta's mean
+ is -0.0031480237375944853,
+the empirical var of deltas thetas is 0.004705393686890602
+the minimum of the deltas theta is -0.3899223208427429 and the maximum is 0.39538758993148804
+the added laplace noise var is 0.23010727722292584
+global epoch 109 has been done artifficialy in 0.93 secs, the total time by now is 102.20 
+ with avg train loss 1.403, val loss 1.502, avg val acc 46.35%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 110, his deltas theta's mean
+ is -0.0006548818782903254,
+the empirical var of deltas thetas is 0.004410866182297468
+the minimum of the deltas theta is -0.3638363778591156 and the maximum is 0.4833318591117859
+the added laplace noise var is 0.23949813335369596
+global epoch 110 has been done artifficialy in 0.92 secs, the total time by now is 103.12 
+ with avg train loss 1.409, val loss 1.550, avg val acc 42.45%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 111, his deltas theta's mean
+ is -0.002382024424150586,
+the empirical var of deltas thetas is 0.0046494342386722565
+the minimum of the deltas theta is -0.42845240235328674 and the maximum is 0.44049257040023804
+the added laplace noise var is 0.24927223759349212
+global epoch 111 has been done artifficialy in 0.94 secs, the total time by now is 104.06 
+ with avg train loss 1.413, val loss 1.465, avg val acc 48.83%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 112, his deltas theta's mean
+ is -0.0015163230709731579,
+the empirical var of deltas thetas is 0.003930551465600729
+the minimum of the deltas theta is -0.3074949383735657 and the maximum is 0.4205688536167145
+the added laplace noise var is 0.2594452305943515
+global epoch 112 has been done artifficialy in 0.90 secs, the total time by now is 104.96 
+ with avg train loss 1.405, val loss 1.487, avg val acc 47.10%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 113, his deltas theta's mean
+ is -0.0013658659299835563,
+the empirical var of deltas thetas is 0.0043386551551520824
+the minimum of the deltas theta is -0.35694533586502075 and the maximum is 0.46625059843063354
+the added laplace noise var is 0.2700333913154297
+global epoch 113 has been done artifficialy in 0.90 secs, the total time by now is 105.86 
+ with avg train loss 1.409, val loss 1.512, avg val acc 47.29%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.11 has been picked 114, his deltas theta's mean
+ is -0.0009674708126112819,
+the empirical var of deltas thetas is 0.0048426128923892975
+the minimum of the deltas theta is -0.3745911121368408 and the maximum is 0.40699732303619385
+the added laplace noise var is 0.2810536630728085
+global epoch 114 has been done artifficialy in 0.93 secs, the total time by now is 106.79 
+ with avg train loss 1.425, val loss 1.573, avg val acc 43.44%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.06% of the weights upadtes) we get:
+user No.28 has been picked 115, his deltas theta's mean
+ is -0.0019210511818528175,
+the empirical var of deltas thetas is 0.004520272836089134
+the minimum of the deltas theta is -0.44013458490371704 and the maximum is 0.4398062229156494
+the added laplace noise var is 0.2925236806524165
+global epoch 115 has been done artifficialy in 0.95 secs, the total time by now is 107.73 
+ with avg train loss 1.442, val loss 1.601, avg val acc 43.37%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.19 has been picked 116, his deltas theta's mean
+ is -0.002155965892598033,
+the empirical var of deltas thetas is 0.004695638548582792
+the minimum of the deltas theta is -0.4392736554145813 and the maximum is 0.4050176441669464
+the added laplace noise var is 0.30446179852944827
+global epoch 116 has been done artifficialy in 0.88 secs, the total time by now is 108.61 
+ with avg train loss 1.440, val loss 1.555, avg val acc 46.65%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 117, his deltas theta's mean
+ is -0.0001812059635994956,
+the empirical var of deltas thetas is 0.004408573266118765
+the minimum of the deltas theta is -0.39651399850845337 and the maximum is 0.37844330072402954
+the added laplace noise var is 0.31688712023944193
+global epoch 117 has been done artifficialy in 1.00 secs, the total time by now is 109.61 
+ with avg train loss 1.451, val loss 1.592, avg val acc 45.43%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 118, his deltas theta's mean
+ is -0.00225368095561862,
+the empirical var of deltas thetas is 0.004897668492048979
+the minimum of the deltas theta is -0.4020960330963135 and the maximum is 0.5568142533302307
+the added laplace noise var is 0.32981952894801003
+global epoch 118 has been done artifficialy in 0.94 secs, the total time by now is 110.55 
+ with avg train loss 1.456, val loss 1.624, avg val acc 43.72%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.3 has been picked 119, his deltas theta's mean
+ is -0.0019609169103205204,
+the empirical var of deltas thetas is 0.005191967822611332
+the minimum of the deltas theta is -0.42174476385116577 and the maximum is 0.47083643078804016
+the added laplace noise var is 0.34327971926814715
+global epoch 119 has been done artifficialy in 1.01 secs, the total time by now is 111.56 
+ with avg train loss 1.468, val loss 1.682, avg val acc 40.65%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.5 has been picked 120, his deltas theta's mean
+ is -0.002152389148250222,
+the empirical var of deltas thetas is 0.005051193758845329
+the minimum of the deltas theta is -0.3926447629928589 and the maximum is 0.40327373147010803
+the added laplace noise var is 0.3572892303760259
+global epoch 120 has been done artifficialy in 1.00 secs, the total time by now is 112.56 
+ with avg train loss 1.487, val loss 1.662, avg val acc 39.68%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 121, his deltas theta's mean
+ is -0.0007489064591936767,
+the empirical var of deltas thetas is 0.011634736321866512
+the minimum of the deltas theta is -0.49771687388420105 and the maximum is 0.4214458465576172
+the added laplace noise var is 0.37187048047827415
+global epoch 121 has been done artifficialy in 0.95 secs, the total time by now is 113.51 
+ with avg train loss 1.492, val loss 1.735, avg val acc 35.99%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.6 has been picked 122, his deltas theta's mean
+ is -0.0024122416507452726,
+the empirical var of deltas thetas is 0.004899182822555304
+the minimum of the deltas theta is -0.49320411682128906 and the maximum is 0.42151808738708496
+the added laplace noise var is 0.3870468026858879
+global epoch 122 has been done artifficialy in 0.92 secs, the total time by now is 114.42 
+ with avg train loss 1.494, val loss 1.914, avg val acc 28.02%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.2 has been picked 123, his deltas theta's mean
+ is -4.109363362658769e-05,
+the empirical var of deltas thetas is 0.00479458924382925
+the minimum of the deltas theta is -0.6047244668006897 and the maximum is 0.42559951543807983
+the added laplace noise var is 0.4028424823521875
+global epoch 123 has been done artifficialy in 0.96 secs, the total time by now is 115.38 
+ with avg train loss 1.503, val loss 1.855, avg val acc 31.03%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.01% of the weights upadtes) we get:
+user No.10 has been picked 124, his deltas theta's mean
+ is -0.0012962011387571692,
+the empirical var of deltas thetas is 0.004494333174079657
+the minimum of the deltas theta is -0.5089548230171204 and the maximum is 0.49650681018829346
+the added laplace noise var is 0.4192827959345638
+global epoch 124 has been done artifficialy in 0.96 secs, the total time by now is 116.35 
+ with avg train loss 1.513, val loss 1.882, avg val acc 32.55%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 125, his deltas theta's mean
+ is -0.0008998796693049371,
+the empirical var of deltas thetas is 0.0048905122093856335
+the minimum of the deltas theta is -0.5008536577224731 and the maximum is 0.43809765577316284
+the added laplace noise var is 0.43639405144220245
+global epoch 125 has been done artifficialy in 0.97 secs, the total time by now is 117.32 
+ with avg train loss 1.526, val loss 1.917, avg val acc 32.57%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.16 has been picked 126, his deltas theta's mean
+ is 0.0008803067030385137,
+the empirical var of deltas thetas is 0.015184320509433746
+the minimum of the deltas theta is -0.5401139855384827 and the maximum is 0.5730152726173401
+the added laplace noise var is 0.4542036305345117
+global epoch 126 has been done artifficialy in 1.00 secs, the total time by now is 118.31 
+ with avg train loss 1.562, val loss 1.855, avg val acc 34.09%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 127, his deltas theta's mean
+ is -0.002046701032668352,
+the empirical var of deltas thetas is 0.004724533297121525
+the minimum of the deltas theta is -0.4581749737262726 and the maximum is 0.47602367401123047
+the added laplace noise var is 0.4727400323376186
+global epoch 127 has been done artifficialy in 0.95 secs, the total time by now is 119.27 
+ with avg train loss 1.556, val loss 2.034, avg val acc 26.27%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.22 has been picked 128, his deltas theta's mean
+ is -0.0010667381575331092,
+the empirical var of deltas thetas is 0.008037419989705086
+the minimum of the deltas theta is -0.5036604404449463 and the maximum is 0.4616985321044922
+the added laplace noise var is 0.4920329190490515
+global epoch 128 has been done artifficialy in 0.96 secs, the total time by now is 120.22 
+ with avg train loss 1.590, val loss 2.074, avg val acc 25.07%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 129, his deltas theta's mean
+ is -0.0020216957200318575,
+the empirical var of deltas thetas is 0.004698419943451881
+the minimum of the deltas theta is -0.5339697599411011 and the maximum is 0.37910428643226624
+the added laplace noise var is 0.5121131634035839
+global epoch 129 has been done artifficialy in 0.91 secs, the total time by now is 121.13 
+ with avg train loss 1.599, val loss 1.861, avg val acc 34.12%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 130, his deltas theta's mean
+ is 0.0006098466110415757,
+the empirical var of deltas thetas is 0.004621461499482393
+the minimum of the deltas theta is -0.42718809843063354 and the maximum is 0.39096543192863464
+the added laplace noise var is 0.5330128980761972
+global epoch 130 has been done artifficialy in 0.96 secs, the total time by now is 122.08 
+ with avg train loss 1.617, val loss 2.151, avg val acc 21.91%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.13 has been picked 131, his deltas theta's mean
+ is -0.0004020322812721133,
+the empirical var of deltas thetas is 0.004529088735580444
+the minimum of the deltas theta is -0.3850887417793274 and the maximum is 0.3971312642097473
+the added laplace noise var is 0.5547655671012154
+global epoch 131 has been done artifficialy in 0.93 secs, the total time by now is 123.01 
+ with avg train loss 1.617, val loss 2.143, avg val acc 20.96%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.19 has been picked 132, his deltas theta's mean
+ is -0.0008138763951137662,
+the empirical var of deltas thetas is 0.006651210132986307
+the minimum of the deltas theta is -0.5746469497680664 and the maximum is 0.5099719166755676
+the added laplace noise var is 0.5774059793898954
+global epoch 132 has been done artifficialy in 0.91 secs, the total time by now is 123.92 
+ with avg train loss 1.640, val loss 2.106, avg val acc 20.68%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.2 has been picked 133, his deltas theta's mean
+ is -0.001115847728215158,
+the empirical var of deltas thetas is 0.003473324701189995
+the minimum of the deltas theta is -0.4505743980407715 and the maximum is 0.4223455786705017
+the added laplace noise var is 0.6009703644321112
+global epoch 133 has been done artifficialy in 0.92 secs, the total time by now is 124.84 
+ with avg train loss 1.678, val loss 1.938, avg val acc 28.83%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.13 has been picked 134, his deltas theta's mean
+ is -0.00016696563397999853,
+the empirical var of deltas thetas is 0.009396330453455448
+the minimum of the deltas theta is -0.4836200177669525 and the maximum is 0.5208413600921631
+the added laplace noise var is 0.6254964302712673
+global epoch 134 has been done artifficialy in 0.93 secs, the total time by now is 125.77 
+ with avg train loss 1.672, val loss 2.096, avg val acc 22.20%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.3 has been picked 135, his deltas theta's mean
+ is -0.0002749236882664263,
+the empirical var of deltas thetas is 0.004592865239828825
+the minimum of the deltas theta is -0.45821821689605713 and the maximum is 0.4126444458961487
+the added laplace noise var is 0.651023423845213
+global epoch 135 has been done artifficialy in 0.96 secs, the total time by now is 126.73 
+ with avg train loss 1.695, val loss 2.096, avg val acc 20.09%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.6 has been picked 136, his deltas theta's mean
+ is -0.0012746272841468453,
+the empirical var of deltas thetas is 0.008219541050493717
+the minimum of the deltas theta is -0.4864490032196045 and the maximum is 0.4487765431404114
+the added laplace noise var is 0.6775921937897154
+global epoch 136 has been done artifficialy in 0.90 secs, the total time by now is 127.63 
+ with avg train loss 1.694, val loss 2.187, avg val acc 19.17%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.15 has been picked 137, his deltas theta's mean
+ is -0.00016605902055744082,
+the empirical var of deltas thetas is 0.003532825503498316
+the minimum of the deltas theta is -0.3864170014858246 and the maximum is 0.39162278175354004
+the added laplace noise var is 0.7052452558049924
+global epoch 137 has been done artifficialy in 0.98 secs, the total time by now is 128.60 
+ with avg train loss 1.709, val loss 2.062, avg val acc 21.56%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.5 has been picked 138, his deltas theta's mean
+ is 0.004265975207090378,
+the empirical var of deltas thetas is 0.029109204187989235
+the minimum of the deltas theta is -0.5936417579650879 and the maximum is 0.5599547624588013
+the added laplace noise var is 0.7340268606899031
+global epoch 138 has been done artifficialy in 1.00 secs, the total time by now is 129.61 
+ with avg train loss 1.726, val loss 2.229, avg val acc 17.78%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 139, his deltas theta's mean
+ is 0.0003483323671389371,
+the empirical var of deltas thetas is 0.0035315570421516895
+the minimum of the deltas theta is -0.4756414592266083 and the maximum is 0.47724705934524536
+the added laplace noise var is 0.7639830651526663
+global epoch 139 has been done artifficialy in 0.89 secs, the total time by now is 130.50 
+ with avg train loss 1.749, val loss 2.182, avg val acc 18.17%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 140, his deltas theta's mean
+ is -0.00042281489004381,
+the empirical var of deltas thetas is 0.004424761049449444
+the minimum of the deltas theta is -0.45651793479919434 and the maximum is 0.570750892162323
+the added laplace noise var is 0.7951618055114205
+global epoch 140 has been done artifficialy in 0.95 secs, the total time by now is 131.45 
+ with avg train loss 1.748, val loss 2.233, avg val acc 18.42%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 141, his deltas theta's mean
+ is -0.00042626727372407913,
+the empirical var of deltas thetas is 0.004377334378659725
+the minimum of the deltas theta is -0.4823364019393921 and the maximum is 0.526127278804779
+the added laplace noise var is 0.827612974402558
+global epoch 141 has been done artifficialy in 0.97 secs, the total time by now is 132.42 
+ with avg train loss 1.778, val loss 2.125, avg val acc 23.44%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.21 has been picked 142, his deltas theta's mean
+ is 0.000127601160784252,
+the empirical var of deltas thetas is 0.00357511593028903
+the minimum of the deltas theta is -0.5157398581504822 and the maximum is 0.5792223811149597
+the added laplace noise var is 0.8613885006195916
+global epoch 142 has been done artifficialy in 0.95 secs, the total time by now is 133.37 
+ with avg train loss 1.789, val loss 2.300, avg val acc 18.50%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.17 has been picked 143, his deltas theta's mean
+ is 0.0005634158151224256,
+the empirical var of deltas thetas is 0.0043123154900968075
+the minimum of the deltas theta is -0.4407588541507721 and the maximum is 0.38308435678482056
+the added laplace noise var is 0.8965424322102977
+global epoch 143 has been done artifficialy in 0.94 secs, the total time by now is 134.31 
+ with avg train loss 1.804, val loss 2.357, avg val acc 16.70%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 144, his deltas theta's mean
+ is -3.391837935851072e-06,
+the empirical var of deltas thetas is 0.0038622827269136906
+the minimum of the deltas theta is -0.37471169233322144 and the maximum is 0.36171144247055054
+the added laplace noise var is 0.9331310229651267
+global epoch 144 has been done artifficialy in 0.95 secs, the total time by now is 135.27 
+ with avg train loss 1.811, val loss 2.385, avg val acc 15.02%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 145, his deltas theta's mean
+ is 0.0006688102148473263,
+the empirical var of deltas thetas is 0.003474646247923374
+the minimum of the deltas theta is -0.42862966656684875 and the maximum is 0.42003172636032104
+the added laplace noise var is 0.9712128224352687
+global epoch 145 has been done artifficialy in 0.93 secs, the total time by now is 136.20 
+ with avg train loss 1.807, val loss 2.158, avg val acc 20.50%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 146, his deltas theta's mean
+ is 0.00033508290653117,
+the empirical var of deltas thetas is 0.002770751714706421
+the minimum of the deltas theta is -0.44564804434776306 and the maximum is 0.5276627540588379
+the added laplace noise var is 1.0108487696244266
+global epoch 146 has been done artifficialy in 0.89 secs, the total time by now is 137.09 
+ with avg train loss 1.832, val loss 2.598, avg val acc 11.59%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 147, his deltas theta's mean
+ is 0.00031191305606625974,
+the empirical var of deltas thetas is 0.0021709217689931393
+the minimum of the deltas theta is -0.4806150197982788 and the maximum is 0.45446157455444336
+the added laplace noise var is 1.0521022905042225
+global epoch 147 has been done artifficialy in 0.96 secs, the total time by now is 138.05 
+ with avg train loss 1.870, val loss 2.383, avg val acc 15.59%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 148, his deltas theta's mean
+ is -0.001160992425866425,
+the empirical var of deltas thetas is 0.0039503201842308044
+the minimum of the deltas theta is -0.4595097601413727 and the maximum is 0.46179789304733276
+the added laplace noise var is 1.0950393995092849
+global epoch 148 has been done artifficialy in 0.95 secs, the total time by now is 139.00 
+ with avg train loss 1.886, val loss 2.385, avg val acc 16.49%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 149, his deltas theta's mean
+ is 0.0002581972803454846,
+the empirical var of deltas thetas is 0.0038293192628771067
+the minimum of the deltas theta is -0.5156413316726685 and the maximum is 0.5261527299880981
+the added laplace noise var is 1.139728805174427
+global epoch 149 has been done artifficialy in 0.89 secs, the total time by now is 139.89 
+ with avg train loss 1.903, val loss 2.424, avg val acc 14.59%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 150, his deltas theta's mean
+ is -0.00014740583719685674,
+the empirical var of deltas thetas is 0.003103201976045966
+the minimum of the deltas theta is -0.4138159453868866 and the maximum is 0.5062443614006042
+the added laplace noise var is 1.1862420200829609
+global epoch 150 has been done artifficialy in 0.97 secs, the total time by now is 140.86 
+ with avg train loss 1.932, val loss 2.760, avg val acc 11.68%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.11 has been picked 151, his deltas theta's mean
+ is -0.0009040668373927474,
+the empirical var of deltas thetas is 0.0037828548811376095
+the minimum of the deltas theta is -0.4710710048675537 and the maximum is 0.47408512234687805
+the added laplace noise var is 1.234653475302089
+global epoch 151 has been done artifficialy in 0.95 secs, the total time by now is 141.81 
+ with avg train loss 2.000, val loss 2.721, avg val acc 11.79%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.13 has been picked 152, his deltas theta's mean
+ is 0.00015924872423056513,
+the empirical var of deltas thetas is 0.004375436343252659
+the minimum of the deltas theta is -0.5490357875823975 and the maximum is 0.5002875328063965
+the added laplace noise var is 1.28504063948849
+global epoch 152 has been done artifficialy in 1.04 secs, the total time by now is 142.85 
+ with avg train loss 2.003, val loss 2.358, avg val acc 14.80%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.24 has been picked 153, his deltas theta's mean
+ is -0.0002632281102705747,
+the empirical var of deltas thetas is 0.002327076392248273
+the minimum of the deltas theta is -0.42046475410461426 and the maximum is 0.5238749980926514
+the added laplace noise var is 1.3374841428546966
+global epoch 153 has been done artifficialy in 0.94 secs, the total time by now is 143.79 
+ with avg train loss 1.973, val loss 2.449, avg val acc 16.73%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.05% of the weights upadtes) we get:
+user No.5 has been picked 154, his deltas theta's mean
+ is 0.0004247384495101869,
+the empirical var of deltas thetas is 0.0028779932763427496
+the minimum of the deltas theta is -0.5482268929481506 and the maximum is 0.45586299896240234
+the added laplace noise var is 1.3920679061946397
+global epoch 154 has been done artifficialy in 0.92 secs, the total time by now is 144.72 
+ with avg train loss 1.988, val loss 2.416, avg val acc 15.52%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.08% of the weights upadtes) we get:
+user No.10 has been picked 155, his deltas theta's mean
+ is -0.0007792612886987627,
+the empirical var of deltas thetas is 0.003268439555540681
+the minimum of the deltas theta is -0.4874458909034729 and the maximum is 0.4617743492126465
+the added laplace noise var is 1.44887927517482
+global epoch 155 has been done artifficialy in 0.89 secs, the total time by now is 145.61 
+ with avg train loss 2.008, val loss 2.397, avg val acc 14.82%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.08% of the weights upadtes) we get:
+user No.14 has been picked 156, his deltas theta's mean
+ is 0.00023753262939862907,
+the empirical var of deltas thetas is 0.005104150623083115
+the minimum of the deltas theta is -0.5015048384666443 and the maximum is 0.519428014755249
+the added laplace noise var is 1.5080091601060108
+global epoch 156 has been done artifficialy in 0.97 secs, the total time by now is 146.58 
+ with avg train loss 2.014, val loss 2.350, avg val acc 15.72%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.08% of the weights upadtes) we get:
+user No.21 has been picked 157, his deltas theta's mean
+ is 0.0001948581193573773,
+the empirical var of deltas thetas is 0.0030731563456356525
+the minimum of the deltas theta is -0.45874232053756714 and the maximum is 0.3829355239868164
+the added laplace noise var is 1.5695521814191502
+global epoch 157 has been done artifficialy in 0.92 secs, the total time by now is 147.50 
+ with avg train loss 2.026, val loss 2.439, avg val acc 13.89%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.08% of the weights upadtes) we get:
+user No.17 has been picked 158, his deltas theta's mean
+ is -0.00026653919485397637,
+the empirical var of deltas thetas is 0.0024275793693959713
+the minimum of the deltas theta is -0.4301309287548065 and the maximum is 0.47350645065307617
+the added laplace noise var is 1.6336068210782178
+global epoch 158 has been done artifficialy in 0.93 secs, the total time by now is 148.43 
+ with avg train loss 2.027, val loss 2.518, avg val acc 11.76%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.03% of the weights upadtes) we get:
+user No.4 has been picked 159, his deltas theta's mean
+ is -0.0008351784199476242,
+the empirical var of deltas thetas is 0.002461283002048731
+the minimum of the deltas theta is -0.37947893142700195 and the maximum is 0.4443638324737549
+the added laplace noise var is 1.7002755801723861
+global epoch 159 has been done artifficialy in 0.94 secs, the total time by now is 149.37 
+ with avg train loss 2.066, val loss 2.735, avg val acc 15.01%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.16% of the weights upadtes) we get:
+user No.21 has been picked 160, his deltas theta's mean
+ is 0.0003639283822849393,
+the empirical var of deltas thetas is 0.020028095692396164
+the minimum of the deltas theta is -0.5101100206375122 and the maximum is 0.5737608671188354
+the added laplace noise var is 1.7696651429396333
+global epoch 160 has been done artifficialy in 0.97 secs, the total time by now is 150.34 
+ with avg train loss 2.062, val loss 2.352, avg val acc 18.03%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.04% of the weights upadtes) we get:
+user No.26 has been picked 161, his deltas theta's mean
+ is -0.0004959151265211403,
+the empirical var of deltas thetas is 0.002415252383798361
+the minimum of the deltas theta is -0.46605682373046875 and the maximum is 0.40389490127563477
+the added laplace noise var is 1.841886547484283
+global epoch 161 has been done artifficialy in 0.95 secs, the total time by now is 151.29 
+ with avg train loss 2.041, val loss 2.701, avg val acc 13.07%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.04% of the weights upadtes) we get:
+user No.28 has been picked 162, his deltas theta's mean
+ is 0.00014369611744768918,
+the empirical var of deltas thetas is 0.0018317929934710264
+the minimum of the deltas theta is -0.5309481620788574 and the maximum is 0.673507571220398
+the added laplace noise var is 1.917055363461662
+global epoch 162 has been done artifficialy in 0.90 secs, the total time by now is 152.19 
+ with avg train loss 2.059, val loss 2.336, avg val acc 19.40%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.18% of the weights upadtes) we get:
+user No.18 has been picked 163, his deltas theta's mean
+ is -0.0001353744009975344,
+the empirical var of deltas thetas is 0.0022183191031217575
+the minimum of the deltas theta is -0.4177281856536865 and the maximum is 0.4659328758716583
+the added laplace noise var is 1.9952918770142025
+global epoch 163 has been done artifficialy in 0.92 secs, the total time by now is 153.12 
+ with avg train loss 2.049, val loss 2.719, avg val acc 14.90%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.12% of the weights upadtes) we get:
+user No.22 has been picked 164, his deltas theta's mean
+ is -0.0006654094904661179,
+the empirical var of deltas thetas is 0.0015817723469808698
+the minimum of the deltas theta is -0.4139697551727295 and the maximum is 0.45002293586730957
+the added laplace noise var is 2.0767212832549355
+global epoch 164 has been done artifficialy in 1.01 secs, the total time by now is 154.13 
+ with avg train loss 2.140, val loss 2.585, avg val acc 13.61%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.12% of the weights upadtes) we get:
+user No.13 has been picked 165, his deltas theta's mean
+ is -0.0007197108352556825,
+the empirical var of deltas thetas is 0.0021435704547911882
+the minimum of the deltas theta is -0.44462883472442627 and the maximum is 0.41228222846984863
+the added laplace noise var is 2.1614738866063794
+global epoch 165 has been done artifficialy in 0.92 secs, the total time by now is 155.05 
+ with avg train loss 2.110, val loss 2.816, avg val acc 11.53%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.06% of the weights upadtes) we get:
+user No.19 has been picked 166, his deltas theta's mean
+ is -0.00039644507342018187,
+the empirical var of deltas thetas is 0.001372801256366074
+the minimum of the deltas theta is -0.40151190757751465 and the maximum is 0.4881603717803955
+the added laplace noise var is 2.2496853093154163
+global epoch 166 has been done artifficialy in 0.88 secs, the total time by now is 155.92 
+ with avg train loss 2.151, val loss 2.593, avg val acc 14.18%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.04% of the weights upadtes) we get:
+user No.20 has been picked 167, his deltas theta's mean
+ is -0.00032523475238122046,
+the empirical var of deltas thetas is 0.0018449705094099045
+the minimum of the deltas theta is -0.36876487731933594 and the maximum is 0.4684772491455078
+the added laplace noise var is 2.341496708477819
+global epoch 167 has been done artifficialy in 1.02 secs, the total time by now is 156.95 
+ with avg train loss 2.140, val loss 2.470, avg val acc 14.47%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 168, his deltas theta's mean
+ is 0.0010558179346844554,
+the empirical var of deltas thetas is 0.006312318611890078
+the minimum of the deltas theta is -0.4586820602416992 and the maximum is 0.5432474613189697
+the added laplace noise var is 2.437055001919728
+global epoch 168 has been done artifficialy in 0.91 secs, the total time by now is 157.85 
+ with avg train loss 2.119, val loss 2.477, avg val acc 14.96%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.01% of the weights upadtes) we get:
+user No.11 has been picked 169, his deltas theta's mean
+ is -0.0005314828595146537,
+the empirical var of deltas thetas is 0.0016302410513162613
+the minimum of the deltas theta is -0.33740776777267456 and the maximum is 0.4789429306983948
+the added laplace noise var is 2.536513103297504
+global epoch 169 has been done artifficialy in 0.97 secs, the total time by now is 158.83 
+ with avg train loss 2.148, val loss 2.776, avg val acc 11.85%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.04% of the weights upadtes) we get:
+user No.18 has been picked 170, his deltas theta's mean
+ is -0.0003254878392908722,
+the empirical var of deltas thetas is 0.0013897301396355033
+the minimum of the deltas theta is -0.4406907558441162 and the maximum is 0.4176206588745117
+the added laplace noise var is 2.6400301667922124
+global epoch 170 has been done artifficialy in 0.95 secs, the total time by now is 159.78 
+ with avg train loss 2.178, val loss 2.837, avg val acc 16.58%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.04% of the weights upadtes) we get:
+user No.1 has been picked 171, his deltas theta's mean
+ is -0.00022373990213964134,
+the empirical var of deltas thetas is 0.0009256998309865594
+the minimum of the deltas theta is -0.49311375617980957 and the maximum is 0.5106602907180786
+the added laplace noise var is 2.7477718417902626
+global epoch 171 has been done artifficialy in 0.91 secs, the total time by now is 160.69 
+ with avg train loss 2.222, val loss 2.893, avg val acc 15.18%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.04% of the weights upadtes) we get:
+user No.17 has been picked 172, his deltas theta's mean
+ is 0.0004917559563182294,
+the empirical var of deltas thetas is 0.0012402947759255767
+the minimum of the deltas theta is -0.3278118371963501 and the maximum is 0.412089467048645
+the added laplace noise var is 2.859910537957768
+global epoch 172 has been done artifficialy in 0.95 secs, the total time by now is 161.64 
+ with avg train loss 2.187, val loss 2.973, avg val acc 10.94%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.07% of the weights upadtes) we get:
+user No.6 has been picked 173, his deltas theta's mean
+ is 0.0003645104297902435,
+the empirical var of deltas thetas is 0.0016430262476205826
+the minimum of the deltas theta is -0.32505369186401367 and the maximum is 0.3190181255340576
+the added laplace noise var is 2.976625701132794
+global epoch 173 has been done artifficialy in 0.92 secs, the total time by now is 162.57 
+ with avg train loss 2.236, val loss 4.300, avg val acc 13.44%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.05% of the weights upadtes) we get:
+user No.17 has been picked 174, his deltas theta's mean
+ is -0.0017266508657485247,
+the empirical var of deltas thetas is 0.024829944595694542
+the minimum of the deltas theta is -0.5822840332984924 and the maximum is 0.6498246192932129
+the added laplace noise var is 3.098104100476984
+global epoch 174 has been done artifficialy in 0.93 secs, the total time by now is 163.49 
+ with avg train loss 2.247, val loss 2.623, avg val acc 12.70%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.08% of the weights upadtes) we get:
+user No.24 has been picked 175, his deltas theta's mean
+ is -9.208693518303335e-05,
+the empirical var of deltas thetas is 0.0013078930787742138
+the minimum of the deltas theta is -0.394042432308197 and the maximum is 0.35351526737213135
+the added laplace noise var is 3.224540127346062
+global epoch 175 has been done artifficialy in 0.89 secs, the total time by now is 164.39 
+ with avg train loss 2.241, val loss 3.094, avg val acc 12.05%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.16% of the weights upadtes) we get:
+user No.2 has been picked 176, his deltas theta's mean
+ is -4.332081516622566e-05,
+the empirical var of deltas thetas is 0.003977688029408455
+the minimum of the deltas theta is -0.4374070167541504 and the maximum is 0.453275203704834
+the added laplace noise var is 3.3561361063574773
+global epoch 176 has been done artifficialy in 0.92 secs, the total time by now is 165.31 
+ with avg train loss 2.292, val loss 2.811, avg val acc 12.27%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.19% of the weights upadtes) we get:
+user No.13 has been picked 177, his deltas theta's mean
+ is 0.00035761171602644026,
+the empirical var of deltas thetas is 0.0008076810627244413
+the minimum of the deltas theta is -0.36545610427856445 and the maximum is 0.46907341480255127
+the added laplace noise var is 3.4931026191529533
+global epoch 177 has been done artifficialy in 0.92 secs, the total time by now is 166.23 
+ with avg train loss 2.263, val loss 2.781, avg val acc 14.14%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.12% of the weights upadtes) we get:
+user No.17 has been picked 178, his deltas theta's mean
+ is -0.0002183794422307983,
+the empirical var of deltas thetas is 0.0009843242587521672
+the minimum of the deltas theta is -0.3150824308395386 and the maximum is 0.330544650554657
+the added laplace noise var is 3.6356588413740445
+global epoch 178 has been done artifficialy in 0.93 secs, the total time by now is 167.17 
+ with avg train loss 2.288, val loss 4.633, avg val acc 15.86%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.07% of the weights upadtes) we get:
+user No.21 has been picked 179, his deltas theta's mean
+ is 0.00013434269931167364,
+the empirical var of deltas thetas is 0.0013310102513059974
+the minimum of the deltas theta is -0.3512430191040039 and the maximum is 0.4742313623428345
+the added laplace noise var is 3.7840328933899205
+global epoch 179 has been done artifficialy in 0.93 secs, the total time by now is 168.10 
+ with avg train loss 2.294, val loss 2.522, avg val acc 15.34%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.04% of the weights upadtes) we get:
+user No.19 has been picked 180, his deltas theta's mean
+ is -6.0345904785208404e-05,
+the empirical var of deltas thetas is 0.000500720925629139
+the minimum of the deltas theta is -0.6045563817024231 and the maximum is 0.4397740364074707
+the added laplace noise var is 3.9384622053386265
+global epoch 180 has been done artifficialy in 0.87 secs, the total time by now is 168.96 
+ with avg train loss 2.256, val loss 2.772, avg val acc 13.42%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.05% of the weights upadtes) we get:
+user No.3 has been picked 181, his deltas theta's mean
+ is 2.6539008104009554e-05,
+the empirical var of deltas thetas is 0.0005792451556771994
+the minimum of the deltas theta is -0.5197858810424805 and the maximum is 0.4968147277832031
+the added laplace noise var is 4.099193897065956
+global epoch 181 has been done artifficialy in 0.96 secs, the total time by now is 169.93 
+ with avg train loss 2.304, val loss 4.488, avg val acc 16.18%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.06% of the weights upadtes) we get:
+user No.0 has been picked 182, his deltas theta's mean
+ is -3.565391671145335e-05,
+the empirical var of deltas thetas is 0.002325833775103092
+the minimum of the deltas theta is -0.40631103515625 and the maximum is 0.5683879852294922
+the added laplace noise var is 4.266485173569931
+global epoch 182 has been done artifficialy in 0.89 secs, the total time by now is 170.82 
+ with avg train loss 2.293, val loss 10.753, avg val acc 13.23%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.12% of the weights upadtes) we get:
+user No.17 has been picked 183, his deltas theta's mean
+ is -0.000280126667348668,
+the empirical var of deltas thetas is 0.002533990191295743
+the minimum of the deltas theta is -0.5249896049499512 and the maximum is 0.5258917808532715
+the added laplace noise var is 4.4406037365836655
+global epoch 183 has been done artifficialy in 0.94 secs, the total time by now is 171.76 
+ with avg train loss 2.299, val loss 5.602, avg val acc 16.48%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.13% of the weights upadtes) we get:
+user No.2 has been picked 184, his deltas theta's mean
+ is 0.0008762352517805994,
+the empirical var of deltas thetas is 0.0012157195014879107
+the minimum of the deltas theta is -0.425534725189209 and the maximum is 0.3776216208934784
+the added laplace noise var is 4.621828212955258
+global epoch 184 has been done artifficialy in 0.96 secs, the total time by now is 172.72 
+ with avg train loss 2.316, val loss 5.577, avg val acc 12.25%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.21% of the weights upadtes) we get:
+user No.14 has been picked 185, his deltas theta's mean
+ is 0.0002264230279251933,
+the empirical var of deltas thetas is 0.008207224309444427
+the minimum of the deltas theta is -0.45943307876586914 and the maximum is 0.5072413086891174
+the added laplace noise var is 4.810448600510185
+global epoch 185 has been done artifficialy in 0.99 secs, the total time by now is 173.71 
+ with avg train loss 2.449, val loss 2.842, avg val acc 13.64%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.12% of the weights upadtes) we get:
+user No.24 has been picked 186, his deltas theta's mean
+ is 0.00013232545461505651,
+the empirical var of deltas thetas is 0.0006817414541728795
+the minimum of the deltas theta is -0.44447827339172363 and the maximum is 0.4382128119468689
+the added laplace noise var is 5.006766732109695
+global epoch 186 has been done artifficialy in 0.98 secs, the total time by now is 174.69 
+ with avg train loss 2.344, val loss 26.930, avg val acc 11.61%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.13% of the weights upadtes) we get:
+user No.25 has been picked 187, his deltas theta's mean
+ is -0.00029554482898674905,
+the empirical var of deltas thetas is 0.02604721114039421
+the minimum of the deltas theta is -0.43140697479248047 and the maximum is 0.4146699905395508
+the added laplace noise var is 5.211096758647786
+global epoch 187 has been done artifficialy in 0.97 secs, the total time by now is 175.66 
+ with avg train loss 2.449, val loss 3.499, avg val acc 10.82%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.14% of the weights upadtes) we get:
+user No.4 has been picked 188, his deltas theta's mean
+ is -0.0013727619079872966,
+the empirical var of deltas thetas is 0.006352958735078573
+the minimum of the deltas theta is -0.44395506381988525 and the maximum is 0.43618154525756836
+the added laplace noise var is 5.423765651759647
+global epoch 188 has been done artifficialy in 1.00 secs, the total time by now is 176.66 
+ with avg train loss 2.464, val loss 3.461, avg val acc 14.06%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.16% of the weights upadtes) we get:
+user No.17 has been picked 189, his deltas theta's mean
+ is -0.00019046633678954095,
+the empirical var of deltas thetas is 0.0004814989515580237
+the minimum of the deltas theta is -0.2999725341796875 and the maximum is 0.45844459533691406
+the added laplace noise var is 5.645113727046041
+global epoch 189 has been done artifficialy in 0.92 secs, the total time by now is 177.59 
+ with avg train loss 2.465, val loss 7.500, avg val acc 9.89%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.16% of the weights upadtes) we get:
+user No.12 has been picked 190, his deltas theta's mean
+ is -0.00010714756353991106,
+the empirical var of deltas thetas is 0.000790717895142734
+the minimum of the deltas theta is -0.3135533332824707 and the maximum is 0.3220195770263672
+the added laplace noise var is 5.875495188650869
+global epoch 190 has been done artifficialy in 0.87 secs, the total time by now is 178.45 
+ with avg train loss 2.574, val loss 3.779, avg val acc 12.33%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.15% of the weights upadtes) we get:
+user No.19 has been picked 191, his deltas theta's mean
+ is -0.00010582331015029922,
+the empirical var of deltas thetas is 0.003046069759875536
+the minimum of the deltas theta is -0.4586763381958008 and the maximum is 0.49996423721313477
+the added laplace noise var is 6.1152786960633625
+global epoch 191 has been done artifficialy in 0.95 secs, the total time by now is 179.40 
+ with avg train loss 2.467, val loss 6.009, avg val acc 11.49%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.10% of the weights upadtes) we get:
+user No.14 has been picked 192, his deltas theta's mean
+ is 0.000183825395652093,
+the empirical var of deltas thetas is 0.0014427154092118144
+the minimum of the deltas theta is -0.457494854927063 and the maximum is 0.4833488464355469
+the added laplace noise var is 6.364847954051922
+global epoch 192 has been done artifficialy in 0.93 secs, the total time by now is 180.34 
+ with avg train loss 2.590, val loss 6.965, avg val acc 10.01%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.13% of the weights upadtes) we get:
+user No.17 has been picked 193, his deltas theta's mean
+ is 0.0003124638751614839,
+the empirical var of deltas thetas is 0.0005499391118064523
+the minimum of the deltas theta is -0.41208791732788086 and the maximum is 0.3442545533180237
+the added laplace noise var is 6.624602326673619
+global epoch 193 has been done artifficialy in 0.94 secs, the total time by now is 181.27 
+ with avg train loss 2.735, val loss 4.150, avg val acc 9.43%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.08% of the weights upadtes) we get:
+user No.1 has been picked 194, his deltas theta's mean
+ is -0.0005654945271089673,
+the empirical var of deltas thetas is 0.002744516124948859
+the minimum of the deltas theta is -0.3836069107055664 and the maximum is 0.36897850036621094
+the added laplace noise var is 6.894957476341865
+global epoch 194 has been done artifficialy in 0.92 secs, the total time by now is 182.20 
+ with avg train loss 2.572, val loss 6.412, avg val acc 11.32%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.08% of the weights upadtes) we get:
+user No.24 has been picked 195, his deltas theta's mean
+ is -0.00022818516299594194,
+the empirical var of deltas thetas is 0.0003719290252774954
+the minimum of the deltas theta is -0.40758419036865234 and the maximum is 0.4007148742675781
+the added laplace noise var is 7.176346028974972
+global epoch 195 has been done artifficialy in 0.95 secs, the total time by now is 183.15 
+ with avg train loss 2.650, val loss 3.458, avg val acc 10.10%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.14% of the weights upadtes) we get:
+user No.15 has been picked 196, his deltas theta's mean
+ is 2.3055595193000045e-06,
+the empirical var of deltas thetas is 0.0007721548900008202
+the minimum of the deltas theta is -0.3601970672607422 and the maximum is 0.39124011993408203
+the added laplace noise var is 7.469218266289913
+global epoch 196 has been done artifficialy in 1.01 secs, the total time by now is 184.16 
+ with avg train loss 2.560, val loss 6.675, avg val acc 15.91%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.26% of the weights upadtes) we get:
+user No.25 has been picked 197, his deltas theta's mean
+ is -3.481587555143051e-05,
+the empirical var of deltas thetas is 0.00011048383021261543
+the minimum of the deltas theta is -0.3342120051383972 and the maximum is 0.2697296142578125
+the added laplace noise var is 7.774042846349133
+global epoch 197 has been done artifficialy in 0.96 secs, the total time by now is 185.12 
+ with avg train loss 2.515, val loss 15.237, avg val acc 12.54%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.35% of the weights upadtes) we get:
+user No.20 has been picked 198, his deltas theta's mean
+ is -0.00034867884824052453,
+the empirical var of deltas thetas is 0.0012589322868734598
+the minimum of the deltas theta is -0.3531761169433594 and the maximum is 0.33524036407470703
+the added laplace noise var is 8.091307553513438
+global epoch 198 has been done artifficialy in 0.98 secs, the total time by now is 186.10 
+ with avg train loss 2.628, val loss 4.636, avg val acc 12.15%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.26% of the weights upadtes) we get:
+user No.10 has been picked 199, his deltas theta's mean
+ is -0.00042031059274449944,
+the empirical var of deltas thetas is 0.0005612754612229764
+the minimum of the deltas theta is -0.3285214900970459 and the maximum is 0.3296637535095215
+the added laplace noise var is 8.421520079001041
+global epoch 199 has been done artifficialy in 0.92 secs, the total time by now is 187.02 
+ with avg train loss 2.696, val loss 27.472, avg val acc 9.97%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.31% of the weights upadtes) we get:
+user No.2 has been picked 200, his deltas theta's mean
+ is 2.312802644155454e-05,
+the empirical var of deltas thetas is 0.0013071518624201417
+the minimum of the deltas theta is -0.4114696979522705 and the maximum is 0.43712520599365234
+the added laplace noise var is 8.765208833301815
+global epoch 200 has been done artifficialy in 0.97 secs, the total time by now is 187.99 
+ with avg train loss 2.889, val loss 23.738, avg val acc 14.53%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.21% of the weights upadtes) we get:
+user No.27 has been picked 201, his deltas theta's mean
+ is -0.0002683032362256199,
+the empirical var of deltas thetas is 0.001291461056098342
+the minimum of the deltas theta is -0.35137271881103516 and the maximum is 0.32736897468566895
+the added laplace noise var is 9.12292379174683
+global epoch 201 has been done artifficialy in 0.93 secs, the total time by now is 188.92 
+ with avg train loss 2.900, val loss 13.774, avg val acc 10.33%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.31% of the weights upadtes) we get:
+user No.16 has been picked 202, his deltas theta's mean
+ is -0.0008853309554979205,
+the empirical var of deltas thetas is 0.00175612629391253
+the minimum of the deltas theta is -0.41254711151123047 and the maximum is 0.4273061752319336
+the added laplace noise var is 9.49523737458617
+global epoch 202 has been done artifficialy in 0.89 secs, the total time by now is 189.81 
+ with avg train loss 2.897, val loss 4.014, avg val acc 10.08%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.18% of the weights upadtes) we get:
+user No.14 has been picked 203, his deltas theta's mean
+ is -0.0008352858130820096,
+the empirical var of deltas thetas is 0.0008442781982012093
+the minimum of the deltas theta is -0.4124002456665039 and the maximum is 0.40253448486328125
+the added laplace noise var is 9.88274536298354
+global epoch 203 has been done artifficialy in 0.95 secs, the total time by now is 190.76 
+ with avg train loss 2.595, val loss 3.903, avg val acc 10.83%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.14% of the weights upadtes) we get:
+user No.28 has been picked 204, his deltas theta's mean
+ is -9.550592949381098e-05,
+the empirical var of deltas thetas is 0.0008527383324690163
+the minimum of the deltas theta is -0.49391651153564453 and the maximum is 0.5422139167785645
+the added laplace noise var is 10.286067852393124
+global epoch 204 has been done artifficialy in 0.96 secs, the total time by now is 191.72 
+ with avg train loss 2.676, val loss 5.283, avg val acc 11.13%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.20% of the weights upadtes) we get:
+user No.4 has been picked 205, his deltas theta's mean
+ is -7.627510785823688e-05,
+the empirical var of deltas thetas is 0.00027199863689020276
+the minimum of the deltas theta is -0.3639448881149292 and the maximum is 0.3356165885925293
+the added laplace noise var is 10.705850244844715
+global epoch 205 has been done artifficialy in 0.90 secs, the total time by now is 192.63 
+ with avg train loss 2.886, val loss 11.697, avg val acc 11.98%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.20% of the weights upadtes) we get:
+user No.5 has been picked 206, his deltas theta's mean
+ is 7.991909660631791e-05,
+the empirical var of deltas thetas is 0.00021247900440357625
+the minimum of the deltas theta is -0.5198125839233398 and the maximum is 0.53936767578125
+the added laplace noise var is 11.142764281724608
+global epoch 206 has been done artifficialy in 0.91 secs, the total time by now is 193.54 
+ with avg train loss 3.395, val loss 10.800, avg val acc 10.03%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.13% of the weights upadtes) we get:
+user No.9 has been picked 207, his deltas theta's mean
+ is -7.154167542466894e-05,
+the empirical var of deltas thetas is 0.0001977729407371953
+the minimum of the deltas theta is -0.28763866424560547 and the maximum is 0.2566795349121094
+the added laplace noise var is 11.59750911870507
+global epoch 207 has been done artifficialy in 0.96 secs, the total time by now is 194.50 
+ with avg train loss 3.162, val loss 57.416, avg val acc 12.46%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.17% of the weights upadtes) we get:
+user No.15 has been picked 208, his deltas theta's mean
+ is -0.00023515788780059665,
+the empirical var of deltas thetas is 0.0011241763131693006
+the minimum of the deltas theta is -0.4589114189147949 and the maximum is 0.5684528350830078
+the added laplace noise var is 12.070812444542716
+global epoch 208 has been done artifficialy in 0.93 secs, the total time by now is 195.43 
+ with avg train loss 2.863, val loss 8.309, avg val acc 10.10%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.25% of the weights upadtes) we get:
+user No.9 has been picked 209, his deltas theta's mean
+ is -0.0005413992912508547,
+the empirical var of deltas thetas is 0.00037866149796172976
+the minimum of the deltas theta is -0.3959572911262512 and the maximum is 0.4265437126159668
+the added laplace noise var is 12.563431645535607
+global epoch 209 has been done artifficialy in 0.97 secs, the total time by now is 196.40 
+ with avg train loss 3.335, val loss 12.028, avg val acc 12.94%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.28% of the weights upadtes) we get:
+user No.9 has been picked 210, his deltas theta's mean
+ is -0.00010011179256252944,
+the empirical var of deltas thetas is 0.0001950548030436039
+the minimum of the deltas theta is -0.27164745330810547 and the maximum is 0.22089576721191406
+the added laplace noise var is 13.076155017503078
+global epoch 210 has been done artifficialy in 0.94 secs, the total time by now is 197.34 
+ with avg train loss 2.919, val loss 49.488, avg val acc 13.49%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.19% of the weights upadtes) we get:
+user No.19 has been picked 211, his deltas theta's mean
+ is 0.0006929856026545167,
+the empirical var of deltas thetas is 0.0043507106602191925
+the minimum of the deltas theta is -0.46658802032470703 and the maximum is 0.4256267547607422
+the added laplace noise var is 13.609803027227048
+global epoch 211 has been done artifficialy in 0.89 secs, the total time by now is 198.22 
+ with avg train loss 3.206, val loss 5.360, avg val acc 10.59%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.31% of the weights upadtes) we get:
+user No.17 has been picked 212, his deltas theta's mean
+ is -9.749570017447695e-05,
+the empirical var of deltas thetas is 0.000556187063921243
+the minimum of the deltas theta is -0.33890342712402344 and the maximum is 0.35892677307128906
+the added laplace noise var is 14.165229625374106
+global epoch 212 has been done artifficialy in 0.93 secs, the total time by now is 199.15 
+ with avg train loss 3.027, val loss 8.189, avg val acc 10.54%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.46% of the weights upadtes) we get:
+user No.25 has been picked 213, his deltas theta's mean
+ is 7.593432383146137e-05,
+the empirical var of deltas thetas is 6.697924254694954e-05
+the minimum of the deltas theta is -0.6190333366394043 and the maximum is 0.4723842144012451
+the added laplace noise var is 14.743323612998566
+global epoch 213 has been done artifficialy in 0.89 secs, the total time by now is 200.04 
+ with avg train loss 3.451, val loss 6.131, avg val acc 10.21%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.35% of the weights upadtes) we get:
+user No.12 has been picked 214, his deltas theta's mean
+ is 6.235768523765728e-06,
+the empirical var of deltas thetas is 0.0003869956999551505
+the minimum of the deltas theta is -0.28119659423828125 and the maximum is 0.35089969635009766
+the added laplace noise var is 15.34501006381397
+global epoch 214 has been done artifficialy in 0.87 secs, the total time by now is 200.91 
+ with avg train loss 3.119, val loss 22.775, avg val acc 10.59%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.40% of the weights upadtes) we get:
+user No.15 has been picked 215, his deltas theta's mean
+ is 0.00031353591475635767,
+the empirical var of deltas thetas is 0.0004083742678631097
+the minimum of the deltas theta is -0.2749471664428711 and the maximum is 0.31682825088500977
+the added laplace noise var is 15.971251804508192
+global epoch 215 has been done artifficialy in 0.90 secs, the total time by now is 201.81 
+ with avg train loss 3.853, val loss 65.563, avg val acc 11.16%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.37% of the weights upadtes) we get:
+user No.24 has been picked 216, his deltas theta's mean
+ is 0.0004170917673036456,
+the empirical var of deltas thetas is 0.0013085323153063655
+the minimum of the deltas theta is -0.4110565185546875 and the maximum is 0.3618483543395996
+the added laplace noise var is 16.623050955471765
+global epoch 216 has been done artifficialy in 0.96 secs, the total time by now is 202.78 
+ with avg train loss 3.633, val loss 70.928, avg val acc 10.69%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.36% of the weights upadtes) we get:
+user No.17 has been picked 217, his deltas theta's mean
+ is -0.0012903903843834996,
+the empirical var of deltas thetas is 0.00636694673448801
+the minimum of the deltas theta is -0.4229087829589844 and the maximum is 0.5651664733886719
+the added laplace noise var is 17.301450534404072
+global epoch 217 has been done artifficialy in 0.97 secs, the total time by now is 203.75 
+ with avg train loss 4.180, val loss 445.105, avg val acc 11.48%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.26% of the weights upadtes) we get:
+user No.4 has been picked 218, his deltas theta's mean
+ is -6.142407801235095e-05,
+the empirical var of deltas thetas is 0.0007090612198226154
+the minimum of the deltas theta is -0.5111980438232422 and the maximum is 0.36481189727783203
+the added laplace noise var is 18.007536125364428
+global epoch 218 has been done artifficialy in 0.95 secs, the total time by now is 204.70 
+ with avg train loss 3.240, val loss 8.130, avg val acc 11.43%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.21% of the weights upadtes) we get:
+user No.14 has been picked 219, his deltas theta's mean
+ is 0.0002587939379736781,
+the empirical var of deltas thetas is 0.00031926517840474844
+the minimum of the deltas theta is -0.3670034408569336 and the maximum is 0.3389015197753906
+the added laplace noise var is 18.742437615937934
+global epoch 219 has been done artifficialy in 0.96 secs, the total time by now is 205.66 
+ with avg train loss 3.364, val loss 7.862, avg val acc 14.29%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.34% of the weights upadtes) we get:
+user No.14 has been picked 220, his deltas theta's mean
+ is 0.0005328031838871539,
+the empirical var of deltas thetas is 0.0006802942953072488
+the minimum of the deltas theta is -0.36578369140625 and the maximum is 0.3727712631225586
+the added laplace noise var is 19.507331005296916
+global epoch 220 has been done artifficialy in 0.90 secs, the total time by now is 206.56 
+ with avg train loss 3.469, val loss 15.579, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.41% of the weights upadtes) we get:
+user No.6 has been picked 221, his deltas theta's mean
+ is -5.4558935516979545e-05,
+the empirical var of deltas thetas is 0.0001743800676194951
+the minimum of the deltas theta is -0.38563060760498047 and the maximum is 0.38956165313720703
+the added laplace noise var is 20.303440286050243
+global epoch 221 has been done artifficialy in 0.90 secs, the total time by now is 207.46 
+ with avg train loss 4.177, val loss 8.892, avg val acc 11.98%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.36% of the weights upadtes) we get:
+user No.6 has been picked 222, his deltas theta's mean
+ is 4.138566873734817e-05,
+the empirical var of deltas thetas is 0.00011854644981212914
+the minimum of the deltas theta is -0.3448944091796875 and the maximum is 0.3501453399658203
+the added laplace noise var is 21.1320394028929
+global epoch 222 has been done artifficialy in 0.89 secs, the total time by now is 208.35 
+ with avg train loss 3.515, val loss 12.044, avg val acc 9.95%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.39% of the weights upadtes) we get:
+user No.13 has been picked 223, his deltas theta's mean
+ is -4.7075685870368034e-05,
+the empirical var of deltas thetas is 0.00028017026488669217
+the minimum of the deltas theta is -0.38418567180633545 and the maximum is 0.48770904541015625
+the added laplace noise var is 21.99445429118899
+global epoch 223 has been done artifficialy in 0.94 secs, the total time by now is 209.28 
+ with avg train loss 3.650, val loss 11.213, avg val acc 13.27%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.23% of the weights upadtes) we get:
+user No.7 has been picked 224, his deltas theta's mean
+ is 0.00015107069339137524,
+the empirical var of deltas thetas is 0.0002953562361653894
+the minimum of the deltas theta is -0.40505218505859375 and the maximum is 0.41053056716918945
+the added laplace noise var is 22.892064998751533
+global epoch 224 has been done artifficialy in 1.00 secs, the total time by now is 210.28 
+ with avg train loss 3.832, val loss 12.879, avg val acc 8.91%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.27% of the weights upadtes) we get:
+user No.14 has been picked 225, his deltas theta's mean
+ is 0.000246060430072248,
+the empirical var of deltas thetas is 0.0005736365565098822
+the minimum of the deltas theta is -0.3024120330810547 and the maximum is 0.33567237854003906
+the added laplace noise var is 23.82630789421303
+global epoch 225 has been done artifficialy in 0.90 secs, the total time by now is 211.18 
+ with avg train loss 4.346, val loss 7.214, avg val acc 10.00%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.27% of the weights upadtes) we get:
+user No.24 has been picked 226, his deltas theta's mean
+ is -0.0005342322401702404,
+the empirical var of deltas thetas is 0.0013239765539765358
+the minimum of the deltas theta is -0.37137699127197266 and the maximum is 0.36615753173828125
+the added laplace noise var is 24.798677965522106
+global epoch 226 has been done artifficialy in 0.93 secs, the total time by now is 212.11 
+ with avg train loss 3.562, val loss 23.207, avg val acc 10.11%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.22% of the weights upadtes) we get:
+user No.29 has been picked 227, his deltas theta's mean
+ is 0.0002499993424862623,
+the empirical var of deltas thetas is 0.00034079496981576085
+the minimum of the deltas theta is -0.492706298828125 and the maximum is 0.5010976791381836
+the added laplace noise var is 25.810731212242757
+global epoch 227 has been done artifficialy in 0.89 secs, the total time by now is 213.00 
+ with avg train loss 5.765, val loss 120.905, avg val acc 11.41%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.29% of the weights upadtes) we get:
+user No.29 has been picked 228, his deltas theta's mean
+ is 0.0004975800402462482,
+the empirical var of deltas thetas is 0.0004303574387449771
+the minimum of the deltas theta is -0.5988864898681641 and the maximum is 0.5930099487304688
+the added laplace noise var is 26.86408713548605
+global epoch 228 has been done artifficialy in 0.93 secs, the total time by now is 213.93 
+ with avg train loss 3.967, val loss 40.238, avg val acc 10.11%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.29% of the weights upadtes) we get:
+user No.26 has been picked 229, his deltas theta's mean
+ is 0.00014768268738407642,
+the empirical var of deltas thetas is 0.0012088846415281296
+the minimum of the deltas theta is -0.4146766662597656 and the maximum is 0.3542022705078125
+the added laplace noise var is 27.960431329456988
+global epoch 229 has been done artifficialy in 0.97 secs, the total time by now is 214.91 
+ with avg train loss 6.739, val loss 20.451, avg val acc 10.21%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.27% of the weights upadtes) we get:
+user No.11 has been picked 230, his deltas theta's mean
+ is -0.00036739822826348245,
+the empirical var of deltas thetas is 0.0010188372107222676
+the minimum of the deltas theta is -0.4097633361816406 and the maximum is 0.5602149963378906
+the added laplace noise var is 29.10151817876526
+global epoch 230 has been done artifficialy in 0.92 secs, the total time by now is 215.83 
+ with avg train loss 4.472, val loss 402.196, avg val acc 9.64%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.35% of the weights upadtes) we get:
+user No.5 has been picked 231, his deltas theta's mean
+ is -4.25075922976248e-05,
+the empirical var of deltas thetas is 0.0001677699910942465
+the minimum of the deltas theta is -0.33798694610595703 and the maximum is 0.3965606689453125
+the added laplace noise var is 30.289173665814502
+global epoch 231 has been done artifficialy in 0.94 secs, the total time by now is 216.77 
+ with avg train loss 5.371, val loss 33.851, avg val acc 10.02%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.34% of the weights upadtes) we get:
+user No.12 has been picked 232, his deltas theta's mean
+ is 0.0001769864757079631,
+the empirical var of deltas thetas is 0.0004891121061518788
+the minimum of the deltas theta is -0.3334932327270508 and the maximum is 0.3643312454223633
+the added laplace noise var is 31.525298292764067
+global epoch 232 has been done artifficialy in 0.87 secs, the total time by now is 217.64 
+ with avg train loss 5.505, val loss 13.405, avg val acc 11.43%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.38% of the weights upadtes) we get:
+user No.29 has been picked 233, his deltas theta's mean
+ is -0.0018587424419820309,
+the empirical var of deltas thetas is 0.0317779965698719
+the minimum of the deltas theta is -0.43498849868774414 and the maximum is 0.4998507499694824
+the added laplace noise var is 32.81187012273777
+global epoch 233 has been done artifficialy in 0.95 secs, the total time by now is 218.59 
+ with avg train loss 4.173, val loss 280.285, avg val acc 9.80%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.41% of the weights upadtes) we get:
+user No.19 has been picked 234, his deltas theta's mean
+ is 3.928232763428241e-05,
+the empirical var of deltas thetas is 0.0003373638028278947
+the minimum of the deltas theta is -0.4039134979248047 and the maximum is 0.42171669006347656
+the added laplace noise var is 34.15094794514676
+global epoch 234 has been done artifficialy in 0.91 secs, the total time by now is 219.50 
+ with avg train loss 3.984, val loss 4790.601, avg val acc 9.71%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.32% of the weights upadtes) we get:
+user No.17 has been picked 235, his deltas theta's mean
+ is 0.0007904644007794559,
+the empirical var of deltas thetas is 0.000839168147649616
+the minimum of the deltas theta is -0.39031982421875 and the maximum is 0.4989776611328125
+the added laplace noise var is 35.544674570192186
+global epoch 235 has been done artifficialy in 1.00 secs, the total time by now is 220.51 
+ with avg train loss 5.912, val loss 704.957, avg val acc 10.35%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.39% of the weights upadtes) we get:
+user No.25 has been picked 236, his deltas theta's mean
+ is 0.00019750850333366543,
+the empirical var of deltas thetas is 0.00033018714748322964
+the minimum of the deltas theta is -0.3382148742675781 and the maximum is 0.3489387035369873
+the added laplace noise var is 36.995280257818195
+global epoch 236 has been done artifficialy in 0.90 secs, the total time by now is 221.41 
+ with avg train loss 6.452, val loss 769.902, avg val acc 9.96%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.39% of the weights upadtes) we get:
+user No.13 has been picked 237, his deltas theta's mean
+ is -0.0002507086028344929,
+the empirical var of deltas thetas is 0.00034611893352121115
+the minimum of the deltas theta is -0.3524484634399414 and the maximum is 0.38382017612457275
+the added laplace noise var is 38.50508628660416
+global epoch 237 has been done artifficialy in 0.97 secs, the total time by now is 222.38 
+ with avg train loss 8.200, val loss 505.897, avg val acc 9.98%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.50% of the weights upadtes) we get:
+user No.17 has been picked 238, his deltas theta's mean
+ is 0.00010094116441905499,
+the empirical var of deltas thetas is 0.0005267970846034586
+the minimum of the deltas theta is -0.5384902954101562 and the maximum is 0.4251117706298828
+the added laplace noise var is 40.07650866830516
+global epoch 238 has been done artifficialy in 0.93 secs, the total time by now is 223.31 
+ with avg train loss 4.972, val loss 7086.660, avg val acc 9.72%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.31% of the weights upadtes) we get:
+user No.16 has been picked 239, his deltas theta's mean
+ is 0.0002471208281349391,
+the empirical var of deltas thetas is 0.0004725694889202714
+the minimum of the deltas theta is -0.3448784351348877 and the maximum is 0.2938690185546875
+the added laplace noise var is 41.712062013986696
+global epoch 239 has been done artifficialy in 0.96 secs, the total time by now is 224.27 
+ with avg train loss 7.050, val loss 61.318, avg val acc 12.19%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.37% of the weights upadtes) we get:
+user No.10 has been picked 240, his deltas theta's mean
+ is 1.2491505913203582e-05,
+the empirical var of deltas thetas is 0.0001695564278634265
+the minimum of the deltas theta is -0.23419952392578125 and the maximum is 0.2158355712890625
+the added laplace noise var is 43.41436355793835
+global epoch 240 has been done artifficialy in 0.93 secs, the total time by now is 225.21 
+ with avg train loss 6.178, val loss 397.400, avg val acc 9.94%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.36% of the weights upadtes) we get:
+user No.12 has been picked 241, his deltas theta's mean
+ is -0.00015290643204934895,
+the empirical var of deltas thetas is 0.00047073388122953475
+the minimum of the deltas theta is -0.36452293395996094 and the maximum is 0.26490020751953125
+the added laplace noise var is 45.186137345807666
+global epoch 241 has been done artifficialy in 0.94 secs, the total time by now is 226.15 
+ with avg train loss 6.144, val loss 35.694, avg val acc 10.06%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.55% of the weights upadtes) we get:
+user No.0 has been picked 242, his deltas theta's mean
+ is 9.17691140784882e-05,
+the empirical var of deltas thetas is 0.00011056600487791002
+the minimum of the deltas theta is -0.35482025146484375 and the maximum is 0.23172760009765625
+the added laplace noise var is 47.03021859365362
+global epoch 242 has been done artifficialy in 0.92 secs, the total time by now is 227.07 
+ with avg train loss 7.210, val loss 4344.645, avg val acc 7.89%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.44% of the weights upadtes) we get:
+user No.7 has been picked 243, his deltas theta's mean
+ is -8.972046634880826e-05,
+the empirical var of deltas thetas is 0.0004601473337970674
+the minimum of the deltas theta is -0.2980527877807617 and the maximum is 0.2917203903198242
+the added laplace noise var is 48.94955822489793
+global epoch 243 has been done artifficialy in 0.96 secs, the total time by now is 228.03 
+ with avg train loss 8.147, val loss 60.365, avg val acc 9.51%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.39% of the weights upadtes) we get:
+user No.28 has been picked 244, his deltas theta's mean
+ is -0.00019289385818410665,
+the empirical var of deltas thetas is 0.00016031363338697702
+the minimum of the deltas theta is -0.18459153175354004 and the maximum is 0.27117919921875
+the added laplace noise var is 50.947227592431354
+global epoch 244 has been done artifficialy in 1.00 secs, the total time by now is 229.04 
+ with avg train loss 9.682, val loss 11378.254, avg val acc 9.49%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.43% of the weights upadtes) we get:
+user No.10 has been picked 245, his deltas theta's mean
+ is 0.0005408555152826011,
+the empirical var of deltas thetas is 0.0008894336060620844
+the minimum of the deltas theta is -0.4118499755859375 and the maximum is 0.45238685607910156
+the added laplace noise var is 53.02642339343432
+global epoch 245 has been done artifficialy in 0.96 secs, the total time by now is 230.00 
+ with avg train loss 10.952, val loss 4873.067, avg val acc 10.18%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.62% of the weights upadtes) we get:
+user No.27 has been picked 246, his deltas theta's mean
+ is -0.0002707758394535631,
+the empirical var of deltas thetas is 0.000258321117144078
+the minimum of the deltas theta is -0.22388124465942383 and the maximum is 0.2821502685546875
+the added laplace noise var is 55.190472784773696
+global epoch 246 has been done artifficialy in 0.99 secs, the total time by now is 230.99 
+ with avg train loss 6.279, val loss 3374.079, avg val acc 9.09%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.52% of the weights upadtes) we get:
+user No.26 has been picked 247, his deltas theta's mean
+ is -0.0002816421038005501,
+the empirical var of deltas thetas is 0.008181162178516388
+the minimum of the deltas theta is -0.3769111633300781 and the maximum is 0.35588836669921875
+the added laplace noise var is 57.442838707164306
+global epoch 247 has been done artifficialy in 0.98 secs, the total time by now is 231.97 
+ with avg train loss 8.331, val loss 8090.443, avg val acc 9.67%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.73% of the weights upadtes) we get:
+user No.5 has been picked 248, his deltas theta's mean
+ is -0.00022911228006705642,
+the empirical var of deltas thetas is 0.0005591047811321914
+the minimum of the deltas theta is -0.8389530181884766 and the maximum is 0.8244428634643555
+the added laplace noise var is 59.787125426612114
+global epoch 248 has been done artifficialy in 0.91 secs, the total time by now is 232.88 
+ with avg train loss 12.451, val loss 1274.554, avg val acc 10.04%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.53% of the weights upadtes) we get:
+user No.12 has been picked 249, his deltas theta's mean
+ is -0.00012136143050156534,
+the empirical var of deltas thetas is 0.0006018496351316571
+the minimum of the deltas theta is -0.575779914855957 and the maximum is 0.3716621398925781
+the added laplace noise var is 62.22708430200962
+global epoch 249 has been done artifficialy in 0.90 secs, the total time by now is 233.78 
+ with avg train loss 9.807, val loss 5528.277, avg val acc 8.34%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.75% of the weights upadtes) we get:
+user No.13 has been picked 250, his deltas theta's mean
+ is -0.0008189162472262979,
+the empirical var of deltas thetas is 0.0011484409915283322
+the minimum of the deltas theta is -0.8952140808105469 and the maximum is 0.863593339920044
+the added laplace noise var is 64.76661978810958
+global epoch 250 has been done artifficialy in 0.91 secs, the total time by now is 234.69 
+ with avg train loss 7.801, val loss 23680.945, avg val acc 10.11%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.71% of the weights upadtes) we get:
+user No.12 has been picked 251, his deltas theta's mean
+ is -0.0002486614394001663,
+the empirical var of deltas thetas is 0.0006421337020583451
+the minimum of the deltas theta is -0.42122840881347656 and the maximum is 0.5273199081420898
+the added laplace noise var is 67.40979568348646
+global epoch 251 has been done artifficialy in 0.92 secs, the total time by now is 235.62 
+ with avg train loss 12.864, val loss 28120.815, avg val acc 10.01%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.73% of the weights upadtes) we get:
+user No.11 has been picked 252, his deltas theta's mean
+ is -0.0009049311047419906,
+the empirical var of deltas thetas is 0.0014095203951001167
+the minimum of the deltas theta is -0.5179290771484375 and the maximum is 0.4373626708984375
+the added laplace noise var is 70.16084163348019
+global epoch 252 has been done artifficialy in 0.92 secs, the total time by now is 236.54 
+ with avg train loss 12.226, val loss 321354.472, avg val acc 9.80%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.77% of the weights upadtes) we get:
+user No.27 has been picked 253, his deltas theta's mean
+ is 0.00010775313421618193,
+the empirical var of deltas thetas is 0.00065344333415851
+the minimum of the deltas theta is -0.6010360717773438 and the maximum is 0.7501983642578125
+the added laplace noise var is 73.02415989853215
+global epoch 253 has been done artifficialy in 0.91 secs, the total time by now is 237.44 
+ with avg train loss 10.837, val loss 20127.631, avg val acc 9.45%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.67% of the weights upadtes) we get:
+user No.11 has been picked 254, his deltas theta's mean
+ is 0.0005407165153883398,
+the empirical var of deltas thetas is 0.0034125498495996
+the minimum of the deltas theta is -0.6411514282226562 and the maximum is 0.62225341796875
+the added laplace noise var is 76.00433239873992
+global epoch 254 has been done artifficialy in 0.91 secs, the total time by now is 238.36 
+ with avg train loss 16.941, val loss 65903.438, avg val acc 9.48%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.64% of the weights upadtes) we get:
+user No.27 has been picked 255, his deltas theta's mean
+ is -0.00036681845085695386,
+the empirical var of deltas thetas is 0.0007891859277151525
+the minimum of the deltas theta is -0.5175590515136719 and the maximum is 0.4838409423828125
+the added laplace noise var is 79.10612804590818
+global epoch 255 has been done artifficialy in 0.89 secs, the total time by now is 239.24 
+ with avg train loss 12.219, val loss 35612.321, avg val acc 10.32%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.62% of the weights upadtes) we get:
+user No.12 has been picked 256, his deltas theta's mean
+ is -3.872894467349397e-06,
+the empirical var of deltas thetas is 0.0005554467788897455
+the minimum of the deltas theta is -0.32159423828125 and the maximum is 0.34918975830078125
+the added laplace noise var is 82.33451037482381
+global epoch 256 has been done artifficialy in 0.95 secs, the total time by now is 240.19 
+ with avg train loss 13.563, val loss 70593.660, avg val acc 8.74%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.80% of the weights upadtes) we get:
+user No.18 has been picked 257, his deltas theta's mean
+ is 0.00010617259977152571,
+the empirical var of deltas thetas is 0.00013132704771123827
+the minimum of the deltas theta is -0.23926162719726562 and the maximum is 0.29720306396484375
+the added laplace noise var is 85.69464548597152
+global epoch 257 has been done artifficialy in 0.90 secs, the total time by now is 241.09 
+ with avg train loss 13.656, val loss 82380.212, avg val acc 10.39%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.64% of the weights upadtes) we get:
+user No.24 has been picked 258, his deltas theta's mean
+ is -7.460578217433067e-06,
+the empirical var of deltas thetas is 0.00016435726138297468
+the minimum of the deltas theta is -0.47796630859375 and the maximum is 0.5170555114746094
+the added laplace noise var is 89.19191031239635
+global epoch 258 has been done artifficialy in 0.89 secs, the total time by now is 241.99 
+ with avg train loss 13.241, val loss 142.354, avg val acc 11.77%
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.44% of the weights upadtes) we get:
+user No.0 has been picked 259, his deltas theta's mean
+ is 0.0007795009296387434,
+the empirical var of deltas thetas is 0.0016682724235579371
+the minimum of the deltas theta is -0.4966278076171875 and the maximum is 0.5595436096191406
+the added laplace noise var is 92.83190122394323
+global epoch 259 has been done artifficialy in 0.97 secs, the total time by now is 242.96 
+ with avg train loss 11.449, val loss 40812.813, avg val acc 10.71%

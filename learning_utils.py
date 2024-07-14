@@ -65,20 +65,24 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, textio, args, 
                 #this is for testing purposes and can be removed later on
                 l1_norms_arr[1,user_idx] += LA.norm(delta_theta.flatten(), ord=1).detach().numpy()
 
-            if snr_verbose and state_dict[key].dtype != torch.int32:
+            if (snr_verbose and state_dict[key].dtype != torch.int32 and "batch_norm" not in key):
                 delta_theta_copy = copy.deepcopy(delta_theta)
+                # if idx_in_chosen == 0:
+                #     print(f"key is {key}, these are the weight values before truncation and noising {delta_theta}")
                 try:
                     users_delta_thetas[user_idx] = torch.cat((users_delta_thetas[user_idx], delta_theta_copy.flatten()), 0)
                 except KeyError:
                     users_delta_thetas[user_idx] = delta_theta_copy.flatten()
   
-            if args.privacy and state_dict[key].dtype != torch.int32:
+            if (args.privacy and state_dict[key].dtype != torch.int32 and "batch_norm" not in key):
+                # I exlude the batch norm layers beacause their means and variances are much much higher than
+                # the weights of conv and linear layers (they're about 2 while the weights were about 10**-2)
+                # that means that clapping them by delta_f would destroy the model
                 lap_noise = Laplace(torch.tensor([0.0]),
                                      torch.tensor(args.delta_f/local_models[user_idx].next_privacy_term))
                 added_noise = lap_noise.sample(delta_theta.shape).squeeze(-1).to(args.device)
                 #truncate all the values that are bigger than args.delta_f/2 or smaller than -args.delta_f/2
-                # if idx_in_chosen == 0:
-                #     print(f"key is {key}, these are the weight values before truncation and noising {delta_theta}")
+
                 delta_theta = torch.clamp(delta_theta, -args.delta_f/2, args.delta_f/2)
                 delta_theta += added_noise
                 # if idx_in_chosen == 0:

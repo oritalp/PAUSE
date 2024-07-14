@@ -6,24 +6,20 @@ import numpy as np
 
 class arguments:
 
-    def __init__(self, method_choosing_users = "fastest ones", data_truncation = 2000, model = "mlp",
-                  num_users = 30, num_users_per_round = 5, data = "mnist", 
+    def __init__(self, method_choosing_users = "fastest ones", data_truncation = None, model = "cnn3",
+                  num_users = 30, num_users_per_round = 5, data = "cifar10", 
                   save_best_model = False, global_epochs = 300, max_seconds = 300, privacy = True,
-                  privacy_choosing_users = True, epsilon_bar = 200, epsilon_sum_deascent_coeff = 0.04,
-                  delta_f = 0.3*(10**-2), snr_verbose = True, choosing_users_verbose = True, 
+                  privacy_choosing_users = True, epsilon_bar = 100, epsilon_sum_deascent_coeff = 0.04,
+                  delta_f = 0.12*(10**-1), snr_verbose = True, choosing_users_verbose = False, 
                   max_iterations_alsa = 500, ALSA_simulation = False, ALSA_verbose = False,
                   alpha = 10**2, beta = 2, gamma = 5, accel_ucb_coeff = 1, pre_ALSA_rounds = 1,
                   beta_max_reduction = 30, max_time_alsa = 600,
                   norm_std = 0.5, norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, local_epochs = 1,
-                 local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
+                  local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
                   optimizer = "Adam", lr = 0.01, momentum = 0.5, lr_scheduler = False,
                     seed = 0):
         self.eval = eval
         self.data = data
-        self.norm_std = norm_std
-        self.norm_mean = norm_mean
-        self.train_batch_size = train_batch_size
-        self.test_batch_size = test_batch_size
         self.model = model
         self.num_users = num_users
         self.num_users_per_round = num_users_per_round
@@ -59,7 +55,10 @@ class arguments:
         self.accel_ucb_coeff = accel_ucb_coeff
         self.max_time_alsa = max_time_alsa
         self.pre_ALSA_rounds = pre_ALSA_rounds
-
+        self.norm_std = norm_std
+        self.norm_mean = norm_mean
+        self.train_batch_size = train_batch_size
+        self.test_batch_size = test_batch_size
 
 
 def args_parser():
