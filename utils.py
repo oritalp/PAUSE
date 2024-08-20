@@ -701,7 +701,9 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
     """
     
     for key, value in paths_dict.items():
-        paths_dict[key] = torch.load(value)
+        paths_dict[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
+                                                                           torch.cuda.is_available() else
+                                                                             torch.device('cpu')))
 
     colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
     line_styles = ["-", "--", "-."]
@@ -729,8 +731,8 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
         
 
 
-    ax[0,0].set_title(r"privacy violation over time (max $\epsilon$ budget exceeded)") if x_axis_time else ax[1,1].set_title("privacy violation over epochs")
-    ax[0,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[1,1].set_xlabel("epochs", fontsize=10)
+    ax[0,0].set_title(r"privacy violation over time (max $\epsilon$ budget exceeded)") if x_axis_time else ax[0,0].set_title("privacy violation over epochs")
+    ax[0,0].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,0].set_xlabel("epochs", fontsize=10)
     ax[0,0].set_ylabel("privacy violation")
     ax[0,0].legend(fontsize=7)
 
@@ -747,8 +749,8 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
     ax[1,0].legend(fontsize=7)
     ax[1,0].set_ylim(0,3)
 
-    ax[1,1].set_title("val loss over time") if x_axis_time else ax[0,0].set_title("val loss over epochs")
-    ax[1,1].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[0,0].set_xlabel("epochs", fontsize=10)
+    ax[1,1].set_title("val loss over time") if x_axis_time else ax[1,1].set_title("val loss over epochs")
+    ax[1,1].set_xlabel("time(sec)", fontsize=10) if x_axis_time else ax[1,1].set_xlabel("epochs", fontsize=10)
     ax[1,1].set_ylabel("val loss")
     ax[1,1].legend(fontsize=7)
     ax[1,1].set_ylim(0,3)
@@ -758,6 +760,48 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
     plt.show()
 
 
+def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
+
+    for key, value in paths_dict.items():
+        paths_dict[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
+                                                                           torch.cuda.is_available() else
+                                                                             torch.device('cpu')))
+
+    colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
+    line_styles = ["-", "--", "-."]
+    
+    fig, ax = plt.subplots(1,1)
+    max_acc =  0
+    min_acc = 100
 
 
+    for idx, zipped_key_value in enumerate(paths_dict.items()):
+        key, value = zipped_key_value
+        x_var = value["global_epochs_time_list"] if x_axis_time else list(range(1, value["global_epoch"]+1))
+        if graph == "accuracy":
+            ax.plot(x_var, value['val_acc_list'], label = f"{key}",
+                ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+            
+        elif graph == "privacy":
+            ax.stairs(value["privacy_violations_list"],edges=[0] + x_var, baseline=None,
+                       label = f"{key}", ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+        
+        if max(value['val_acc_list']) > max_acc:
+            max_acc = max(value['val_acc_list'])
+        if min(value['val_acc_list']) < min_acc:
+            min_acc = min(value['val_acc_list'])
 
+    if graph == "accuracy":
+        ax.set_xlabel("Time [sec]", fontsize=10) if x_axis_time else ax.set_xlabel("Epochs", fontsize=10)
+        ax.set_ylabel("Validation accuracy [%]")
+        ax.set_yticks(list(np.arange(0,int(max_acc) + 5,5)))
+        ax.set_ylim(min_acc-1, max_acc + 1)
+
+    elif graph == "privacy":
+        ax.set_xlabel("Time [sec]", fontsize=10) if x_axis_time else ax.set_xlabel("Epochs", fontsize=10)
+        ax.set_ylabel("System's privacy violation")
+    
+    ax.legend(fontsize=10)
+
+    fig.tight_layout()
+    plt.show()

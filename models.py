@@ -15,7 +15,7 @@ class Linear(torch.nn.Module):
         return out
 
 
-class FC2Layer(nn.Module):
+class FC3Layer(nn.Module):
     def __init__(self, input_size, output_size):
         super(FC2Layer, self).__init__()
         self.input_size = input_size
