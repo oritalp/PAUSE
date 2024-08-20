@@ -127,7 +127,7 @@ def update_data_equility_partititon(local_models, args):
 
 
 def compute_energy(users_idxes, local_models, args):
-    """An auxilary function for the ALSA method, computes the energy of a given group of users according to the ALSA"""
+    """An auxilary function for the sa_pause method, computes the energy of a given group of users according to the sa_pause"""
     min_ucb = min([local_models[i].ucb for i in users_idxes])
     sum_g = args.alpha * (sum([local_models[i].g for i in users_idxes]) / args.num_users_per_round)
     sum_privacy_reward = (args.gamma * sum([local_models[i].privacy_reward for i in users_idxes])
@@ -138,7 +138,7 @@ def compute_energy(users_idxes, local_models, args):
 def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without_replaced_user,
                                         current_state, local_models, args, current_energy, neigbors_dict):
 
-    """An auxilary function for the ALSA method, computes the relative energy of a neighboring set of the current state and
+    """An auxilary function for the sa_pause method, computes the relative energy of a neighboring set of the current state and
       adds it to the neighboring set dictionary. In addition, it returns the new enrgy and the new state."""
   
     copied_current_state = current_state.copy()
@@ -158,7 +158,7 @@ def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without
     return new_state, new_energy
 
 def create_neighbor_state(new_user, replaced_user, current_state, local_models, axis_to_sort_by = "ucb"):
-    """An auxilary function for the ALSA method, gets a list of users as a current state and returns a new state
+    """An auxilary function for the sa_pause method, gets a list of users as a current state and returns a new state
     as a string to be a key in the neigbors_dict dictionary."""
     copied_current_state = current_state.copy()
     copied_current_state.remove(replaced_user)
@@ -227,14 +227,14 @@ def sort_dict_keys_by_idx(original_dict):
 
 #TODO: after privacy issue is sealed, before publishing the code,
 # need to change args.privacy_choosing_users and unite it with args.privacy
-def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_users_per_round = 1, method="ALSA"):
+def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_users_per_round = 1, method="sa_pause"):
     """
     Selects a group of users based on the specified method.
 
     Args:
         local_models (list): List of local models.
         args: Arguments for user selection.
-        method (str, optional): The method for user selection. Defaults to "BSFL brute".
+        method (str, optional): The method for user selection. Defaults to "pause brute".
         privacy (bool, optional): Flag indicating whether privacy is considered. Defaults to False.
 
     Returns:
@@ -245,11 +245,11 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
 
 
 
-    if method == "ALSA":
+    if method == "sa_pause":
         
 
 
-        if not args.ALSA_simulation:
+        if not args.sa_pause_simulation:
             num_users_per_round = args.num_users_per_round
             num_users = args.num_users
         # before each user is chosen at least once, we choose the users randomly, because they all set
@@ -258,8 +258,8 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
         
 
         #if we are in simulation mode, skip the initial random choosing
-        condition = (global_epoch <= (args.pre_ALSA_rounds * args.num_users/args.num_users_per_round)
-                      if not args.ALSA_simulation else False)
+        condition = (global_epoch <= (args.pre_sa_pause_rounds * args.num_users/args.num_users_per_round)
+                      if not args.sa_pause_simulation else False)
         #TODO: the condition for random initial starting is good if the number of users is a multiple of the number of 
         # users per round, otherwise, the condition should be changed (maybe with a change in the initialization of the
         # values of p and g in the user class)
@@ -306,10 +306,10 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
             winning_comb = []
             best_score = 0
 
-            if args.ALSA_verbose:
+            if args.sa_pause_verbose:
                 print(f"iter: 0, current_state: {current_state}")
 
-            for iter in range(args.max_iterations_alsa):
+            for iter in range(args.max_iterations_sa_pause):
                 
             
                 ### part 1: cheking for active neighbors
@@ -347,7 +347,7 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
 
                     #for debugging purposes
 
-                if args.ALSA_verbose:
+                if args.sa_pause_verbose:
                     print("*"*10 + "active neighbors" + "*"*10)
                     print(f"iter: {iter}, current_state: {sorted(current_state)}")
                     print(f"min_ucb_idx_current_state: {sorted_ucb_users_current_state[0]}")
@@ -380,7 +380,7 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
                 
                 # sort the keys of the passive neighbors dict by the user_idx to be presented in an uniform order
 
-                if args.ALSA_verbose:
+                if args.sa_pause_verbose:
                     print("*"*10 + "passive neighbors ucb" + "*"*10)
                     print(f"iter: {iter}, sorted_ucb_current_state: {sorted_ucb_users_current_state}")
                     print(f"sorted_ucb: {sorted_ucb}")
@@ -440,8 +440,8 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
                     else:
                         continue
 
-                if (time.time()-start_time > args.max_time_alsa) and not args.ALSA_simulation:
-                    textio.cprint(f"ALSA took more than {args.max_time_alsa} seconds to run, we're breaking at iter: {iter}")
+                if (time.time()-start_time > args.max_time_sa_pause) and not args.sa_pause_simulation:
+                    textio.cprint(f"sa_pause took more than {args.max_time_sa_pause} seconds to run, we're breaking at iter: {iter}")
                     break
 
 
@@ -449,19 +449,19 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
                 local_models[i].g -= g_noise[i]
                 local_models[i].privacy_reward -= p_noise[i]
 
-            if not args.ALSA_simulation:
+            if not args.sa_pause_simulation:
                 if len(set(winning_comb)) != args.num_users_per_round:
                     print(f"something went wrong, the winning comb is of the size {len(set(winning_comb))} and should be of the size {args.num_users_per_round}")
-                print(f"ALSA took {(time.time()-start_time)//60} minutes and {(time.time()-start_time)%60} seconds to run")
+                print(f"sa_pause took {(time.time()-start_time)//60} minutes and {(time.time()-start_time)%60} seconds to run")
                 return tuple(winning_comb)
             else:
-                print(f"ALSA took {(time.time()-start_time)//60} minutes and {(time.time()-start_time)%60} seconds to run")
+                print(f"sa_pause took {(time.time()-start_time)//60} minutes and {(time.time()-start_time)%60} seconds to run")
                 return energy_list, tuple(winning_comb), best_score
 
                 
 
 
-    elif method == "BSFL brute":
+    elif method == "pause brute":
         users_idxs_comb = list(itertools.combinations([x for x in range(args.num_users)], args.num_users_per_round))
         # permute the users_idxs_comb to make the order of the users random
         np.random.shuffle(users_idxs_comb)
@@ -487,7 +487,7 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
         return tuple(range(args.num_users_per_round))
 
     else:
-        raise ValueError(f"There is no such method as {method}, choose a method from:\nALSA, BSFL brute, random, all users, fastest ones ")
+        raise ValueError(f"There is no such method as {method}, choose a method from:\nsa_pause, pause brute, random, all users, fastest ones ")
         
 
 

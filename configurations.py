@@ -6,14 +6,15 @@ import numpy as np
 
 class arguments:
 
-    def __init__(self, method_choosing_users = "fastest ones", data_truncation = None, model = "cnn3",
+    def __init__(self, method_choosing_users = "all users", data_truncation = None, model = "cnn3",
                   num_users = 30, num_users_per_round = 5, data = "cifar10", 
-                  save_best_model = False, global_epochs = 300, max_seconds = 300, privacy = True,
+                  save_best_model = False, global_epochs = 300, max_seconds = 300, privacy = False,
                   privacy_choosing_users = True, epsilon_bar = 100, epsilon_sum_deascent_coeff = 0.04,
-                  delta_f = 0.12*(10**-1), snr_verbose = True, choosing_users_verbose = False, 
-                  max_iterations_alsa = 500, ALSA_simulation = False, ALSA_verbose = False,
-                  alpha = 10**2, beta = 2, gamma = 5, accel_ucb_coeff = 1, pre_ALSA_rounds = 1,
-                  beta_max_reduction = 30, max_time_alsa = 600,
+                  delta_f = 0.012, snr_verbose = False, choosing_users_verbose = False, 
+                  x_axis_time = True,
+                  max_iterations_sa_pause = 500, sa_pause_simulation = False, sa_pause_verbose = False,
+                  alpha = 10**2, beta = 2, gamma = 5, accel_ucb_coeff = 1, pre_sa_pause_rounds = 1,
+                  beta_max_reduction = 30, max_time_sa_pause = 600, production = False,
                   norm_std = 0.5, norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, local_epochs = 1,
                   local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
                   optimizer = "Adam", lr = 0.01, momentum = 0.5, lr_scheduler = False,
@@ -48,17 +49,19 @@ class arguments:
         self.delta_f = delta_f #constant delta f
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.snr_verbose = snr_verbose  #weather to print the snr of the deltas theta for each user
-        self.max_iterations_alsa = max_iterations_alsa
-        self.ALSA_simulation = ALSA_simulation
-        self.ALSA_verbose = ALSA_verbose
+        self.max_iterations_sa_pause = max_iterations_sa_pause
+        self.sa_pause_simulation = sa_pause_simulation
+        self.sa_pause_verbose = sa_pause_verbose
         self.beta_max_reduction = beta_max_reduction
         self.accel_ucb_coeff = accel_ucb_coeff
-        self.max_time_alsa = max_time_alsa
-        self.pre_ALSA_rounds = pre_ALSA_rounds
+        self.max_time_sa_pause = max_time_sa_pause
+        self.pre_sa_pause_rounds = pre_sa_pause_rounds
         self.norm_std = norm_std
         self.norm_mean = norm_mean
         self.train_batch_size = train_batch_size
         self.test_batch_size = test_batch_size
+        self.production = production # if True, the code will run in production mode, if False, it will run in development mode
+        self.x_axis_time = x_axis_time # weather to print in production mode the x axis in seconds or in global epochs
 
 
 def args_parser():
@@ -78,8 +81,8 @@ def args_parser():
 
 
     # federated arguments
-    parser.add_argument('--method_choosing_users', type=str, default='ALSA',
-                        choices=["ALSA",'BSFL brute', 'random', 'all users', "fastest ones"],
+    parser.add_argument('--method_choosing_users', type=str, default='sa_pause',
+                        choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones"],
                         help="method to choose users for each round")
     parser.add_argument('--model', type=str, default='mlp',
                         choices=['cnn2', 'cnn3', 'mlp', 'linear'],
@@ -94,10 +97,10 @@ def args_parser():
                         help="max seconds to run the learning process")
     parser.add_argument('--privacy_choosing_users', action='store_false',
                         help="weather to perform privacy for the choosing users or not")
-    parser.add_argument('--max_iterations_alsa', type=int, default=3000,
-                        help="maximum number of iterations for the ALSA algorithm")
-    parser.add_argument('--ALSA_simulation', action='store_true',
-                        help="weather to perform ALSA in simulation mode (outside the main code) or not")
+    parser.add_argument('--max_iterations_sa_pause', type=int, default=3000,
+                        help="maximum number of iterations for the sa_pause algorithm")
+    parser.add_argument('--sa_pause_simulation', action='store_true',
+                        help="weather to perform sa_pause in simulation mode (outside the main code) or not")
     parser.add_argument('--epsilon_bar', type=float, default=100,
                         help="privacy budget (epsilon)")
     parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.04,
@@ -106,18 +109,18 @@ def args_parser():
                         help="constant delta f, the sensitivity for the laplace noise")
     parser.add_argument('--accel_ucb_coeff', type=float, default=3,
                         help="the coefficient for the acceleration of the ucb")
-    parser.add_argument('--pre_ALSA_rounds', type=int, default=1,
-                        help=("in the (num_of_users/num_of_users_per_round)*pre_ALSA_rounds, ALSA is not performed\
+    parser.add_argument('--pre_sa_pause_rounds', type=int, default=1,
+                        help=("in the (num_of_users/num_of_users_per_round)*pre_sa_pause_rounds, sa_pause is not performed\
                               and the users are chosen uniformly. this value is deafult equal to 1 and should only be\
-                              changed in simulations if the number of users is very large and the ALSA algorithm is very slow"))
-    parser.add_argument('--max_time_alsa', type=float, default=600,
-                        help="maximum seconds for the ALSA algorithm")
+                              changed in simulations if the number of users is very large and the sa_pause algorithm is very slow"))
+    parser.add_argument('--max_time_sa_pause', type=float, default=600,
+                        help="maximum seconds for the sa_pause algorithm")
     parser.add_argument('--snr_verbose', action='store_false',
                         help="weather to print the snr of the deltas theta for each user")
-    parser.add_argument('--ALSA_verbose', action='store_true',
-                        help="weather to print the ALSA algorithm's progress")
+    parser.add_argument('--sa_pause_verbose', action='store_true',
+                        help="weather to print the sa_pause algorithm's progress")
     parser.add_argument('--beta_max_reduction', type=float, default=70,
-                        help="the aonut we divide the beta_max we compute in ALSA to accelerate the convergence")
+                        help="the aonut we divide the beta_max we compute in sa_pause to accelerate the convergence")
     parser.add_argument('--alpha', type=float, default=100,
                         help="alpha parameter for the MAB")
     parser.add_argument('--beta', type=float, default=2,
@@ -128,6 +131,15 @@ def args_parser():
                         help="if None, the data is not truncated, if a number is given, the data is truncated to that number")
     parser.add_argument('--tau_min', type=float, default=0.05,
                         help = "minimum communication time for all users")
+    parser.add_argument("--x_axis_time", action='store_false',
+                         help="weather to print in production mode the x axis in seconds or in global epochs")
+    parser.add_argument("--production", action='store_true',
+                        help="if True, the code will run in production mode, if False, it will run in development mode")
+    parser.add_argument('--privacy_noise', type=str, default='laplace')
+    parser.add_argument('--device', type=str, default='cuda',
+                        help="device to use (cuda or cpu)")
+    
+    
     
 
     #things that I don't touch often:
