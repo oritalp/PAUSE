@@ -6,12 +6,11 @@ import numpy as np
 
 class arguments:
 
-    def __init__(self, method_choosing_users = "all users", data_truncation = None, model = "cnn3",
-                  num_users = 30, num_users_per_round = 5, data = "cifar10", 
-                  save_best_model = False, global_epochs = 300, max_seconds = 300, privacy = False,
-                  privacy_choosing_users = True, epsilon_bar = 100, epsilon_sum_deascent_coeff = 0.04,
-                  delta_f = 0.012, snr_verbose = False, choosing_users_verbose = False, 
-                  x_axis_time = True,
+    def __init__(self, method_choosing_users = "pause brute", data_truncation = 2000, model = "mlp",
+                  num_users = 30, num_users_per_round = 5, data = "mnist", 
+                  save_best_model = False, global_epochs = 600, max_seconds = 300, privacy = True,
+                  privacy_choosing_users = True, epsilon_bar = 200, epsilon_sum_deascent_coeff = 0.04,
+                  delta_f = 0.003, snr_verbose = False, choosing_users_verbose = False,
                   max_iterations_sa_pause = 500, sa_pause_simulation = False, sa_pause_verbose = False,
                   alpha = 10**2, beta = 2, gamma = 5, accel_ucb_coeff = 1, pre_sa_pause_rounds = 1,
                   beta_max_reduction = 30, max_time_sa_pause = 600, production = False,
@@ -61,7 +60,6 @@ class arguments:
         self.train_batch_size = train_batch_size
         self.test_batch_size = test_batch_size
         self.production = production # if True, the code will run in production mode, if False, it will run in development mode
-        self.x_axis_time = x_axis_time # weather to print in production mode the x axis in seconds or in global epochs
 
 
 def args_parser():
@@ -131,8 +129,6 @@ def args_parser():
                         help="if None, the data is not truncated, if a number is given, the data is truncated to that number")
     parser.add_argument('--tau_min', type=float, default=0.05,
                         help = "minimum communication time for all users")
-    parser.add_argument("--x_axis_time", action='store_false',
-                         help="weather to print in production mode the x axis in seconds or in global epochs")
     parser.add_argument("--production", action='store_true',
                         help="if True, the code will run in production mode, if False, it will run in development mode")
     parser.add_argument('--privacy_noise', type=str, default='laplace')
@@ -161,7 +157,7 @@ def args_parser():
                         help="learning rate is 0.01 for cnn and 0.1  for linear")
     parser.add_argument('--momentum', type=float, default=0.5,
                         help="momentum")
-    parser.add_argument('--lr_scheduler', action='store_True',
+    parser.add_argument('--lr_scheduler', action='store_true',
                         help="reduce the learning rate when val_acc has stopped improving (increasing)")
     parser.add_argument('--optimizer', type=str, default='adam',
                         choices=['sgd', 'adam'],

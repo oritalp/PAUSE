@@ -680,7 +680,7 @@ def data_split(data, amount, args):
     train_data, val_data = torch.utils.data.random_split(data, [len(data) - amount, amount])
     #the train data is truncated to the first args.data_truncation samples
     if args.data_truncation is not None:
-        train_data = torch.utils.data.Subset(train_data, range(args.data_truncation))
+        train_data = torch.utils.data.Subset(train_data, range(int(args.data_truncation)))
     val_loader = torch.utils.data.DataLoader(val_data, batch_size=args.test_batch_size, shuffle=False)
 
     # input, output sizes
@@ -699,20 +699,23 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
         x_axis_time (bool, optional): Determines whether the x-axis represents time or epochs. 
                                       Defaults to True (time).
     """
-    
-    for key, value in paths_dict.items():
-        paths_dict[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
-                                                                           torch.cuda.is_available() else
-                                                                             torch.device('cpu')))
+    paths_dict_copy = paths_dict.copy()
+
+    for key, value in paths_dict_copy.items():
+        #check if the value is an absolute path or a relative path
+        if not value.is_absolute():
+            paths_dict_copy[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
+                                                                            torch.cuda.is_available() else
+                                                                                torch.device('cpu')))
 
     colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
     line_styles = ["-", "--", "-."]
     
-    fig, ax = plt.subplots(2,2, figsize=(10,10))
+    fig, ax = plt.subplots(2,2, figsize=(8,8))
     max_acc =  0
     min_acc =100
 
-    for idx, zipped_key_value in enumerate(paths_dict.items()):
+    for idx, zipped_key_value in enumerate(paths_dict_copy.items()):
         key, value = zipped_key_value
         x_var = value["global_epochs_time_list"] if x_axis_time else list(range(1, value["global_epoch"]+1))
         ax[0,0].stairs(value["privacy_violations_list"],edges=[0] + x_var, baseline=None,
@@ -762,20 +765,25 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
 
 def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
 
-    for key, value in paths_dict.items():
-        paths_dict[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
-                                                                           torch.cuda.is_available() else
-                                                                             torch.device('cpu')))
+    paths_dict_copy = paths_dict.copy()
+
+    for key, value in paths_dict_copy.items():
+        #check if the value is an absolute path or a relative path
+        if not value.is_absolute():
+            paths_dict_copy[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
+                                                                            torch.cuda.is_available() else
+                                                                                torch.device('cpu')))
+
 
     colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
-    line_styles = ["-", "--", "-."]
+    line_styles = ["-", "--", "-.", ":"]
     
     fig, ax = plt.subplots(1,1)
     max_acc =  0
     min_acc = 100
 
 
-    for idx, zipped_key_value in enumerate(paths_dict.items()):
+    for idx, zipped_key_value in enumerate(paths_dict_copy.items()):
         key, value = zipped_key_value
         x_var = value["global_epochs_time_list"] if x_axis_time else list(range(1, value["global_epoch"]+1))
         if graph == "accuracy":
@@ -800,8 +808,10 @@ def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
     elif graph == "privacy":
         ax.set_xlabel("Time [sec]", fontsize=10) if x_axis_time else ax.set_xlabel("Epochs", fontsize=10)
         ax.set_ylabel("System's privacy violation")
+        if not x_axis_time:
+            ax.set_xlim(0,300)
     
-    ax.legend(fontsize=10)
+    ax.legend(fontsize=8)
 
     fig.tight_layout()
     plt.show()

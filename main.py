@@ -195,14 +195,18 @@ for choosing_method in choosing_methods_list:
         fig.set_size_inches(18.5, 10.5)
         #boardio.add_figure("Number of times each user was chosen", fig, global_epoch)
         plt.savefig(last_model_path.parent / "Number of times each user was chosen.png")
+        plt.close(fig)
 
         if time_counter > args.max_seconds:
             break
     
-    results_paths.append(last_model_path)
+    #convert last_model_path to be relative
+    last_model_path = last_model_path.relative_to(Path.cwd())
+    results_paths.append(Path(last_model_path))
 
 #create a dictionary with choosing_methods_list as keys and the results_paths as values
 results_dict = dict(zip(choosing_methods_list, results_paths))
-utils.plot_graphs(results_dict, args.x_axis_time)
+utils.plot_graphs(results_dict, x_axis_time=True)
+utils.plot_graphs(results_dict, x_axis_time=False)
 
 
