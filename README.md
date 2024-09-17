@@ -1,5 +1,5 @@
 # PAUSE: Privacy-Aware User SElection for Federated Learning
-The code for the paper is attached, follow the instructions below to run the code.
+The code for the paper's simulations is attached, clone the __production__ branch and run the following code snippets:
 
 #### To run Test 1 - small scale network test on truncated MNIST (choosing 5 out of 30 users at each round), run the following command:
 
