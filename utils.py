@@ -1,4 +1,3 @@
-from turtle import color
 import numpy as np
 import torch
 import torch.optim as optim
@@ -6,15 +5,16 @@ import copy
 import math
 import os
 from statistics import mean
-from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
 from pathlib import Path
-from scipy import special
 import itertools
 import time
 import datetime
 import matplotlib.pyplot as plt
 import random
+
+
+
 
 
 
@@ -576,16 +576,15 @@ def initializations(args):
 
     now = datetime.datetime.now()
     now = str(now.strftime("%d-%m-%Y_%H-%M-%S"))
-    (Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now).mkdir(exist_ok=True, parents=True)
-    boardio = SummaryWriter(log_dir='checkpoints/' + args.method_choosing_users+ '/' + args.model + "/" + now)
-    textio = IOStream('checkpoints/' + args.method_choosing_users +"/" + args.model + "/" + now + '/run.log')
+    base_path = Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now
+    base_path.mkdir(exist_ok=True, parents=True)
+    textio = IOStream(str(base_path) + '/run.log')
+    best_val_acc = -np.inf
+    path_best_model = base_path  /'best_model.pth.tar'
+    last_model_path = base_path  /'last_model.pth.tar'
 
-    best_val_acc = np.NINF
-    path_best_model = Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now  /'best_model.pth.tar'
-    last_model_path = Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now  /'last_model.pth.tar'
 
-
-    return boardio, textio, best_val_acc, path_best_model, last_model_path
+    return base_path, textio, best_val_acc, path_best_model, last_model_path
 
 
 class IOStream:
@@ -690,7 +689,7 @@ def data_split(data, amount, args):
 
     return input, output, train_data, val_loader
 
-def plot_graphs(paths_dict: dict, x_axis_time = True):
+def plot_graphs(paths_dict: dict, x_axis_time = True, path_to_save = None, print_graph = True):
     """
     Plots graphs for validation loss, validation accuracy, and average train loss over time or epochs.
     
@@ -705,6 +704,10 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
         #check if the value is an absolute path or a relative path
         if not value.is_absolute():
             paths_dict_copy[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
+                                                                            torch.cuda.is_available() else
+                                                                                torch.device('cpu')))
+        else:
+            paths_dict_copy[key] = torch.load(value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
                                                                                 torch.device('cpu')))
 
@@ -760,7 +763,11 @@ def plot_graphs(paths_dict: dict, x_axis_time = True):
 
     fig.suptitle("Metrics over time" if x_axis_time else "Metrics over epochs", fontsize=20)
     fig.tight_layout()
-    plt.show()
+    if path_to_save is not None:
+        # save in the path_to_save folder under the name f"metrics over {'time' if x_axis_time else 'epochs'}.png"
+        fig.savefig(path_to_save / f"metrics over {'time' if x_axis_time else 'epochs'}.png")
+    if print_graph:
+        plt.show()
 
 
 def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
@@ -771,6 +778,10 @@ def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
         #check if the value is an absolute path or a relative path
         if not value.is_absolute():
             paths_dict_copy[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
+                                                                            torch.cuda.is_available() else
+                                                                                torch.device('cpu')))
+        else:
+            paths_dict_copy[key] = torch.load(value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
                                                                                 torch.device('cpu')))
 

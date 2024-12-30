@@ -39,9 +39,7 @@ def distribute_model(local_models, global_model):
 
 
 def Fed_avg_models(local_models, global_model, chosen_users_idxs, textio, args, l1_norms_verbose = False, snr_verbose = False): 
-    """this is a fed avg that averages according to the data length and quality for the non i.i.d case, in oppose
-    to nataly's implementation"""
-    #mean = lambda x: sum(x) / len(x)
+    """this is a fed avg that averages according to the data length and quality for the non i.i.d case"""
     state_dict = copy.deepcopy(global_model.state_dict())
     data_length_sum = 0
     for j in chosen_users_idxs:

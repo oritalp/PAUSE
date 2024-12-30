@@ -1,0 +1,193 @@
+Namespace(data='mnist', full_exp=True, wandb=True, method_choosing_users='all users', model='cnn2', num_users=30, num_users_per_round=5, global_epochs=5, max_seconds=600, epsilon_bar=100, epsilon_sum_deascent_coeff=0.04, delta_f=0.003, accel_ucb_coeff=1, alpha=100, beta=2, gamma=2, choosing_users_verbose=True, sa_pause_verbose=False, snr_verbose=False, max_iterations_sa_pause=3000, sa_pause_simulation=False, max_time_sa_pause=600, pre_sa_pause_rounds=1, beta_max_reduction=70, data_truncation=None, tau_min=0.05, production=False, privacy_noise='laplace', privacy_choosing_users=True, privacy=True, save_best_model=False, seed=0, norm_mean=0.5, norm_std=0.5, train_batch_size=20, test_batch_size=1000, local_epochs=1, local_iterations=100, lr=0.01, momentum=0.5, lr_scheduler=False, optimizer='adam', device=device(type='cuda'))
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN2Layer                                --
+├─Conv2d: 1-1                            156
+├─Conv2d: 1-2                            906
+├─Linear: 1-3                            4,850
+├─Linear: 1-4                            510
+├─Dropout: 1-5                           --
+├─Dropout: 1-6                           --
+├─BatchNorm2d: 1-7                       12
+├─BatchNorm1d: 1-8                       100
+=================================================================
+Total params: 6,534
+Trainable params: 6,534
+Non-trainable params: 0
+=================================================================
+iteration: 1
+user 0, emp_avg: 0.38250027757173866, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.1307188593885985
+user 1, emp_avg: 0.7837301780661845, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.06379746678043269
+user 2, emp_avg: 0.27714979570428866, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.18040785443460566
+user 3, emp_avg: 0.4926383725258539, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.10149432685001812
+user 4, emp_avg: 0.38389281938871267, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.1302446867321377
+user 5, emp_avg: 0.2612903682583626, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.19135799123892794
+user 6, emp_avg: 0.2503404295016248, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.19972802674957257
+user 7, emp_avg: 0.3533026878323114, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.1415217085009316
+user 8, emp_avg: 0.36561872747041807, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.1367544828623295
+user 9, emp_avg: 0.4923635039037169, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.10155098743829243
+user 10, emp_avg: 0.2637657494113612, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.189562140314213
+user 11, emp_avg: 0.38208415121831585, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.13086122478665943
+user 12, emp_avg: 0.316880157871224, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.15778835865235638
+user 13, emp_avg: 0.2894511964552817, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.17274069208321502
+user 14, emp_avg: 0.3206978949939244, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.15590997253333155
+user 15, emp_avg: 0.07233789271675235, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.6912006712136468
+user 16, emp_avg: 0.07146728099247329, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.6996208517470511
+user 17, emp_avg: 0.07420174157042506, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.6738386315709973
+user 18, emp_avg: 0.06687233142622055, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.747693387289247
+user 19, emp_avg: 0.06157377921211755, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.8120339638038677
+user 20, emp_avg: 0.06091888866870091, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.8207634954064609
+user 21, emp_avg: 0.06212814513128325, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.8047882307502467
+user 22, emp_avg: 0.06619380217019045, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.7553577277740494
+user 23, emp_avg: 0.059250391997536914, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.8438762734612548
+user 24, emp_avg: 0.055681256314441444, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.897968244783156
+user 25, emp_avg: 0.061721251026062636, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.8100937548865759
+user 26, emp_avg: 0.064124770407926, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.779729887248374
+user 27, emp_avg: 0.05418250219219176, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.9228071421036274
+user 28, emp_avg: 0.05604078172668159, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.8922073971747345
+user 29, emp_avg: 0.056756689207330076, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.027777777777777776, curr_delay = 0.8809534294248887
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.92 seconds
+global epoch 1 has been done artifficialy in 0.92 secs, the total time by now is 0.92 
+ with avg train loss 0.693, val loss 2.411, avg val acc 8.92%
+iteration: 2
+user 0, emp_avg: 0.6912501387858694, h: 2.039333980337618, ucb: 2.4218342579093566, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.05
+user 1, emp_avg: 0.7452536181157636, h: 2.039333980337618, ucb: 2.8230641584038025, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.07074366580289178
+user 2, emp_avg: 0.5469601567726841, h: 2.039333980337618, ucb: 2.3164837760419066, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.06121670519176183
+user 3, emp_avg: 0.5301236523841472, h: 2.039333980337618, ucb: 2.531972352863472, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.08808881812776638
+user 4, emp_avg: 0.4030973344438919, h: 2.039333980337618, ucb: 2.4232267997263306, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.11839872370748397
+user 5, emp_avg: 0.36263400155246467, h: 2.039333980337618, ucb: 2.3006243485959805, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.10776381498762232
+user 6, emp_avg: 0.36353504716268037, h: 2.039333980337618, ucb: 2.2896744098392428, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.1048812433740342
+user 7, emp_avg: 0.6766513439161557, h: 2.039333980337618, ucb: 2.392636668169929, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.05
+user 8, emp_avg: 0.32469333018068436, h: 2.039333980337618, ucb: 2.404952707808036, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.1762003179521152
+user 9, emp_avg: 0.39503545498800624, h: 2.039333980337618, ucb: 2.531697484241335, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.16795013822349436
+user 10, emp_avg: 0.24881127678153153, h: 2.039333980337618, ucb: 2.303099729748979, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.21380605187593868
+user 11, emp_avg: 0.33023483643127904, h: 2.039333980337618, ucb: 2.4214181315559338, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.1796070417192766
+user 12, emp_avg: 0.2707257995543668, h: 2.039333980337618, ucb: 2.3562141382088417, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.2226462978750684
+user 13, emp_avg: 0.27567196497330837, h: 2.039333980337618, ucb: 2.3287851767928993, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.190917859130499
+user 14, emp_avg: 0.27325900266607506, h: 2.039333980337618, ucb: 2.360031875331542, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.22141517832540114
+user 15, emp_avg: 0.06892802505123402, h: 2.039333980337618, ucb: 2.11167187305437, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.7631472250607133
+user 16, emp_avg: 0.07134063806055127, h: 2.039333980337618, ucb: 2.1108012613300913, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.7021091838716285
+user 17, emp_avg: 0.06933257150496114, h: 2.039333980337618, ucb: 2.113535721908043, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.7756339082871391
+user 18, emp_avg: 0.0643385008911289, h: 2.039333980337618, ucb: 2.1062063117638385, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.80900035081436
+user 19, emp_avg: 0.06872413893846194, h: 2.039333980337618, ucb: 2.1009077595497354, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.658982937348778
+user 20, emp_avg: 0.06338908547479481, h: 2.039333980337618, ucb: 2.1002528690063187, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.7591944258783578
+user 21, emp_avg: 0.0648575156224656, h: 2.039333980337618, ucb: 2.101462125468901, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.7397884837588844
+user 22, emp_avg: 0.06366957844006249, h: 2.039333980337618, ucb: 2.1055277825078083, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.8177236069230996
+user 23, emp_avg: 0.062354257289121535, h: 2.039333980337618, ucb: 2.098584372335155, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.7638471442310744
+user 24, emp_avg: 0.05985925795940702, h: 2.039333980337618, ucb: 2.0950152366520594, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.7807954354840304
+user 25, emp_avg: 0.05872289968242489, h: 2.039333980337618, ucb: 2.1010552313636803, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.8972706193330854
+user 26, emp_avg: 0.05873799149872873, h: 2.039333980337618, ucb: 2.103458750745544, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.9371858215235949
+user 27, emp_avg: 0.05639175699395607, h: 2.039333980337618, ucb: 2.0935164825298096, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.853227588873329
+user 28, emp_avg: 0.054904882948035624, h: 2.039333980337618, ucb: 2.0953747620642993, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.9299041217234802
+user 29, emp_avg: 0.056510698233027276, h: 2.039333980337618, ucb: 2.0960906695449477, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.11111111111111113, curr_delay = 0.8886565386376721
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.94 seconds
+global epoch 2 has been done artifficialy in 0.94 secs, the total time by now is 1.86 
+ with avg train loss 0.658, val loss 2.430, avg val acc 8.94%
+iteration: 3
+user 0, emp_avg: 0.7941667591905796, h: 1.815443985917585, ucb: 2.506694124703454, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.05
+user 1, emp_avg: 0.8301690787438424, h: 1.815443985917585, ucb: 2.560697604033349, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.05
+user 2, emp_avg: 0.697973437848456, h: 1.815443985917585, ucb: 2.362404142690269, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.05
+user 3, emp_avg: 0.4719854954131549, h: 1.815443985917585, ucb: 2.3455676383017323, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.14056426599169022
+user 4, emp_avg: 0.36675808378198865, h: 1.815443985917585, ucb: 2.218541320361477, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.17002200418694474
+user 5, emp_avg: 0.45750457012753826, h: 1.815443985917585, ucb: 2.1780779874700498, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.07725041578151198
+user 6, emp_avg: 0.3978141582870582, h: 1.815443985917585, ucb: 2.1789790330802656, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.10721046547086506
+user 7, emp_avg: 0.6278779374598462, h: 1.815443985917585, ucb: 2.4920953298337407, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.09428071950837835
+user 8, emp_avg: 0.3614426278874312, h: 1.815443985917585, ucb: 2.1401373160982695, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.11495806173655387
+user 9, emp_avg: 0.3724446735728646, h: 1.815443985917585, ucb: 2.2104794409055915, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.15278226710779208
+user 10, emp_avg: 0.2888283100899727, h: 1.815443985917585, ucb: 2.0642552626991164, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.13555191084108956
+user 11, emp_avg: 0.33052899915789546, h: 1.815443985917585, ucb: 2.145678822348864, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.15100387773041213
+user 12, emp_avg: 0.266845588943772, h: 1.815443985917585, ucb: 2.086169785471952, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.19298673266212565
+user 13, emp_avg: 0.34111410199920694, h: 1.815443985917585, ucb: 2.0911159508908934, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.10593256785823563
+user 14, emp_avg: 0.2902852695446258, h: 1.815443985917585, ucb: 2.08870298858366, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.1541602597384729
+user 15, emp_avg: 0.06951340115399586, h: 1.815443985917585, ucb: 1.8843720109688191, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.7073721283140492
+user 16, emp_avg: 0.07122280962711601, h: 1.815443985917585, ucb: 1.8867846239781363, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.7043528026665861
+user 17, emp_avg: 0.07255834184326225, h: 1.815443985917585, ucb: 1.8847765574225461, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.632832228138412
+user 18, emp_avg: 0.06500149808839543, h: 1.815443985917585, ucb: 1.8797824868087138, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.7538352216898458
+user 19, emp_avg: 0.06837655522069493, h: 1.815443985917585, ucb: 1.884168124856047, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.7387555373231051
+user 20, emp_avg: 0.06298790776209957, h: 1.815443985917585, ucb: 1.8788330713923798, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.80404528256452
+user 21, emp_avg: 0.06503548587168499, h: 1.815443985917585, ucb: 1.8803015015400506, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.7646262327570843
+user 22, emp_avg: 0.0634360053908254, h: 1.815443985917585, ucb: 1.8791135643576475, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.7940432868231022
+user 23, emp_avg: 0.06068282261937872, h: 1.815443985917585, ucb: 1.8777982432067066, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.8719923393717356
+user 24, emp_avg: 0.059934387152561656, h: 1.815443985917585, ucb: 1.875303243876992, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.8321593570466053
+user 25, emp_avg: 0.058730231617784234, h: 1.815443985917585, ucb: 1.87416688560001, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.8511377811504595
+user 26, emp_avg: 0.059232122687553755, h: 1.815443985917585, ucb: 1.8741819774163138, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.8302836314623753
+user 27, emp_avg: 0.05679466086209838, h: 1.815443985917585, ucb: 1.871835742911541, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.8680484936437416
+user 28, emp_avg: 0.05464455239612075, h: 1.815443985917585, ucb: 1.8703488688656207, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.9238064523110447
+user 29, emp_avg: 0.05700305230164918, h: 1.815443985917585, ucb: 1.8719546841506123, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.25, curr_delay = 0.8622509236701693
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.92 seconds
+global epoch 3 has been done artifficialy in 0.92 secs, the total time by now is 2.78 
+ with avg train loss 0.639, val loss 2.461, avg val acc 14.65%
+iteration: 4
+user 0, emp_avg: 0.7152563575396022, h: 1.6651092223153954, ucb: 2.459275981505975, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.10448771549358438
+user 1, emp_avg: 0.8726268090578818, h: 1.6651092223153954, ucb: 2.495278301059238, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.05
+user 2, emp_avg: 0.6486542333987844, h: 1.6651092223153954, ucb: 2.3630826601638515, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.09986086983177558
+user 3, emp_avg: 0.45917045056717887, h: 1.6651092223153954, ucb: 2.13709471772855, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.11884238503138654
+user 4, emp_avg: 0.396427780679968, h: 1.6651092223153954, ucb: 2.031867306097384, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.10300000463188488
+user 5, emp_avg: 0.43525038475137695, h: 1.6651092223153954, ucb: 2.122613792442934, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.13568969207710124
+user 6, emp_avg: 0.4418060541904452, h: 1.6651092223153954, ucb: 2.0629233806024536, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.08714114853912741
+user 7, emp_avg: 0.6011832183696801, h: 1.6651092223153954, ucb: 2.2929871597752416, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.09595104603438039
+user 8, emp_avg: 0.3503270590179879, h: 1.6651092223153954, ucb: 2.026551850202827, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.15773848322113404
+user 9, emp_avg: 0.4389916470806333, h: 1.6651092223153954, ucb: 2.03755389588826, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.07829228031322148
+user 10, emp_avg: 0.284708779489665, h: 1.6651092223153954, ucb: 1.953937532405368, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.18358716924088556
+user 11, emp_avg: 0.32248007650130367, h: 1.6651092223153954, ucb: 1.9956382214732908, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.16759777929629316
+user 12, emp_avg: 0.28293314949601756, h: 1.6651092223153954, ucb: 1.9319548112591673, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.15096808382512217
+user 13, emp_avg: 0.3175215490268022, h: 1.6651092223153954, ucb: 2.006223324314602, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.2026392628315666
+user 14, emp_avg: 0.2805112568639015, h: 1.6651092223153954, ucb: 1.9553944918600212, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.19905312908945144
+user 15, emp_avg: 0.07054992283382192, h: 1.6651092223153954, ucb: 1.7346226234693913, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.6787991804396442
+user 16, emp_avg: 0.06972170849950325, h: 1.6651092223153954, ucb: 1.7363320319425113, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.7666547489249119
+user 17, emp_avg: 0.06911241603387365, h: 1.6651092223153954, ucb: 1.7376675641586576, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.850707059815835
+user 18, emp_avg: 0.06487439504894846, h: 1.6651092223153954, ucb: 1.7301107204037909, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.7752769041599026
+user 19, emp_avg: 0.06693520693187396, h: 1.6651092223153954, ucb: 1.7334857775360903, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.7985796517841988
+user 20, emp_avg: 0.0614327025655344, h: 1.6651092223153954, ucb: 1.728097130077495, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.8807920692016649
+user 21, emp_avg: 0.06477864841222884, h: 1.6651092223153954, ucb: 1.7301447081870804, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.7811506958045136
+user 22, emp_avg: 0.061727545092641216, h: 1.6651092223153954, ucb: 1.7285452277062208, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.88335844942283
+user 23, emp_avg: 0.06007684972468828, h: 1.6651092223153954, ucb: 1.7257920449347741, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.8582375115180367
+user 24, emp_avg: 0.0625440498567012, h: 1.6651092223153954, ucb: 1.725043609467957, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.7104993821915194
+user 25, emp_avg: 0.06046298408856292, h: 1.6651092223153954, ucb: 1.7238394539331796, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.7614842311398491
+user 26, emp_avg: 0.05861239100236722, h: 1.6651092223153954, ucb: 1.7243413450029492, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.881007653681088
+user 27, emp_avg: 0.057157532404794174, h: 1.6651092223153954, ucb: 1.7219038831774938, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.8584258795997891
+user 28, emp_avg: 0.05487466815412821, h: 1.6651092223153954, ucb: 1.7197537747115161, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.8998467761545655
+user 29, emp_avg: 0.056098957892904505, h: 1.6651092223153954, ucb: 1.7221122746170445, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.34027777777777785, curr_delay = 0.9365632962192195
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.94 seconds
+global epoch 4 has been done artifficialy in 0.94 secs, the total time by now is 3.72 
+ with avg train loss 0.613, val loss 2.467, avg val acc 17.48%
+iteration: 5
+user 0, emp_avg: 0.7722050860316817, h: 1.5537557300461198, ucb: 2.269012087585722, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.05
+user 1, emp_avg: 0.8780584190400319, h: 1.5537557300461198, ucb: 2.4263825391040017, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.05556883904149258
+user 2, emp_avg: 0.594452594632483, h: 1.5537557300461198, ucb: 2.202409963444904, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.13239911123466852
+user 3, emp_avg: 0.46489935676833616, h: 1.5537557300461198, ucb: 2.0129261806132988, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.10249787704095191
+user 4, emp_avg: 0.41485074184894877, h: 1.5537557300461198, ucb: 1.9501835107260876, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.10234522307597124
+user 5, emp_avg: 0.5194688219618798, h: 1.5537557300461198, ucb: 1.9890061147974967, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.05838784816345463
+user 6, emp_avg: 0.4247922397506775, h: 1.5537557300461198, ucb: 1.995561784236565, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.1401592840777478
+user 7, emp_avg: 0.5853339364711254, h: 1.5537557300461198, ucb: 2.1549389484157997, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.09579703739919976
+user 8, emp_avg: 0.32949457134804644, h: 1.5537557300461198, ucb: 1.9040827890641077, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.20311610931035284
+user 9, emp_avg: 0.5511933176645066, h: 1.5537557300461198, ucb: 1.992747377126753, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.05
+user 10, emp_avg: 0.2975027696587521, h: 1.5537557300461198, ucb: 1.8384645095357848, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.1433984801767148
+user 11, emp_avg: 0.3224191351277544, h: 1.5537557300461198, ucb: 1.8762358065474234, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.15519497985482283
+user 12, emp_avg: 0.37110210680973016, h: 1.5537557300461198, ucb: 1.8366888795421374, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.06908196217180437
+user 13, emp_avg: 0.30931937089984807, h: 1.5537557300461198, ucb: 1.871277279072922, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.18082485604989218
+user 14, emp_avg: 0.26994315233732535, h: 1.5537557300461198, ucb: 1.8342669869100212, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.21961540278279373
+user 15, emp_avg: 0.07022514946970215, h: 1.5537557300461198, ucb: 1.6243056528799418, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.7254150736610803
+user 16, emp_avg: 0.06944111764301629, h: 1.5537557300461198, ucb: 1.623477438545623, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.7318634622805843
+user 17, emp_avg: 0.0696058856637571, h: 1.5537557300461198, ucb: 1.6228681460799934, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.6985214406681669
+user 18, emp_avg: 0.06475346060327129, h: 1.5537557300461198, ucb: 1.6186301250950683, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.7779713029041232
+user 19, emp_avg: 0.06651543617930863, h: 1.5537557300461198, ucb: 1.6206909369779938, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.771172306215857
+user 20, emp_avg: 0.06284251028289799, h: 1.5537557300461198, ucb: 1.6151884326116541, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.7301216230580978
+user 21, emp_avg: 0.06509728868146539, h: 1.5537557300461198, ucb: 1.6185343784583486, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.7533314226135953
+user 22, emp_avg: 0.06162163185984478, h: 1.5537557300461198, ucb: 1.6154832751387609, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.817020445369397
+user 23, emp_avg: 0.05987939196939405, h: 1.5537557300461198, ucb: 1.613832579770808, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.846173151359464
+user 24, emp_avg: 0.06256086116476842, h: 1.5537557300461198, ucb: 1.616299779902821, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.7983635922667038
+user 25, emp_avg: 0.05957672790935653, h: 1.5537557300461198, ucb: 1.6142187141346827, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.8923519570375118
+user 26, emp_avg: 0.05899116503292227, h: 1.5537557300461198, ucb: 1.612368121048487, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.8263607607780683
+user 27, emp_avg: 0.05708966799243037, h: 1.5537557300461198, ucb: 1.610913262450914, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.8799995582082224
+user 28, emp_avg: 0.05491281129149746, h: 1.5537557300461198, ucb: 1.608630398200248, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.9080114676835281
+user 29, emp_avg: 0.05599821481486872, h: 1.5537557300461198, ucb: 1.6098546879390243, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.4011111111111112, curr_delay = 0.8993575304136632
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.91 seconds
+global epoch 5 has been done artifficialy in 0.91 secs, the total time by now is 4.63 
+ with avg train loss 0.585, val loss 2.464, avg val acc 11.45%
