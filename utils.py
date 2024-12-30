@@ -265,6 +265,7 @@ def create_fraboni_probs(local_models, args):
             distributions[k, i] = (b - prev_b) / M
         
         k = a
+        prev_b = b
     
     # The m+1-th row is always all zeros and it's not needed
     # check if the sum of the last row is zero and if not yield an error
@@ -533,9 +534,12 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
         return winning_comb
     
     elif method == "fraboni":
-        #TODO: implement the function, we may use another auxilary function to build the probability.
-        # The output should be a tuple of the users' indexes with repetiotions.
-        pass
+        distributions = create_fraboni_probs(local_models, args)
+        # for each user in args.num_users_per_round, sample a user from the distribution given in the corresponding row
+        users_idxs = []
+        for i in range(args.num_users_per_round):
+            users_idxs.append(np.random.choice(args.num_users, p = distributions[i]))
+        return tuple(users_idxs)
 
     elif method == "random":
         return tuple(np.random.choice(args.num_users, args.num_users_per_round, replace=False))

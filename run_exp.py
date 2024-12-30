@@ -106,10 +106,17 @@ def run_exp(args):
         rounds_choise_no_rep = tuple(set(rounds_choise))
 
         if args.choosing_users_method == "fraboni":
-            # create an array indicating the number of times each user was chosen because in fraboni we may have repetitions
-            rounds_choise = np.array([rounds_choise, np.zeros(len(rounds_choise))])
-            for idx in rounds_choise[0]:
-                rounds_choise[1,idx] += 1
+            # if we're in fraboni, rounds_chice is a 2D array with the first row being the user index
+            # and the second row being the number of times the user was chosen
+
+            # count the number of times each user was chosen in rounds_choise
+            rounds_choice_arr = np.array([range(args.num_users), np.zeros(args.num_users)])
+            for usr_idx in rounds_choise:
+                rounds_choice_arr[1, usr_idx] += 1
+            
+            # delete columns with zeros in their second row
+            rounds_choise = rounds_choice_arr[:, rounds_choice_arr[1] != 0]
+
             
 
 
