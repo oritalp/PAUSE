@@ -51,8 +51,17 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, textio, args, 
         l1_norms_arr[0,:] = np.arange(args.num_users)
 
     users_delta_thetas = {}
+    new_chosen_users_idxs = copy.deepcopy(chosen_users_idxs)
+    # check if chosen_users_idxs is a 2d array
+    if new_chosen_users_idxs.__class__.__name__ == "ndarray":
+        users_count = chosen_users_idxs[1,:]
+        chosen_users_idxs = tuple(chosen_users_idxs[0,:])
+    elif new_chosen_users_idxs.__class__.__name__ == "tuple":
+        pass # this is just a checking step
+    else:
+        raise ValueError("chosen_users_idxs should be a 2d array or a tuple")
 
-
+    chosen_users_idxs = new_chosen_users_idxs
 
     for key in state_dict.keys():
         delta_theta_average = (torch.zeros_like(state_dict[key])).type(torch.float32) 
@@ -89,19 +98,20 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, textio, args, 
 
             
 
-            
-
-            delta_theta_average += (delta_theta * ((local_models[user_idx].data_quality*
+            if args.method_choosing_users == "fraboni":
+                delta_theta_average += (users_count[idx_in_chosen]*delta_theta)/args.num_users_per_round
+            else:
+                delta_theta_average += (delta_theta * ((local_models[user_idx].data_quality*
                                       len(local_models[user_idx].data_loader.dataset))/data_length_sum))
         
 
 
         delta_theta_average = delta_theta_average.to(state_dict[key].dtype) #we cast it back to the original dtype
-                                                                            #because for trainable parmeters that are int
-                                                                            #like the number of batches in the batchnorm layer
-                                                                            #the aggregation is made in float32 (even though 
+                                                                            #to care integer trainable parmeters, .e.g.,
+                                                                            #number of batches tracked in the batchnorm layer.
+                                                                            #The aggregation is made in float32 (even though 
                                                                             #we use momentum in BN layers so num_betaches_tracked
-                                                                            #has no meaning for us and this is the only int parameter)
+                                                                            #has no meaning for us and this is prectically the only int parameter)
         returned_delta_thetas[key] = delta_theta_average       
         state_dict[key] += delta_theta_average
 

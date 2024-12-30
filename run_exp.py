@@ -102,13 +102,24 @@ def run_exp(args):
             textio.cprint(f"iteration: {global_epoch}")
         
         rounds_choise = utils.choose_users(local_models, args, global_epoch, textio, method=args.method_choosing_users)
+        # create a version of rounds_choise without repetitions
+        rounds_choise_no_rep = tuple(set(rounds_choise))
+
+        if args.choosing_users_method == "fraboni":
+            # create an array indicating the number of times each user was chosen because in fraboni we may have repetitions
+            rounds_choise = np.array([rounds_choise, np.zeros(len(rounds_choise))])
+            for idx in rounds_choise[0]:
+                rounds_choise[1,idx] += 1
+            
+
+
 
         
-        #choices_table[global_epoch-1, rounds_choise] = 1
-        num_of_obs_arr[0,rounds_choise] += 1
+        choices_table[global_epoch-1, rounds_choise_no_rep] = 1
+        num_of_obs_arr[0,rounds_choise_no_rep] += 1
         num_slow_users = 0
         num_fast_users = 0
-        for usr_idx in sorted(rounds_choise):
+        for usr_idx in sorted(rounds_choise_no_rep):
             local_models[usr_idx].update_emp_avg()
             local_models[usr_idx].update_privacy_violation_and_reward()
             local_models[usr_idx].increase_num_of_obs()
@@ -123,7 +134,7 @@ def run_exp(args):
         if args.choosing_users_verbose:
             textio.cprint(f"num of fast users chosen: {num_fast_users}, num of slow users chosen: {num_slow_users}")
         
-        max_delay = max([local_models[i].last_access_time for i in rounds_choise])
+        max_delay = max([local_models[i].last_access_time for i in rounds_choise_no_rep])
         if args.choosing_users_verbose:
             textio.cprint(f"max_delay = {max_delay:.2f} seconds")
 
@@ -135,7 +146,7 @@ def run_exp(args):
         learning_utils.distribute_model(local_models, global_model)
         users_avg_loss_over_local_epochs = []
 
-        for user_idx in rounds_choise:
+        for user_idx in rounds_choise_no_rep:
             user_loss = []
             for local_epoch in range(args.local_epochs):
                 user = local_models[user_idx]
@@ -148,7 +159,7 @@ def run_exp(args):
         avg_loss_over_chosen_users_curr_global_epoch = mean(users_avg_loss_over_local_epochs)
         train_loss_list.append(avg_loss_over_chosen_users_curr_global_epoch)
 
-
+        
         avg_deltha_theta = learning_utils.Fed_avg_models(local_models, global_model, rounds_choise, textio
                                                         ,args, snr_verbose = args.snr_verbose)
         

@@ -16,7 +16,7 @@ def args_parser():
                               defined in method_choosing_users") )
     parser.add_argument("--wandb", action='store_false', help="use wandb for logging")
     parser.add_argument('--method_choosing_users', type=str, default='sa_pause',
-                        choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones"],
+                        choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
                         help="method to choose users for each round")
     parser.add_argument('--model', type=str, default='cnn2',
                         choices=['cnn2', 'cnn3', 'mlp', 'linear'],
@@ -80,7 +80,7 @@ def args_parser():
                         help="if True, the code will run in production mode, if False, it will run in development mode")
     parser.add_argument('--privacy_noise', type=str, default='laplace')
     parser.add_argument('--privacy_choosing_users', action='store_false',
-                        help="weather to perform privacy for the choosing users or not")
+                        help="weather to account for privacy in the choosing users process or not")
     parser.add_argument('--privacy', action='store_false',
                         help="weather to perform privacy or not")
     parser.add_argument('--save_best_model', action='store_true',

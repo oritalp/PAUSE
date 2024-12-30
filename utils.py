@@ -224,6 +224,9 @@ def sort_dict_keys_by_idx(original_dict):
     return res_dict
 
 
+def create_fraboni_probs(local_models, args):
+    pass
+
 
 #TODO: after privacy issue is sealed, before publishing the code,
 # need to change args.privacy_choosing_users and unite it with args.privacy
@@ -474,6 +477,11 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
                 winning_comb = comb
 
         return winning_comb
+    
+    elif method == "fraboni":
+        #TODO: implement the function, we may use another auxilary function to build the probability.
+        # The output should be a tuple of the users' indexes with repetiotions.
+        pass
 
     elif method == "random":
         return tuple(np.random.choice(args.num_users, args.num_users_per_round, replace=False))
