@@ -11,19 +11,19 @@ def args_parser():
     parser.add_argument('--data', type=str, default='mnist',
                         choices=['mnist', 'cifar10', "fashion mnist"],
                         help="dataset to use (mnist, cifar10, fashion mnist)")
-    parser.add_argument("--full_exp", action='store_false',
+    parser.add_argument("--full_exp", action='store_true',
                         help=("if true, runs all the methods in the defined environment, else, running only the experiment \
                               defined in method_choosing_users") )
-    parser.add_argument("--wandb", action='store_false', help="use wandb for logging")
+    parser.add_argument("--wandb", action='store_true', help="use wandb for logging")
     parser.add_argument('--method_choosing_users', type=str, default='sa_pause',
                         choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
                         help="method to choose users for each round")
     parser.add_argument('--model', type=str, default='cnn2',
                         choices=['cnn2', 'cnn3', 'mlp', 'linear'],
                         help="model to use (cnn2, cnn3, mlp, linear)")
-    parser.add_argument('--num_users', type=int, default=30,
+    parser.add_argument('--num_users', type=int, default=4,
                         help="number of users participating in the federated learning")
-    parser.add_argument('--num_users_per_round', type=int, default=5,
+    parser.add_argument('--num_users_per_round', type=int, default=3,
                         help="number of users participating in each round")
     parser.add_argument('--global_epochs', type=int, default=5,
                         help="number of global epochs")

@@ -225,7 +225,61 @@ def sort_dict_keys_by_idx(original_dict):
 
 
 def create_fraboni_probs(local_models, args):
-    pass
+    # made a slight modification to the algorithm ahown in the paper because otherwise it's not correct
+    m = args.num_users_per_round
+    distributions = np.zeros((m + 1, args.num_users))
+    
+    # Get total number of samples across all clients
+    M = 0
+    for i in range(args.num_users):
+        M += len(local_models[i].data_loader.dataset)
+    
+    # Order clients by descending sample size
+    ordered_clients = sorted(range(args.num_users), 
+                           key=lambda x: len(local_models[x].data_loader.dataset),
+                           reverse=True)
+    
+    k = 0  # distribution index 
+    q = 0  # running sum of samples
+    prev_b = 0  # previous b value
+
+    for i in ordered_clients:
+        # Calculate scaled number of samples for client i
+        ni_scaled = m * len(local_models[i].data_loader.dataset)
+        q += ni_scaled
+        
+        # Integer division to get quotient ai and remainder bi
+        a = q // M  # Number of full distributions
+        b = q % M   # Remainder samples
+        
+        # If client fills multiple distributions
+        if a > k:
+            # Fill all distributions from k up to but not including ai with probability 1
+            distributions[k,i] = (M - prev_b) / M
+            if a-2 >= k:
+                distributions[k+1:a, i] = 1
+            
+            distributions[a, i] = b / M
+            
+        else:
+            distributions[k, i] = (b - prev_b) / M
+        
+        k = a
+    
+    # The m+1-th row is always all zeros and it's not needed
+    # check if the sum of the last row is zero and if not yield an error
+    if sum(distributions[-1]) != 0:
+        raise ValueError("the last row of the fraboni distribution should be all zeros")
+    else:
+        distributions = distributions[:m]
+
+    # check if the sum of every row is equal to 1 and if not yield an error
+    if sum(distributions.sum(axis=1) != np.ones(m)):
+        raise ValueError(f"the sum of every row in the fraboni distribution should be equal to 1, intead we got the following sums: {distributions.sum(axis=1)}")
+    
+    return distributions
+    
+
 
 
 #TODO: after privacy issue is sealed, before publishing the code,
