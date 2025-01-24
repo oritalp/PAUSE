@@ -559,62 +559,57 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
 
 
 
+# def federated_setup(global_model, train_data: torch.utils.data.Dataset , args, i_i_d = True):
+#     """
+#     Sets up the federated learning environment by creating local models for each user.
+
+#     Args:
+#         global_model (torch.nn.Module): The global model to be used as a starting point for each local model.
+#         train_data (torch.utils.data.Dataset): The training dataset.
+#         args: Additional arguments for configuring the federated setup.
+
+#     Returns:
+#         dict: A dictionary containing the local models for each user.
+
+#     """
+#     indexes = torch.randperm(len(train_data))
+#     local_models = {}
 
 
-    
+#     #creating non-iid data partition
+#     if not i_i_d:
+#         idxs_of_indices = np.array([0])
 
-
-def federated_setup(global_model, train_data: torch.utils.data.Dataset , args, i_i_d = True):
-    """
-    Sets up the federated learning environment by creating local models for each user.
-
-    Args:
-        global_model (torch.nn.Module): The global model to be used as a starting point for each local model.
-        train_data (torch.utils.data.Dataset): The training dataset.
-        args: Additional arguments for configuring the federated setup.
-
-    Returns:
-        dict: A dictionary containing the local models for each user.
-
-    """
-    indexes = torch.randperm(len(train_data))
-    local_models = {}
-
-
-    #creating non-iid data partition
-    if not i_i_d:
-        idxs_of_indices = np.array([0])
-
-        #checking that there is at least 20 samples for each user
-        while 0 in (idxs_of_indices>=20):
-            probs = np.random.uniform(0,10, args.num_users)
-            probs = probs/sum(probs)
-            if probs.sum()!=1:
-                probs[-1] = 1-sum(probs[:-1])
-            idxs_of_indices = np.random.multinomial(len(train_data), probs)
+#         #checking that there is at least 20 samples for each user
+#         while 0 in (idxs_of_indices>=20):
+#             probs = np.random.uniform(0,10, args.num_users)
+#             probs = probs/sum(probs)
+#             if probs.sum()!=1:
+#                 probs[-1] = 1-sum(probs[:-1])
+#             idxs_of_indices = np.random.multinomial(len(train_data), probs)
             
-        idxs_of_indices = np.cumsum(idxs_of_indices)
-        idxs_of_indices = np.insert(idxs_of_indices, 0, 0)
+#         idxs_of_indices = np.cumsum(idxs_of_indices)
+#         idxs_of_indices = np.insert(idxs_of_indices, 0, 0)
 
-    user_data_len = math.floor(len(train_data) / args.num_users)
-    for user_idx in range(args.num_users):
-        user_dict = {'data': torch.utils.data.DataLoader(
-            torch.utils.data.Subset(train_data,
-                                    (indexes[user_idx * user_data_len:(user_idx + 1) * user_data_len] if i_i_d
-                                      else indexes[idxs_of_indices[user_idx]:idxs_of_indices[user_idx+1]])),
-            batch_size=args.train_batch_size, shuffle=True),
-            'model': copy.deepcopy(global_model)}
-        user_dict['opt'] = optim.SGD(user_dict['model'].parameters(), lr=args.lr,
-                                momentum=args.momentum) if args.optimizer == 'sgd' \
-            else optim.Adam(user_dict['model'].parameters(), lr=args.lr)
-        if args.lr_scheduler:
-            user_dict['scheduler'] = optim.lr_scheduler.ReduceLROnPlateau(user_dict['opt'], patience=10,
-                                                                           factor=0.1, verbose=True)
-        local_models[user_idx] = user(args, user_idx, user_dict['data'], user_dict['model'], user_dict['opt'],
-                                    user_dict['scheduler'] if args.lr_scheduler else None)
+#     user_data_len = math.floor(len(train_data) / args.num_users)
+#     for user_idx in range(args.num_users):
+#         user_dict = {'data': torch.utils.data.DataLoader(
+#             torch.utils.data.Subset(train_data,
+#                                     (indexes[user_idx * user_data_len:(user_idx + 1) * user_data_len] if i_i_d
+#                                       else indexes[idxs_of_indices[user_idx]:idxs_of_indices[user_idx+1]])),
+#             batch_size=args.train_batch_size, shuffle=True),
+#             'model': copy.deepcopy(global_model)}
+#         user_dict['opt'] = optim.SGD(user_dict['model'].parameters(), lr=args.lr,
+#                                 momentum=args.momentum) if args.optimizer == 'sgd' \
+#             else optim.Adam(user_dict['model'].parameters(), lr=args.lr)
+#         if args.lr_scheduler:
+#             user_dict['scheduler'] = optim.lr_scheduler.ReduceLROnPlateau(user_dict['opt'], patience=10,
+#                                                                            factor=0.1, verbose=True)
+#         local_models[user_idx] = user(args, user_idx, user_dict['data'], user_dict['model'], user_dict['opt'],
+#                                     user_dict['scheduler'] if args.lr_scheduler else None)
         
 
-    return local_models
+#     return local_models
 
 
 def initializations(args):
@@ -750,10 +745,10 @@ def data_split(data, amount, args):
 
     # input, output sizes
     in_channels, dim1, dim2 = data[0][0].shape  # images are dim1 x dim2 pixels
-    input = dim1 * dim2 if args.model == 'mlp' or args.model == 'linear' else in_channels
+    input_var = dim1 * dim2 if args.model == 'mlp' or args.model == 'linear' else in_channels
     output = len(data.classes)  # number of classes
 
-    return input, output, train_data, val_loader
+    return input_var, output, train_data, val_loader
 
 def plot_graphs(paths_dict: dict, x_axis_time = True, path_to_save = None, print_graph = True):
     """

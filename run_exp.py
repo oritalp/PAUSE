@@ -18,6 +18,7 @@ import wandb
 
 import time
 import utils
+import users_partition
 import models
 import learning_utils
 from configurations import args_parser, arguments
@@ -29,14 +30,14 @@ def run_exp(args):
 
     # create the data loaders
     train_data, test_loader = utils.data(args)
-    #input in the CNNs is the number of channels and in linear models is the size of the flatten pictures
-    input, output, train_data, val_loader = utils.data_split(train_data, len(test_loader.dataset), args)
+    #input_var in the CNNs is the number of channels and in linear models is the size of the flatten pictures
+    input_var, output, train_data, val_loader = utils.data_split(train_data, len(test_loader.dataset), args)
 
     # model
     if args.model == 'mlp':
-        global_model = models.FC3Layer(input, output)
+        global_model = models.FC3Layer(input_var, output)
     elif args.model == 'cnn2':
-        global_model = models.CNN2Layer(input, output, args.data)
+        global_model = models.CNN2Layer(input_var, output, args.data)
     elif args.model == 'cnn3':
         if args.data == 'cifar10':
             global_model = models.CNN3LayerCifar()
@@ -45,9 +46,9 @@ def run_exp(args):
     elif args.model == 'cnn5':
         if args.data == 'mnist' or args.data == 'fashion mnist':
             raise ValueError('CNN5 is not supported for MNIST type datasets')
-        global_model = models.CNN5Layer(input, output)
+        global_model = models.CNN5Layer(input_var, output)
     elif args.model == 'linear':
-        global_model = models.Linear(input, output)
+        global_model = models.Linear(input_var, output)
 
 
 
@@ -77,7 +78,7 @@ def run_exp(args):
     train_criterion = torch.nn.CrossEntropyLoss(reduction='mean')
     test_criterion = torch.nn.CrossEntropyLoss(reduction='sum')
 
-    local_models = utils.federated_setup(global_model, train_data, args, i_i_d=True)
+    local_models = users_partition.partition_users(global_model, train_data, args, i_i_d=args.i_i_d)
     utils.update_data_equility_partititon(local_models, args)
 
     choices_table = np.zeros((args.global_epochs, args.num_users))

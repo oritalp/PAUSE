@@ -14,6 +14,8 @@ def args_parser():
     parser.add_argument("--full_exp", action='store_true',
                         help=("if true, runs all the methods in the defined environment, else, running only the experiment \
                               defined in method_choosing_users") )
+    parser.add_argument("--i_i_d", action='store_true',
+                        help="if True, the data is distributed i.i.d, if False, the data is non-i.i.d")
     parser.add_argument("--wandb", action='store_true', help="use wandb for logging")
     parser.add_argument('--method_choosing_users', type=str, default='sa_pause',
                         choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
@@ -21,9 +23,9 @@ def args_parser():
     parser.add_argument('--model', type=str, default='cnn2',
                         choices=['cnn2', 'cnn3', 'mlp', 'linear'],
                         help="model to use (cnn2, cnn3, mlp, linear)")
-    parser.add_argument('--num_users', type=int, default=4,
+    parser.add_argument('--num_users', type=int, default=30,
                         help="number of users participating in the federated learning")
-    parser.add_argument('--num_users_per_round', type=int, default=3,
+    parser.add_argument('--num_users_per_round', type=int, default=5,
                         help="number of users participating in each round")
     parser.add_argument('--global_epochs', type=int, default=5,
                         help="number of global epochs")
