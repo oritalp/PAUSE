@@ -8,7 +8,7 @@ def args_parser():
 
     # store_true suprisingly means that if the argument is not given, it is False
 
-    parser.add_argument('--data', type=str, default='mnist',
+    parser.add_argument('--data', type=str, default='cifar10',
                         choices=['mnist', 'cifar10', "fashion mnist"],
                         help="dataset to use (mnist, cifar10, fashion mnist)")
     parser.add_argument("--full_exp", action='store_true',
@@ -16,30 +16,30 @@ def args_parser():
                               defined in method_choosing_users") )
     parser.add_argument("--i_i_d", action='store_true',
                         help="if True, the data is distributed i.i.d, if False, the data is non-i.i.d")
-    parser.add_argument("--wandb", action='store_true', help="use wandb for logging")
-    parser.add_argument('--method_choosing_users', type=str, default='sa_pause',
+    parser.add_argument("--wandb", action='store_false', help="use wandb for logging")
+    parser.add_argument('--method_choosing_users', type=str, default='fraboni',
                         choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
                         help="method to choose users for each round")
-    parser.add_argument('--model', type=str, default='cnn2',
+    parser.add_argument('--model', type=str, default='cnn3',
                         choices=['cnn2', 'cnn3', 'mlp', 'linear'],
                         help="model to use (cnn2, cnn3, mlp, linear)")
     parser.add_argument('--num_users', type=int, default=30,
                         help="number of users participating in the federated learning")
     parser.add_argument('--num_users_per_round', type=int, default=5,
                         help="number of users participating in each round")
-    parser.add_argument('--global_epochs', type=int, default=5,
+    parser.add_argument('--global_epochs', type=int, default=300,
                         help="number of global epochs")
     parser.add_argument('--max_seconds', type=float, default=600,
                         help="max seconds to run the learning process")
-    parser.add_argument('--epsilon_bar', type=float, default=100,
+    parser.add_argument('--epsilon_bar', type=float, default=50,
                         help="privacy budget (epsilon)")
-    parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.04,
+    parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.095,
                         help="the coefficient for the deascent of the epsilon sum")
-    parser.add_argument('--delta_f', type=float, default=0.3*(10**-2),
+    parser.add_argument('--delta_f', type=float, default=0.012,
                         help="constant delta f, the sensitivity for the laplace noise")
     parser.add_argument('--accel_ucb_coeff', type=float, default=1,
                         help="the coefficient for the acceleration of the ucb")
-    parser.add_argument('--alpha', type=float, default=100,
+    parser.add_argument('--alpha', type=float, default=20,
                         help="alpha parameter for the MAB")
     parser.add_argument('--beta', type=float, default=2,
                         help="beta parameter for the MAB")
@@ -52,10 +52,15 @@ def args_parser():
                         help="weather to print the chosen users for each round with their g, delay, and ucb values")
     parser.add_argument('--sa_pause_verbose', action='store_true',
                         help="weather to print the sa_pause algorithm's progress")
-    parser.add_argument('--snr_verbose', action='store_true',
+    parser.add_argument('--snr_verbose', action='store_false',
                         help="weather to print the snr of the deltas theta for each user")
 
-
+    #non-i.i.d arguments
+    parser.add_argument("--dirichlet_coeff", type=float, default=3,
+                        help = ("the coefficient for the dirichlet distribution that generates the data distribution, \
+                                The larger the coeffiecient, the more uniform is the distribution")) 
+    parser.add_argument("--label_dominance", type=float, default=0.25,
+                        help = "Percentage of the data that is generated from the most dominant label")  
 
     
     
@@ -81,13 +86,11 @@ def args_parser():
     parser.add_argument("--production", action='store_true',
                         help="if True, the code will run in production mode, if False, it will run in development mode")
     parser.add_argument('--privacy_noise', type=str, default='laplace')
-    parser.add_argument('--privacy_choosing_users', action='store_false',
-                        help="weather to account for privacy in the choosing users process or not")
     parser.add_argument('--privacy', action='store_false',
                         help="weather to perform privacy or not")
     parser.add_argument('--save_best_model', action='store_true',
                         help="weather to save the model eith the best accuracy on the validation set")
-    parser.add_argument('--seed', type=float, default=0,
+    parser.add_argument('--seed', type=float, default=1,
                         help="manual seed for reproducibility")    
     parser.add_argument('--norm_mean', type=float, default=0.5,
                         help="normalize the data to norm_mean")

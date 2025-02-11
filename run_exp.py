@@ -1,6 +1,7 @@
 import gc
 import sys
 from statistics import mean
+from threading import local
 
 import torch
 from tqdm import tqdm
@@ -18,20 +19,20 @@ import wandb
 
 import time
 import utils
-import users_partition
 import models
 import learning_utils
-from configurations import args_parser, arguments
 
 
 def run_exp(args):
     base_path, textio, best_val_acc, path_best_model, last_model_path = utils.initializations(args)
     textio.cprint(str(args) if args.__class__.__name__ == 'Namespace' else str(vars(args)))
+    args.exp_path = base_path
 
     # create the data loaders
     train_data, test_loader = utils.data(args)
     #input_var in the CNNs is the number of channels and in linear models is the size of the flatten pictures
     input_var, output, train_data, val_loader = utils.data_split(train_data, len(test_loader.dataset), args)
+
 
     # model
     if args.model == 'mlp':
@@ -51,8 +52,7 @@ def run_exp(args):
         global_model = models.Linear(input_var, output)
 
 
-
-    textio.cprint(str(summary(global_model)).encode('utf-8', errors='ignore').decode('utf-8', errors='ignore'))
+    textio.cprint(str(summary(global_model, verbose=0)).encode('utf-8', errors='ignore').decode('utf-8', errors='ignore'))
     global_model = global_model.to(args.device)
     print(f"global model's device: {next(global_model.parameters()).device}")
 
@@ -78,8 +78,15 @@ def run_exp(args):
     train_criterion = torch.nn.CrossEntropyLoss(reduction='mean')
     test_criterion = torch.nn.CrossEntropyLoss(reduction='sum')
 
-    local_models = users_partition.partition_users(global_model, train_data, args, i_i_d=args.i_i_d)
+    local_models = utils.users_partition(global_model, train_data, args, i_i_d=args.i_i_d)
     utils.update_data_equility_partititon(local_models, args)
+
+    #create fraboni distributions if args,choosing_users_method == "fraboni"
+    if args.method_choosing_users == "fraboni":
+        args.fraboni_distributions = utils.create_fraboni_probs(local_models, args)
+        textio.cprint(f"fraboni distributions: {args.fraboni_distributions}")
+        if args.fraboni_distributions.sum(axis=0).any() == 0:
+            raise ValueError("one of the users has a zero probability in all the distributions using fraboni")
 
     choices_table = np.zeros((args.global_epochs, args.num_users))
     num_of_obs_arr = np.zeros((1,args.num_users))
@@ -106,7 +113,7 @@ def run_exp(args):
         # create a version of rounds_choise without repetitions
         rounds_choise_no_rep = tuple(set(rounds_choise))
 
-        if args.choosing_users_method == "fraboni":
+        if args.method_choosing_users == "fraboni":
             # if we're in fraboni, rounds_chice is a 2D array with the first row being the user index
             # and the second row being the number of times the user was chosen
 
@@ -117,9 +124,7 @@ def run_exp(args):
             
             # delete columns with zeros in their second row
             rounds_choise = rounds_choice_arr[:, rounds_choice_arr[1] != 0]
-
-            
-
+            #print(f"rounds_choise_arr for epoch No.{global_epoch}: {rounds_choise}")
 
 
         
@@ -134,7 +139,7 @@ def run_exp(args):
             if local_models[usr_idx].privacy_violation > max_privacy_violation:
                 max_privacy_violation = local_models[usr_idx].privacy_violation
             if args.choosing_users_verbose:
-                textio.cprint(f"user {usr_idx}, emp_avg: {local_models[usr_idx].emp_avg}, h: {local_models[usr_idx].ucb_generalization}, ucb: {local_models[usr_idx].ucb}, num_of_obs(calculated after picking at this round): {local_models[usr_idx].num_of_obs}, privacy reward: {local_models[usr_idx].privacy_reward}, g: {local_models[usr_idx].g}, curr_delay = {local_models[usr_idx].last_access_time}")
+                textio.cprint(f"user {usr_idx}, emp_avg: {local_models[usr_idx].emp_avg}, h: {local_models[usr_idx].ucb_generalization}, ucb: {local_models[usr_idx].ucb},num_of_obs(calculated after picking at this round): {local_models[usr_idx].num_of_obs}, privacy reward: {local_models[usr_idx].privacy_reward}, g: {local_models[usr_idx].g}, curr_delay = {local_models[usr_idx].last_access_time}, data_size = {len(local_models[usr_idx].data_loader.dataset)}")
             if usr_idx < args.num_users//2:
                 num_fast_users += 1
             else:
@@ -153,6 +158,7 @@ def run_exp(args):
         """Part 2: Training"""
         learning_utils.distribute_model(local_models, global_model)
         users_avg_loss_over_local_epochs = []
+
 
         for user_idx in rounds_choise_no_rep:
             user_loss = []
@@ -223,8 +229,11 @@ def run_exp(args):
         plt.bar(users_idxs, num_of_obs_arr.reshape(-1))
         plt.title("Number of times each user was chosen")
         plt.ylabel("number of times")
-        #hide x labels 
-        plt.xticks([])
+        # if len(uesrs_idxs) >=40 then the xticks are not shown, else, roathe them in 45 degrees and make them small enough
+        if len(users_idxs) >= 40:
+            plt.xticks([])
+        else:
+            plt.xticks(rotation=45, fontsize=10)
         fig = plt.gcf()
         fig.set_size_inches(18.5, 10.5)
         #boardio.add_figure("Number of times each user was chosen", fig, global_epoch)

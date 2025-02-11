@@ -1,0 +1,441 @@
+Namespace(data='mnist', full_exp=False, i_i_d=False, wandb=False, method_choosing_users='fraboni', model='cnn2', num_users=30, num_users_per_round=5, global_epochs=40, max_seconds=600, epsilon_bar=100, epsilon_sum_deascent_coeff=0.04, delta_f=0.003, accel_ucb_coeff=1, alpha=100, beta=2, gamma=2, choosing_users_verbose=True, sa_pause_verbose=False, snr_verbose=False, dirichlet_coeff=1, label_dominance=0.4, max_iterations_sa_pause=3000, sa_pause_simulation=False, max_time_sa_pause=600, pre_sa_pause_rounds=1, beta_max_reduction=70, data_truncation=None, tau_min=0.05, production=False, privacy_noise='laplace', privacy_choosing_users=True, privacy=True, save_best_model=False, seed=0, norm_mean=0.5, norm_std=0.5, train_batch_size=20, test_batch_size=1000, local_epochs=1, local_iterations=100, lr=0.01, momentum=0.5, lr_scheduler=False, optimizer='adam', device=device(type='cuda'))
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN2Layer                                --
+├─Conv2d: 1-1                            156
+├─Conv2d: 1-2                            906
+├─Linear: 1-3                            4,850
+├─Linear: 1-4                            510
+├─Dropout: 1-5                           --
+├─Dropout: 1-6                           --
+├─BatchNorm2d: 1-7                       12
+├─BatchNorm1d: 1-8                       100
+=================================================================
+Total params: 6,534
+Trainable params: 6,534
+Non-trainable params: 0
+=================================================================
+fraboni distributions: [[0.         0.         0.         0.         0.         0.
+  0.         0.         0.45583215 0.         0.         0.
+  0.         0.01590209 0.         0.         0.         0.
+  0.         0.         0.52826576 0.         0.         0.
+  0.         0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.30586546 0.         0.         0.         0.
+  0.         0.34147864 0.         0.         0.         0.
+  0.         0.02254184 0.         0.         0.         0.
+  0.         0.         0.         0.33011406 0.         0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.2155316  0.
+  0.         0.         0.         0.         0.         0.24529598
+  0.2064774  0.2573058  0.         0.07538923 0.         0.
+  0.         0.         0.         0.         0.         0.        ]
+ [0.00522438 0.17202981 0.12665473 0.         0.         0.14226542
+  0.         0.         0.         0.         0.         0.
+  0.11447839 0.         0.         0.         0.         0.
+  0.         0.         0.         0.1302556  0.         0.18743235
+  0.         0.12165931 0.         0.         0.         0.        ]
+ [0.10405045 0.         0.         0.10781783 0.07524353 0.
+  0.07846974 0.         0.         0.06587711 0.         0.10313463
+  0.         0.         0.05484556 0.05484556 0.05484556 0.
+  0.         0.         0.         0.         0.07888602 0.
+  0.04756057 0.         0.04756057 0.         0.07794938 0.0489135 ]]
+iteration: 1
+user 8, emp_avg: 0.4318761288545065, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.20778295249170098, curr_delay = 0.11577393761636767
+user 19, emp_avg: 0.06545048855839257, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.07831470142531144, curr_delay = 0.763936237930322
+user 22, emp_avg: 0.05862779391207455, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.006223004332449369, curr_delay = 0.8528378208292495
+user 25, emp_avg: 0.05865956968099587, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.014800988268593825, curr_delay = 0.8523758403259931
+user 27, emp_avg: 0.06428783825504288, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.1089752940025885, curr_delay = 0.7777520812200882
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.85 seconds
+global epoch 1 has been done artifficialy in 0.85 secs, the total time by now is 0.85 
+ with avg train loss 0.649, val loss 2.395, avg val acc 9.80%
+iteration: 2
+user 5, emp_avg: 0.17018686501930158, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.020239450684345833, curr_delay = 0.29379470615625536
+user 8, emp_avg: 0.4193360756035184, h: 2.039333980337618, ucb: 2.4712101091921244, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.0019507986327383488, curr_delay = 0.12291172295846567
+user 17, emp_avg: 0.08860459270999164, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.0601701171596228, curr_delay = 0.5643048342161351
+user 22, emp_avg: 0.06156905800442871, h: 2.039333980337618, ucb: 2.0979617742496925, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.17733698318516772, curr_delay = 0.7750697620915072
+user 27, emp_avg: 0.062035131516517766, h: 2.039333980337618, ucb: 2.1036218185926607, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.02886123189285574, curr_delay = 0.8363662093948085
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.84 seconds
+global epoch 2 has been done artifficialy in 0.84 secs, the total time by now is 1.69 
+ with avg train loss 0.598, val loss 2.404, avg val acc 11.35%
+iteration: 3
+user 2, emp_avg: 0.4427807390704416, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.01604142143215221, curr_delay = 0.11292270776043298
+user 6, emp_avg: 0.3727072618102492, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.006157499479721641, curr_delay = 0.13415354387555706
+user 18, emp_avg: 0.07241663296971888, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.04263291494355689, curr_delay = 0.6904491129946289
+user 20, emp_avg: 0.06071615775482571, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.2790647093742733, curr_delay = 0.8235040201638255
+user 27, emp_avg: 0.05832542813370622, h: 1.815443985917585, ucb: 1.8774791174341028, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.1132676556340559, curr_delay = 0.9822020785806063
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.98 seconds
+global epoch 3 has been done artifficialy in 0.98 secs, the total time by now is 2.67 
+ with avg train loss 0.638, val loss 2.471, avg val acc 11.35%
+iteration: 4
+user 11, emp_avg: 0.4067478917044787, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.010636751202331174, curr_delay = 0.1229262671540221
+user 18, emp_avg: 0.06609438842158308, h: 2.884053773201766, ucb: 2.956470406171485, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.0018942170832621649, curr_delay = 0.8365100657233012
+user 20, emp_avg: 0.06668221647906117, h: 2.884053773201766, ucb: 2.944769930956592, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.07743183117928538, curr_delay = 0.688247585508143
+user 21, emp_avg: 0.0669686691886496, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.042289794286411664, curr_delay = 0.7466177931526585
+user 27, emp_avg: 0.05704647892205626, h: 1.6651092223153954, ucb: 1.7234346504491016, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.17630420083798937, curr_delay = 0.9396795052048376
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.94 seconds
+global epoch 4 has been done artifficialy in 0.94 secs, the total time by now is 3.61 
+ with avg train loss 0.525, val loss 2.547, avg val acc 11.36%
+iteration: 5
+user 3, emp_avg: 1.0, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.011624685253514974, curr_delay = 0.05
+user 5, emp_avg: 0.49514907611467873, h: 3.1075114600922396, ucb: 3.2776983251115412, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.0033332813395785367, curr_delay = 0.06096733550649627
+user 8, emp_avg: 0.39811745399039866, h: 2.197342426046132, ucb: 2.6166785016496505, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.0031172294045308745, curr_delay = 0.14057571517003367
+user 13, emp_avg: 0.24185730988198914, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.1277209892680107, curr_delay = 0.20673346620946373
+user 21, emp_avg: 0.06450825439884873, h: 3.1075114600922396, ucb: 3.174480129280889, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 3.18640557897275e-05, curr_delay = 0.8058298292904458
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.81 seconds
+global epoch 5 has been done artifficialy in 0.81 secs, the total time by now is 4.42 
+ with avg train loss 0.588, val loss 2.539, avg val acc 11.35%
+iteration: 6
+user 3, emp_avg: 0.9631550507127988, h: 3.2788041745990766, ucb: 4.278804174599077, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.003463185147131011, curr_delay = 0.05397760417709972
+user 7, emp_avg: 0.24504624461515, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.09355367758072014, curr_delay = 0.20404311879386683
+user 19, emp_avg: 0.0630125753859113, h: 3.2788041745990766, ucb: 3.344254663157469, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.012809932648541989, curr_delay = 0.8254276321645667
+user 20, emp_avg: 0.06753552787619758, h: 2.3184646660417676, ucb: 2.3851468825208286, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.03799864955873387, curr_delay = 0.7221035094353798
+user 23, emp_avg: 0.06123180864089177, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.035130887204449124, curr_delay = 0.8165690530756109
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.83 seconds
+global epoch 6 has been done artifficialy in 0.83 secs, the total time by now is 5.24 
+ with avg train loss 0.523, val loss 2.453, avg val acc 8.91%
+iteration: 7
+user 7, emp_avg: 0.44032011727087067, h: 3.416937355927363, ucb: 3.661983600542513, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.026571710370390845, curr_delay = 0.07866657141577882
+user 17, emp_avg: 0.07564207147996316, h: 3.416937355927363, ucb: 3.5055419486373545, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.010493715086013407, curr_delay = 0.7977083402900154
+user 20, emp_avg: 0.06717048069018025, h: 1.9727697022487511, ucb: 2.040305230124949, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.009938958999191977, curr_delay = 0.7567119693478525
+user 21, emp_avg: 0.06458684760324815, h: 2.4161395752658703, ucb: 2.480647829664719, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.006411118446747671, curr_delay = 0.7722719284173188
+user 26, emp_avg: 0.06012767715862646, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.002262007769069622, curr_delay = 0.8315638049361525
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.83 seconds
+global epoch 7 has been done artifficialy in 0.83 secs, the total time by now is 6.07 
+ with avg train loss 0.547, val loss 2.413, avg val acc 10.10%
+iteration: 8
+user 2, emp_avg: 0.7213903695352208, h: 3.5322300675464238, ucb: 3.9750108066168655, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 2.7381418350027134e-06, curr_delay = 0.05
+user 3, emp_avg: 0.881588359955137, h: 2.497663833473093, ucb: 3.460818884185892, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.02021576842727237, curr_delay = 0.06959378318816761
+user 7, emp_avg: 0.46485485023312245, h: 2.497663833473093, ucb: 2.9379839507439636, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.0031209492483581527, curr_delay = 0.0972905901277971
+user 19, emp_avg: 0.06512025417278539, h: 2.497663833473093, ucb: 2.5606764088590044, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.0008908815934905959, curr_delay = 0.7211301485704387
+user 20, emp_avg: 0.06675881602359915, h: 1.7661150337732119, ucb: 1.8332855144633922, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: 0.0007989529842974612, curr_delay = 0.7679057495460745
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.77 seconds
+global epoch 8 has been done artifficialy in 0.77 secs, the total time by now is 6.84 
+ with avg train loss 0.574, val loss 2.567, avg val acc 20.73%
+iteration: 9
+user 0, emp_avg: 0.8226048451347356, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.011940988778491916, curr_delay = 0.0607825255293876
+user 2, emp_avg: 0.7210084987073716, h: 2.567425506613319, ucb: 3.28881587614854, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.009133144965415445, curr_delay = 0.06942084549796011
+user 8, emp_avg: 0.3742569989936273, h: 2.09629414793641, ucb: 2.4944116019268088, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.015005961030170345, curr_delay = 0.16519334357602333
+user 21, emp_avg: 0.06864691894382445, h: 2.09629414793641, ucb: 2.1608809955396584, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.016304355013152878, curr_delay = 0.6186041514216376
+user 27, emp_avg: 0.05710546025776556, h: 1.815443985917585, ucb: 1.8724904648396412, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.013071436324801348, curr_delay = 0.8719705580235304
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.87 seconds
+global epoch 9 has been done artifficialy in 0.87 secs, the total time by now is 7.71 
+ with avg train loss 0.530, val loss 2.522, avg val acc 11.35%
+iteration: 10
+user 1, emp_avg: 0.5419469750618174, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.029594254156236118, curr_delay = 0.09225994848351489
+user 8, emp_avg: 0.363488683125597, h: 1.8584610944249194, ucb: 2.232718093418547, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: 0.0031172294045308745, curr_delay = 0.15604742135716876
+user 18, emp_avg: 0.06997354678237726, h: 2.628260884878466, ucb: 2.694355273300049, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 4.195665532111047e-05, curr_delay = 0.6432368625441376
+user 26, emp_avg: 0.05695291232162562, h: 3.7169221888498387, ucb: 3.7770498660084653, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -0.0027498938734739184, curr_delay = 0.9297456743800078
+user 27, emp_avg: 0.05797055228195441, h: 1.66225813626911, ucb: 1.7193635965268756, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: -0.02886123189285574, curr_delay = 0.8026195910682957
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.93 seconds
+global epoch 10 has been done artifficialy in 0.93 secs, the total time by now is 8.64 
+ with avg train loss 0.509, val loss 2.554, avg val acc 11.35%
+iteration: 11
+user 8, emp_avg: 0.3766298784249767, h: 1.6963119781921145, ucb: 2.059800661317712, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: 1.6555951233822432e-06, curr_delay = 0.11303628101509185
+user 13, emp_avg: 0.33951611978534324, h: 3.793068894284709, ucb: 4.034926204166698, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0710071367457704, curr_delay = 0.11437069375319373
+user 19, emp_avg: 0.06560317652657882, h: 2.189929347170073, ucb: 2.2550496013428583, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 5.0699625308536454e-05, curr_delay = 0.7456905396695881
+user 21, emp_avg: 0.06736270356376177, h: 1.8965344471423544, ucb: 1.9651813660861788, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.024961326098504016, curr_delay = 0.8035246829611046
+user 26, emp_avg: 0.05970112475186664, h: 2.6821047366564774, ucb: 2.739057648978103, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.018025106471292313, curr_delay = 0.7668999877647213
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.80 seconds
+global epoch 11 has been done artifficialy in 0.80 secs, the total time by now is 9.45 
+ with avg train loss 0.468, val loss 2.516, avg val acc 17.59%
+iteration: 12
+user 1, emp_avg: 0.7709734875309087, h: 3.8612743879097744, ucb: 4.403221362971592, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.007867064265487823, curr_delay = 0.05
+user 13, emp_avg: 0.3193618494777765, h: 2.730333303712937, ucb: 3.06984942349828, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.03637185560349948, curr_delay = 0.17917723392633642
+user 19, emp_avg: 0.06540141316874401, h: 1.9306371939548872, ucb: 1.996240370481466, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.002860719427328092, curr_delay = 0.7740613917881507
+user 20, emp_avg: 0.06703199316846103, h: 1.7268144022290295, ucb: 1.7935732182526287, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: 0.012454356827071212, curr_delay = 0.7310168211266693
+user 28, emp_avg: 0.057149053675749406, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.006076105801109065, curr_delay = 0.874905125878173
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.87 seconds
+global epoch 12 has been done artifficialy in 0.87 secs, the total time by now is 10.32 
+ with avg train loss 0.478, val loss 2.499, avg val acc 20.41%
+iteration: 13
+user 5, emp_avg: 0.5174922816562181, h: 2.7739589168523406, ucb: 3.2691079929670193, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.0001341133185485039, curr_delay = 0.0889396923892078
+user 8, emp_avg: 0.39774388157584767, h: 1.6015459273656616, ucb: 1.9781758057906382, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: -3.2561947333108384e-05, curr_delay = 0.09534199068000296
+user 13, emp_avg: 0.3029477448098649, h: 2.2649279712439143, ucb: 2.5842898207216907, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.016030472833125333, curr_delay = 0.19707895034461315
+user 19, emp_avg: 0.06520525160007024, h: 1.7544056625974063, ucb: 1.8198070757661502, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: -0.010976280382273463, curr_delay = 0.7785197827389966
+user 29, emp_avg: 0.05893941549970201, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.0023925300872279947, curr_delay = 0.8483287385205371
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.85 seconds
+global epoch 13 has been done artifficialy in 0.85 secs, the total time by now is 11.17 
+ with avg train loss 0.520, val loss 2.537, avg val acc 11.35%
+iteration: 14
+user 7, emp_avg: 0.44538918981260334, h: 2.2974147773596556, ucb: 2.762269627592778, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.008386849214205787, curr_delay = 0.12920156761606943
+user 8, emp_avg: 0.40893101243570706, h: 1.5040110171372487, ucb: 1.9017548987130963, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: -0.0019507986327383488, curr_delay = 0.10261863706436614
+user 12, emp_avg: 0.33589048368642316, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.013105302877075026, curr_delay = 0.14885804280980594
+user 15, emp_avg: 0.06500676451483459, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.003008035258468736, curr_delay = 0.7691507241310245
+user 18, emp_avg: 0.06949546229123554, h: 2.2974147773596556, ucb: 2.367388324142033, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -6.0969838814472876e-05, curr_delay = 0.7346328528169761
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.77 seconds
+global epoch 14 has been done artifficialy in 0.77 secs, the total time by now is 11.94 
+ with avg train loss 0.553, val loss 2.383, avg val acc 16.57%
+iteration: 15
+user 4, emp_avg: 0.7431049658853279, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.005661588320355828, curr_delay = 0.0672852454167501
+user 8, emp_avg: 0.4339934773373939, h: 1.4251447824086707, ucb: 1.8340757948443778, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: -0.0060064328199186156, curr_delay = 0.0788030514303392
+user 12, emp_avg: 0.29188426135178147, h: 4.030918159255191, ucb: 4.366808642941614, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0022859613475511653, curr_delay = 0.2017121008309361
+user 13, emp_avg: 0.27376487927329834, h: 2.0154590796275955, ucb: 2.3184068244374605, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: 0.008229042071459407, curr_delay = 0.31840356603558206
+user 18, emp_avg: 0.06878438253443471, h: 2.0154590796275955, ucb: 2.084954541918831, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.0036227483370202935, curr_delay = 0.7582643591860766
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.76 seconds
+global epoch 15 has been done artifficialy in 0.76 secs, the total time by now is 12.70 
+ with avg train loss 0.520, val loss 2.437, avg val acc 11.51%
+iteration: 16
+user 5, emp_avg: 0.6381192112421635, h: 2.3548200450309493, ucb: 2.8723123266871675, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.0020461669236264916, curr_delay = 0.05
+user 8, emp_avg: 0.42144821639328656, h: 1.3595559868917453, ucb: 1.7935494642291392, num_of_obs(calculated after picking at this round): 10, privacy reward: 0.670320046035639, g: -0.011378029400368018, curr_delay = 0.16205308664912924
+user 15, emp_avg: 0.06759879845221675, h: 4.078667960675236, ucb: 4.1436747251900705, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: -5.859047868353903e-05, curr_delay = 0.7123437391719712
+user 18, emp_avg: 0.06864683576780624, h: 1.8240357635440532, ucb: 1.892820146078488, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: -0.011240792618188482, curr_delay = 0.7357366206526711
+user 27, emp_avg: 0.057338008150936925, h: 1.6651092223153954, ucb: 1.7230797745973498, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: -0.0020147474202889277, curr_delay = 0.9338333611206229
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.93 seconds
+global epoch 16 has been done artifficialy in 0.93 secs, the total time by now is 13.63 
+ with avg train loss 0.468, val loss 2.544, avg val acc 17.72%
+iteration: 17
+user 2, emp_avg: 0.696274076238262, h: 2.380425736735434, ucb: 3.1014342354428055, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.0024816194167562927, curr_delay = 0.08037670196093226
+user 3, emp_avg: 0.7370349450415349, h: 2.380425736735434, ucb: 3.262014096690571, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.00471320071180739, curr_delay = 0.164812688567755
+user 7, emp_avg: 0.5525352304715689, h: 2.061509159835174, ucb: 2.5068983496477775, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: 0.004980313890746229, curr_delay = 0.0509621972119402
+user 8, emp_avg: 0.40909340109150255, h: 1.303812872475851, ucb: 1.7252610888691375, num_of_obs(calculated after picking at this round): 11, privacy reward: 0.6440364210831411, g: -0.017530591550360863, curr_delay = 0.1751035968460645
+user 18, emp_avg: 0.06864881298497584, h: 1.6832151805566087, ucb: 1.751862016324415, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: -0.02145163907158372, curr_delay = 0.7282188685453334
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.73 seconds
+global epoch 17 has been done artifficialy in 0.73 secs, the total time by now is 14.36 
+ with avg train loss 0.475, val loss 2.530, avg val acc 18.32%
+iteration: 18
+user 8, emp_avg: 0.40401767598524047, h: 1.2556139587460422, ucb: 1.6647073598375448, num_of_obs(calculated after picking at this round): 12, privacy reward: 0.6187833918061405, g: -0.024111554565314566, curr_delay = 0.14360194467583262
+user 10, emp_avg: 0.2631720628461386, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.046453868890241945, curr_delay = 0.1899897711757957
+user 14, emp_avg: 0.2524737761942311, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.003008035258468736, curr_delay = 0.1980403697908586
+user 21, emp_avg: 0.06549958177265708, h: 1.862376468245719, ucb: 1.9297391718094807, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: -0.005203162793263915, curr_delay = 0.8899335075990257
+user 27, emp_avg: 0.05696213789708427, h: 1.5739953960441373, ucb: 1.6313334041950742, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: -0.0034544802629198085, curr_delay = 0.9202841390069948
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.92 seconds
+global epoch 18 has been done artifficialy in 0.92 secs, the total time by now is 15.28 
+ with avg train loss 0.444, val loss 2.576, avg val acc 10.09%
+iteration: 19
+user 5, emp_avg: 0.5853360292543351, h: 2.1015847517408526, ucb: 2.739703962983016, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.004659549435006294, curr_delay = 0.13361720707939745
+user 8, emp_avg: 0.3919695021719003, h: 1.213350522142394, ucb: 1.6173681981276344, num_of_obs(calculated after picking at this round): 13, privacy reward: 0.5945205479701939, g: -0.0308869354288562, curr_delay = 0.2021088715413146
+user 9, emp_avg: 0.4925189926324478, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.004339793970671335, curr_delay = 0.10151892769202
+user 18, emp_avg: 0.06896325347740381, h: 1.5886487463519179, ucb: 1.6572975593368937, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: -0.026225748013704267, curr_delay = 0.7025991129955547
+user 27, emp_avg: 0.057237183617918456, h: 1.4860448291942037, ucb: 1.543006967091288, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: -0.008269823417107166, curr_delay = 0.8412190697243236
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.84 seconds
+global epoch 19 has been done artifficialy in 0.84 secs, the total time by now is 16.12 
+ with avg train loss 0.473, val loss 2.488, avg val acc 11.36%
+iteration: 20
+user 0, emp_avg: 0.9113024225673678, h: 4.239621874804868, ucb: 5.062226719939604, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0035135056380373323, curr_delay = 0.05
+user 7, emp_avg: 0.6176892495310823, h: 1.8960165421917576, ucb: 2.4485517726633264, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: 0.0031209492483581527, curr_delay = 0.0529964542447571
+user 13, emp_avg: 0.2657591330094364, h: 1.8960165421917576, ucb: 2.169781421465056, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: 0.011530622104577195, curr_delay = 0.22150317203899683
+user 19, emp_avg: 0.0653210786502565, h: 1.7308183826022854, ucb: 1.7960236342023557, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: -0.0004061176271264276, curr_delay = 0.7573916775292365
+num of fast users chosen: 3, num of slow users chosen: 1
+max_delay = 0.76 seconds
+global epoch 20 has been done artifficialy in 0.76 secs, the total time by now is 16.88 
+ with avg train loss 0.427, val loss 2.487, avg val acc 10.10%
+iteration: 21
+user 3, emp_avg: 0.7172556531836991, h: 2.137003429240378, ucb: 2.8740383742819127, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.006832403952794979, curr_delay = 0.07835289849514518
+user 19, emp_avg: 0.06478290852600753, h: 1.6154227499035017, ucb: 1.6807438285537581, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: -0.002860719427328092, curr_delay = 0.8194609835071953
+user 20, emp_avg: 0.06681905462369075, h: 1.7448559934055943, ucb: 1.8118879865740554, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: 0.058831215926940184, curr_delay = 0.7628763221867519
+user 23, emp_avg: 0.062379583810072935, h: 4.274006858480756, ucb: 4.335238667121647, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.019547760550518326, curr_delay = 0.787062468885702
+user 27, emp_avg: 0.05698249200841582, h: 1.4246689528269185, ucb: 1.481906136444837, num_of_obs(calculated after picking at this round): 10, privacy reward: 0.670320046035639, g: -0.009693853010572658, curr_delay = 0.9142394481627137
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.91 seconds
+global epoch 21 has been done artifficialy in 0.91 secs, the total time by now is 17.79 
+ with avg train loss 0.392, val loss 2.355, avg val acc 13.67%
+iteration: 22
+user 2, emp_avg: 0.6178339186886352, h: 2.153268139372678, ucb: 2.8495422156109402, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: -0.003043006067723877, curr_delay = 0.1644340423595716
+user 7, emp_avg: 0.5908439225196799, h: 1.7581360736183977, ucb: 2.37582532314948, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: 0.0010981392346723535, curr_delay = 0.1163407681308464
+user 10, emp_avg: 0.40513565688726055, h: 4.306536278745356, ucb: 4.569708341591495, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.02892620313481528, curr_delay = 0.09139109570183857
+user 15, emp_avg: 0.06723077872264403, h: 3.045181006126721, ucb: 3.1127798045789374, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -0.0013005783886985323, curr_delay = 0.7519391842693766
+user 20, emp_avg: 0.0656347512139048, h: 1.6277177150911069, ucb: 1.6945367697147975, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: 0.044135261093049015, curr_delay = 0.8719212647217274
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.87 seconds
+global epoch 22 has been done artifficialy in 0.87 secs, the total time by now is 18.66 
+ with avg train loss 0.429, val loss 2.464, avg val acc 19.88%
+iteration: 23
+user 8, emp_avg: 0.3855045264301508, h: 1.2029759667519067, ucb: 1.594945468923807, num_of_obs(calculated after picking at this round): 14, privacy reward: 0.5712090638488144, g: -0.011965130170983287, curr_delay = 0.1658595708919013
+user 11, emp_avg: 0.4144314930564145, h: 4.3373915312748625, ucb: 4.744139422979341, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0035588819712435407, curr_delay = 0.11845110649284304
+user 12, emp_avg: 0.3031733076344245, h: 3.0669989644255584, ucb: 3.35888322577734, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.0007574534970407526, curr_delay = 0.15349128190806294
+user 18, emp_avg: 0.06833670332958762, h: 1.5334994822127792, ucb: 1.602462735690183, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: -0.019979452514110915, curr_delay = 0.7895862773802858
+user 27, emp_avg: 0.056799778468170296, h: 1.3716036342754017, ucb: 1.4285861262838175, num_of_obs(calculated after picking at this round): 11, privacy reward: 0.6440364210831411, g: -0.01095550464440878, curr_delay = 0.9095433148489747
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.91 seconds
+global epoch 23 has been done artifficialy in 0.91 secs, the total time by now is 19.57 
+ with avg train loss 0.418, val loss 2.369, avg val acc 33.19%
+iteration: 24
+user 1, emp_avg: 0.6341092368176967, h: 3.0877437541097605, ucb: 3.858717241640669, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.007867064265487823, curr_delay = 0.1387421554199172
+user 3, emp_avg: 0.6728084675520751, h: 1.9528606187891482, ucb: 2.670116271972847, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: -0.010103365676090579, curr_delay = 0.11096992299453648
+user 8, emp_avg: 0.37919477350947867, h: 1.1670574408096286, ucb: 1.5525619672397795, num_of_obs(calculated after picking at this round): 15, privacy reward: 0.5488116360940261, g: -0.016256550767355694, curr_delay = 0.17190505336430392
+user 17, emp_avg: 0.07143628127882021, h: 3.0877437541097605, ucb: 3.1633858255897236, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.026231898489699857, curr_delay = 0.7933397430628071
+user 27, emp_avg: 0.05683992396520357, h: 1.3166183605975257, ucb: 1.3734181390656959, num_of_obs(calculated after picking at this round): 12, privacy reward: 0.6187833918061405, g: -0.01644018151311124, curr_delay = 0.8728817973212067
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.87 seconds
+global epoch 24 has been done artifficialy in 0.87 secs, the total time by now is 20.45 
+ with avg train loss 0.431, val loss 2.458, avg val acc 28.13%
+iteration: 25
+user 8, emp_avg: 0.386695803034971, h: 1.1347027495988895, ucb: 1.5138975231083682, num_of_obs(calculated after picking at this round): 16, privacy reward: 0.5272924240430481, g: -0.020784367860945813, curr_delay = 0.10015800006291817
+user 17, emp_avg: 0.07146221105051725, h: 2.537272482359039, ucb: 2.608708763637859, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.015699082274933766, curr_delay = 0.6989096972948382
+user 21, emp_avg: 0.06501079693440329, h: 1.7941225779941015, ucb: 1.8596221597667586, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: -0.0011802780096653402, curr_delay = 0.8054371790028829
+user 26, emp_avg: 0.05945350331482283, h: 2.537272482359039, ucb: 2.5969736071109057, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.0052474710943547775, curr_delay = 0.8516344030399032
+user 27, emp_avg: 0.05703045350446598, h: 1.2686362411795196, ucb: 1.325476165144723, num_of_obs(calculated after picking at this round): 13, privacy reward: 0.5945205479701939, g: -0.02246579437724504, curr_delay = 0.8429314001615691
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.85 seconds
+global epoch 25 has been done artifficialy in 0.85 secs, the total time by now is 21.30 
+ with avg train loss 0.383, val loss 2.390, avg val acc 17.46%
+iteration: 26
+user 10, emp_avg: 0.4168358589066246, h: 3.126386030877257, ucb: 3.5315216877645175, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.019212321570945386, curr_delay = 0.11357537806059054
+user 20, emp_avg: 0.06538831055339037, h: 1.5631930154386284, ucb: 1.6288277666525333, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: 0.04865264627038284, curr_delay = 0.7884347935281536
+user 22, emp_avg: 0.06269718446425156, h: 3.126386030877257, ucb: 3.1879550888816857, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 3.853150027338718e-06, curr_delay = 0.7697822011248259
+user 25, emp_avg: 0.05671901758041845, h: 4.4213775260804065, ucb: 4.480037095761403, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.006921869571186764, curr_delay = 0.9127674454188655
+user 27, emp_avg: 0.05679811048927646, h: 1.2262694906513096, ucb: 1.2832999441557755, num_of_obs(calculated after picking at this round): 14, privacy reward: 0.5712090638488144, g: -0.02886123189285574, curr_delay = 0.9297542529086286
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.93 seconds
+global epoch 26 has been done artifficialy in 0.93 secs, the total time by now is 22.23 
+ with avg train loss 0.416, val loss 2.774, avg val acc 12.23%
+iteration: 27
+user 18, emp_avg: 0.06859741208156997, h: 1.4823038073675112, ucb: 1.5506405106970989, num_of_obs(calculated after picking at this round): 10, privacy reward: 0.670320046035639, g: -0.016092428907608362, curr_delay = 0.7047833136818494
+user 20, emp_avg: 0.06480359067082016, h: 1.4823038073675112, ucb: 1.5476921179209016, num_of_obs(calculated after picking at this round): 10, privacy reward: 0.670320046035639, g: 0.03799864955873387, curr_delay = 0.8397559022524705
+user 23, emp_avg: 0.062335117812708535, h: 3.1444412219046147, ucb: 3.206820805714688, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.012850099554262437, curr_delay = 0.8032620688793685
+user 27, emp_avg: 0.05692069491585192, h: 1.1884870693456682, ucb: 1.2452851798349447, num_of_obs(calculated after picking at this round): 15, privacy reward: 0.5488116360940261, g: -0.03549623919469004, curr_delay = 0.8527057144530589
+user 29, emp_avg: 0.05859638065836992, h: 4.446911422102533, ucb: 4.505850837602235, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.00014105027659715906, curr_delay = 0.8583197977510176
+num of fast users chosen: 0, num of slow users chosen: 5
+max_delay = 0.86 seconds
+global epoch 27 has been done artifficialy in 0.86 secs, the total time by now is 23.09 
+ with avg train loss 0.386, val loss 2.566, avg val acc 20.30%
+iteration: 28
+user 1, emp_avg: 0.7255819276132726, h: 2.5815516691227405, ucb: 3.215660905940437, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.0042103161334372885, curr_delay = 0.05
+user 10, emp_avg: 0.39017477340454154, h: 2.5815516691227405, ucb: 2.9983875280293653, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.011748118719055333, curr_delay = 0.16119073951462812
+user 13, emp_avg: 0.261878139431595, h: 1.8254326912201402, ucb: 2.0911918242295764, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: 0.020476184760577904, curr_delay = 0.20956261192866796
+user 16, emp_avg: 0.07434300314070666, h: 0, ucb: inf, num_of_obs(calculated after picking at this round): 1, privacy reward: 0.9607894391523232, g: 0.003008035258468736, curr_delay = 0.6725582487617103
+user 20, emp_avg: 0.0650903360444789, h: 1.4139740825436378, ucb: 1.478777673214458, num_of_obs(calculated after picking at this round): 11, privacy reward: 0.6440364210831411, g: 0.02928304664673954, curr_delay = 0.7357508265215893
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.74 seconds
+global epoch 28 has been done artifficialy in 0.74 secs, the total time by now is 23.82 
+ with avg train loss 0.434, val loss 2.333, avg val acc 12.35%
+iteration: 29
+user 8, emp_avg: 0.3906316342376723, h: 1.1237152380585251, ucb: 1.510411041093496, num_of_obs(calculated after picking at this round): 17, privacy reward: 0.5066169923655891, g: -0.009195272609278477, curr_delay = 0.1102280780244339
+user 9, emp_avg: 0.3910192988381545, h: 4.4948609522341005, ucb: 4.987379944866548, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0009856054647130138, curr_delay = 0.17269987637771603
+user 13, emp_avg: 0.2664259132509247, h: 1.698897751060915, ucb: 1.9607758904925099, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: 0.013456330365860868, curr_delay = 0.16763878723767234
+user 17, emp_avg: 0.07021203946210748, h: 2.2474304761170503, ucb: 2.3188926871675677, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: 0.011527231243809007, curr_delay = 0.7667376555863398
+user 25, emp_avg: 0.05720785055693966, h: 3.1783466598153547, ucb: 3.2350656773957733, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.002776636037370188, curr_delay = 0.8593203772870559
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.86 seconds
+global epoch 29 has been done artifficialy in 0.86 secs, the total time by now is 24.68 
+ with avg train loss 0.398, val loss 2.456, avg val acc 14.51%
+iteration: 30
+user 2, emp_avg: 0.5670499863388754, h: 2.020256631716522, ucb: 2.638090550405157, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: -0.0016009548228403778, curr_delay = 0.15967792345074167
+user 8, emp_avg: 0.40592761601604493, h: 1.0956379900736033, ucb: 1.4862696243112756, num_of_obs(calculated after picking at this round): 18, privacy reward: 0.48675225595997107, g: -0.012284289229321104, curr_delay = 0.07507966257228292
+user 13, emp_avg: 0.2761230848159331, h: 1.5971531035710436, ucb: 1.8635790168219684, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: 0.008229042071459407, curr_delay = 0.14136255400004227
+user 19, emp_avg: 0.06475272755336442, h: 1.5971531035710436, ucb: 1.661936012097051, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: 0.00017373804914698452, curr_delay = 0.7750582561149474
+user 28, emp_avg: 0.05773873134824758, h: 4.517431160512901, ucb: 4.57458021418865, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.00199059159653733, curr_delay = 0.857215220497724
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.86 seconds
+global epoch 30 has been done artifficialy in 0.86 secs, the total time by now is 25.54 
+ with avg train loss 0.363, val loss 2.389, avg val acc 11.36%
+iteration: 31
+user 1, emp_avg: 0.780465542090618, h: 2.2695772308356728, ucb: 2.995159158448945, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: 0.001848789129423633, curr_delay = 0.05
+user 7, emp_avg: 0.5935888506232929, h: 1.7156391240130926, ucb: 2.3064830465327724, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: 0.0064094442898874615, curr_delay = 0.0815922436069173
+user 8, emp_avg: 0.40112677870644015, h: 1.0698889669003269, ucb: 1.4758165829163719, num_of_obs(calculated after picking at this round): 19, privacy reward: 0.4676664270099087, g: -0.015578286824060721, curr_delay = 0.15887556410089773
+user 16, emp_avg: 0.07466769832935549, h: 4.5391544616713455, ucb: 4.613497464812053, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0005101948726482807, curr_delay = 0.666734286697969
+user 19, emp_avg: 0.06454974018997153, h: 1.5130514872237817, ucb: 1.577804214777146, num_of_obs(calculated after picking at this round): 10, privacy reward: 0.670320046035639, g: -0.00010972438856631946, curr_delay = 0.7971576048536074
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.80 seconds
+global epoch 31 has been done artifficialy in 0.80 secs, the total time by now is 26.34 
+ with avg train loss 0.403, val loss 2.685, avg val acc 11.35%
+iteration: 32
+user 2, emp_avg: 0.5553863810423779, h: 1.861648705529517, ucb: 2.4286986918683926, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: -0.0037021464966764, curr_delay = 0.10300682075293978
+user 13, emp_avg: 0.2751021100816801, h: 1.5200298029533776, ucb: 1.7961528877693107, num_of_obs(calculated after picking at this round): 10, privacy reward: 0.670320046035639, g: 0.005795888709148007, curr_delay = 0.18803118517889694
+user 15, emp_avg: 0.06837749852245355, h: 2.6327688477341593, ucb: 2.6999996264568034, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -0.0015135555887909405, curr_delay = 0.6962076103120248
+user 20, emp_avg: 0.0650698291356358, h: 1.374918689060238, ucb: 1.440009025104717, num_of_obs(calculated after picking at this round): 12, privacy reward: 0.6187833918061405, g: 0.03404606435616492, curr_delay = 0.7710783543656871
+user 21, emp_avg: 0.06508952083494453, h: 1.7235517902947788, ucb: 1.7885625872291822, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: -0.0001717455966689213, curr_delay = 0.7617238269456635
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.77 seconds
+global epoch 32 has been done artifficialy in 0.77 secs, the total time by now is 27.11 
+ with avg train loss 0.376, val loss 2.122, avg val acc 29.19%
+iteration: 33
+user 2, emp_avg: 0.5930765777641336, h: 1.731186437463332, ucb: 2.28657281850571, num_of_obs(calculated after picking at this round): 8, privacy reward: 0.7261490370736907, g: -0.007304519025810432, curr_delay = 0.05834932412397964
+user 6, emp_avg: 0.33296386640364595, h: 4.580288786615848, ucb: 4.9529960484260975, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0023200315449489633, curr_delay = 0.1705201544420965
+user 10, emp_avg: 0.4188772460688785, h: 2.290144393307924, ucb: 2.680319166712466, num_of_obs(calculated after picking at this round): 5, privacy reward: 0.8187307530779817, g: 0.00889616333123455, curr_delay = 0.09368784922700746
+user 13, emp_avg: 0.26984441059634634, h: 1.448414490703503, ucb: 1.7235166007851832, num_of_obs(calculated after picking at this round): 11, privacy reward: 0.6440364210831411, g: 0.0029539693821225206, curr_delay = 0.2301311488840173
+user 20, emp_avg: 0.06462976792682787, h: 1.3222154819594423, ucb: 1.387285311095078, num_of_obs(calculated after picking at this round): 13, privacy reward: 0.5945205479701939, g: 0.027102836958423106, curr_delay = 0.8424737037452117
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.84 seconds
+global epoch 33 has been done artifficialy in 0.84 secs, the total time by now is 27.95 
+ with avg train loss 0.382, val loss 2.269, avg val acc 23.40%
+iteration: 34
+user 2, emp_avg: 0.6320596040241245, h: 1.626275005484042, ucb: 2.2193515832481756, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: -0.011802515861451309, curr_delay = 0.05297037669026146
+user 13, emp_avg: 0.27285010813102256, h: 1.3868919846416883, ucb: 1.6567363952380347, num_of_obs(calculated after picking at this round): 12, privacy reward: 0.6187833918061405, g: 0.001145912039207478, curr_delay = 0.1634452795156777
+user 19, emp_avg: 0.06415350114026928, h: 1.4545845849484644, ucb: 1.519134325138436, num_of_obs(calculated after picking at this round): 11, privacy reward: 0.6440364210831411, g: -0.000203633111058545, curr_delay = 0.8306874464628237
+user 20, emp_avg: 0.06454234631252562, h: 1.2757550749894375, ucb: 1.3403848429162655, num_of_obs(calculated after picking at this round): 14, privacy reward: 0.5712090638488144, g: 0.021290549643530544, curr_delay = 0.7885705800631485
+user 29, emp_avg: 0.058673955936924226, h: 3.252550010968084, ucb: 3.311146391626454, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -9.82087629747656e-05, curr_delay = 0.849919418801161
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.85 seconds
+global epoch 34 has been done artifficialy in 0.85 secs, the total time by now is 28.80 
+ with avg train loss 0.343, val loss 1.952, avg val acc 14.28%
+iteration: 35
+user 7, emp_avg: 0.5840165092876565, h: 1.6329455122927587, ucb: 2.226534362916052, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: 0.005974366778887141, curr_delay = 0.09853424815490719
+user 20, emp_avg: 0.06495387782045618, h: 1.2343907800130303, ucb: 1.298933126325556, num_of_obs(calculated after picking at this round): 15, privacy reward: 0.5488116360940261, g: 0.016452104262292627, curr_delay = 0.7070603761038667
+user 21, emp_avg: 0.06525970440662182, h: 1.6329455122927587, ucb: 1.6980350331277032, num_of_obs(calculated after picking at this round): 9, privacy reward: 0.6976763260710308, g: -0.000525629124884553, curr_delay = 0.7505121534707911
+user 22, emp_avg: 0.06330117898331834, h: 2.666588855256623, ucb: 2.7292860397208742, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: -4.662519699700308e-05, curr_delay = 0.7678938950152507
+num of fast users chosen: 1, num of slow users chosen: 3
+max_delay = 0.77 seconds
+global epoch 35 has been done artifficialy in 0.77 secs, the total time by now is 29.57 
+ with avg train loss 0.357, val loss 2.154, avg val acc 34.06%
+iteration: 36
+user 5, emp_avg: 0.5521064420471533, h: 2.0736978386802964, ucb: 2.6590338679346317, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: 1.1400985047555606e-05, curr_delay = 0.1295476047846018
+user 8, emp_avg: 0.39184460972355756, h: 1.063784545625878, ucb: 1.4649113243323182, num_of_obs(calculated after picking at this round): 20, privacy reward: 0.449328964117221, g: -0.005176172801067586, curr_delay = 0.23203643631349707
+user 13, emp_avg: 0.2749726609923128, h: 1.3385661990458504, ucb: 1.611416307176873, num_of_obs(calculated after picking at this round): 13, privacy reward: 0.5945205479701939, g: 0.0005782774945438054, curr_delay = 0.16642075485641294
+user 16, emp_avg: 0.07030762440213502, h: 3.2788041745990766, ucb: 3.353471872928432, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: -5.040961905362413e-07, curr_delay = 0.8118533637480567
+user 18, emp_avg: 0.0685348706051428, h: 1.4663258038627247, ucb: 1.5349232159442947, num_of_obs(calculated after picking at this round): 11, privacy reward: 0.6440364210831411, g: -0.005083744481501024, curr_delay = 0.736274490509285
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.81 seconds
+global epoch 36 has been done artifficialy in 0.81 secs, the total time by now is 30.38 
+ with avg train loss 0.372, val loss 1.910, avg val acc 39.64%
+iteration: 37
+user 7, emp_avg: 0.5572161743459878, h: 1.5515407208415393, ucb: 2.1355572301291956, num_of_obs(calculated after picking at this round): 10, privacy reward: 0.670320046035639, g: 0.00392154161380548, curr_delay = 0.15822125895141625
+user 12, emp_avg: 0.33289591630805654, h: 2.687347358509586, ucb: 2.9905206661440102, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.0011153805639579854, curr_delay = 0.1184655183221838
+user 14, emp_avg: 0.22517986153928055, h: 4.654622162524618, ucb: 4.907095938718848, num_of_obs(calculated after picking at this round): 2, privacy reward: 0.9231163463866358, g: 0.0007738706787515435, curr_delay = 0.2526707974327578
+user 19, emp_avg: 0.06483525827108186, h: 1.4034213867242553, ucb: 1.4675748878645245, num_of_obs(calculated after picking at this round): 12, privacy reward: 0.6187833918061405, g: -0.0003044905515317964, curr_delay = 0.6912322621050351
+user 20, emp_avg: 0.06462529119079014, h: 1.2018182745563863, ucb: 1.2667721523768425, num_of_obs(calculated after picking at this round): 16, privacy reward: 0.5272924240430481, g: 0.015094665844051837, curr_delay = 0.8375701576050869
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.84 seconds
+global epoch 37 has been done artifficialy in 0.84 secs, the total time by now is 31.22 
+ with avg train loss 0.424, val loss 2.593, avg val acc 11.35%
+iteration: 38
+user 1, emp_avg: 0.7794969178502349, h: 2.089282985062498, ucb: 2.8697485271531162, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: 0.0016362719649345612, curr_delay = 0.06454496217062915
+user 7, emp_avg: 0.5698513249838508, h: 1.4773461665553647, ucb: 2.0345623409013527, num_of_obs(calculated after picking at this round): 11, privacy reward: 0.6440364210831411, g: 0.0018239358458238665, curr_delay = 0.07181815090029028
+user 10, emp_avg: 0.40036919293617057, h: 2.089282985062498, ucb: 2.5081602311313764, num_of_obs(calculated after picking at this round): 6, privacy reward: 0.7866278610665532, g: 0.0070480472184641626, curr_delay = 0.16242787980649107
+user 11, emp_avg: 0.37586674119853597, h: 3.303446454716522, ucb: 3.7178779477729362, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.00255055782142526, curr_delay = 0.1673711667862709
+user 20, emp_avg: 0.0645478669210268, h: 1.1679446947083558, ucb: 1.232569985899146, num_of_obs(calculated after picking at this round): 17, privacy reward: 0.5066169923655891, g: 0.011494654131745179, curr_delay = 0.7897761443048141
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.79 seconds
+global epoch 38 has been done artifficialy in 0.79 secs, the total time by now is 32.01 
+ with avg train loss 0.372, val loss 2.341, avg val acc 21.68%
+iteration: 39
+user 9, emp_avg: 0.3177807647829596, h: 3.31522019455555, ucb: 3.7062394933937046, num_of_obs(calculated after picking at this round): 3, privacy reward: 0.8869204367171574, g: 0.00021301581623904342, curr_delay = 0.29187928206575786
+user 18, emp_avg: 0.06865630096701163, h: 1.4136146407116588, ucb: 1.4821495113168015, num_of_obs(calculated after picking at this round): 12, privacy reward: 0.6187833918061405, g: -0.005711412295124445, curr_delay = 0.7143669995800973
+user 20, emp_avg: 0.06415851134019149, h: 1.1371111456042993, ucb: 1.2016590125253261, num_of_obs(calculated after picking at this round): 18, privacy reward: 0.48675225595997107, g: 0.008531906630612577, curr_delay = 0.8689687804031481
+user 25, emp_avg: 0.056078927624760806, h: 2.7068659538771573, ucb: 2.764073804434097, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.0020013307554365067, curr_delay = 0.9489077903032848
+user 27, emp_avg: 0.05688534286910629, h: 1.2105472557698267, ucb: 1.2674679506856785, num_of_obs(calculated after picking at this round): 16, privacy reward: 0.5272924240430481, g: -0.002970394154865075, curr_delay = 0.8872317423945766
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.95 seconds
+global epoch 39 has been done artifficialy in 0.95 secs, the total time by now is 32.96 
+ with avg train loss 0.355, val loss 2.234, avg val acc 12.54%
+iteration: 40
+user 3, emp_avg: 0.7195501150446358, h: 1.9206455826398414, ucb: 2.5934540501919168, num_of_obs(calculated after picking at this round): 7, privacy reward: 0.7557837414557252, g: -0.001779335157769408, curr_delay = 0.05
+user 19, emp_avg: 0.06458812786236058, h: 1.3581015157406195, ucb: 1.4229367740117014, num_of_obs(calculated after picking at this round): 13, privacy reward: 0.5945205479701939, g: -0.0004061176271264276, curr_delay = 0.8113911139060809
+user 20, emp_avg: 0.06392187024143982, h: 1.1088852441549781, ucb: 1.1730437554951696, num_of_obs(calculated after picking at this round): 19, privacy reward: 0.4676664270099087, g: 0.006125528623295046, curr_delay = 0.8380497310651549
+user 23, emp_avg: 0.06239420886847176, h: 2.716203031481239, ucb: 2.7785381492939476, num_of_obs(calculated after picking at this round): 4, privacy reward: 0.8521437889662112, g: 0.012641034153079546, curr_delay = 0.7990860752095266
+user 27, emp_avg: 0.057201930324323594, h: 1.1761504135495282, ucb: 1.2330357564186345, num_of_obs(calculated after picking at this round): 17, privacy reward: 0.5066169923655891, g: -0.0048840443148022925, curr_delay = 0.8029893094008054
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.84 seconds
+global epoch 40 has been done artifficialy in 0.84 secs, the total time by now is 33.79 
+ with avg train loss 0.333, val loss 2.252, avg val acc 18.28%

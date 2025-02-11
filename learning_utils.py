@@ -13,19 +13,21 @@ def train_one_epoch(user, train_criterion ,args):
     if args.local_iterations is not None:
         local_iteration = 0
     for batch_idx, (data, label) in enumerate(user.data_loader):
-        # send to device
-        data, label = data.to(args.device), label.to(args.device)
-        output = user.model(data)
-        loss = train_criterion(output, label)
+        # perform a local iteration only if it completes the batch size or if the whole data size is smaller than the batch 
+        # size and it's still not only one sample (since we use batch norm layers). The reason we do it instead drop_last
+        # is that we want to perform at least one local iteration for each chosen user in each round.
+        if (local_iteration == 0 and len(data) < args.train_batch_size and len(data) > 1) or len(data) == args.train_batch_size:
+            data, label = data.to(args.device), label.to(args.device)
+            output = user.model(data)
+            loss = train_criterion(output, label)
+            user.opt.zero_grad()
+            loss.backward()
+            user.opt.step()
 
-        user.opt.zero_grad()
-        loss.backward()
-        user.opt.step()
-
-        losses_per_local_epoch.append(loss.item())
+            losses_per_local_epoch.append(loss.item())
 
         if args.local_iterations is not None:
-            local_iteration += 1
+            local_iteration += 1    
             if local_iteration == args.local_iterations:
                 break
     return mean(losses_per_local_epoch)
@@ -42,26 +44,28 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, textio, args, 
     """this is a fed avg that averages according to the data length and quality for the non i.i.d case"""
     state_dict = copy.deepcopy(global_model.state_dict())
     data_length_sum = 0
-    for j in chosen_users_idxs:
-        data_length_sum += local_models[j].data_quality*len(local_models[j].data_loader.dataset)
-    
+
     returned_delta_thetas = {}
     if l1_norms_verbose:
         l1_norms_arr = np.zeros((2,args.num_users))
         l1_norms_arr[0,:] = np.arange(args.num_users)
 
     users_delta_thetas = {}
-    new_chosen_users_idxs = copy.deepcopy(chosen_users_idxs)
+    copied_chosen_users_idxs = copy.deepcopy(chosen_users_idxs)
     # check if chosen_users_idxs is a 2d array
-    if new_chosen_users_idxs.__class__.__name__ == "ndarray":
+    if copied_chosen_users_idxs.__class__.__name__ == "ndarray":
         users_count = chosen_users_idxs[1,:]
         chosen_users_idxs = tuple(chosen_users_idxs[0,:])
-    elif new_chosen_users_idxs.__class__.__name__ == "tuple":
+    elif copied_chosen_users_idxs.__class__.__name__ == "tuple":
         pass # this is just a checking step
     else:
         raise ValueError("chosen_users_idxs should be a 2d array or a tuple")
 
-    chosen_users_idxs = new_chosen_users_idxs
+    if args.method_choosing_users != "fraboni":
+        for j in chosen_users_idxs:
+            data_length_sum += local_models[j].data_quality*len(local_models[j].data_loader.dataset)
+
+    #chosen_users_idxs = copied_chosen_users_idxs
 
     for key in state_dict.keys():
         delta_theta_average = (torch.zeros_like(state_dict[key])).type(torch.float32) 
@@ -82,7 +86,7 @@ def Fed_avg_models(local_models, global_model, chosen_users_idxs, textio, args, 
                     users_delta_thetas[user_idx] = delta_theta_copy.flatten()
   
             if (args.privacy and state_dict[key].dtype != torch.int32 and "batch_norm" not in key):
-                # I exlude the batch norm layers beacause their means and variances are much much higher than
+                # I exclude the batch norm layers beacause their means and variances are much much higher than
                 # the weights of conv and linear layers (they're about 2 while the weights were about 10**-2)
                 # that means that clapping them by delta_f would destroy the model
                 lap_noise = Laplace(torch.tensor([0.0]),
