@@ -17,7 +17,7 @@ def args_parser():
     parser.add_argument("--i_i_d", action='store_true',
                         help="if True, the data is distributed i.i.d, if False, the data is non-i.i.d")
     parser.add_argument("--wandb", action='store_false', help="use wandb for logging")
-    parser.add_argument('--method_choosing_users', type=str, default='fraboni',
+    parser.add_argument('--method_choosing_users', type=str, default='pause brute',
                         choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
                         help="method to choose users for each round")
     parser.add_argument('--model', type=str, default='cnn3',
@@ -27,13 +27,13 @@ def args_parser():
                         help="number of users participating in the federated learning")
     parser.add_argument('--num_users_per_round', type=int, default=5,
                         help="number of users participating in each round")
-    parser.add_argument('--global_epochs', type=int, default=300,
+    parser.add_argument('--global_epochs', type=int, default=400,
                         help="number of global epochs")
     parser.add_argument('--max_seconds', type=float, default=600,
                         help="max seconds to run the learning process")
-    parser.add_argument('--epsilon_bar', type=float, default=50,
+    parser.add_argument('--epsilon_bar', type=float, default=100,
                         help="privacy budget (epsilon)")
-    parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.095,
+    parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.06,
                         help="the coefficient for the deascent of the epsilon sum")
     parser.add_argument('--delta_f', type=float, default=0.012,
                         help="constant delta f, the sensitivity for the laplace noise")
@@ -43,8 +43,10 @@ def args_parser():
                         help="alpha parameter for the MAB")
     parser.add_argument('--beta', type=float, default=2,
                         help="beta parameter for the MAB")
-    parser.add_argument('--gamma', type=float, default=2,
+    parser.add_argument('--gamma', type=float, default=40,
                         help="gamma parameter for the MAB")
+    parser.add_argument("--alternative_privacy_reward", action='store_true',
+                        help="if True, uses the variance reward instead of accumulated reward for the privacy reward")
 
 
     #verbose arguments
@@ -62,7 +64,9 @@ def args_parser():
     parser.add_argument("--label_dominance", type=float, default=0.25,
                         help = "Percentage of the data that is generated from the most dominant label")  
 
-    
+    #ploting arguments
+    parser.add_argument("--bar_plot_interval", type=int, default=30,
+                         help="the interval to plot the bar plot of the chosen users")
     
     #sa-pause arguments
     parser.add_argument('--max_iterations_sa_pause', type=int, default=3000,

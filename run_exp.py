@@ -1,7 +1,6 @@
 import gc
 import sys
 from statistics import mean
-from threading import local
 
 import torch
 from tqdm import tqdm
@@ -31,7 +30,7 @@ def run_exp(args):
     # create the data loaders
     train_data, test_loader = utils.data(args)
     #input_var in the CNNs is the number of channels and in linear models is the size of the flatten pictures
-    input_var, output, train_data, val_loader = utils.data_split(train_data, len(test_loader.dataset), args)
+    input_var, output, train_data = utils.data_arrangement(train_data, args)
 
 
     # model
@@ -105,6 +104,20 @@ def run_exp(args):
         for usr_idx in range(args.num_users):
             local_models[usr_idx].update_g(global_epoch)
             local_models[usr_idx].update_ucb(global_epoch)
+
+
+        if args.alternative_privacy_reward:
+            # for the alternative privacy reward we manage the upate of teh reward here instead of in the update_privacy_terms_and_violations
+            variance_terms = np.array([local_models[usr_idx].compute_var_term(local_models[usr_idx].num_of_obs + 1) for usr_idx in range(args.num_users)])
+
+            if (max(variance_terms) > 1) and (max(variance_terms) - min(variance_terms) != 0):
+                variance_terms = variance_terms / max(variance_terms)
+            
+            one_minus_variance_terms = 1 - variance_terms
+
+            for usr_idx in range(args.num_users):
+                local_models[usr_idx].privacy_reward = one_minus_variance_terms[usr_idx]
+
         
         if args.choosing_users_verbose:
             textio.cprint(f"iteration: {global_epoch}")
@@ -134,16 +147,16 @@ def run_exp(args):
         num_fast_users = 0
         for usr_idx in sorted(rounds_choise_no_rep):
             local_models[usr_idx].update_emp_avg()
-            local_models[usr_idx].update_privacy_violation_and_reward()
-            local_models[usr_idx].increase_num_of_obs()
+            local_models[usr_idx].update_privacy_terms_and_violations()
             if local_models[usr_idx].privacy_violation > max_privacy_violation:
                 max_privacy_violation = local_models[usr_idx].privacy_violation
             if args.choosing_users_verbose:
-                textio.cprint(f"user {usr_idx}, emp_avg: {local_models[usr_idx].emp_avg}, h: {local_models[usr_idx].ucb_generalization}, ucb: {local_models[usr_idx].ucb},num_of_obs(calculated after picking at this round): {local_models[usr_idx].num_of_obs}, privacy reward: {local_models[usr_idx].privacy_reward}, g: {local_models[usr_idx].g}, curr_delay = {local_models[usr_idx].last_access_time}, data_size = {len(local_models[usr_idx].data_loader.dataset)}")
+                textio.cprint(f"user {usr_idx}, emp_avg: {local_models[usr_idx].emp_avg}, h: {local_models[usr_idx].ucb_generalization}, ucb: {local_models[usr_idx].ucb},num_of_obs: {local_models[usr_idx].num_of_obs}, privacy reward: {local_models[usr_idx].privacy_reward}, g: {local_models[usr_idx].g}, curr_delay = {local_models[usr_idx].last_access_time}, data_size = {len(local_models[usr_idx].data_loader.dataset)}")
             if usr_idx < args.num_users//2:
                 num_fast_users += 1
             else:
                 num_slow_users += 1
+            local_models[usr_idx].increase_num_of_obs()
         if args.choosing_users_verbose:
             textio.cprint(f"num of fast users chosen: {num_fast_users}, num of slow users chosen: {num_slow_users}")
         
@@ -201,19 +214,19 @@ def run_exp(args):
                         , path_best_model)
         
         
-        with open(last_model_path, "wb") as f:
-            torch.save({"model's state dict":global_model.state_dict(),
-                    "train_loss_list": train_loss_list,
-                    "val_acc_list": val_acc_list,
-                    "val_losses_list": val_losses_list,
-                    "global_epochs_time_list": global_epochs_time_list,
-                    "num_of_obs_arr": num_of_obs_arr.reshape(-1),
-                    "global_epoch": global_epoch,
-                    "num_of_users": args.num_users,
-                    "num_of_users_per_round": args.num_users_per_round,
-                    "privacy_violations_list": privacy_violations_list}
-                    , f)
-            f.flush()
+        # with open(last_model_path, "wb") as f:
+        #     torch.save({"model's state dict":global_model.state_dict(),
+        #             "train_loss_list": train_loss_list,
+        #             "val_acc_list": val_acc_list,
+        #             "val_losses_list": val_losses_list,
+        #             "global_epochs_time_list": global_epochs_time_list,
+        #             "num_of_obs_arr": num_of_obs_arr.reshape(-1),
+        #             "global_epoch": global_epoch,
+        #             "num_of_users": args.num_users,
+        #             "num_of_users_per_round": args.num_users_per_round,
+        #             "privacy_violations_list": privacy_violations_list}
+        #             , f)
+        #     f.flush()
         if args.wandb:
             # Log metrics vs epochs
             wandb.log({
@@ -225,19 +238,11 @@ def run_exp(args):
                 "max_privacy_violation": max_privacy_violation
             })
         
-        users_idxs = tuple([str(x) for x in range(1,args.num_users+1)])
-        plt.bar(users_idxs, num_of_obs_arr.reshape(-1))
-        plt.title("Number of times each user was chosen")
-        plt.ylabel("number of times")
-        # if len(uesrs_idxs) >=40 then the xticks are not shown, else, roathe them in 45 degrees and make them small enough
-        if len(users_idxs) >= 40:
-            plt.xticks([])
-        else:
-            plt.xticks(rotation=45, fontsize=10)
-        fig = plt.gcf()
-        fig.set_size_inches(18.5, 10.5)
-        #boardio.add_figure("Number of times each user was chosen", fig, global_epoch)
-        plt.savefig(last_model_path.parent / "Number of times each user was chosen.png")
+        if global_epoch % args.bar_plot_interval ==0:
+            path_bar_plot = last_model_path.parent / "Number of times each user was chosen.png"
+            utils.plot_layered_user_selections(choices_table[:global_epoch], path_bar_plot,
+                                                args, interval=args.bar_plot_interval)
+            
 
         if time_counter > args.max_seconds:
             break

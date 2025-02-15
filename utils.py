@@ -1,4 +1,5 @@
 import numpy as np
+from sympy import comp
 import torch
 import torch.optim as optim
 import copy
@@ -66,11 +67,7 @@ class user:
         
             return self.args.tau_min/self.last_access_time
     
-            # self.last_access_time = max(self.args.tau_min,
-            #                              self.args.tau_min + ((1-self.args.tau_min)/self.args.num_users)*(self.user_idx+1) 
-            #                              + (1/20)*np.random.randn())
-            
-            # return self.args.tau_min/self.last_access_time
+
 
         
     
@@ -103,11 +100,17 @@ class user:
             partial_sum += new_term
             yield new_term ,partial_sum
 
-    def update_privacy_violation_and_reward(self):
+    def update_privacy_terms_and_violations(self):
         self.next_privacy_term, self.privacy_violation = next(self.privacy_series)
-        self.privacy_reward = 1 - self.privacy_violation/self.args.epsilon_bar
-        
+        if not self.args.alternative_privacy_reward:
+            self.privacy_reward = 1 - self.privacy_violation/self.args.epsilon_bar
 
+    
+    def compute_privacy_term(self, num_of_obs):
+        return self.args.epsilon_bar * np.exp(-self.args.epsilon_sum_deascent_coeff*num_of_obs)/self.inf_sum
+
+    def compute_var_term(self, num_of_obs):
+        return self.args.delta_f/self.compute_privacy_term(num_of_obs)
         
     
 
@@ -334,7 +337,7 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
 
         else:
             start_time = time.time()
-            #create a uniform random noise for the g and p axes, the noise should be uniformly bewtween -10^-7 and 10^-7
+            #create a tiny uniform random noise for the g and p axes
             g_noise = np.random.uniform(-10**-8, 10**-8, num_users)
             p_noise = np.random.uniform(-10**-8, 10**-8, num_users)
 
@@ -669,36 +672,21 @@ def data(args):
     return train_data, test_loader
 
 
-def data_split(data, amount, args):
-    """
-    Splits the given data into train and validation sets with possible truncation set by the args.data_truncation argument.
-
-    Args:
-        data (torch.utils.data.Dataset): The dataset to be split.
-        amount (int): The number of samples to be included in the validation set.
-        args: additional information variable.
-
-    Returns:
-        tuple: A tuple containing the following elements:
-            - input (int): The size of the picture in linears models or the number of channels in CNN models.
-            - output (int): The number of classes.
-            - train_data (torch.utils.data.Dataset): The training dataset.
-            - val_loader (torch.utils.data.DataLoader): The validation data loader.
-    """
-    
-    # split train, validation
-    train_data, val_data = torch.utils.data.random_split(data, [len(data) - amount, amount])
+def data_arrangement(data, args):
+    train_data = data
+    # # split train, validation
+    # train_data, val_data = torch.utils.data.random_split(data, [len(data) - amount, amount])
     #the train data is truncated to the first args.data_truncation samples
     if args.data_truncation is not None:
         train_data = torch.utils.data.Subset(train_data, range(int(args.data_truncation)))
-    val_loader = torch.utils.data.DataLoader(val_data, batch_size=args.test_batch_size, shuffle=False)
+    # val_loader = torch.utils.data.DataLoader(val_data, batch_size=args.test_batch_size, shuffle=False)
 
     # input, output sizes
     in_channels, dim1, dim2 = data[0][0].shape  # images are dim1 x dim2 pixels
     input_var = dim1 * dim2 if args.model == 'mlp' or args.model == 'linear' else in_channels
     output = len(data.classes)  # number of classes
 
-    return input_var, output, train_data, val_loader
+    return input_var, output, train_data
 
 def plot_graphs(paths_dict: dict, x_axis_time = True, path_to_save = None, print_graph = True):
     """
@@ -1101,3 +1089,57 @@ def print_distribution_stats(local_models, args):
     print(f"Max samples: {np.max(total_samples)}")
     print(f"Total samples: {np.sum(total_samples)}")
     
+
+def plot_layered_user_selections(choices_table, save_path, args, interval=30, figsize=(18.5, 10.5)):
+    """
+    Creates a stacked bar plot showing the number of times each user was chosen,
+    with different colors for each interval of epochs.
+    
+    Args:
+        choices_table (np.ndarray): Binary matrix where rows are epochs and columns are users
+        interval (int): Number of epochs per layer
+        figsize (tuple): Figure size in inches
+    """
+    num_epochs, num_users = choices_table.shape
+    cumulative_counts = np.cumsum(choices_table, axis=0)
+    
+    # Calculate the number of complete intervals
+    num_intervals = num_epochs // interval
+    if num_epochs % interval > 0:
+        num_intervals += 1
+    
+    # Create figure
+    plt.figure(figsize=figsize)
+    
+    # Create x-axis labels
+    users_idxs = [str(x) for x in range(1, args.num_users + 1)]
+    
+    # Plot each layer
+    bottom = np.zeros(args.num_users)
+    for i in range(num_intervals):
+        start_idx = i * interval
+        end_idx = min((i + 1) * interval, num_epochs)
+        
+        if i == 0:
+            layer_data = cumulative_counts[end_idx - 1]
+        else:
+            layer_data = cumulative_counts[end_idx - 1] - cumulative_counts[start_idx - 1]
+            
+        plt.bar(users_idxs, layer_data, bottom=bottom, 
+               label=f'Epochs {start_idx + 1}-{end_idx}',
+               alpha=0.7)
+        bottom += layer_data
+    
+    plt.title("Cumulative Number of Times Each User Was Chosen")
+    plt.ylabel("Number of times")
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    
+    if len(users_idxs) >= 40:
+        plt.xticks([])
+    else:
+        plt.xticks(rotation=45, fontsize=10)
+    
+    plt.tight_layout()
+
+    plt.savefig(save_path)
+    plt.close()
