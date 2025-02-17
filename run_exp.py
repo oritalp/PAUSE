@@ -55,24 +55,7 @@ def run_exp(args):
     global_model = global_model.to(args.device)
     print(f"global model's device: {next(global_model.parameters()).device}")
 
-    if args.wandb:
-        wandb.init(
-            project="PAUSE",
-            name=args.method_choosing_users + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
-            config={
-                "model": args.model,
-                "num_users": args.num_users,
-                "num_users_per_round": args.num_users_per_round,
-                "global_epochs": args.global_epochs,
-                "max_seconds": args.max_seconds,
-                "epsilon_bar": args.epsilon_bar,
-                "epsilon_sum_deascent_coeff": args.epsilon_sum_deascent_coeff,
-                "delta_f": args.delta_f,
-                "data": args.data,
-                "alpha": args.alpha,
-                "gamma": args.gamma
-            }
-        )
+    
 
     train_criterion = torch.nn.CrossEntropyLoss(reduction='mean')
     test_criterion = torch.nn.CrossEntropyLoss(reduction='sum')
@@ -214,19 +197,18 @@ def run_exp(args):
                         , path_best_model)
         
         
-        # with open(last_model_path, "wb") as f:
-        #     torch.save({"model's state dict":global_model.state_dict(),
-        #             "train_loss_list": train_loss_list,
-        #             "val_acc_list": val_acc_list,
-        #             "val_losses_list": val_losses_list,
-        #             "global_epochs_time_list": global_epochs_time_list,
-        #             "num_of_obs_arr": num_of_obs_arr.reshape(-1),
-        #             "global_epoch": global_epoch,
-        #             "num_of_users": args.num_users,
-        #             "num_of_users_per_round": args.num_users_per_round,
-        #             "privacy_violations_list": privacy_violations_list}
-        #             , f)
-        #     f.flush()
+        with open(last_model_path, "wb") as f:
+            torch.save({"train_loss_list": train_loss_list,
+                    "val_acc_list": val_acc_list,
+                    "val_losses_list": val_losses_list,
+                    "global_epochs_time_list": global_epochs_time_list,
+                    "num_of_obs_arr": num_of_obs_arr.reshape(-1),
+                    "global_epoch": global_epoch,
+                    "num_of_users": args.num_users,
+                    "num_of_users_per_round": args.num_users_per_round,
+                    "privacy_violations_list": privacy_violations_list}
+                    , f)
+            f.flush()
         if args.wandb:
             # Log metrics vs epochs
             wandb.log({

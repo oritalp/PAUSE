@@ -328,8 +328,7 @@ def choose_users(local_models,  args, global_epoch, textio ,num_users = 1, num_u
         #TODO: the condition for random initial starting is good if the number of users is a multiple of the number of 
         # users per round, otherwise, the condition should be changed (maybe with a change in the initialization of the
         # values of p and g in the user class)
- 
-
+        
         if condition:
             round_no = (global_epoch-1) // (args.num_users/args.num_users_per_round)
             list_of_unchosen_users = [i for i in range(num_users) if local_models[i].num_of_obs == round_no]
@@ -581,10 +580,11 @@ def initializations(args):
 
     """
     #  reproducibility
+    seed = int(args.seed)   
     torch.backends.cudnn.deterministic = True
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed_all(args.seed)
-    np.random.seed(args.seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
 
     #  documentation
 

@@ -1,0 +1,187 @@
+Namespace(full_exp=True, data='cifar10', i_i_d=False, wandb=True, method_choosing_users='sa_pause', model='cnn3', num_users=30, num_users_per_round=5, global_epochs=10, max_seconds=600, epsilon_bar=100, epsilon_sum_deascent_coeff=0.04, delta_f=0.012, accel_ucb_coeff=1, alpha=20, beta=2, gamma=40, alternative_privacy_reward=False, choosing_users_verbose=True, sa_pause_verbose=False, snr_verbose=True, dirichlet_coeff=3, label_dominance=0.25, bar_plot_interval=30, max_iterations_sa_pause=500, sa_pause_simulation=False, max_time_sa_pause=600, pre_sa_pause_rounds=1, beta_max_reduction=70, data_truncation=None, tau_min=0.05, production=False, privacy_noise='laplace', privacy=True, save_best_model=False, seed=1, norm_mean=0.5, norm_std=0.5, train_batch_size=20, test_batch_size=1000, local_epochs=1, local_iterations=100, lr=0.01, momentum=0.5, lr_scheduler=False, optimizer='adam', device=device(type='cuda'))
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN3LayerCifar                           --
+├─Conv2d: 1-1                            896
+├─BatchNorm2d: 1-2                       64
+├─Conv2d: 1-3                            18,496
+├─BatchNorm2d: 1-4                       128
+├─Conv2d: 1-5                            73,856
+├─BatchNorm2d: 1-6                       256
+├─MaxPool2d: 1-7                         --
+├─Linear: 1-8                            65,664
+├─BatchNorm1d: 1-9                       256
+├─Linear: 1-10                           8,256
+├─BatchNorm1d: 1-11                      128
+├─Linear: 1-12                           2,080
+├─BatchNorm1d: 1-13                      64
+├─Linear: 1-14                           330
+├─Dropout: 1-15                          --
+├─Dropout: 1-16                          --
+├─Dropout: 1-17                          --
+=================================================================
+Total params: 170,474
+Trainable params: 170,474
+Non-trainable params: 0
+=================================================================
+iteration: 1
+user 2, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.01351917018028873, curr_delay = 0.05, data_size = 1142
+user 5, emp_avg: 0.4491726367035865, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.009793780291139694, curr_delay = 0.11131577463610168, data_size = 972
+user 11, emp_avg: 0.33245691542104405, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.00819259241633412, curr_delay = 0.15039542774039427, data_size = 889
+user 16, emp_avg: 0.07313763727484916, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.019116895541022437, curr_delay = 0.6836425384115353, data_size = 1358
+user 24, emp_avg: 0.060829730693605116, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.028840973785262927, curr_delay = 0.8219664862868837, data_size = 1668
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.82 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.11 has been picked 1, his deltas theta's mean
+ is 0.00022219611855689436,
+the empirical var of deltas thetas is 0.0036431162152439356
+the minimum of the deltas theta is -0.19988282024860382 and the maximum is 0.22506481409072876
+the added laplace noise var is 0.003060399989333737
+global epoch 1 has been done artifficialy in 0.82 secs, the total time by now is 0.82 
+ with avg train loss 2.052, val loss 2.332, avg val acc 10.00%
+iteration: 2
+user 1, emp_avg: 0.7495021986273135, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.012113488046785819, curr_delay = 0.06671094506670323, data_size = 1081
+user 7, emp_avg: 0.40579304100786834, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0031586098302166738, curr_delay = 0.12321551861957757, data_size = 552
+user 10, emp_avg: 0.2582830871697334, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.021855012535067258, curr_delay = 0.19358603982901126, data_size = 1452
+user 12, emp_avg: 0.27641214018882737, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0057689328275075565, curr_delay = 0.1808893052448534, data_size = 746
+user 25, emp_avg: 0.057096921761599015, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.011603504167948751, curr_delay = 0.8757039514103525, data_size = 1058
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.88 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 1, his deltas theta's mean
+ is -0.001193942385725677,
+the empirical var of deltas thetas is 0.0037943003699183464
+the minimum of the deltas theta is -0.23926813900470734 and the maximum is 0.2258131355047226
+the added laplace noise var is 0.003060399989333737
+global epoch 2 has been done artifficialy in 0.88 secs, the total time by now is 1.70 
+ with avg train loss 2.040, val loss 2.330, avg val acc 10.00%
+iteration: 3
+user 4, emp_avg: 0.4850093611158914, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.16852288062010473, curr_delay = 0.10309079372192297, data_size = 4032
+user 13, emp_avg: 0.2734996958241816, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.09554794736405435, curr_delay = 0.1828155598101372, data_size = 3036
+user 19, emp_avg: 0.06946870885425334, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.008621989782292772, curr_delay = 0.7197485144700321, data_size = 912
+user 21, emp_avg: 0.0736502773224015, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.03586276047776728, curr_delay = 0.6788840696570193, data_size = 1860
+user 29, emp_avg: 0.0477130599032101, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.010890944828001575, curr_delay = 1.0479311136495784, data_size = 1025
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 1.05 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.21 has been picked 1, his deltas theta's mean
+ is 0.00039272475987672806,
+the empirical var of deltas thetas is 0.004476815927773714
+the minimum of the deltas theta is -0.281557559967041 and the maximum is 0.33648547530174255
+the added laplace noise var is 0.003060399989333737
+global epoch 3 has been done artifficialy in 1.05 secs, the total time by now is 2.75 
+ with avg train loss 1.913, val loss 2.332, avg val acc 10.00%
+iteration: 4
+user 9, emp_avg: 0.2866271827114131, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0057689328275075565, curr_delay = 0.17444263145949374, data_size = 746
+user 15, emp_avg: 0.07406101205860492, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.010827286251260343, curr_delay = 0.675119048608662, data_size = 1022
+user 18, emp_avg: 0.0639952899763209, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.010806108190312233, curr_delay = 0.7813074996378744, data_size = 1021
+user 27, emp_avg: 0.05385054210702484, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.046414016671795004, curr_delay = 0.928495759627227, data_size = 2116
+user 28, emp_avg: 0.0560337195266562, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.02687011834732934, curr_delay = 0.8923198463777537, data_size = 1610
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.9 has been picked 1, his deltas theta's mean
+ is -0.0006174878217279911,
+the empirical var of deltas thetas is 0.003602377139031887
+the minimum of the deltas theta is -0.24173906445503235 and the maximum is 0.19328561425209045
+the added laplace noise var is 0.003060399989333737
+global epoch 4 has been done artifficialy in 0.93 secs, the total time by now is 3.67 
+ with avg train loss 1.942, val loss 2.328, avg val acc 10.00%
+iteration: 5
+user 0, emp_avg: 0.797375999020548, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.15095050116768943, curr_delay = 0.0627056746897539, data_size = 3816
+user 14, emp_avg: 0.7912665412752429, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0742872992345582, curr_delay = 0.06318983223961122, data_size = 2677
+user 22, emp_avg: 0.06722659346861909, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.021168119802514852, curr_delay = 0.7437532889917985, data_size = 1429
+user 23, emp_avg: 0.06187686446676262, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.008174171753434075, curr_delay = 0.808056459080238, data_size = 888
+user 26, emp_avg: 0.055488996555184786, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.03134851632523589, curr_delay = 0.9010795491728548, data_size = 1739
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.90 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.14 has been picked 1, his deltas theta's mean
+ is -0.0012748833978548646,
+the empirical var of deltas thetas is 0.004742152523249388
+the minimum of the deltas theta is -0.2922535538673401 and the maximum is 0.34499505162239075
+the added laplace noise var is 0.003060399989333737
+global epoch 5 has been done artifficialy in 0.90 secs, the total time by now is 4.58 
+ with avg train loss 1.917, val loss 2.325, avg val acc 10.00%
+iteration: 6
+user 3, emp_avg: 0.5795048430810026, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0061142088206840705, curr_delay = 0.08628055588658999, data_size = 768
+user 6, emp_avg: 0.45387166445238025, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.12990454653809358, curr_delay = 0.11016329926726666, data_size = 3540
+user 8, emp_avg: 0.30033816609760977, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.09416821172421425, curr_delay = 0.16647900814493893, data_size = 3014
+user 17, emp_avg: 0.06650861222454858, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.050035465093921684, curr_delay = 0.7517823380705696, data_size = 2197
+user 20, emp_avg: 0.06598805307236998, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.005722627199384598, curr_delay = 0.7577129142628944, data_size = 743
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.76 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.6 has been picked 1, his deltas theta's mean
+ is -0.0022338503040373325,
+the empirical var of deltas thetas is 0.005083788651973009
+the minimum of the deltas theta is -0.32238277792930603 and the maximum is 0.3581179082393646
+the added laplace noise var is 0.003060399989333737
+global epoch 6 has been done artifficialy in 0.76 secs, the total time by now is 5.33 
+ with avg train loss 1.913, val loss 2.323, avg val acc 10.00%
+iteration: 7
+user 0, emp_avg: 0.898687999510274, h: 3.416937355927363, ucb: 4.214313354947911,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.06035195341406683, curr_delay = 0.05, data_size = 3816
+user 4, emp_avg: 0.7425046805579457, h: 3.416937355927363, ucb: 3.9019467170432542,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.07164093412956161, curr_delay = 0.05, data_size = 4032
+user 6, emp_avg: 0.38041973109223115, h: 3.416937355927363, ucb: 3.870809020379743,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.04733478605942493, curr_delay = 0.16288353491606122, data_size = 3540
+user 8, emp_avg: 0.2950416764630178, h: 3.416937355927363, ucb: 3.717275522024973,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.0268996907623057, curr_delay = 0.17256542048999682, data_size = 3014
+user 13, emp_avg: 0.24703318808785207, h: 3.416937355927363, ucb: 3.6904370517515446,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.027639450604866868, curr_delay = 0.2266888177321877, data_size = 3036
+num of fast users chosen: 5, num of slow users chosen: 0
+max_delay = 0.23 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.0 has been picked 2, his deltas theta's mean
+ is -0.0031355288811028004,
+the empirical var of deltas thetas is 0.0051586260087788105
+the minimum of the deltas theta is -0.33226510882377625 and the maximum is 0.3671306371688843
+the added laplace noise var is 0.0031852972822368235
+global epoch 7 has been done artifficialy in 0.23 secs, the total time by now is 5.56 
+ with avg train loss 1.879, val loss 2.325, avg val acc 10.00%
+iteration: 8
+user 1, emp_avg: 0.6965324135863579, h: 3.5322300675464238, ucb: 4.281732266173737,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.0002231649899123328, curr_delay = 0.07769251628704943, data_size = 1081
+user 2, emp_avg: 0.6577404001027897, h: 3.5322300675464238, ucb: 4.532230067546424,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -7.617856978963743e-05, curr_delay = 0.15848825021179766, data_size = 1142
+user 3, emp_avg: 0.4909321065035728, h: 3.5322300675464238, ucb: 4.111734910627426,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.002190857194709199, curr_delay = 0.12426702032359281, data_size = 768
+user 5, emp_avg: 0.6669495644480125, h: 3.5322300675464238, ucb: 3.9814027042500104,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.0006778977645152469, curr_delay = 0.05651464089890101, data_size = 972
+user 14, emp_avg: 0.4950671922437955, h: 3.5322300675464238, ucb: 4.323496608821666,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.02177305795495568, curr_delay = 0.25142325271064947, data_size = 2677
+num of fast users chosen: 5, num of slow users chosen: 0
+max_delay = 0.25 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.1 has been picked 2, his deltas theta's mean
+ is -0.001167712383903563,
+the empirical var of deltas thetas is 0.0015691634034737945
+the minimum of the deltas theta is -0.26558375358581543 and the maximum is 0.25762003660202026
+the added laplace noise var is 0.0031852972822368235
+global epoch 8 has been done artifficialy in 0.25 secs, the total time by now is 5.81 
+ with avg train loss 1.912, val loss 2.323, avg val acc 10.00%
+iteration: 9
+user 17, emp_avg: 0.06741494547946966, h: 3.63088797183517, ucb: 3.6973965840597187,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.012673124983273385, curr_delay = 0.7318364194321149, data_size = 2197
+user 21, emp_avg: 0.06789985530095559, h: 3.63088797183517, ucb: 3.704538249157572,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.0061251825175281695, curr_delay = 0.8045125653058001, data_size = 1860
+user 26, emp_avg: 0.05513065131364417, h: 3.63088797183517, ucb: 3.6863769683903547,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.004348612608912237, curr_delay = 0.9128700904829319, data_size = 1739
+user 27, emp_avg: 0.056187865776139705, h: 3.63088797183517, ucb: 3.684738513942195,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.010884334526081856, curr_delay = 0.8543329884779072, data_size = 2116
+user 28, emp_avg: 0.05476324964858954, h: 3.63088797183517, ucb: 3.6869216913618263,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.0027888921307172134, curr_delay = 0.9347055848376837, data_size = 1610
+num of fast users chosen: 0, num of slow users chosen: 5
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.17 has been picked 2, his deltas theta's mean
+ is -0.0009807473979890347,
+the empirical var of deltas thetas is 0.004593930207192898
+the minimum of the deltas theta is -0.41369882225990295 and the maximum is 0.428387850522995
+the added laplace noise var is 0.0031852972822368235
+global epoch 9 has been done artifficialy in 0.93 secs, the total time by now is 6.75 
+ with avg train loss 1.808, val loss 2.324, avg val acc 10.00%
+iteration: 10
+user 10, emp_avg: 0.25388121282679155, h: 3.7169221888498387, ucb: 3.975205276019572,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.002288130700780262, curr_delay = 0.20041739850627668, data_size = 1452
+user 16, emp_avg: 0.07424724747490238, h: 3.7169221888498387, ucb: 3.790059826124688,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.0014641231367788163, curr_delay = 0.6635096199959676, data_size = 1358
+user 22, emp_avg: 0.06526744277419963, h: 3.7169221888498387, ucb: 3.7841487823184576,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.0020695838926001733, curr_delay = 0.7897859562692159, data_size = 1429
+user 23, emp_avg: 0.061356144077079594, h: 3.7169221888498387, ucb: 3.778799053316601,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -9.194649940731852e-05, curr_delay = 0.8218895664625514, data_size = 888
+user 24, emp_avg: 0.057053199290859294, h: 3.7169221888498387, ucb: 3.777751919543444,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.004875712835131584, curr_delay = 0.9384971317088596, data_size = 1668
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.94 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.10 has been picked 2, his deltas theta's mean
+ is -0.0009416983230039477,
+the empirical var of deltas thetas is 0.0018140401225537062
+the minimum of the deltas theta is -0.29816001653671265 and the maximum is 0.2929916977882385
+the added laplace noise var is 0.0031852972822368235
+global epoch 10 has been done artifficialy in 0.94 secs, the total time by now is 7.68 
+ with avg train loss 1.864, val loss 2.285, avg val acc 10.28%

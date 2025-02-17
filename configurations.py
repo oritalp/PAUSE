@@ -2,22 +2,32 @@ import argparse
 import torch
 import numpy as np
 
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 def args_parser():
     parser = argparse.ArgumentParser()
 
     # store_true suprisingly means that if the argument is not given, it is False
 
+    parser.add_argument("--full_exp", type=str2bool, default=True,
+                        help=("if true, runs all the methods in the defined environment, else, running only the experiment \
+                              defined in method_choosing_users") )
     parser.add_argument('--data', type=str, default='cifar10',
                         choices=['mnist', 'cifar10', "fashion mnist"],
                         help="dataset to use (mnist, cifar10, fashion mnist)")
-    parser.add_argument("--full_exp", action='store_true',
-                        help=("if true, runs all the methods in the defined environment, else, running only the experiment \
-                              defined in method_choosing_users") )
-    parser.add_argument("--i_i_d", action='store_true',
+    parser.add_argument("--i_i_d", type = str2bool, default=False,
                         help="if True, the data is distributed i.i.d, if False, the data is non-i.i.d")
-    parser.add_argument("--wandb", action='store_false', help="use wandb for logging")
-    parser.add_argument('--method_choosing_users', type=str, default='pause brute',
+    parser.add_argument("--wandb", type=str2bool, default=True,
+                         help="use wandb for logging")
+    parser.add_argument('--method_choosing_users', type=str, default='sa_pause',
                         choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
                         help="method to choose users for each round")
     parser.add_argument('--model', type=str, default='cnn3',
@@ -33,7 +43,7 @@ def args_parser():
                         help="max seconds to run the learning process")
     parser.add_argument('--epsilon_bar', type=float, default=100,
                         help="privacy budget (epsilon)")
-    parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.06,
+    parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.04,
                         help="the coefficient for the deascent of the epsilon sum")
     parser.add_argument('--delta_f', type=float, default=0.012,
                         help="constant delta f, the sensitivity for the laplace noise")
@@ -50,11 +60,11 @@ def args_parser():
 
 
     #verbose arguments
-    parser.add_argument('--choosing_users_verbose', action='store_false',
+    parser.add_argument('--choosing_users_verbose', action='store_true',
                         help="weather to print the chosen users for each round with their g, delay, and ucb values")
     parser.add_argument('--sa_pause_verbose', action='store_true',
                         help="weather to print the sa_pause algorithm's progress")
-    parser.add_argument('--snr_verbose', action='store_false',
+    parser.add_argument('--snr_verbose', action='store_true',
                         help="weather to print the snr of the deltas theta for each user")
 
     #non-i.i.d arguments
@@ -69,7 +79,7 @@ def args_parser():
                          help="the interval to plot the bar plot of the chosen users")
     
     #sa-pause arguments
-    parser.add_argument('--max_iterations_sa_pause', type=int, default=3000,
+    parser.add_argument('--max_iterations_sa_pause', type=int, default=500,
                         help="maximum number of iterations for the sa_pause algorithm")
     parser.add_argument('--sa_pause_simulation', action='store_true',
                         help="weather to perform sa_pause in simulation mode (outside the main code) or not")
@@ -80,7 +90,7 @@ def args_parser():
                               and the users are chosen uniformly. this value is deafult equal to 1 and should only be\
                               changed in simulations if the number of users is very large and the sa_pause algorithm is very slow"))
     parser.add_argument('--beta_max_reduction', type=float, default=70,
-                        help="the aonut we divide the beta_max we compute in sa_pause to accelerate the convergence")
+                        help="the acount we divide the beta_max we compute in sa_pause to accelerate the convergence")
 
     #things that I don't touch often:
     parser.add_argument('--data_truncation', default=None,
@@ -120,66 +130,6 @@ def args_parser():
 
     args = parser.parse_args()
     return args
-
-
-class arguments:
-
-    def __init__(self, method_choosing_users = "pause brute", data_truncation = 2000, model = "mlp",
-                  num_users = 30, num_users_per_round = 5, data = "mnist", 
-                  save_best_model = False, global_epochs = 600, max_seconds = 300, privacy = True,
-                  privacy_choosing_users = True, epsilon_bar = 200, epsilon_sum_deascent_coeff = 0.04,
-                  delta_f = 0.003, snr_verbose = False, choosing_users_verbose = False,
-                  max_iterations_sa_pause = 500, sa_pause_simulation = False, sa_pause_verbose = False,
-                  alpha = 10**2, beta = 2, gamma = 5, accel_ucb_coeff = 1, pre_sa_pause_rounds = 1,
-                  beta_max_reduction = 30, max_time_sa_pause = 600, production = False,
-                  norm_std = 0.5, norm_mean = 0.5, train_batch_size = 20, test_batch_size = 1000, local_epochs = 1,
-                  local_iterations = 100, tau_min = 0.05, privacy_noise = "laplace",
-                  optimizer = "Adam", lr = 0.01, momentum = 0.5, lr_scheduler = False,
-                    seed = 0):
-        self.eval = eval
-        self.data = data
-        self.model = model
-        self.num_users = num_users
-        self.num_users_per_round = num_users_per_round
-        self.local_epochs = local_epochs
-        self.local_iterations = local_iterations
-        self.global_epochs = global_epochs
-        self.tau_min = tau_min
-        self.privacy_noise = privacy_noise
-        self.epsilon_bar = epsilon_bar
-        self.optimizer = optimizer
-        self.lr = lr
-        self.momentum = momentum
-        self.lr_scheduler = lr_scheduler
-        self.seed = seed
-        self.alpha = alpha
-        self.beta = beta
-        self.gamma = gamma
-        self.max_seconds = max_seconds
-        self.method_choosing_users = method_choosing_users
-        self.data_truncation = data_truncation
-        self.choosing_users_verbose = choosing_users_verbose
-        self.save_best_model = save_best_model
-        self.privacy = privacy
-        self.privacy_choosing_users = privacy_choosing_users
-        self.epsilon_sum_deascent_coeff = epsilon_sum_deascent_coeff #the coefficient for the deascent of the epsilon sum
-        self.delta_f = delta_f #constant delta f
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.snr_verbose = snr_verbose  #weather to print the snr of the deltas theta for each user
-        self.max_iterations_sa_pause = max_iterations_sa_pause
-        self.sa_pause_simulation = sa_pause_simulation
-        self.sa_pause_verbose = sa_pause_verbose
-        self.beta_max_reduction = beta_max_reduction
-        self.accel_ucb_coeff = accel_ucb_coeff
-        self.max_time_sa_pause = max_time_sa_pause
-        self.pre_sa_pause_rounds = pre_sa_pause_rounds
-        self.norm_std = norm_std
-        self.norm_mean = norm_mean
-        self.train_batch_size = train_batch_size
-        self.test_batch_size = test_batch_size
-        self.production = production # if True, the code will run in production mode, if False, it will run in development mode
-
-
 
 
 

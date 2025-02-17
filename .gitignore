@@ -3,7 +3,9 @@ __pycache__/
 unified_results/
 data/
 
-*.pth.tar
+*.out
+*.sbatch
+
 
 # # Ignore everything in checkpoints directory
 # checkpoints/*

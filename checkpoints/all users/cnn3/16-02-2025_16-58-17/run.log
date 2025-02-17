@@ -1,0 +1,458 @@
+Namespace(full_exp=True, data='cifar10', i_i_d=False, wandb=True, method_choosing_users='all users', model='cnn3', num_users=30, num_users_per_round=5, global_epochs=10, max_seconds=600, epsilon_bar=100, epsilon_sum_deascent_coeff=0.04, delta_f=0.012, accel_ucb_coeff=1, alpha=20, beta=2, gamma=40, alternative_privacy_reward=False, choosing_users_verbose=True, sa_pause_verbose=False, snr_verbose=True, dirichlet_coeff=3, label_dominance=0.25, bar_plot_interval=30, max_iterations_sa_pause=500, sa_pause_simulation=False, max_time_sa_pause=600, pre_sa_pause_rounds=1, beta_max_reduction=70, data_truncation=None, tau_min=0.05, production=False, privacy_noise='laplace', privacy=True, save_best_model=False, seed=1, norm_mean=0.5, norm_std=0.5, train_batch_size=20, test_batch_size=1000, local_epochs=1, local_iterations=100, lr=0.01, momentum=0.5, lr_scheduler=False, optimizer='adam', device=device(type='cuda'), exp_path=PosixPath('/sise/home/oripele/PAUSE/checkpoints/fraboni/cnn3/16-02-2025_16-56-53'), fraboni_distributions=array([[0.38965017, 0.        , 0.        , 0.        , 0.41170584,
+        0.        , 0.19864398, 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.16282394, 0.        , 0.30775829, 0.        ,
+        0.        , 0.        , 0.        , 0.3100047 , 0.21941307,
+        0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.05393428,
+        0.        , 0.        , 0.22433476, 0.        , 0.        ,
+        0.        , 0.18992383, 0.        , 0.        , 0.14287173,
+        0.        , 0.17317785, 0.21575755, 0.        , 0.        ],
+       [0.        , 0.11038046, 0.11660914, 0.        , 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.        ,
+        0.14826312, 0.        , 0.        , 0.        , 0.        ,
+        0.03845447, 0.13866482, 0.        , 0.        , 0.        ,
+        0.        , 0.        , 0.1459146 , 0.        , 0.02744706,
+        0.10803194, 0.        , 0.        , 0.1662344 , 0.        ],
+       [0.        , 0.        , 0.        , 0.07842016, 0.        ,
+        0.09925052, 0.        , 0.05636449, 0.        , 0.07617375,
+        0.        , 0.09077542, 0.07617375, 0.        , 0.        ,
+        0.06590153, 0.        , 0.        , 0.10425389, 0.09312394,
+        0.07586742, 0.        , 0.        , 0.09067331, 0.        ,
+        0.        , 0.        , 0.        , 0.        , 0.09302183]]))
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN3LayerCifar                           --
+├─Conv2d: 1-1                            896
+├─BatchNorm2d: 1-2                       64
+├─Conv2d: 1-3                            18,496
+├─BatchNorm2d: 1-4                       128
+├─Conv2d: 1-5                            73,856
+├─BatchNorm2d: 1-6                       256
+├─MaxPool2d: 1-7                         --
+├─Linear: 1-8                            65,664
+├─BatchNorm1d: 1-9                       256
+├─Linear: 1-10                           8,256
+├─BatchNorm1d: 1-11                      128
+├─Linear: 1-12                           2,080
+├─BatchNorm1d: 1-13                      64
+├─Linear: 1-14                           330
+├─Dropout: 1-15                          --
+├─Dropout: 1-16                          --
+├─Dropout: 1-17                          --
+=================================================================
+Total params: 170,474
+Trainable params: 170,474
+Non-trainable params: 0
+=================================================================
+iteration: 1
+user 0, emp_avg: 0.9470851433315571, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.15109199466579099, curr_delay = 0.052793563864929005, data_size = 3816
+user 1, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.012124842628484404, curr_delay = 0.05, data_size = 1081
+user 2, emp_avg: 0.6412934268598008, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.013531842378561955, curr_delay = 0.07796742942592326, data_size = 1142
+user 3, emp_avg: 0.43587548670949827, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0061199399761785525, curr_delay = 0.11471165854601945, data_size = 768
+user 4, emp_avg: 0.5002667826720614, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.16868084559342136, curr_delay = 0.0999466719196033, data_size = 4032
+user 5, emp_avg: 0.8388764785174094, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.00980296049406921, curr_delay = 0.05960353077054638, data_size = 972
+user 6, emp_avg: 0.286403705185307, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.13002631260423303, curr_delay = 0.1745787470439649, data_size = 3540
+user 7, emp_avg: 0.4951776245181519, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0031615705541000526, curr_delay = 0.10097386780885761, data_size = 552
+user 8, emp_avg: 0.3400243894422908, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.09425648032606557, curr_delay = 0.14704827521934583, data_size = 3014
+user 9, emp_avg: 0.348079308195975, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.005774340338444999, curr_delay = 0.1436454245417228, data_size = 746
+user 10, emp_avg: 0.3842118483906658, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.021875498337702682, curr_delay = 0.13013653849935441, data_size = 1452
+user 11, emp_avg: 0.3225267177541873, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.008200271745323028, curr_delay = 0.15502591645169483, data_size = 889
+user 12, emp_avg: 0.5132381034471775, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.005774340338444999, curr_delay = 0.097420670180514, data_size = 746
+user 13, emp_avg: 0.30103185327864185, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.09563750926152659, curr_delay = 0.16609537979264566, data_size = 3036
+user 14, emp_avg: 0.2106444254192059, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.07435693245705102, curr_delay = 0.23736683228380923, data_size = 2677
+user 15, emp_avg: 0.07171882299104416, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.010837435211315373, curr_delay = 0.6971670464564611, data_size = 1022
+user 16, emp_avg: 0.06624179195950286, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.01913481476886214, curr_delay = 0.7548104983417065, data_size = 1358
+user 17, emp_avg: 0.06691742949745343, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.05008236585231938, curr_delay = 0.7471894897263317, data_size = 2197
+user 18, emp_avg: 0.0691297682937365, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.010816237299105405, curr_delay = 0.7232774133937065, data_size = 1021
+user 19, emp_avg: 0.07321679504820547, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.008630071607033036, curr_delay = 0.6829034235530294, data_size = 912
+user 20, emp_avg: 0.05932914001090689, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.005727991305727461, curr_delay = 0.8427561901421149, data_size = 743
+user 21, emp_avg: 0.0660937615004855, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.03589637644718987, curr_delay = 0.756501050399934, data_size = 1860
+user 22, emp_avg: 0.06084844210782509, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.021187961746038868, curr_delay = 0.8217137245913156, data_size = 1429
+user 23, emp_avg: 0.06115628077480597, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.00818183381580902, curr_delay = 0.817577513977895, data_size = 888
+user 24, emp_avg: 0.05801306735514306, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.028868007880797318, curr_delay = 0.861874785794572, data_size = 1668
+user 25, emp_avg: 0.06406894811246648, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.011614380716103666, curr_delay = 0.7804092539841628, data_size = 1058
+user 26, emp_avg: 0.058903281587536646, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.031377900866531465, curr_delay = 0.8488491413792387, data_size = 1739
+user 27, emp_avg: 0.053491229093176454, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.05512728219254566, curr_delay = 0.9347326813692189, data_size = 2305
+user 28, emp_avg: 0.05717829925176607, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.03076741552110908, curr_delay = 0.8744576291057774, data_size = 1722
+user 29, emp_avg: 0.055357394387927944, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.005098715251047967, curr_delay = 0.9032217024091681, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.17 has been picked 1, his deltas theta's mean
+ is -0.002139608608558774,
+the empirical var of deltas thetas is 0.004149538930505514
+the minimum of the deltas theta is -0.35476237535476685 and the maximum is 0.39201951026916504
+the added laplace noise var is 0.003060399989333737
+global epoch 1 has been done artifficialy in 0.93 secs, the total time by now is 0.93 
+ with avg train loss 2.017, val loss 2.332, avg val acc 10.00%
+iteration: 2
+user 0, emp_avg: 0.9735425716657786, h: 2.039333980337618, ucb: 2.986419123669175,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.012386457445402286, curr_delay = 0.05, data_size = 3816
+user 1, emp_avg: 0.6835041154359995, h: 2.039333980337618, ucb: 3.039333980337618,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.15201197949031875, curr_delay = 0.13623672657477387, data_size = 1081
+user 2, emp_avg: 0.6000375675057388, h: 2.039333980337618, ucb: 2.6806274071974188,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.14720539491900117, curr_delay = 0.08948038074723076, data_size = 1142
+user 3, emp_avg: 0.4173420884177792, h: 2.039333980337618, ucb: 2.475209467047116,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.17788989474943362, curr_delay = 0.12537339641268952, data_size = 768
+user 4, emp_avg: 0.37770300272278223, h: 2.039333980337618, ucb: 2.539600763009679,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.007973108153010628, curr_delay = 0.19597143652188256, data_size = 4032
+user 5, emp_avg: 0.6401093111313428, h: 2.039333980337618, ucb: 2.878210458855027,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.16079305950397021, curr_delay = 0.11329078971632915, data_size = 972
+user 6, emp_avg: 0.3362155037308433, h: 2.039333980337618, ucb: 2.325737685522925,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.019434697887205764, curr_delay = 0.12952451732080356, data_size = 3540
+user 7, emp_avg: 0.42706895836400055, h: 2.039333980337618, ucb: 2.5345116048557697,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.19693372554737715, curr_delay = 0.13929117254776988, data_size = 552
+user 8, emp_avg: 0.29307443168897673, h: 2.039333980337618, ucb: 2.3793583697799088,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.037244297626314114, curr_delay = 0.2031492407092766, data_size = 3014
+user 9, emp_avg: 0.3546462783699742, h: 2.039333980337618, ucb: 2.387413288533593,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.17978525994892455, curr_delay = 0.1384223867799608, data_size = 746
+user 10, emp_avg: 0.40374809425810787, h: 2.039333980337618, ucb: 2.4235458287282836,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.1239718190808881, curr_delay = 0.11812390693492122, data_size = 1452
+user 11, emp_avg: 0.3144256352441745, h: 2.039333980337618, ucb: 2.361860698091805,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.1676449199138436, curr_delay = 0.16322557089764728, data_size = 889
+user 12, emp_avg: 0.42071608472259375, h: 2.039333980337618, ucb: 2.552572083784795,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.17978525994892455, curr_delay = 0.15234888494389526, data_size = 746
+user 13, emp_avg: 0.26053986104801896, h: 2.039333980337618, ucb: 2.34036583361626,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.03638436172455068, curr_delay = 0.22722328677262427, data_size = 3036
+user 14, emp_avg: 0.21456984298210452, h: 2.039333980337618, ucb: 2.2499784057568237,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.051672256582056125, curr_delay = 0.22883791563845648, data_size = 2677
+user 15, emp_avg: 0.07051023695007118, h: 2.039333980337618, ucb: 2.111052803328662,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.15673443231843348, curr_delay = 0.7214835338567066, data_size = 1022
+user 16, emp_avg: 0.06610729707454616, h: 2.039333980337618, ucb: 2.1055757722971205,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.1308061670892794, curr_delay = 0.7578880741841528, data_size = 1358
+user 17, emp_avg: 0.07269366648890015, h: 2.039333980337618, ucb: 2.106251409835071,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.07629146824404001, curr_delay = 0.637186969556076, data_size = 2197
+user 18, emp_avg: 0.06801679949090286, h: 2.039333980337618, ucb: 2.108463748631354,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.15681509644427916, curr_delay = 0.7473413627557256, data_size = 1021
+user 19, emp_avg: 0.07048489988895931, h: 2.039333980337618, ucb: 2.1125507753858233,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.1657318929002735, curr_delay = 0.7379746507105456, data_size = 912
+user 20, emp_avg: 0.06200989590272943, h: 2.039333980337618, ucb: 2.0986631203485246,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.18004449703037398, curr_delay = 0.7729092011438171, data_size = 743
+user 21, emp_avg: 0.06463578968286199, h: 2.039333980337618, ucb: 2.105427741838103,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.09643298566366706, curr_delay = 0.7914170145390675, data_size = 1860
+user 22, emp_avg: 0.05950651275599346, h: 2.039333980337618, ucb: 2.100182422445443,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.12562710936450439, curr_delay = 0.8596296418487264, data_size = 1429
+user 23, emp_avg: 0.05932591110873252, h: 2.039333980337618, ucb: 2.100490261112424,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.16772834402238526, curr_delay = 0.8696326488179185, data_size = 888
+user 24, emp_avg: 0.0600837453280547, h: 2.039333980337618, ucb: 2.097347047692761,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.10896212840396076, curr_delay = 0.8044479756153193, data_size = 1668
+user 25, emp_avg: 0.06402710185028417, h: 2.039333980337618, ucb: 2.1034029284500844,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.1538443444532181, curr_delay = 0.7814300269716759, data_size = 1058
+user 26, emp_avg: 0.058751571209026424, h: 2.039333980337618, ucb: 2.0982372619251546,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.10423981668774324, curr_delay = 0.8532443471941188, data_size = 1739
+user 27, emp_avg: 0.05380139099795698, h: 2.039333980337618, ucb: 2.0928252094307944,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.07033528447425531, curr_delay = 0.9240170964945732, data_size = 2305
+user 28, emp_avg: 0.05738273639970548, h: 2.039333980337618, ucb: 2.096512279589384,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.10536098598926702, curr_delay = 0.868248898491821, data_size = 1722
+user 29, emp_avg: 0.05451330444366291, h: 2.039333980337618, ucb: 2.094691374725546,num_of_obs: 1, privacy reward: 0.9231163463866358, g: -0.18369342657403212, curr_delay = 0.9316327892326606, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.26 has been picked 2, his deltas theta's mean
+ is 6.0106733144493774e-05,
+the empirical var of deltas thetas is 0.004386545158922672
+the minimum of the deltas theta is -0.2939628064632416 and the maximum is 0.35899826884269714
+the added laplace noise var is 0.0031852972822368235
+global epoch 2 has been done artifficialy in 0.93 secs, the total time by now is 1.87 
+ with avg train loss 1.976, val loss 2.325, avg val acc 10.00%
+iteration: 3
+user 0, emp_avg: 0.8086412739958, h: 1.815443985917585, ucb: 2.788986557583364,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.07726238948305048, curr_delay = 0.10441930075564482, data_size = 3816
+user 1, emp_avg: 0.7890027436239997, h: 1.815443985917585, ucb: 2.4989481013535846,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.30975213622204123, curr_delay = 0.05, data_size = 1081
+user 2, emp_avg: 0.5685996318314754, h: 1.815443985917585, ucb: 2.415481553423324,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.3028743568769253, curr_delay = 0.09886820416001757, data_size = 1142
+user 3, emp_avg: 0.5647847098586368, h: 1.815443985917585, ucb: 2.2327860743353645,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.34625765745162973, curr_delay = 0.05816185600138291, data_size = 768
+user 4, emp_avg: 0.3664072882946181, h: 1.815443985917585, ucb: 2.1931469886403674,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.06551497345065148, curr_delay = 0.1454266829973685, data_size = 4032
+user 5, emp_avg: 0.5184298482352253, h: 1.815443985917585, ucb: 2.4555532970489278,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.3222342036183816, curr_delay = 0.18177130303681133, data_size = 972
+user 6, emp_avg: 0.3373139136886831, h: 1.815443985917585, ucb: 2.1516594896484285,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.09368193742597443, curr_delay = 0.14727074890735514, data_size = 3540
+user 7, emp_avg: 0.6180459722426671, h: 1.815443985917585, ucb: 2.2425129442815854,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.3726355549895807, curr_delay = 0.05, data_size = 552
+user 8, emp_avg: 0.27019286394764974, h: 1.815443985917585, ucb: 2.108518417606562,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.12935134783750804, curr_delay = 0.2227868845271917, data_size = 3014
+user 9, emp_avg: 0.3400660472485664, h: 1.815443985917585, ucb: 2.170090264287559,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.34890001093019546, curr_delay = 0.1608205269103645, data_size = 746
+user 10, emp_avg: 0.4698778597572069, h: 1.815443985917585, ucb: 2.219192080175693,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.26911503710639434, curr_delay = 0.0830375272614661, data_size = 1452
+user 11, emp_avg: 0.31617177237957617, h: 1.815443985917585, ucb: 2.1298696211617596,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.33190424708112815, curr_delay = 0.15641421212028145, data_size = 889
+user 12, emp_avg: 0.3848875346926934, h: 1.815443985917585, ucb: 2.236160070640179,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.34890001093019546, curr_delay = 0.15962688957284826, data_size = 746
+user 13, emp_avg: 0.27983166776290946, h: 1.815443985917585, ucb: 2.0759838469656042,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.1277444236566698, curr_delay = 0.15702763954265836, data_size = 3036
+user 14, emp_avg: 0.2159350328592474, h: 1.815443985917585, ucb: 2.0300138288996896,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.1552218090681689, curr_delay = 0.228659847949385, data_size = 2677
+user 15, emp_avg: 0.06754545237350508, h: 1.815443985917585, ucb: 1.8859542228676562,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.31647787579858394, curr_delay = 0.8114790762825228, data_size = 1022
+user 16, emp_avg: 0.0685910165260772, h: 1.815443985917585, ucb: 1.8815512829921313,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.2791410623071962, curr_delay = 0.679731510243119, data_size = 1358
+user 17, emp_avg: 0.0698260791033292, h: 1.815443985917585, ucb: 1.8881376524064852,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.19613894681905797, curr_delay = 0.7801419018968242, data_size = 2197
+user 18, emp_avg: 0.06861372123464059, h: 1.815443985917585, ucb: 1.883460785408488,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.3165924939371148, curr_delay = 0.7162547526050467, data_size = 1021
+user 19, emp_avg: 0.0666422181485578, h: 1.815443985917585, ucb: 1.8859288858065444,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.32921027777579803, curr_delay = 0.8480778067583463, data_size = 912
+user 20, emp_avg: 0.06209009304423679, h: 1.815443985917585, ucb: 1.8774538818203146,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.34926111004970056, curr_delay = 0.8032065634626995, data_size = 743
+user 21, emp_avg: 0.06261423654738053, h: 1.815443985917585, ucb: 1.880079775600447,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.22772296651360388, curr_delay = 0.8536628841552575, data_size = 1860
+user 22, emp_avg: 0.06094373556960678, h: 1.815443985917585, ucb: 1.8749504986735785,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.2715512696817706, curr_delay = 0.783475791103883, data_size = 1429
+user 23, emp_avg: 0.06030443522065252, h: 1.815443985917585, ucb: 1.8747698970263176,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.332021625202355, curr_delay = 0.8030647076466798, data_size = 888
+user 24, emp_avg: 0.06036535475768853, h: 1.815443985917585, ucb: 1.8755277312456398,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.24677127968945964, curr_delay = 0.8206330303141249, data_size = 1668
+user 25, emp_avg: 0.06239852019227845, h: 1.815443985917585, ucb: 1.8794710877678693,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.3123654434767007, curr_delay = 0.8454320739479791, data_size = 1058
+user 26, emp_avg: 0.05797813259754712, h: 1.815443985917585, ucb: 1.8741955571266116,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.23963823307259155, curr_delay = 0.8860338064092658, data_size = 1739
+user 27, emp_avg: 0.0538831189004046, h: 1.815443985917585, ucb: 1.869245376915542,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.1865157296792696, curr_delay = 0.9251280080677707, data_size = 2305
+user 28, emp_avg: 0.05848950127238662, h: 1.815443985917585, ucb: 1.8728267223172905,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.24133662058976407, curr_delay = 0.8236820989281499, data_size = 1722
+user 29, emp_avg: 0.056810098861353686, h: 1.815443985917585, ucb: 1.869957290361248,num_of_obs: 2, privacy reward: 0.8869204367171574, g: -0.35433610812613786, curr_delay = 0.8142833415306168, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.8 has been picked 3, his deltas theta's mean
+ is -0.0010886411182582378,
+the empirical var of deltas thetas is 0.005857131909579039
+the minimum of the deltas theta is -0.3388563394546509 and the maximum is 0.39013606309890747
+the added laplace noise var is 0.0033152917303578187
+global epoch 3 has been done artifficialy in 0.93 secs, the total time by now is 2.79 
+ with avg train loss 1.953, val loss 2.323, avg val acc 10.00%
+iteration: 4
+user 0, emp_avg: 0.85648095549685, h: 1.6651092223153954, ucb: 2.4737504963111956,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.13053368883520794, curr_delay = 0.05, data_size = 3816
+user 1, emp_avg: 0.787430910401979, h: 1.6651092223153954, ucb: 2.4541119659393953,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.40945554792123584, curr_delay = 0.06388017830515115, data_size = 1081
+user 2, emp_avg: 0.5514617323748514, h: 1.6651092223153954, ucb: 2.2337088541468706,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.4015421711892208, curr_delay = 0.09999039412182177, data_size = 1142
+user 3, emp_avg: 0.5416271997847313, h: 1.6651092223153954, ucb: 2.2298939321740323,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.45127487213606116, curr_delay = 0.10589750186369158, data_size = 768
+user 4, emp_avg: 0.3949784405145086, h: 1.6651092223153954, ucb: 2.0315165106100137,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.11511923943280526, curr_delay = 0.10401673149460715, data_size = 4032
+user 5, emp_avg: 0.5722778968991675, h: 1.6651092223153954, ucb: 2.1835390705506206,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.4237881090089207, curr_delay = 0.06813641057035849, data_size = 972
+user 6, emp_avg: 0.43297011225440274, h: 1.6651092223153954, ucb: 2.0024231360040785,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.15163889052869212, curr_delay = 0.06945035660364028, data_size = 3540
+user 7, emp_avg: 0.5864082696938098, h: 1.6651092223153954, ucb: 2.2831551945580624,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.4813198030440158, curr_delay = 0.10173040115335763, data_size = 552
+user 8, emp_avg: 0.31383838161158206, h: 1.6651092223153954, ucb: 1.9353020862630452,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.1962382062764384, curr_delay = 0.11241640683863335, data_size = 3014
+user 9, emp_avg: 0.3420376174164511, h: 1.6651092223153954, ucb: 2.0051752695639617,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.4542907197541643, curr_delay = 0.14369784590572052, data_size = 746
+user 10, emp_avg: 0.41886413768798236, h: 1.6651092223153954, ucb: 2.1349870820726022,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.3625199794524808, curr_delay = 0.1880951060081872, data_size = 1452
+user 11, emp_avg: 0.35490532578427186, h: 1.6651092223153954, ucb: 1.9812809946949717,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.43486724399810384, curr_delay = 0.10613323007144759, data_size = 889
+user 12, emp_avg: 0.38187462801511773, h: 1.6651092223153954, ucb: 2.049996757008089,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.4542907197541643, curr_delay = 0.13410725450393451, data_size = 746
+user 13, emp_avg: 0.26208699161742943, h: 1.6651092223153954, ucb: 1.9449408900783047,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.19425778795606272, curr_delay = 0.23940287577663247, data_size = 3036
+user 14, emp_avg: 0.22850807924939923, h: 1.6651092223153954, ucb: 1.8810442551746427,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.22782991864455868, curr_delay = 0.1878094970783464, data_size = 2677
+user 15, emp_avg: 0.06765260769583342, h: 1.6651092223153954, ucb: 1.7326546746889004,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.41718293087199254, curr_delay = 0.7355745699164978, data_size = 1022
+user 16, emp_avg: 0.06779549935075599, h: 1.6651092223153954, ucb: 1.7337002388414726,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.374141843249488, curr_delay = 0.7644214081219054, data_size = 1358
+user 17, emp_avg: 0.06904541354136623, h: 1.6651092223153954, ucb: 1.7349353014187245,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.2768960194399003, curr_delay = 0.7495867881600773, data_size = 2197
+user 18, emp_avg: 0.0669400503154951, h: 1.6651092223153954, ucb: 1.7337229435500359,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.417314526016866, curr_delay = 0.807506091371612, data_size = 1021
+user 19, emp_avg: 0.0658215501721844, h: 1.6651092223153954, ucb: 1.7317514404639531,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.43178280354689375, curr_delay = 0.7891470656716288, data_size = 912
+user 20, emp_avg: 0.06252448983968895, h: 1.6651092223153954, ucb: 1.7271993153596321,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.45470274989269727, curr_delay = 0.7833591918572829, data_size = 743
+user 21, emp_avg: 0.06209238466392091, h: 1.6651092223153954, ucb: 1.727723458862776,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.3142012902719057, curr_delay = 0.826079951897252, data_size = 1860
+user 22, emp_avg: 0.06006896383660305, h: 1.6651092223153954, ucb: 1.7260529578850021,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.36534668317373714, curr_delay = 0.870403095603233, data_size = 1429
+user 23, emp_avg: 0.06227583722892642, h: 1.6651092223153954, ucb: 1.725413657536048,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.43500159912567327, curr_delay = 0.7332448787859027, data_size = 888
+user 24, emp_avg: 0.059970924391271746, h: 1.6651092223153954, ucb: 1.725474577073084,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.33650918866554247, curr_delay = 0.8505190156513065, data_size = 1668
+user 25, emp_avg: 0.060511120289285444, h: 1.6651092223153954, ucb: 1.727507742507674,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.4124593263217754, curr_delay = 0.9115949679774109, data_size = 1058
+user 26, emp_avg: 0.05797033828233163, h: 1.6651092223153954, ucb: 1.7230873549129424,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.3281707745983492, curr_delay = 0.862858103751759, data_size = 1739
+user 27, emp_avg: 0.05380030481887739, h: 1.6651092223153954, ucb: 1.7189923412158,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.2654392856151101, curr_delay = 0.9336743410302856, data_size = 2305
+user 28, emp_avg: 0.05869734831540379, h: 1.6651092223153954, ucb: 1.723598723587782,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.330157771223346, curr_delay = 0.8428734037579992, data_size = 1722
+user 29, emp_avg: 0.056709691241249215, h: 1.6651092223153954, ucb: 1.721919321176749,num_of_obs: 3, privacy reward: 0.8521437889662112, g: -0.46049078223552425, curr_delay = 0.8863917322190288, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.3 has been picked 4, his deltas theta's mean
+ is 1.4404700777959079e-05,
+the empirical var of deltas thetas is 0.0014843536773696542
+the minimum of the deltas theta is -0.25829148292541504 and the maximum is 0.20448698103427887
+the added laplace noise var is 0.0034505913525473436
+global epoch 4 has been done artifficialy in 0.93 secs, the total time by now is 3.73 
+ with avg train loss 1.923, val loss 2.322, avg val acc 10.00%
+iteration: 5
+user 0, emp_avg: 0.88518476439748, h: 1.5537557300461198, ucb: 2.4102366855429698,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.1691631351131691, curr_delay = 0.05, data_size = 3816
+user 1, emp_avg: 0.7160323032998706, h: 1.5537557300461198, ucb: 2.3411866404480985,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.4759442616074193, curr_delay = 0.1161607816519649, data_size = 1081
+user 2, emp_avg: 0.6411693858998812, h: 1.5537557300461198, ucb: 2.1052174624209714,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.4674095264432648, curr_delay = 0.05, data_size = 1142
+user 3, emp_avg: 0.5374971860048948, h: 1.5537557300461198, ucb: 2.0953829298308513,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.5209518676133867, curr_delay = 0.09597350255089077, data_size = 768
+user 4, emp_avg: 0.5159827524116068, h: 1.5537557300461198, ucb: 1.9487341705606283,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.15154846568876423, curr_delay = 0.05, data_size = 4032
+user 5, emp_avg: 0.5052076982499734, h: 1.5537557300461198, ucb: 2.1260336269452873,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.4913871189099109, curr_delay = 0.21103555243851863, data_size = 972
+user 6, emp_avg: 0.4395571899539479, h: 1.5537557300461198, ucb: 1.9867258423005225,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.19307972905698945, curr_delay = 0.1073179001305697, data_size = 3540
+user 7, emp_avg: 0.5164419503462028, h: 1.5537557300461198, ucb: 2.1401639997399293,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.5531970185433436, curr_delay = 0.211347971781423, data_size = 552
+user 8, emp_avg: 0.2889457688707792, h: 1.5537557300461198, ucb: 1.8675941116577017,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.24303698800646328, curr_delay = 0.26402595941465024, data_size = 3014
+user 9, emp_avg: 0.3575835944153201, h: 1.5537557300461198, ucb: 1.895793347462571,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.5241918117152123, curr_delay = 0.11911355622539027, data_size = 746
+user 10, emp_avg: 0.3720076754952702, h: 1.5537557300461198, ucb: 1.9726198677341023,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.4252296115267994, curr_delay = 0.27088257217569645, data_size = 1452
+user 11, emp_avg: 0.34320554562504263, h: 1.5537557300461198, ucb: 1.9086610558303916,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.503311708814956, curr_delay = 0.16868730157250486, data_size = 889
+user 12, emp_avg: 0.43673318119932086, h: 1.5537557300461198, ucb: 1.9356303580612375,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.5241918117152123, curr_delay = 0.07620006794313014, data_size = 746
+user 13, emp_avg: 0.25485128976737836, h: 1.5537557300461198, ucb: 1.8158427216635493,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.24083247320236517, curr_delay = 0.22132856400997786, data_size = 3036
+user 14, emp_avg: 0.2347986778530308, h: 1.5537557300461198, ucb: 1.782263809295519,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.27806145105705926, curr_delay = 0.1923364893207511, data_size = 2677
+user 15, emp_avg: 0.067372483585075, h: 1.5537557300461198, ucb: 1.6214083377419533,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.4842726305827044, curr_delay = 0.7546943443794707, data_size = 1022
+user 16, emp_avg: 0.06674239643464641, h: 1.5537557300461198, ucb: 1.6215512293968757,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.4378089784815298, curr_delay = 0.7996163789859436, data_size = 1358
+user 17, emp_avg: 0.06707239881392103, h: 1.5537557300461198, ucb: 1.622801143587486,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.33201692967907237, curr_delay = 0.8448751744412004, data_size = 2197
+user 18, emp_avg: 0.0667770983964405, h: 1.5537557300461198, ucb: 1.6206957803616149,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.48441441193138346, curr_delay = 0.7561403429067918, data_size = 1021
+user 19, emp_avg: 0.06554912478342875, h: 1.5537557300461198, ucb: 1.6195772802183042,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.49999298567621786, curr_delay = 0.7756817777104442, data_size = 912
+user 20, emp_avg: 0.06208557790736004, h: 1.5537557300461198, ucb: 1.6162802198858088,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.524634400465162, curr_delay = 0.8287760296164953, data_size = 743
+user 21, emp_avg: 0.06283055554879322, h: 1.5537557300461198, ucb: 1.6158481147100408,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.37275495119355345, curr_delay = 0.7600720288780404, data_size = 1860
+user 22, emp_avg: 0.06071598410869207, h: 1.5537557300461198, ucb: 1.6138246938827228,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.42829059793558377, curr_delay = 0.7898386911545687, data_size = 1429
+user 23, emp_avg: 0.06253489674626203, h: 1.5537557300461198, ucb: 1.6160315672750463,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.503456250146331, curr_delay = 0.7865204883479099, data_size = 888
+user 24, emp_avg: 0.06020314499006387, h: 1.5537557300461198, ucb: 1.6137266544373916,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.3970186007178589, curr_delay = 0.8179018779291861, data_size = 1668
+user 25, emp_avg: 0.06029864508128959, h: 1.5537557300461198, ucb: 1.6142668503354052,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.4791823226954869, curr_delay = 0.8410606587469428, data_size = 1058
+user 26, emp_avg: 0.05818342377151185, h: 1.5537557300461198, ucb: 1.6117260683284513,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.38795696618047043, curr_delay = 0.8469442105684153, data_size = 1739
+user 27, emp_avg: 0.05406378829974514, h: 1.5537557300461198, ucb: 1.607556034864997,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.3194600858432811, curr_delay = 0.9071492431691864, data_size = 2305
+user 28, emp_avg: 0.05954869205067361, h: 1.5537557300461198, ucb: 1.6124530783615236,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.3901171282701619, curr_delay = 0.7942298629658043, data_size = 1722
+user 29, emp_avg: 0.05569465321613315, h: 1.5537557300461198, ucb: 1.610465421287369,num_of_obs: 4, privacy reward: 0.8187307530779817, g: -0.5308502533678228, curr_delay = 0.9683447872962424, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.97 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.15 has been picked 5, his deltas theta's mean
+ is -3.7256701034493744e-05,
+the empirical var of deltas thetas is 0.001546527724713087
+the minimum of the deltas theta is -0.2199571579694748 and the maximum is 0.27876976132392883
+the added laplace noise var is 0.0035914126570663605
+global epoch 5 has been done artifficialy in 0.97 secs, the total time by now is 4.69 
+ with avg train loss 1.909, val loss 2.320, avg val acc 10.00%
+iteration: 6
+user 0, emp_avg: 0.8276947666692486, h: 1.4663258038627247, ucb: 2.3515105682602044,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.1976938770762543, curr_delay = 0.09255064006819547, data_size = 3816
+user 1, emp_avg: 0.7633602527498922, h: 1.4663258038627247, ucb: 2.182358107162595,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5230478485093194, curr_delay = 0.05, data_size = 1081
+user 2, emp_avg: 0.5983476355796854, h: 1.4663258038627247, ucb: 2.1074951897626057,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5140988743904051, curr_delay = 0.13012738190955914, data_size = 1142
+user 3, emp_avg: 0.5088955773792062, h: 1.4663258038627247, ucb: 2.0038229898676194,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5701809757093815, curr_delay = 0.13665401337705096, data_size = 768
+user 4, emp_avg: 0.5035967473741579, h: 1.4663258038627247, ucb: 1.9823085562743317,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.17861239430384795, curr_delay = 0.11320753293892052, data_size = 4032
+user 5, emp_avg: 0.5876730818749778, h: 1.4663258038627247, ucb: 1.971533502112698,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5392309032883488, curr_delay = 0.05, data_size = 972
+user 6, emp_avg: 0.40616348318820084, h: 1.4663258038627247, ucb: 1.9058829938166726,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.22348473252029874, curr_delay = 0.20903451403925466, data_size = 3540
+user 7, emp_avg: 0.5141457792923917, h: 1.4663258038627247, ucb: 1.9827677542089275,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.6038929399873398, curr_delay = 0.0994698408629737, data_size = 552
+user 8, emp_avg: 0.33430218382040816, h: 1.4663258038627247, ucb: 1.755271572733504,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.27701395360425757, curr_delay = 0.08911317549268058, data_size = 3014
+user 9, emp_avg: 0.3767102228905306, h: 1.4663258038627247, ucb: 1.8239093982780448,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.573570317467022, curr_delay = 0.10585519703824106, data_size = 746
+user 10, emp_avg: 0.35967130441586487, h: 1.4663258038627247, ucb: 1.8383334793579948,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.4698138106874562, curr_delay = 0.16779117570984578, data_size = 1452
+user 11, emp_avg: 0.35176120323536497, h: 1.4663258038627247, ucb: 1.8095313494877674,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5517191298039684, curr_delay = 0.1267300260283233, data_size = 889
+user 12, emp_avg: 0.4225750434914149, h: 1.4663258038627247, ucb: 1.9030589850620456,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.573570317467022, curr_delay = 0.1421325289091913, data_size = 746
+user 13, emp_avg: 0.24782266506181394, h: 1.4663258038627247, ucb: 1.7211770936301032,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.2746600411443446, curr_delay = 0.23509548515746023, data_size = 3036
+user 14, emp_avg: 0.24152597877232104, h: 1.4663258038627247, ucb: 1.7011244817157556,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.31432691710983734, curr_delay = 0.18171081823313137, data_size = 2677
+user 15, emp_avg: 0.06752006412128671, h: 1.4663258038627247, ucb: 1.5336982874477998,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.53177687483429, curr_delay = 0.7325152263146819, data_size = 1022
+user 16, emp_avg: 0.06733654980432026, h: 1.4663258038627247, ucb: 1.5330682002973712,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.4830315130806687, curr_delay = 0.7111635371748656, data_size = 1358
+user 17, emp_avg: 0.06705509460722692, h: 1.4663258038627247, ucb: 1.5333982026766457,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.37154198094963165, curr_delay = 0.7466188591419243, data_size = 2197
+user 18, emp_avg: 0.06700591631639023, h: 1.4663258038627247, ucb: 1.5331029022591651,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5319254469855061, curr_delay = 0.7336756516430374, data_size = 1021
+user 19, emp_avg: 0.06578828358831043, h: 1.4663258038627247, ucb: 1.5318749286461535,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5482442182068783, curr_delay = 0.7464460478068313, data_size = 912
+user 20, emp_avg: 0.06237259275763827, h: 1.4663258038627247, ucb: 1.5284113817700848,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5740332786245829, curr_delay = 0.783604891758924, data_size = 743
+user 21, emp_avg: 0.06237283263744006, h: 1.4663258038627247, ucb: 1.5291563594115178,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.41456850291909636, curr_delay = 0.8321652772923778, data_size = 1860
+user 22, emp_avg: 0.06020341651389389, h: 1.4663258038627247, ucb: 1.5270417879714169,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.47303098555459255, curr_delay = 0.8674444508808385, data_size = 1429
+user 23, emp_avg: 0.06215490868437054, h: 1.4663258038627247, ucb: 1.5288607006089867,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5518704619378805, curr_delay = 0.82980709057707, data_size = 888
+user 24, emp_avg: 0.059539076603732755, h: 1.4663258038627247, ucb: 1.5265289488527887,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.4401359865305142, curr_delay = 0.8893832330387561, data_size = 1668
+user 25, emp_avg: 0.060087200156628724, h: 1.4663258038627247, ucb: 1.5266244489440144,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5264420980557389, curr_delay = 0.8470272865312867, data_size = 1058
+user 26, emp_avg: 0.05852455026220654, h: 1.4663258038627247, ucb: 1.5245092276342365,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.4305922050129955, curr_delay = 0.8301485691323212, data_size = 1739
+user 27, emp_avg: 0.05486394320015314, h: 1.4663258038627247, ucb: 1.52038959216247,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.35825173043983966, curr_delay = 0.8494052456508617, data_size = 2305
+user 28, emp_avg: 0.059475240020249405, h: 1.4663258038627247, ucb: 1.5258744959133983,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.4328678107458168, curr_delay = 0.8459094713023764, data_size = 1722
+user 29, emp_avg: 0.05504652087410029, h: 1.4663258038627247, ucb: 1.5220204570788578,num_of_obs: 5, privacy reward: 0.7866278610665532, g: -0.5805343452337993, curr_delay = 0.965141796833801, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.97 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.27 has been picked 6, his deltas theta's mean
+ is -0.0023386848624795675,
+the empirical var of deltas thetas is 0.003344167722389102
+the minimum of the deltas theta is -0.3069942891597748 and the maximum is 0.37208348512649536
+the added laplace noise var is 0.0037379809880455804
+global epoch 6 has been done artifficialy in 0.97 secs, the total time by now is 5.66 
+ with avg train loss 1.891, val loss 2.318, avg val acc 10.00%
+iteration: 7
+user 0, emp_avg: 0.77166678705207, h: 1.3949588341794583, ucb: 2.222653600848707,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.219433522696145, curr_delay = 0.1148108501000427, data_size = 3816
+user 1, emp_avg: 0.7722396645346421, h: 1.3949588341794583, ucb: 2.1583190869293505,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5580538119426492, curr_delay = 0.06056816804104422, data_size = 1081
+user 2, emp_avg: 0.5599219682638669, h: 1.3949588341794583, ucb: 1.9933064697591436,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5488089528560496, curr_delay = 0.15180589920393808, data_size = 1142
+user 3, emp_avg: 0.5790533520393196, h: 1.3949588341794583, ucb: 1.9038544115586644,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.6067051685670647, curr_delay = 0.05, data_size = 768
+user 4, emp_avg: 0.48193665645575823, h: 1.3949588341794583, ucb: 1.8985555815536164,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.1993043161037376, curr_delay = 0.1420550953464052, data_size = 4032
+user 5, emp_avg: 0.6465769273214096, h: 1.3949588341794583, ucb: 1.9826319160544361,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5747655792049199, curr_delay = 0.05, data_size = 972
+user 6, emp_avg: 0.4341584786477671, h: 1.3949588341794583, ucb: 1.8011223173676592,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.24656313635463523, curr_delay = 0.08303876005745432, data_size = 3540
+user 7, emp_avg: 0.4836576655175001, h: 1.3949588341794583, ucb: 1.90910461347185,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.6414648566650241, curr_delay = 0.16626265790258626, data_size = 552
+user 8, emp_avg: 0.31474933578273173, h: 1.3949588341794583, ucb: 1.7292610179998664,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.30264375896322626, curr_delay = 0.25325143495440117, data_size = 3014
+user 9, emp_avg: 0.40014330864643893, h: 1.3949588341794583, ucb: 1.771669057069989,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.6102012229360017, curr_delay = 0.09246556832941982, data_size = 746
+user 10, emp_avg: 0.3452069359579764, h: 1.3949588341794583, ucb: 1.7546301385953231,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5030202114484694, curr_delay = 0.19348293353500845, data_size = 1452
+user 11, emp_avg: 0.33009304567182507, h: 1.3949588341794583, ucb: 1.7467200374148233,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5876564032995214, curr_delay = 0.24989491882355552, data_size = 889
+user 12, emp_avg: 0.39391031268387205, h: 1.3949588341794583, ucb: 1.8175338776708732,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.6102012229360017, curr_delay = 0.2253044594870356, data_size = 746
+user 13, emp_avg: 0.2515218766001853, h: 1.3949588341794583, ucb: 1.6427814992412721,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.3001831338920169, curr_delay = 0.18267032504780814, data_size = 3036
+user 14, emp_avg: 0.23823560283429865, h: 1.3949588341794583, ucb: 1.6364848129517793,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.3415913656509373, curr_delay = 0.22883991956433059, data_size = 2677
+user 15, emp_avg: 0.06840185289095939, h: 1.3949588341794583, ucb: 1.462478898300745,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5670690220888239, curr_delay = 0.6784943105829371, data_size = 1022
+user 16, emp_avg: 0.06712196636140942, h: 1.3949588341794583, ucb: 1.4622953839837787,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5166938677263121, curr_delay = 0.7594806073895772, data_size = 1358
+user 17, emp_avg: 0.06813470247607918, h: 1.3949588341794583, ucb: 1.4620139287866851,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.4011347046462895, curr_delay = 0.670130349845319, data_size = 2197
+user 18, emp_avg: 0.06695033241071054, h: 1.3949588341794583, ucb: 1.4619647504958486,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5672224448132808, curr_delay = 0.7505610934669201, data_size = 1021
+user 19, emp_avg: 0.06538017732116905, h: 1.3949588341794583, ucb: 1.4607471177677687,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5840699285178942, curr_delay = 0.7945141692670831, data_size = 912
+user 20, emp_avg: 0.06271059050213182, h: 1.3949588341794583, ucb: 1.4573314269370965,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.6106787358132847, curr_delay = 0.7723370259415883, data_size = 743
+user 21, emp_avg: 0.06197285636239764, h: 1.3949588341794583, ucb: 1.4573316668168983,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.4457958697978854, curr_delay = 0.8393064153375948, data_size = 1860
+user 22, emp_avg: 0.060626386654330865, h: 1.3949588341794583, ucb: 1.4551622506933521,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.506348949500143, curr_delay = 0.7915875458805081, data_size = 1429
+user 23, emp_avg: 0.06255735317499793, h: 1.3949588341794583, ucb: 1.4571137428638288,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.5878125860066742, curr_delay = 0.7695620346820847, data_size = 888
+user 24, emp_avg: 0.05933962165559735, h: 1.3949588341794583, ucb: 1.454497910783191,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.47229466347152643, curr_delay = 0.8599503448944947, data_size = 1668
+user 25, emp_avg: 0.05980170979882223, h: 1.3949588341794583, ucb: 1.4550460343360871,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.561559624673606, curr_delay = 0.8607516051907999, data_size = 1058
+user 26, emp_avg: 0.058440611653073, h: 1.3949588341794583, ucb: 1.4534833844416648,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.46240649125391475, curr_delay = 0.8630066669248468, data_size = 1739
+user 27, emp_avg: 0.05470817064753557, h: 1.3949588341794583, ucb: 1.4498227773796115,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.3873205922264969, curr_delay = 0.9298254186089112, data_size = 2305
+user 28, emp_avg: 0.05960382826689775, h: 1.3949588341794583, ucb: 1.4544340741997077,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.46476455673182876, curr_delay = 0.828152442751533, data_size = 1722
+user 29, emp_avg: 0.055796774336394975, h: 1.3949588341794583, ucb: 1.4500053550535585,num_of_obs: 6, privacy reward: 0.7557837414557252, g: -0.6173835264986125, curr_delay = 0.8292108410138552, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.20 has been picked 7, his deltas theta's mean
+ is -0.0009752923506312072,
+the empirical var of deltas thetas is 0.0010635111248120666
+the minimum of the deltas theta is -0.17105920612812042 and the maximum is 0.19512596726417542
+the added laplace noise var is 0.003890530886084149
+global epoch 7 has been done artifficialy in 0.93 secs, the total time by now is 6.59 
+ with avg train loss 1.870, val loss 2.317, avg val acc 10.00%
+iteration: 8
+user 0, emp_avg: 0.7117043619755358, h: 1.335057476027531, ucb: 2.106724263079601,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.23648230453011077, curr_delay = 0.17125200389568168, data_size = 3816
+user 1, emp_avg: 0.7683957284668432, h: 1.335057476027531, ucb: 2.1072971405621734,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.5850523321366944, curr_delay = 0.0674319586190172, data_size = 1081
+user 2, emp_avg: 0.5730430979894061, h: 1.335057476027531, ucb: 1.894979444291398,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.5755855593243306, curr_delay = 0.0752002953020435, data_size = 1142
+user 3, emp_avg: 0.5381796757794061, h: 1.335057476027531, ucb: 1.9141108280668506,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.634842360829375, curr_delay = 0.19836236635517013, data_size = 768
+user 4, emp_avg: 0.5267769176014209, h: 1.335057476027531, ucb: 1.8169941324832894,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.21556730507270258, curr_delay = 0.05947716628233155, data_size = 4032
+user 5, emp_avg: 0.6907548114062334, h: 1.335057476027531, ucb: 1.9816344033489406,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.602160633761396, curr_delay = 0.05, data_size = 972
+user 6, emp_avg: 0.4284575733160044, h: 1.335057476027531, ucb: 1.7692159546752981,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.2646159868494353, curr_delay = 0.12868315776201794, data_size = 3540
+user 7, emp_avg: 0.4510507962556109, h: 1.335057476027531, ucb: 1.8187151415450313,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.6703878417923351, curr_delay = 0.2244137859938815, data_size = 552
+user 8, emp_avg: 0.3062581834035066, h: 1.335057476027531, ucb: 1.649806811810263,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.3226101606015006, curr_delay = 0.2025766807770405, data_size = 3014
+user 9, emp_avg: 0.37740349645000193, h: 1.335057476027531, ucb: 1.73520078467397,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.6384184496567842, curr_delay = 0.2291215180973578, data_size = 746
+user 10, emp_avg: 0.42705606896322934, h: 1.335057476027531, ucb: 1.6802644119855075,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.5286690596382772, curr_delay = 0.05, data_size = 1452
+user 11, emp_avg: 0.3217136174452498, h: 1.335057476027531, ucb: 1.6651505216993563,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.615353406040234, curr_delay = 0.19007242605919522, data_size = 889
+user 12, emp_avg: 0.40832025516330034, h: 1.335057476027531, ucb: 1.7289677887114032,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.6384184496567842, curr_delay = 0.09819520116635672, data_size = 746
+user 13, emp_avg: 0.24738400777651523, h: 1.335057476027531, ucb: 1.5865793526277163,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.3200695010718187, curr_delay = 0.22891789147210673, data_size = 3036
+user 14, emp_avg: 0.23348845075551006, h: 1.335057476027531, ucb: 1.5732930788618298,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.36278374967580995, curr_delay = 0.24967743397806236, data_size = 2677
+user 15, emp_avg: 0.06753620427693541, h: 1.335057476027531, ucb: 1.4034593289184905,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.5942821801487721, curr_delay = 0.8133167410851817, data_size = 1022
+user 16, emp_avg: 0.06676709675248266, h: 1.335057476027531, ucb: 1.4021794423889404,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.5426846813295924, curr_delay = 0.7778105038436594, data_size = 1358
+user 17, emp_avg: 0.0674847131910454, h: 1.335057476027531, ucb: 1.4031921785036103,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.4240732950378304, curr_delay = 0.7944731591760513, data_size = 2197
+user 18, emp_avg: 0.06783297582033183, h: 1.335057476027531, ucb: 1.4020078084382417,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.5944392408031595, curr_delay = 0.6755708737481491, data_size = 1021
+user 19, emp_avg: 0.06516050067173244, h: 1.335057476027531, ucb: 1.4004376533487002,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.6116832588702038, curr_delay = 0.785882233931762, data_size = 912
+user 20, emp_avg: 0.06253861138069335, h: 1.335057476027531, ucb: 1.397768066529663,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.6389068763238589, curr_delay = 0.8151984619004221, data_size = 743
+user 21, emp_avg: 0.06195366722689507, h: 1.335057476027531, ucb: 1.3970303323899287,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.469960442576025, curr_delay = 0.8088083332565719, data_size = 1860
+user 22, emp_avg: 0.060529571228212016, h: 1.335057476027531, ucb: 1.395683862681862,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.5320814700783535, curr_delay = 0.8353958805761904, data_size = 1429
+user 23, emp_avg: 0.061856890696897204, h: 1.335057476027531, ucb: 1.397614829202529,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.6155132266773173, curr_delay = 0.8779068077084354, data_size = 888
+user 24, emp_avg: 0.05868649960439424, h: 1.335057476027531, ucb: 1.3943970976831284,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.49715771879633336, curr_delay = 0.9239642941893129, data_size = 1668
+user 25, emp_avg: 0.0591653449662252, h: 1.335057476027531, ucb: 1.3948591858263533,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.588641817256054, curr_delay = 0.9138964902525406, data_size = 1058
+user 26, emp_avg: 0.058339656807626254, h: 1.335057476027531, ucb: 1.393498087680604,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.48701125355365216, curr_delay = 0.8675589249207415, data_size = 1739
+user 27, emp_avg: 0.055135333478803575, h: 1.335057476027531, ucb: 1.3897656466750667,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.4098662861855375, curr_delay = 0.8602080492993768, data_size = 2305
+user 28, emp_avg: 0.05926613347364409, h: 1.335057476027531, ucb: 1.394661304294429,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.4894311638403855, curr_delay = 0.8786995680406574, data_size = 1722
+user 29, emp_avg: 0.05585986670207222, h: 1.335057476027531, ucb: 1.390854250363926,num_of_obs: 7, privacy reward: 0.7261490370736907, g: -0.6457644600662703, curr_delay = 0.8880755969646912, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.92 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.23 has been picked 8, his deltas theta's mean
+ is 0.0002467865706421435,
+the empirical var of deltas thetas is 0.0011303162900730968
+the minimum of the deltas theta is -0.20994341373443604 and the maximum is 0.20552179217338562
+the added laplace noise var is 0.0040493064635646414
+global epoch 8 has been done artifficialy in 0.92 secs, the total time by now is 7.51 
+ with avg train loss 1.858, val loss 2.313, avg val acc 10.00%
+iteration: 9
+user 0, emp_avg: 0.6847992071484457, h: 1.2837127533066595, ucb: 1.9954171152821951,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.2501833852863345, curr_delay = 0.1064831253026044, data_size = 3816
+user 1, emp_avg: 0.7878371626978177, h: 1.2837127533066595, ucb: 2.0521084817735025,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.606492098284091, curr_delay = 0.05300155004419889, data_size = 1081
+user 2, emp_avg: 0.6050789129316854, h: 1.2837127533066595, ucb: 1.8567558512960656,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.5968527259072439, curr_delay = 0.058047372363931135, data_size = 1142
+user 3, emp_avg: 0.5286435980426185, h: 1.2837127533066595, ucb: 1.8218924290860654,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6571677608076443, curr_delay = 0.11053266270161684, data_size = 768
+user 4, emp_avg: 0.517639811537115, h: 1.2837127533066595, ucb: 1.8104896709080802,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.22865721360059235, curr_delay = 0.11247506801148133, data_size = 4032
+user 5, emp_avg: 0.7251153879166519, h: 1.2837127533066595, ucb: 1.9744675647128929,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6239088155240166, curr_delay = 0.05, data_size = 972
+user 6, emp_avg: 0.4312813612200462, h: 1.2837127533066595, ucb: 1.712170326622664,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.27909800989741906, curr_delay = 0.11016329926726666, data_size = 3540
+user 7, emp_avg: 0.4364375608624004, h: 1.2837127533066595, ucb: 1.7347635495622704,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6933244139989384, curr_delay = 0.15647900814493892, data_size = 552
+user 8, emp_avg: 0.3088316177001725, h: 1.2837127533066595, ucb: 1.589970936710166,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.3385805012055198, curr_delay = 0.15178233807056965, data_size = 3014
+user 9, emp_avg: 0.37897011746241277, h: 1.2837127533066595, ucb: 1.6611162497566614,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6608060986583097, curr_delay = 0.1277129142628945, data_size = 746
+user 10, emp_avg: 0.4010010287724005, h: 1.2837127533066595, ucb: 1.710768822269889,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.549059080893489, curr_delay = 0.2596583732743767, data_size = 1452
+user 11, emp_avg: 0.3228173004510383, h: 1.2837127533066595, ucb: 1.6054263707519092,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.637336436390594, curr_delay = 0.15076281559924598, data_size = 889
+user 12, emp_avg: 0.4050958027221465, h: 1.2837127533066595, ucb: 1.6920330084699597,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6608060986583097, curr_delay = 0.13182171329078815, data_size = 746
+user 13, emp_avg: 0.2433821595398615, h: 1.2837127533066595, ucb: 1.5310967610831747,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.33597759265258165, curr_delay = 0.23655495707483695, data_size = 3036
+user 14, emp_avg: 0.24877700257498603, h: 1.2837127533066595, ucb: 1.5172012040621694,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.3797076321360724, curr_delay = 0.13473986767412321, data_size = 2677
+user 15, emp_avg: 0.06699744896568317, h: 1.2837127533066595, ucb: 1.3512489575835949,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6158888868585376, curr_delay = 0.7976083684273896, data_size = 1022
+user 16, emp_avg: 0.06715610801653484, h: 1.2837127533066595, ucb: 1.3504798500591422,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.5633406756841718, curr_delay = 0.711559444120693, data_size = 1358
+user 17, emp_avg: 0.06675460851565189, h: 1.2837127533066595, ucb: 1.351197466497705,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.4423553380055016, curr_delay = 0.8208324503116586, data_size = 2197
+user 18, emp_avg: 0.06750628008895124, h: 1.2837127533066595, ucb: 1.3515457291269912,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6160487770139821, curr_delay = 0.7705025223123271, data_size = 1021
+user 19, emp_avg: 0.06565767682964267, h: 1.2837127533066595, ucb: 1.3488732539783919,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6336012106962505, curr_delay = 0.7180288386988933, data_size = 912
+user 20, emp_avg: 0.06252508030280049, h: 1.2837127533066595, ucb: 1.3462513646873528,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6613030138285557, curr_delay = 0.801065972983303, data_size = 743
+user 21, emp_avg: 0.06179568012234503, h: 1.2837127533066595, ucb: 1.3456664205335545,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.4891960273999394, curr_delay = 0.8260123407203481, data_size = 1860
+user 22, emp_avg: 0.06064043268391607, h: 1.2837127533066595, ucb: 1.3442423245348716,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.5525365698578787, curr_delay = 0.8126470725785733, data_size = 1429
+user 23, emp_avg: 0.06107863495514401, h: 1.2837127533066595, ucb: 1.3455696440035567,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6374990865287345, curr_delay = 0.9115340021735309, data_size = 888
+user 24, emp_avg: 0.05878869426032111, h: 1.2837127533066595, ucb: 1.3423992529110538,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.5169365678232113, curr_delay = 0.8388381878620679, data_size = 1668
+user 25, emp_avg: 0.0593499343340529, h: 1.2837127533066595, ucb: 1.3428780982728847,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6101466619277639, curr_delay = 0.822008126283124, data_size = 1058
+user 26, emp_avg: 0.0578310259124127, h: 1.2837127533066595, ucb: 1.3420524101142857,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.5065892080054758, curr_delay = 0.930025292258147, data_size = 1739
+user 27, emp_avg: 0.05499688730654969, h: 1.2837127533066595, ucb: 1.338848086785463,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.4278427430390417, curr_delay = 0.9278276645906421, data_size = 2305
+user 28, emp_avg: 0.05948513216074452, h: 1.2837127533066595, ucb: 1.3429788867803036,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.5090572198101799, curr_delay = 0.8164982064247149, data_size = 1722
+user 29, emp_avg: 0.05615336082519898, h: 1.2837127533066595, ucb: 1.3395726200087317,num_of_obs: 8, privacy reward: 0.6976763260710308, g: -0.6682794366153655, curr_delay = 0.8546816600086532, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.93 seconds
+after cleansing the weights updates who were almost zeros (meaning with absolute value of less than 10**-7, 0.00% of the weights upadtes) we get:
+user No.7 has been picked 9, his deltas theta's mean
+ is 0.00011064713180530816,
+the empirical var of deltas thetas is 0.0005235347198322415
+the minimum of the deltas theta is -0.12486864626407623 and the maximum is 0.1449887454509735
+the added laplace noise var is 0.004214561795284956
+global epoch 9 has been done artifficialy in 0.93 secs, the total time by now is 8.44 
+ with avg train loss 1.853, val loss 2.313, avg val acc 10.95%
+iteration: 10
+user 0, emp_avg: 0.7163192864336011, h: 1.2389740629499462, ucb: 1.9237732700983918,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.26142202766909134, curr_delay = 0.05, data_size = 3816
+user 1, emp_avg: 0.7685539387259916, h: 1.2389740629499462, ucb: 2.026811225647764,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6239216889797862, curr_delay = 0.08403291816413745, data_size = 1081
+user 2, emp_avg: 0.5807744343139287, h: 1.2389740629499462, ucb: 1.8440529758816315,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6141442369513526, curr_delay = 0.13810852708357585, data_size = 1142
+user 3, emp_avg: 0.5042448810593949, h: 1.2389740629499462, ucb: 1.7676176609925647,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6753058585680377, curr_delay = 0.17565034562664533, data_size = 768
+user 4, emp_avg: 0.5198824170811405, h: 1.2389740629499462, ucb: 1.7566138744870612,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.23940691820068208, curr_delay = 0.09258129990669309, data_size = 4032
+user 5, emp_avg: 0.7123739837929541, h: 1.2389740629499462, ucb: 1.964089450866598,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.641585138711891, curr_delay = 0.08365381854626552, data_size = 972
+user 6, emp_avg: 0.41834672682262164, h: 1.2389740629499462, ucb: 1.6702554241699923,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.29096140611358395, curr_delay = 0.1655985465220009, data_size = 3540
+user 7, emp_avg: 0.4303212089936833, h: 1.2389740629499462, ucb: 1.6754116238123467,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.711951449541999, curr_delay = 0.1332359672685624, data_size = 552
+user 8, emp_avg: 0.3045374501237755, h: 1.2389740629499462, ucb: 1.5478056806501186,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.3516345514665129, curr_delay = 0.18804772995887528, data_size = 3014
+user 9, emp_avg: 0.38650098033929625, h: 1.2389740629499462, ucb: 1.6179441804123589,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6789939956373082, curr_delay = 0.11006458130565469, data_size = 746
+user 10, emp_avg: 0.39331776962041476, h: 1.2389740629499462, ucb: 1.6399750917223468,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.5656488756754364, curr_delay = 0.15424080278687838, data_size = 1452
+user 11, emp_avg: 0.3135493554764516, h: 1.2389740629499462, ucb: 1.5617913634009843,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.65520063844866, curr_delay = 0.21726108872049454, data_size = 889
+user 12, emp_avg: 0.3838530346908621, h: 1.2389740629499462, ucb: 1.6440698656720927,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6789939956373082, curr_delay = 0.2595136101123177, data_size = 746
+user 13, emp_avg: 0.2435715293184661, h: 1.2389740629499462, ucb: 1.4823562224898077,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.34898184369497004, curr_delay = 0.20385210572748325, data_size = 3036
+user 14, emp_avg: 0.2496283595999496, h: 1.2389740629499462, ucb: 1.4877510655249322,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.3935245158820602, curr_delay = 0.1943328099863254, data_size = 2677
+user 15, emp_avg: 0.06666397262643925, h: 1.2389740629499462, ucb: 1.3059715119156294,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.633452030004128, curr_delay = 0.785389424743557, data_size = 1022
+user 16, emp_avg: 0.06735271661736326, h: 1.2389740629499462, ucb: 1.306130170966481,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.5801432489456132, curr_delay = 0.7233566686561903, data_size = 1358
+user 17, emp_avg: 0.06654336767607118, h: 1.2389740629499462, ucb: 1.305728671465598,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.4572587501574166, curr_delay = 0.773488524637179, data_size = 2197
+user 18, emp_avg: 0.06716307708677628, h: 1.2389740629499462, ucb: 1.3064803430388974,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6336141837604182, curr_delay = 0.7803446774259482, data_size = 1021
+user 19, emp_avg: 0.0658544687749048, h: 1.2389740629499462, ucb: 1.3046317397795888,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6514133499348659, curr_delay = 0.7393650148577449, data_size = 912
+user 20, emp_avg: 0.06218239847285907, h: 1.2389740629499462, ucb: 1.3014991432527467,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6794977016100913, curr_delay = 0.8460485690278854, data_size = 743
+user 21, emp_avg: 0.062187036076400394, h: 1.2389740629499462, ucb: 1.300769743072291,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.5048622730368488, curr_delay = 0.7609279951573003, data_size = 1860
+user 22, emp_avg: 0.06058851451743624, h: 1.2389740629499462, ucb: 1.2996144956338622,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.5691784274592768, curr_delay = 0.8316526877343362, data_size = 1429
+user 23, emp_avg: 0.06152662924796892, h: 1.2389740629499462, ucb: 1.3000526979050901,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6553655521876461, curr_delay = 0.7626767024893879, data_size = 888
+user 24, emp_avg: 0.05898540710452821, h: 1.2389740629499462, ucb: 1.2977627572102672,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.5330374248224915, curr_delay = 0.8229663886689723, data_size = 1668
+user 25, emp_avg: 0.05918927083428761, h: 1.2389740629499462, ucb: 1.298323997283999,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6276283154429098, curr_delay = 0.8659013352997175, data_size = 1058
+user 26, emp_avg: 0.05788787766146589, h: 1.2389740629499462, ucb: 1.2968050888623588,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.5225293493447126, curr_delay = 0.8561710774861798, data_size = 1739
+user 27, emp_avg: 0.05480322303646177, h: 1.2389740629499462, ucb: 1.2939709502564958,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.44250168629962316, curr_delay = 0.942325094269477, data_size = 2305
+user 28, emp_avg: 0.058969184808277245, h: 1.2389740629499462, ucb: 1.2984591951106907,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.5250358423637934, curr_delay = 0.9203754037286617, data_size = 1722
+user 29, emp_avg: 0.05577508418709638, h: 1.2389740629499462, ucb: 1.2951274237751451,num_of_obs: 9, privacy reward: 0.670320046035639, g: -0.6865691956324194, curr_delay = 0.9547342460147166, data_size = 701
+num of fast users chosen: 15, num of slow users chosen: 15
+max_delay = 0.95 seconds
