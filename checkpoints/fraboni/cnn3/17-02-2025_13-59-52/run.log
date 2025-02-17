@@ -3859,3 +3859,185 @@ user 23, emp_avg: 0.06145022031628858, h: 0.456739804948936, ucb: 0.518164417147
 user 28, emp_avg: 0.05590928082731866, h: 0.6762692117906082, ucb: 0.7321514974567698,num_of_obs: 78, privacy reward: 0.04242574108051078, g: -0.0011547964487977785, curr_delay = 0.8618475093780549, data_size = 1651
 num of fast users chosen: 1, num of slow users chosen: 4
 max_delay = 0.86 seconds
+global epoch 382 has been done artifficialy in 0.86 secs, the total time by now is 332.67 
+ with avg train loss 3.308, val loss 3.084, avg val acc 18.70%
+iteration: 383
+user 6, emp_avg: 0.5051363010472497, h: 0.8365218599992151, ucb: 1.3454004075197306,num_of_obs: 51, privacy reward: 0.12493021219858191, g: 0.00026989101020239185, curr_delay = 0.15909292549431756, data_size = 1451
+user 9, emp_avg: 0.37689150787837006, h: 0.5453455321711477, ucb: 0.9225079988121387,num_of_obs: 120, privacy reward: 0.00790705405159231, g: 5.183333336823165e-05, curr_delay = 0.14518994860430326, data_size = 3109
+user 10, emp_avg: 0.34644946881376815, h: 1.0245258578409917, ucb: 1.3684934032976839,num_of_obs: 34, privacy reward: 0.2465969639416059, g: -0.00017439409504905798, curr_delay = 0.11605374657272821, data_size = 733
+user 12, emp_avg: 0.31884430385926593, h: 0.7467451240119921, ucb: 1.0679905313935432,num_of_obs: 64, privacy reward: 0.07427357821433322, g: 7.16593170106905e-05, curr_delay = 0.30271166976690717, data_size = 1703
+user 23, emp_avg: 0.06144018886850409, h: 0.45551025525868954, ucb: 0.5169604755749782,num_of_obs: 172, privacy reward: 0.0009878299405302604, g: -0.00010028013454292877, curr_delay = 0.8373136453982793, data_size = 4259
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.84 seconds
+global epoch 383 has been done artifficialy in 0.84 secs, the total time by now is 333.51 
+ with avg train loss 2.766, val loss 2.380, avg val acc 22.19%
+iteration: 384
+user 7, emp_avg: 0.399255246722874, h: 1.3708210239723293, ucb: 1.7384581257858809,num_of_obs: 19, privacy reward: 0.449328964117221, g: 3.961480369157485e-05, curr_delay = 0.05, data_size = 541
+user 20, emp_avg: 0.06426934195280883, h: 0.7984790823309735, ucb: 0.862622944720472,num_of_obs: 56, privacy reward: 0.10228420671553695, g: -1.1904234716170497e-06, curr_delay = 0.7012996731174735, data_size = 1404
+user 23, emp_avg: 0.061428217314603045, h: 0.4542913894888788, ucb: 0.5157315783573829,num_of_obs: 173, privacy reward: 0.0009490965745397872, g: -0.00013107200778694346, curr_delay = 0.8423586660710863, data_size = 4259
+user 26, emp_avg: 0.05840230440771622, h: 0.5975270313176331, ucb: 0.6558558419122791,num_of_obs: 100, privacy reward: 0.017597472415622373, g: 3.949323416705004e-05, curr_delay = 0.7604367774983603, data_size = 2587
+user 29, emp_avg: 0.05525096987547784, h: 0.6639189236862589, ucb: 0.719201298814825,num_of_obs: 81, privacy reward: 0.03762825680717552, g: 0.0020848756115321777, curr_delay = 0.9486379995081252, data_size = 2489
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.95 seconds
+global epoch 384 has been done artifficialy in 0.95 secs, the total time by now is 334.46 
+ with avg train loss 2.680, val loss 3.473, avg val acc 23.10%
+iteration: 385
+user 9, emp_avg: 0.3775304972413283, h: 0.5433250857522214, ucb: 0.9202165936305915,num_of_obs: 121, privacy reward: 0.007597014027576399, g: 3.88097804750555e-05, curr_delay = 0.10992678190926786, data_size = 3109
+user 11, emp_avg: 0.34895952398427366, h: 0.8288019621223284, ucb: 1.1794413200791296,num_of_obs: 52, privacy reward: 0.12003162851145621, g: 0.00011688536655306563, curr_delay = 0.19112553864708637, data_size = 1415
+user 12, emp_avg: 0.3182093586534138, h: 0.7413030108762928, ucb: 1.0601473147355587,num_of_obs: 65, privacy reward: 0.07136126955638533, g: 4.5371560418220595e-05, curr_delay = 0.18054587811848163, data_size = 1703
+user 14, emp_avg: 0.26167031712852257, h: 1.0249743182683209, ucb: 1.279800640794354,num_of_obs: 34, privacy reward: 0.2465969639416059, g: -1.7539151113664607e-05, curr_delay = 0.10113961414501858, data_size = 816
+user 23, emp_avg: 0.06148452219645911, h: 0.45308305298970886, ucb: 0.5145112703043119,num_of_obs: 174, privacy reward: 0.0009118819655534738, g: -0.00016578846602642442, curr_delay = 0.7014435687940643, data_size = 4259
+num of fast users chosen: 4, num of slow users chosen: 1
+max_delay = 0.70 seconds
+global epoch 385 has been done artifficialy in 0.70 secs, the total time by now is 335.16 
+ with avg train loss 2.766, val loss 2.687, avg val acc 16.39%
+iteration: 386
+user 3, emp_avg: 0.6220730936521921, h: 1.2744878510920838, ucb: 1.9067887452930101,num_of_obs: 22, privacy reward: 0.3985190410845135, g: 0.00015088515501985783, curr_delay = 0.12592508293938165, data_size = 672
+user 6, emp_avg: 0.5041254389826663, h: 0.8289825113770609, ucb: 1.3341188124243106,num_of_obs: 52, privacy reward: 0.12003162851145621, g: 0.0002211943187833019, curr_delay = 0.11072710664498134, data_size = 1451
+user 17, emp_avg: 0.06779209945499777, h: 0.41153408649220236, ucb: 0.4793012016989725,num_of_obs: 211, privacy reward: 0.00020757870271703727, g: 0.0004069095581398432, curr_delay = 0.6843336445632873, data_size = 5498
+user 18, emp_avg: 0.06632279753455059, h: 0.6857096229914037, ucb: 0.7519775327067353,num_of_obs: 76, privacy reward: 0.045959256649043545, g: -4.064990488174625e-05, curr_delay = 0.7092774877547643, data_size = 1848
+user 26, emp_avg: 0.058393791714118, h: 0.5948210831487959, ucb: 0.6532233875565121,num_of_obs: 101, privacy reward: 0.01690746565270429, g: 2.54318473837402e-05, curr_delay = 0.8690511976284999, data_size = 2587
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.87 seconds
+global epoch 386 has been done artifficialy in 0.87 secs, the total time by now is 336.03 
+ with avg train loss 2.663, val loss 10.150, avg val acc 10.34%
+iteration: 387
+user 9, emp_avg: 0.3778850766775796, h: 0.5413291789522077, ucb: 0.9188596761935359,num_of_obs: 122, privacy reward: 0.0072991308467874605, g: 2.777275118962919e-05, curr_delay = 0.11872430227162639, data_size = 3109
+user 15, emp_avg: 0.07217633177364921, h: 1.2467444241107506, ucb: 1.3185938539143693,num_of_obs: 23, privacy reward: 0.3828928859751114, g: -1.3383368668828391e-05, curr_delay = 0.6273913249005162, data_size = 541
+user 23, emp_avg: 0.06144710427488085, h: 0.45198323709863836, ucb: 0.5134677592950975,num_of_obs: 175, privacy reward: 0.0008761265622573289, g: -0.00017224508447511848, curr_delay = 0.9107639327791519, data_size = 4259
+user 24, emp_avg: 0.06056794752458021, h: 0.681390367721103, ucb: 0.7420401415273299,num_of_obs: 77, privacy reward: 0.044157168419692305, g: 0.0006328898978299107, curr_delay = 0.921364763618402, data_size = 2174
+user 28, emp_avg: 0.055924097158205656, h: 0.6727098812123565, ucb: 0.7286191620396751,num_of_obs: 79, privacy reward: 0.0407622039783655, g: -0.0011511214902650221, curr_delay = 0.875739756884227, data_size = 1651
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.92 seconds
+global epoch 387 has been done artifficialy in 0.92 secs, the total time by now is 336.95 
+ with avg train loss 3.762, val loss 4.975, avg val acc 18.90%
+iteration: 388
+user 6, emp_avg: 0.502059943681139, h: 0.8214808538029957, ucb: 1.325606292785662,num_of_obs: 53, privacy reward: 0.11532512103806203, g: 0.00016873206504410682, curr_delay = 0.12735975571813826, data_size = 1451
+user 17, emp_avg: 0.06776994689500423, h: 0.41074042690149787, ucb: 0.4785325263564956,num_of_obs: 212, privacy reward: 0.00019943942536349013, g: 0.00041666489531300247, curr_delay = 0.7927246373963673, data_size = 5498
+user 18, emp_avg: 0.06633763506610513, h: 0.681537909853918, ucb: 0.7478607073884687,num_of_obs: 77, privacy reward: 0.044157168419692305, g: -6.301413540227424e-05, curr_delay = 0.740958912022005, data_size = 1848
+user 19, emp_avg: 0.06524543792849789, h: 0.5036465046896451, ucb: 0.5689072960304171,num_of_obs: 141, privacy reward: 0.0034135584433941935, g: -3.575300244446794e-05, curr_delay = 0.7926366364900761, data_size = 3467
+user 27, emp_avg: 0.0580129163594863, h: 0.9831833575348515, ucb: 1.041401390955789,num_of_obs: 37, privacy reward: 0.21871188695221422, g: 1.530449569561089e-06, curr_delay = 0.9915994651100075, data_size = 937
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.99 seconds
+global epoch 388 has been done artifficialy in 0.99 secs, the total time by now is 337.94 
+ with avg train loss 2.750, val loss 17.422, avg val acc 13.76%
+iteration: 389
+user 6, emp_avg: 0.5005468027119727, h: 0.8140146970839753, ucb: 1.3160746407651143,num_of_obs: 54, privacy reward: 0.11080315836233334, g: 0.00011599609109077253, curr_delay = 0.11937812865900259, data_size = 1451
+user 9, emp_avg: 0.3788048142108171, h: 0.5393573114780241, ucb: 0.9172423881556038,num_of_obs: 123, privacy reward: 0.007012927832584226, g: 1.866318769018129e-05, curr_delay = 0.10163995440347653, data_size = 3109
+user 14, emp_avg: 0.2606967214202149, h: 1.011102313061071, ucb: 1.2727726301895936,num_of_obs: 35, privacy reward: 0.23692775868212124, g: -3.422930644975831e-05, curr_delay = 0.22063281126972378, data_size = 816
+user 23, emp_avg: 0.06142798736316125, h: 0.4508922723442039, ucb: 0.5123393766190848,num_of_obs: 176, privacy reward: 0.0008417731483776336, g: -0.00017875675118069368, curr_delay = 0.8611275022349747, data_size = 4259
+user 24, emp_avg: 0.060503748232213606, h: 0.6773011683040524, ucb: 0.7378691158286326,num_of_obs: 78, privacy reward: 0.04242574108051078, g: 0.0005574119147058322, curr_delay = 0.9009625327832143, data_size = 2174
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.90 seconds
+global epoch 389 has been done artifficialy in 0.90 secs, the total time by now is 338.84 
+ with avg train loss 3.063, val loss 3.131, avg val acc 18.45%
+iteration: 390
+user 0, emp_avg: 0.6885621562479046, h: 1.0113199357380454, ucb: 1.6909838678787472,num_of_obs: 35, privacy reward: 0.23692775868212124, g: 0.00016736137969654172, curr_delay = 0.05, data_size = 996
+user 17, emp_avg: 0.06774728285199488, h: 0.40995179170801416, ucb: 0.47772173860301836,num_of_obs: 213, privacy reward: 0.00019161929363975538, g: 0.00042643396320154683, curr_delay = 0.7946618849670146, data_size = 5498
+user 18, emp_avg: 0.066366175926076, h: 0.6774469459285917, ucb: 0.7437845809946968,num_of_obs: 78, privacy reward: 0.04242574108051078, g: -8.995642469975575e-05, curr_delay = 0.7289441245409063, data_size = 1848
+user 19, emp_avg: 0.0652010386741513, h: 0.5020863544121833, ucb: 0.5673317923406812,num_of_obs: 142, privacy reward: 0.0032797109023422477, g: -4.462084611450586e-05, curr_delay = 0.8489491219894729, data_size = 3467
+user 28, emp_avg: 0.05589353544312761, h: 0.6689252614711728, ucb: 0.7248493586293785,num_of_obs: 80, privacy reward: 0.03916389509898632, g: -0.0012195474502324731, curr_delay = 0.9354782286038655, data_size = 1651
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.94 seconds
+global epoch 390 has been done artifficialy in 0.94 secs, the total time by now is 339.78 
+ with avg train loss 2.801, val loss 10.138, avg val acc 10.08%
+iteration: 391
+user 4, emp_avg: 0.6085914394447293, h: 1.3729002217724153, ucb: 1.9919658870665744,num_of_obs: 19, privacy reward: 0.449328964117221, g: 5.155018129842628e-05, curr_delay = 0.12207593100134198, data_size = 541
+user 17, emp_avg: 0.06773577208660228, h: 0.40908060444632316, ucb: 0.47682788729831804,num_of_obs: 214, privacy reward: 0.00018410579366689994, g: 0.0003798423918350406, curr_delay = 0.7660197523996546, data_size = 5498
+user 21, emp_avg: 0.06290104406726497, h: 0.6045089536980779, ucb: 0.667343327477002,num_of_obs: 98, privacy reward: 0.019063114291610672, g: -0.0013333945096816965, curr_delay = 0.7201007093424234, data_size = 2077
+user 26, emp_avg: 0.05835243543272302, h: 0.5925372939360202, ucb: 0.6509310856501381,num_of_obs: 102, privacy reward: 0.016244514441948854, g: 3.400599233208111e-05, curr_delay = 0.923632329107547, data_size = 2587
+user 28, emp_avg: 0.055823416294230876, h: 0.6649259251411709, ucb: 0.7208194605842985,num_of_obs: 81, privacy reward: 0.03762825680717552, g: -0.0013656675721244152, curr_delay = 0.997132939001978, data_size = 1651
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 1.00 seconds
+global epoch 391 has been done artifficialy in 1.00 secs, the total time by now is 340.78 
+ with avg train loss 3.717, val loss 9.884, avg val acc 9.66%
+iteration: 392
+user 6, emp_avg: 0.49862149218323165, h: 0.8070999829776951, ucb: 1.3076467856896679,num_of_obs: 55, privacy reward: 0.1064585043792523, g: 8.614636136880829e-05, curr_delay = 0.12731412094910535, data_size = 1451
+user 9, emp_avg: 0.3777517633562799, h: 0.5375239757499103, ucb: 0.9163287899607273,num_of_obs: 124, privacy reward: 0.006737946999084254, g: 1.7547162236091247e-05, curr_delay = 0.20228709234084563, data_size = 3109
+user 16, emp_avg: 0.06908048203783741, h: 0.9236002412756029, ucb: 0.992837111892122,num_of_obs: 42, privacy reward: 0.17906614791149256, g: 8.554206675762027e-05, curr_delay = 0.7998443601005293, data_size = 1129
+user 23, emp_avg: 0.061422508968797786, h: 0.4499062742239959, ucb: 0.5113342615871571,num_of_obs: 177, privacy reward: 0.00080876675112318, g: -0.00015521290903828023, curr_delay = 0.8270910953390505, data_size = 4259
+user 24, emp_avg: 0.060596392317071535, h: 0.6734341522765535, ucb: 0.7339379005087671,num_of_obs: 79, privacy reward: 0.0407622039783655, g: 0.0005104481267304167, curr_delay = 0.7362114043512554, data_size = 2174
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.83 seconds
+global epoch 392 has been done artifficialy in 0.83 secs, the total time by now is 341.60 
+ with avg train loss 3.747, val loss 3.756, avg val acc 14.81%
+iteration: 393
+user 2, emp_avg: 0.7595329345465953, h: 1.1741258232799867, ucb: 1.9316179170987071,num_of_obs: 26, privacy reward: 0.33959552564493845, g: -0.00010783918895072274, curr_delay = 0.06153128275213762, data_size = 541
+user 6, emp_avg: 0.49848334252597054, h: 0.8000318930162317, ucb: 1.2986533851994633,num_of_obs: 56, privacy reward: 0.10228420671553695, g: 5.032469680353784e-05, curr_delay = 0.10188550087976858, data_size = 1451
+user 12, emp_avg: 0.31764496954778443, h: 0.7369352760446631, ucb: 1.055144634698077,num_of_obs: 66, privacy reward: 0.06856315415427716, g: 5.818758940673069e-05, curr_delay = 0.17831968666051257, data_size = 1703
+user 19, emp_avg: 0.06521794941686847, h: 0.5006489332298281, ucb: 0.5658499719039793,num_of_obs: 143, privacy reward: 0.003151111598443168, g: -4.153807741076102e-05, curr_delay = 0.7392492574448887, data_size = 3467
+user 23, emp_avg: 0.06142301491352041, h: 0.4487364136544006, ucb: 0.5101589226231984,num_of_obs: 178, privacy reward: 0.0007770545532166384, g: -0.00019193452692313357, curr_delay = 0.81283534541885, data_size = 4259
+num of fast users chosen: 3, num of slow users chosen: 2
+max_delay = 0.81 seconds
+global epoch 393 has been done artifficialy in 0.81 secs, the total time by now is 342.42 
+ with avg train loss 3.093, val loss 3.825, avg val acc 14.52%
+iteration: 394
+user 18, emp_avg: 0.06643248391999688, h: 0.6737210617611732, ucb: 0.7400872376872492,num_of_obs: 79, privacy reward: 0.0407622039783655, g: -9.984306753130176e-05, curr_delay = 0.6976340326702953, data_size = 1848
+user 23, emp_avg: 0.06142985734863429, h: 0.44757637502983433, ucb: 0.5089993899433547,num_of_obs: 179, privacy reward: 0.0007465858083758325, g: -0.00023233550925890175, curr_delay = 0.7980253248429385, data_size = 4259
+user 25, emp_avg: 0.05895291913764074, h: 0.8554519685676558, ucb: 0.9144693318230205,num_of_obs: 49, privacy reward: 0.13533528323661215, g: 0.0006466000784474755, curr_delay = 0.8961351192035572, data_size = 1453
+user 26, emp_avg: 0.05834422530658692, h: 0.5900313094850943, ucb: 0.6483837449178174,num_of_obs: 103, privacy reward: 0.015607557919981918, g: 2.7875349625545722e-05, curr_delay = 0.8695866573971408, data_size = 2587
+user 27, emp_avg: 0.05808315059344323, h: 0.9714084383510747, ucb: 1.029421354710561,num_of_obs: 38, privacy reward: 0.21013607120076416, g: 2.28728227593478e-08, curr_delay = 0.8230174747815302, data_size = 937
+num of fast users chosen: 0, num of slow users chosen: 5
+max_delay = 0.90 seconds
+global epoch 394 has been done artifficialy in 0.90 secs, the total time by now is 343.31 
+ with avg train loss 3.210, val loss 3.478, avg val acc 19.35%
+iteration: 395
+user 9, emp_avg: 0.3768626289996179, h: 0.5357112251159704, ucb: 0.9134629884722503,num_of_obs: 125, privacy reward: 0.006473748318288286, g: 1.6481713899708507e-05, curr_delay = 0.18816740550181893, data_size = 3109
+user 16, emp_avg: 0.06882437593344609, h: 0.9133800577997109, ucb: 0.9824605398375483,num_of_obs: 43, privacy reward: 0.17204486382304973, g: 5.671585682596454e-05, curr_delay = 0.8648751357349631, data_size = 1129
+user 17, emp_avg: 0.06773621115943056, h: 0.40847597970656807, ucb: 0.4762117517931703,num_of_obs: 215, privacy reward: 0.00017688690224193504, g: 0.0005062646810407961, curr_delay = 0.7371303112305531, data_size = 5498
+user 21, emp_avg: 0.06290881414030453, h: 0.6019607238220036, ucb: 0.6648617678892685,num_of_obs: 99, privacy reward: 0.01831563888873322, g: -0.0013329216884514785, curr_delay = 0.7851999067703583, data_size = 2077
+user 28, emp_avg: 0.05585332264023458, h: 0.6614222903805687, ucb: 0.7172457066747995,num_of_obs: 82, privacy reward: 0.03615283175404571, g: -0.0013979187119472231, curr_delay = 0.8575499285591905, data_size = 1651
+num of fast users chosen: 1, num of slow users chosen: 4
+max_delay = 0.86 seconds
+global epoch 395 has been done artifficialy in 0.86 secs, the total time by now is 344.18 
+ with avg train loss 2.778, val loss 53.379, avg val acc 12.04%
+iteration: 396
+user 0, emp_avg: 0.6845495707057835, h: 0.9984499829948486, ucb: 1.687012139242753,num_of_obs: 36, privacy reward: 0.22763768838381226, g: 0.00013856400896275682, curr_delay = 0.09257605041996796, data_size = 996
+user 8, emp_avg: 0.41275650051649343, h: 0.8077858094538639, ucb: 1.2185801375194423,num_of_obs: 55, privacy reward: 0.1064585043792523, g: 1.2126031157454846e-05, curr_delay = 0.09602901115090892, data_size = 1381
+user 17, emp_avg: 0.06771285219112023, h: 0.40761549867132, ucb: 0.4753517098307506,num_of_obs: 216, privacy reward: 0.00016995106759831735, g: 0.00045580449174300713, curr_delay = 0.797864085467927, data_size = 5498
+user 18, emp_avg: 0.06646972217472792, h: 0.6697806102329972, ucb: 0.7362130941529941,num_of_obs: 80, privacy reward: 0.03916389509898632, g: -0.00013235899881117055, curr_delay = 0.7199550252978322, data_size = 1848
+user 19, emp_avg: 0.0651523650885331, h: 0.4992249914974243, ucb: 0.5644429409142927,num_of_obs: 144, privacy reward: 0.0030275547453746388, g: -3.8609859208126036e-05, curr_delay = 0.8975335843981931, data_size = 3467
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.90 seconds
+global epoch 396 has been done artifficialy in 0.90 secs, the total time by now is 345.08 
+ with avg train loss 3.238, val loss 5.697, avg val acc 16.30%
+iteration: 397
+user 9, emp_avg: 0.377538128764209, h: 0.5338064693307772, ucb: 0.9106690983303951,num_of_obs: 126, privacy reward: 0.006219909015941494, g: 9.828922692144813e-06, curr_delay = 0.10807280064172527, data_size = 3109
+user 14, emp_avg: 0.2621430972198057, h: 0.9986604595396101, ucb: 1.259357180959825,num_of_obs: 36, privacy reward: 0.22763768838381226, g: -4.2986242167173147e-05, curr_delay = 0.1591279148635873, data_size = 816
+user 23, emp_avg: 0.06144076553394126, h: 0.4466145347943493, ucb: 0.5080443921429836,num_of_obs: 180, privacy reward: 0.0007173117601084744, g: -0.00020530129362395815, curr_delay = 0.7885908083745042, data_size = 4259
+user 28, emp_avg: 0.055851706475624555, h: 0.6577033579339764, ucb: 0.713556680574211,num_of_obs: 83, privacy reward: 0.034735258944737835, g: -0.0015102414041338378, curr_delay = 0.8973830814002265, data_size = 1651
+user 29, emp_avg: 0.05518291432900955, h: 0.6617015914654001, ucb: 0.7169525613408779,num_of_obs: 82, privacy reward: 0.03615283175404571, g: 0.0025048843590106755, curr_delay = 1.0080165638338499, data_size = 2489
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 1.01 seconds
+global epoch 397 has been done artifficialy in 1.01 secs, the total time by now is 346.08 
+ with avg train loss 3.171, val loss 2.845, avg val acc 15.76%
+iteration: 398
+user 9, emp_avg: 0.3780747757708983, h: 0.5318124708829856, ucb: 0.9093505996471946,num_of_obs: 127, privacy reward: 0.005976022895004873, g: 2.0163617470601797e-06, curr_delay = 0.11205010452757527, data_size = 3109
+user 10, emp_avg: 0.3450838692395557, h: 1.0130394440453037, ucb: 1.3594889128590717,num_of_obs: 35, privacy reward: 0.23692775868212124, g: -0.00015308341287830003, curr_delay = 0.16818714339564994, data_size = 733
+user 17, emp_avg: 0.06771593839186169, h: 0.40684643119891467, ucb: 0.4745592833900349,num_of_obs: 217, privacy reward: 0.00016328719092117971, g: 0.00046560978441428767, curr_delay = 0.7311476080351157, data_size = 5498
+user 20, emp_avg: 0.06418191851191056, h: 0.7938216693071056, ucb: 0.8580910112599145,num_of_obs: 57, privacy reward: 0.09827358560436095, g: 2.32924871012942e-06, curr_delay = 0.8446119664834999, data_size = 1404
+user 24, emp_avg: 0.0605858560119308, h: 0.6700626093107516, ucb: 0.7306590016278232,num_of_obs: 80, privacy reward: 0.03916389509898632, g: 0.0005344736522881198, curr_delay = 0.8369188106775362, data_size = 2174
+num of fast users chosen: 2, num of slow users chosen: 3
+max_delay = 0.84 seconds
+global epoch 398 has been done artifficialy in 0.84 secs, the total time by now is 346.93 
+ with avg train loss 3.099, val loss 9.454, avg val acc 10.10%
+iteration: 399
+user 17, emp_avg: 0.06772258498860415, h: 0.40599729120384365, ucb: 0.47371322959570533,num_of_obs: 218, privacy reward: 0.00015688460858587217, g: 0.0004177203840363148, curr_delay = 0.7228406043115965, data_size = 5498
+user 19, emp_avg: 0.06514973095371483, h: 0.4978143158976889, ucb: 0.5629666809862219,num_of_obs: 145, privacy reward: 0.002908842625811481, g: -3.583029117101482e-05, curr_delay = 0.7719887715049758, data_size = 3467
+user 27, emp_avg: 0.05804500457116898, h: 0.9598847219960933, ucb: 1.0179678725895365,num_of_obs: 39, privacy reward: 0.2018965179946548, g: -1.3142851398900375e-06, curr_delay = 0.8840590237235716, data_size = 937
+user 28, emp_avg: 0.05585020930059247, h: 0.6540511893952001, ucb: 0.7099028958708247,num_of_obs: 84, privacy reward: 0.0333732699603253, g: -0.0016257129011564035, curr_delay = 0.897272257556809, data_size = 1651
+user 29, emp_avg: 0.05516862527695012, h: 0.6579794600864474, ucb: 0.7131623744154569,num_of_obs: 83, privacy reward: 0.034735258944737835, g: 0.00235981120438812, curr_delay = 0.9262237933913562, data_size = 2489
+num of fast users chosen: 0, num of slow users chosen: 5
+max_delay = 0.93 seconds
+global epoch 399 has been done artifficialy in 0.93 secs, the total time by now is 347.85 
+ with avg train loss 3.672, val loss 8.667, avg val acc 10.60%
+iteration: 400
+user 16, emp_avg: 0.06873619294408577, h: 0.903890420785314, ucb: 0.9727147967187602,num_of_obs: 44, privacy reward: 0.16529888822158578, g: 4.085450100967151e-05, curr_delay = 0.7709370140014213, data_size = 1129
+user 18, emp_avg: 0.06646540158922763, h: 0.6661923060758548, ucb: 0.7326620282505827,num_of_obs: 81, privacy reward: 0.03762825680717552, g: -0.000143629105112127, curr_delay = 0.7562530690821504, data_size = 1848
+user 20, emp_avg: 0.06420233201224981, h: 0.7872780177847166, ucb: 0.8514599362966272,num_of_obs: 58, privacy reward: 0.09442022319630183, g: -6.642576256775381e-08, curr_delay = 0.7646860046415866, data_size = 1404
+user 23, emp_avg: 0.06142028197905181, h: 0.44565915724297506, ucb: 0.5070999227769163,num_of_obs: 181, privacy reward: 0.0006891855636920186, g: -0.0001803067541715375, curr_delay = 0.8663595582912121, data_size = 4259
+user 26, emp_avg: 0.058340161561646654, h: 0.5879297714687586, ucb: 0.6462739967753455,num_of_obs: 104, privacy reward: 0.014995576820476808, g: 4.490381549580157e-05, curr_delay = 0.8632964526898713, data_size = 2587
+num of fast users chosen: 0, num of slow users chosen: 5
+max_delay = 0.87 seconds
+global epoch 400 has been done artifficialy in 0.87 secs, the total time by now is 348.72 
+ with avg train loss 3.428, val loss 3.147, avg val acc 12.78%
