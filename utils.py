@@ -704,11 +704,11 @@ def plot_graphs(paths_dict: dict, x_axis_time = True, path_to_save = None, print
         if not value.is_absolute():
             paths_dict_copy[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
-                                                                                torch.device('cpu')))
+                                                                                torch.device('cpu')), weights_only = False)
         else:
             paths_dict_copy[key] = torch.load(value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
-                                                                                torch.device('cpu')))
+                                                                                torch.device('cpu')), weights_only = False)
 
     colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
     line_styles = ["-", "--", "-."]
@@ -769,7 +769,26 @@ def plot_graphs(paths_dict: dict, x_axis_time = True, path_to_save = None, print
         plt.show()
 
 
-def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
+def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, moving_average = None):
+
+    father_path = Path(father_path)
+    paths_dict = {}
+    # for every subdir add the path to the dict
+    for subdir in father_path.iterdir():
+        if subdir.is_dir():
+            if subdir.name == "fraboni":
+                name = "Clusterd Sampling"
+            elif subdir.name == "sa_pause":
+                name = "SA-PAUSE"
+            elif subdir.name == "pause brute":
+                name = "Brute Force PAUSE Search"
+            elif subdir.name == "fastest ones":
+                name = "Fastest in expectation"
+            else:
+                # assign name as the name of the subdir with capital letter at the begining of each word (case)
+                name = subdir.name.title()
+
+            paths_dict[name] = subdir / "last_model.pth.tar"
 
     paths_dict_copy = paths_dict.copy()
 
@@ -778,11 +797,11 @@ def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
         if not value.is_absolute():
             paths_dict_copy[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
-                                                                                torch.device('cpu')))
+                                                                                torch.device('cpu')), weights_only=False)
         else:
             paths_dict_copy[key] = torch.load(value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
-                                                                                torch.device('cpu')))
+                                                                                torch.device('cpu')),weights_only=False)
 
 
     colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
@@ -797,6 +816,10 @@ def plot_graphs_conf(paths_dict: dict, graph = "accuracy", x_axis_time = True):
         key, value = zipped_key_value
         x_var = value["global_epochs_time_list"] if x_axis_time else list(range(1, value["global_epoch"]+1))
         if graph == "accuracy":
+            # if moving average is not None, we plot the moving average of the validation accuracy in casual manner with a window of moving_average
+            if moving_average is not None:
+                value['val_acc_list'] = np.convolve(value['val_acc_list'], np.ones(moving_average)/moving_average, mode='valid')
+                x_var = x_var[:len(value['val_acc_list'])]
             ax.plot(x_var, value['val_acc_list'], label = f"{key}",
                 ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
             
@@ -1049,7 +1072,8 @@ def visualize_user_data_distribution(local_models, args):
         total = sum(label_counts[user_idx, :])
         if total > 0:
             dominant_label_pct = (np.max(label_counts[user_idx, :]) / total) * 100
-            ax.text(user_idx, total, f'{int(total)}\n({dominant_label_pct:.1f}%)', 
+            if args.num_users <= 100:
+                ax.text(user_idx, total, f'{int(total)}\n({dominant_label_pct:.1f}%)', 
                    ha='center', va='bottom')
     
     # sum label counts in both axes to get total samples

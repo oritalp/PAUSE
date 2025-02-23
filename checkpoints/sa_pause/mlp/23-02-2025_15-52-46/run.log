@@ -1,0 +1,533 @@
+Namespace(full_exp=True, data='mnist', i_i_d=True, wandb=True, method_choosing_users='sa_pause', model='mlp', num_users=300, num_users_per_round=15, global_epochs=300, max_seconds=600, epsilon_bar=20.0, epsilon_sum_deascent_coeff=0.04, delta_f=0.003, alpha=100.0, beta=2.0, gamma=5.0, alternative_privacy_reward=False, choosing_users_verbose=True, sa_pause_verbose=False, snr_verbose=False, dirichlet_coeff=2.0, label_dominance=0.25, bar_plot_interval=30, max_iterations_sa_pause=3000, sa_pause_simulation=False, max_time_sa_pause=600, pre_sa_pause_rounds=1, beta_max_reduction=70, accel_ucb_coeff=3.0, data_truncation=None, tau_min=0.05, production=False, privacy_noise='laplace', privacy=True, save_best_model=False, seed=0.0, norm_mean=0.5, norm_std=0.5, train_batch_size=20, test_batch_size=1000, local_epochs=1, local_iterations=100, lr=0.01, momentum=0.5, lr_scheduler=False, optimizer='adam', device=device(type='cuda'))
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+FC3Layer                                 --
+├─Linear: 1-1                            25,120
+├─Linear: 1-2                            528
+├─Linear: 1-3                            170
+=================================================================
+Total params: 25,818
+Trainable params: 25,818
+Non-trainable params: 0
+=================================================================
+iteration: 1
+user 12, emp_avg: 0.4189998108791449, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.11933179610532535, data_size = 200
+user 15, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 22, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 52, emp_avg: 0.6164544178715704, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.0811089977627783, data_size = 200
+user 108, emp_avg: 0.37286058895758567, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.13409837746538478, data_size = 200
+user 136, emp_avg: 0.17638139982412737, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.28347660269084934, data_size = 200
+user 184, emp_avg: 0.06296137251569187, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7941377070129546, data_size = 200
+user 188, emp_avg: 0.06610455215410214, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7563775620692595, data_size = 200
+user 206, emp_avg: 0.06995666089143854, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7147282240584916, data_size = 200
+user 208, emp_avg: 0.060909885353833085, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.820884815486744, data_size = 200
+user 221, emp_avg: 0.06702509609111787, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7459892326305217, data_size = 200
+user 230, emp_avg: 0.0684217815965591, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7307614451611193, data_size = 200
+user 239, emp_avg: 0.05685685160908837, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.879401489617615, data_size = 200
+user 248, emp_avg: 0.05897289522562618, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8478471305962424, data_size = 200
+user 290, emp_avg: 0.05353072947197671, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.934042941189041, data_size = 200
+num of fast users chosen: 6, num of slow users chosen: 9
+max_delay = 0.93 seconds
+global epoch 1 has been done artifficialy in 0.93 secs, the total time by now is 0.93 
+ with avg train loss 2.358, val loss 2.300, avg val acc 8.22%
+iteration: 2
+user 11, emp_avg: 0.641548892849824, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.07793638264715107, data_size = 200
+user 28, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 43, emp_avg: 0.35420037234102947, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.14116303624847476, data_size = 200
+user 51, emp_avg: 0.3587845097254132, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1393594167102316, data_size = 200
+user 86, emp_avg: 0.6447224444773675, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.0775527522398132, data_size = 200
+user 96, emp_avg: 0.2693056481973104, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.18566264887013, data_size = 200
+user 152, emp_avg: 0.07754270661581333, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6448059679903341, data_size = 200
+user 156, emp_avg: 0.08674912021756517, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.5763747214334962, data_size = 200
+user 158, emp_avg: 0.06735676127401348, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.742315976217969, data_size = 200
+user 168, emp_avg: 0.07842659877897917, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6375388041614473, data_size = 200
+user 172, emp_avg: 0.06638225060780371, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7532133897569623, data_size = 200
+user 197, emp_avg: 0.06851197222701216, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7297994551131392, data_size = 200
+user 198, emp_avg: 0.05894065676036866, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8483108731428269, data_size = 200
+user 254, emp_avg: 0.05596437719859717, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8934254699658004, data_size = 200
+user 285, emp_avg: 0.05822999157751307, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8586640431407639, data_size = 200
+num of fast users chosen: 6, num of slow users chosen: 9
+max_delay = 0.89 seconds
+global epoch 2 has been done artifficialy in 0.89 secs, the total time by now is 1.83 
+ with avg train loss 2.318, val loss 2.292, avg val acc 12.37%
+iteration: 3
+user 30, emp_avg: 0.5279623283629646, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.0947037265992696, data_size = 200
+user 50, emp_avg: 0.41257375810470603, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.12119045144725524, data_size = 200
+user 74, emp_avg: 0.6849449493987625, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.07299856732119783, data_size = 200
+user 77, emp_avg: 0.2622342214215077, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.19066924114237344, data_size = 200
+user 85, emp_avg: 0.4314482299217542, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.11588875914282419, data_size = 200
+user 87, emp_avg: 0.8150062288380996, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.0613492243749863, data_size = 200
+user 91, emp_avg: 0.22798541191891075, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.21931227783023183, data_size = 200
+user 142, emp_avg: 0.2509695805285002, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.19922733223169242, data_size = 200
+user 154, emp_avg: 0.06973557506322497, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7169941590740173, data_size = 200
+user 189, emp_avg: 0.07061313039204928, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7080836060148635, data_size = 200
+user 211, emp_avg: 0.06132023148146306, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8153915729283387, data_size = 200
+user 241, emp_avg: 0.05912029807622082, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.845733218995911, data_size = 200
+user 251, emp_avg: 0.06637722314956762, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7532704386764589, data_size = 200
+user 272, emp_avg: 0.06291456815132696, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7947284940387123, data_size = 200
+user 291, emp_avg: 0.054850728841785115, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9115649154676347, data_size = 200
+num of fast users chosen: 8, num of slow users chosen: 7
+max_delay = 0.91 seconds
+global epoch 3 has been done artifficialy in 0.91 secs, the total time by now is 2.74 
+ with avg train loss 2.278, val loss 2.282, avg val acc 15.64%
+iteration: 4
+user 17, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 32, emp_avg: 0.6590664865544107, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.07586488012977147, data_size = 200
+user 53, emp_avg: 0.5027540817236709, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.09945220102157527, data_size = 200
+user 117, emp_avg: 0.2299894644463969, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.21740126279416327, data_size = 200
+user 123, emp_avg: 0.5262014638392989, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.09502064026045721, data_size = 200
+user 125, emp_avg: 0.2037800299111729, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.2453626099760357, data_size = 200
+user 147, emp_avg: 0.31763498337248625, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.15741339152610176, data_size = 200
+user 179, emp_avg: 0.07171930824819966, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6971623293822711, data_size = 200
+user 199, emp_avg: 0.06344096204120082, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7881343282204362, data_size = 200
+user 222, emp_avg: 0.06612357569166932, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7561599547058271, data_size = 200
+user 242, emp_avg: 0.06578835985740095, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7600128671451472, data_size = 200
+user 262, emp_avg: 0.05811026232488482, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8604332178102778, data_size = 200
+user 277, emp_avg: 0.06014461559327121, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8313296129137426, data_size = 200
+user 289, emp_avg: 0.058991051484486155, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.847586180306505, data_size = 200
+user 294, emp_avg: 0.05447961061082694, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9177745479345132, data_size = 200
+num of fast users chosen: 7, num of slow users chosen: 8
+max_delay = 0.92 seconds
+global epoch 4 has been done artifficialy in 0.92 secs, the total time by now is 3.66 
+ with avg train loss 2.257, val loss 2.279, avg val acc 18.60%
+iteration: 5
+user 54, emp_avg: 0.2531907576108503, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.19747956233398184, data_size = 200
+user 70, emp_avg: 0.4533434054801861, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1102916671899958, data_size = 200
+user 76, emp_avg: 0.4899598980646418, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10204916810029085, data_size = 200
+user 88, emp_avg: 0.3569705902953383, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.14006756119217745, data_size = 200
+user 110, emp_avg: 0.43461508250826186, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.11504432775650283, data_size = 200
+user 149, emp_avg: 0.23850672755877433, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.20963769245326083, data_size = 200
+user 153, emp_avg: 0.07277166900183586, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6870805725060204, data_size = 200
+user 165, emp_avg: 0.07914310732870806, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6317669559312741, data_size = 200
+user 185, emp_avg: 0.06710772796362421, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7450706724433069, data_size = 200
+user 212, emp_avg: 0.0650937546067188, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.76812284530349, data_size = 200
+user 220, emp_avg: 0.07012175224495625, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7130455015632675, data_size = 200
+user 250, emp_avg: 0.06014603754296287, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8313099589359406, data_size = 200
+user 258, emp_avg: 0.05435957653355152, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9198011314370573, data_size = 200
+user 293, emp_avg: 0.0544623635505136, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9180651874137857, data_size = 200
+user 297, emp_avg: 0.05388339265227324, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9279296929698913, data_size = 200
+num of fast users chosen: 6, num of slow users chosen: 9
+max_delay = 0.93 seconds
+global epoch 5 has been done artifficialy in 0.93 secs, the total time by now is 4.58 
+ with avg train loss 2.258, val loss 2.269, avg val acc 19.98%
+iteration: 6
+user 6, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 16, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 25, emp_avg: 0.4017438610692438, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.12445740892449406, data_size = 200
+user 26, emp_avg: 0.48521944717784515, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10304615837393208, data_size = 200
+user 67, emp_avg: 0.3601536181342819, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.13882964791251295, data_size = 200
+user 73, emp_avg: 0.4935197289767455, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10131307233384379, data_size = 200
+user 145, emp_avg: 0.21992814611759062, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.22734698074191073, data_size = 200
+user 177, emp_avg: 0.06539800661781256, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7645492972316593, data_size = 200
+user 236, emp_avg: 0.05836707251547238, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8566473843063763, data_size = 200
+user 237, emp_avg: 0.05706833875756625, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8761425527455167, data_size = 200
+user 240, emp_avg: 0.06562824859527598, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7618670476542182, data_size = 200
+user 265, emp_avg: 0.05513822947523937, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9068118522458766, data_size = 200
+user 267, emp_avg: 0.05635693270112461, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8872022944393183, data_size = 200
+user 268, emp_avg: 0.05562181836724729, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8989278212709839, data_size = 200
+user 270, emp_avg: 0.05256243206588363, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9512497431117384, data_size = 200
+num of fast users chosen: 7, num of slow users chosen: 8
+max_delay = 0.95 seconds
+global epoch 6 has been done artifficialy in 0.95 secs, the total time by now is 5.54 
+ with avg train loss 2.257, val loss 2.258, avg val acc 21.91%
+iteration: 7
+user 31, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 59, emp_avg: 0.2807468317205103, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17809639985457115, data_size = 200
+user 79, emp_avg: 0.5343842081476017, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.09356563917433271, data_size = 200
+user 97, emp_avg: 0.18706897111649526, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.26728109799066047, data_size = 200
+user 99, emp_avg: 0.399422406578755, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1251807589571002, data_size = 200
+user 106, emp_avg: 0.2925702557238102, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17089912259296994, data_size = 200
+user 120, emp_avg: 0.2813260476295737, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17772972115911487, data_size = 200
+user 132, emp_avg: 0.2860711905009259, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1747816685505707, data_size = 200
+user 157, emp_avg: 0.06934846522906635, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7209964897542285, data_size = 200
+user 161, emp_avg: 0.061916203151588814, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.807543057470522, data_size = 200
+user 176, emp_avg: 0.06496704907664717, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.76962091876777, data_size = 200
+user 186, emp_avg: 0.06406302410073267, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7804814196935197, data_size = 200
+user 191, emp_avg: 0.0646210919356902, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7737411811264214, data_size = 200
+user 192, emp_avg: 0.06031532744196863, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8289766817250003, data_size = 200
+user 196, emp_avg: 0.06699269451390556, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7463500365643837, data_size = 200
+num of fast users chosen: 8, num of slow users chosen: 7
+max_delay = 0.83 seconds
+global epoch 7 has been done artifficialy in 0.83 secs, the total time by now is 6.36 
+ with avg train loss 2.229, val loss 2.254, avg val acc 21.44%
+iteration: 8
+user 18, emp_avg: 0.3217903399634789, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1553806742790187, data_size = 200
+user 19, emp_avg: 0.6611591918229064, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.0756247521298814, data_size = 200
+user 36, emp_avg: 0.4659840768414197, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10729980375920793, data_size = 200
+user 61, emp_avg: 0.2928698813295346, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17072428128497258, data_size = 200
+user 62, emp_avg: 0.3874463762266012, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.12905011652698253, data_size = 200
+user 66, emp_avg: 0.5264810704538176, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.0949701761487851, data_size = 200
+user 69, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 98, emp_avg: 0.2545529060989618, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.19642282135471534, data_size = 200
+user 144, emp_avg: 0.21483881956598894, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.2327326136915504, data_size = 200
+user 155, emp_avg: 0.07060547270644231, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7081604029178579, data_size = 200
+user 194, emp_avg: 0.06991568819715359, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7151470762757307, data_size = 200
+user 223, emp_avg: 0.06403803610946839, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7807859678040192, data_size = 200
+user 243, emp_avg: 0.06287399674664003, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7952413173522644, data_size = 200
+user 276, emp_avg: 0.05516061091820967, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9064439129243574, data_size = 200
+user 280, emp_avg: 0.05467116203091593, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9145589400811631, data_size = 200
+num of fast users chosen: 9, num of slow users chosen: 6
+max_delay = 0.91 seconds
+global epoch 8 has been done artifficialy in 0.91 secs, the total time by now is 7.28 
+ with avg train loss 2.248, val loss 2.245, avg val acc 25.79%
+iteration: 9
+user 2, emp_avg: 0.591787884017797, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.08448973247058963, data_size = 200
+user 37, emp_avg: 0.33888418203812753, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.14754303284174694, data_size = 200
+user 49, emp_avg: 0.39770542119262636, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.12572119296252385, data_size = 200
+user 81, emp_avg: 0.36038903149029944, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1387389615972423, data_size = 200
+user 105, emp_avg: 0.23021912816913442, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.21718438601360113, data_size = 200
+user 112, emp_avg: 0.27352324891758995, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.18279981755797492, data_size = 200
+user 137, emp_avg: 0.1568365132030872, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.3188033129457241, data_size = 200
+user 160, emp_avg: 0.07123294324426102, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7019224213233435, data_size = 200
+user 164, emp_avg: 0.07244206885309461, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6902066822718038, data_size = 200
+user 178, emp_avg: 0.0672485646341923, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7435102930743844, data_size = 200
+user 180, emp_avg: 0.07376930422506223, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.677788689011562, data_size = 200
+user 229, emp_avg: 0.07013758422056396, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7128845476451451, data_size = 200
+user 231, emp_avg: 0.0605200763264475, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.82617212394608, data_size = 200
+user 253, emp_avg: 0.06575582181441975, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7603889453486442, data_size = 200
+user 295, emp_avg: 0.050554450604355074, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9890326054832588, data_size = 200
+num of fast users chosen: 7, num of slow users chosen: 8
+max_delay = 0.99 seconds
+global epoch 9 has been done artifficialy in 0.99 secs, the total time by now is 8.27 
+ with avg train loss 2.228, val loss 2.233, avg val acc 26.99%
+iteration: 10
+user 7, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 35, emp_avg: 0.383849524912112, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.13025937706044638, data_size = 200
+user 38, emp_avg: 0.3073362879048353, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.16268824075692026, data_size = 200
+user 58, emp_avg: 0.3892422823449737, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.12845469844328605, data_size = 200
+user 64, emp_avg: 0.28809800327422413, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17355205323102443, data_size = 200
+user 103, emp_avg: 0.3631821848580941, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.13767195111603964, data_size = 200
+user 118, emp_avg: 0.2965783649289293, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.16858950588651933, data_size = 200
+user 140, emp_avg: 0.30327102821348045, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.16486902918007615, data_size = 200
+user 182, emp_avg: 0.06280232412913901, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7961488797323188, data_size = 200
+user 200, emp_avg: 0.06339509373765004, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7887045676896798, data_size = 200
+user 233, emp_avg: 0.06356161588869928, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7866382769052538, data_size = 200
+user 238, emp_avg: 0.060503380257163925, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8264001083489833, data_size = 200
+user 247, emp_avg: 0.05664149343551896, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8827450861075957, data_size = 200
+user 252, emp_avg: 0.05985372225891229, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8353699337814356, data_size = 200
+user 288, emp_avg: 0.059673939722636335, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8378866927908452, data_size = 200
+num of fast users chosen: 8, num of slow users chosen: 7
+max_delay = 0.88 seconds
+global epoch 10 has been done artifficialy in 0.88 secs, the total time by now is 9.15 
+ with avg train loss 2.193, val loss 2.219, avg val acc 27.70%
+iteration: 11
+user 3, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 40, emp_avg: 0.4696933952421068, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10645242301997274, data_size = 200
+user 56, emp_avg: 0.48011931833044064, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10414077936682327, data_size = 200
+user 119, emp_avg: 0.19889592096071665, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.251387759781536, data_size = 200
+user 127, emp_avg: 0.33603442395949956, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.14879427949925225, data_size = 200
+user 128, emp_avg: 0.38235564619597556, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.13076830562709307, data_size = 200
+user 148, emp_avg: 0.2284186434991125, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.21889631789269545, data_size = 200
+user 150, emp_avg: 0.0707711240375057, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7065028382692088, data_size = 200
+user 174, emp_avg: 0.06835897990506828, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7314327988720162, data_size = 200
+user 195, emp_avg: 0.05733801014469657, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8720218904322181, data_size = 200
+user 202, emp_avg: 0.06952197308220989, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7191970794740663, data_size = 200
+user 275, emp_avg: 0.05891405248651196, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8486939514379396, data_size = 200
+user 281, emp_avg: 0.055373093506644766, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9029656252454092, data_size = 200
+user 283, emp_avg: 0.058283398869556115, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8578772166651578, data_size = 200
+user 299, emp_avg: 0.05786526554755436, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8640762213198419, data_size = 200
+num of fast users chosen: 7, num of slow users chosen: 8
+max_delay = 0.90 seconds
+global epoch 11 has been done artifficialy in 0.90 secs, the total time by now is 10.05 
+ with avg train loss 2.223, val loss 2.212, avg val acc 35.06%
+iteration: 12
+user 39, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 75, emp_avg: 0.4196251856687653, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.11915395383218949, data_size = 200
+user 84, emp_avg: 0.4909699113501085, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10183923463355624, data_size = 200
+user 90, emp_avg: 0.5302659944469548, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.0942922995696677, data_size = 200
+user 100, emp_avg: 0.26208461611070366, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.19077808053747103, data_size = 200
+user 113, emp_avg: 0.29150172102912136, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17152557392621687, data_size = 200
+user 121, emp_avg: 0.2633214523504598, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1898819847516791, data_size = 200
+user 151, emp_avg: 0.06658759669359664, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7508905934850811, data_size = 200
+user 171, emp_avg: 0.07233256467276887, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6912515853156741, data_size = 200
+user 190, emp_avg: 0.06277145619699605, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7965403868134697, data_size = 200
+user 201, emp_avg: 0.06856887271957099, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7291938457919107, data_size = 200
+user 214, emp_avg: 0.06270792013768484, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7973474465461038, data_size = 200
+user 234, emp_avg: 0.05582770838123499, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8956126169206361, data_size = 200
+user 264, emp_avg: 0.0594730051824675, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.840717563314589, data_size = 200
+user 278, emp_avg: 0.060508338431561726, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8263323914695289, data_size = 200
+num of fast users chosen: 7, num of slow users chosen: 8
+max_delay = 0.90 seconds
+global epoch 12 has been done artifficialy in 0.90 secs, the total time by now is 10.95 
+ with avg train loss 2.205, val loss 2.203, avg val acc 34.64%
+iteration: 13
+user 20, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 29, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 44, emp_avg: 0.48405908184851004, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10329317613267688, data_size = 200
+user 95, emp_avg: 0.2353416686944937, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.2124570641372777, data_size = 200
+user 107, emp_avg: 0.3213723497923891, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.15558276881100905, data_size = 200
+user 122, emp_avg: 0.3506435852386292, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.14259493715241556, data_size = 200
+user 133, emp_avg: 0.2448642166446, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.20419480104179874, data_size = 200
+user 138, emp_avg: 0.1749257123874535, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.28583562312012767, data_size = 200
+user 181, emp_avg: 0.07461891483748233, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6700713901950792, data_size = 200
+user 203, emp_avg: 0.06320232482243231, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7911101393892647, data_size = 200
+user 204, emp_avg: 0.06380906981970856, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.783587664594926, data_size = 200
+user 215, emp_avg: 0.05909629774752863, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8460766901779557, data_size = 200
+user 279, emp_avg: 0.054178295603359995, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9228787920175756, data_size = 200
+user 287, emp_avg: 0.057164772848721304, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.874664544409511, data_size = 200
+user 296, emp_avg: 0.061593487285380374, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8117741372287559, data_size = 200
+num of fast users chosen: 8, num of slow users chosen: 7
+max_delay = 0.92 seconds
+global epoch 13 has been done artifficialy in 0.92 secs, the total time by now is 11.87 
+ with avg train loss 2.226, val loss 2.194, avg val acc 36.29%
+iteration: 14
+user 23, emp_avg: 0.43733746420728276, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.11432818839481299, data_size = 200
+user 33, emp_avg: 0.3960556656530839, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.12624488004117174, data_size = 200
+user 48, emp_avg: 0.5249475604368375, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.09524760903430482, data_size = 200
+user 60, emp_avg: 0.5951349672428652, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.08401455594457752, data_size = 200
+user 65, emp_avg: 0.3947777118266229, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1266535533848953, data_size = 200
+user 114, emp_avg: 0.22011139551353984, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.22715770750235567, data_size = 200
+user 159, emp_avg: 0.07326068515734116, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6824942995361777, data_size = 200
+user 167, emp_avg: 0.06951075427858475, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7193131554810976, data_size = 200
+user 170, emp_avg: 0.06689254348011739, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7474674664577765, data_size = 200
+user 209, emp_avg: 0.0612131520944073, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8168179270181419, data_size = 200
+user 224, emp_avg: 0.057709111757407956, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8664143057717683, data_size = 200
+user 244, emp_avg: 0.06133887032448938, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8151438025430612, data_size = 200
+user 259, emp_avg: 0.06103772592747427, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8191655118247783, data_size = 200
+user 266, emp_avg: 0.05681862202501724, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8799931821293555, data_size = 200
+user 274, emp_avg: 0.05502622421683562, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9086576575374435, data_size = 200
+num of fast users chosen: 6, num of slow users chosen: 9
+max_delay = 0.91 seconds
+global epoch 14 has been done artifficialy in 0.91 secs, the total time by now is 12.78 
+ with avg train loss 2.187, val loss 2.184, avg val acc 36.42%
+iteration: 15
+user 47, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 55, emp_avg: 0.309126219672204, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.16174622797451402, data_size = 200
+user 57, emp_avg: 0.46003482271573526, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1086874243667767, data_size = 200
+user 72, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 101, emp_avg: 0.373289373645458, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.13394434326300672, data_size = 200
+user 102, emp_avg: 0.2725566268824248, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.18344811708272624, data_size = 200
+user 135, emp_avg: 0.46980291836413646, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10642760622709847, data_size = 200
+user 218, emp_avg: 0.06311847339754746, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7921611108221577, data_size = 200
+user 219, emp_avg: 0.06752562403137834, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7404596509432568, data_size = 200
+user 226, emp_avg: 0.06452716816761188, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7748674150727183, data_size = 200
+user 232, emp_avg: 0.06157608275918462, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8120035858003984, data_size = 200
+user 245, emp_avg: 0.059724846722442465, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8371725126790788, data_size = 200
+user 260, emp_avg: 0.06064554452435415, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8244628750908636, data_size = 200
+user 269, emp_avg: 0.05723182355625698, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8736398194765131, data_size = 200
+user 273, emp_avg: 0.055173496642846875, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9062322136960735, data_size = 200
+num of fast users chosen: 7, num of slow users chosen: 8
+max_delay = 0.91 seconds
+global epoch 15 has been done artifficialy in 0.91 secs, the total time by now is 13.69 
+ with avg train loss 2.205, val loss 2.176, avg val acc 34.80%
+iteration: 16
+user 8, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 21, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 27, emp_avg: 0.3921381963704096, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1275060691939597, data_size = 200
+user 34, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 45, emp_avg: 0.5268342800266369, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.09490650456054603, data_size = 200
+user 46, emp_avg: 0.5992356174038914, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.08343963300549181, data_size = 200
+user 63, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 115, emp_avg: 0.2849244253795504, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17548513060399984, data_size = 200
+user 126, emp_avg: 0.19074613614324012, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.2621285076120896, data_size = 200
+user 146, emp_avg: 0.24952376953405292, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.20038171150334605, data_size = 200
+user 163, emp_avg: 0.07188911580482123, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6955155789612141, data_size = 200
+user 193, emp_avg: 0.0640190213717048, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7810178745109505, data_size = 200
+user 205, emp_avg: 0.0641064543419249, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7799526664400244, data_size = 200
+user 228, emp_avg: 0.06197926263778549, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8067214399146084, data_size = 200
+user 292, emp_avg: 0.05751161795459188, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8693895560280942, data_size = 200
+num of fast users chosen: 10, num of slow users chosen: 5
+max_delay = 0.87 seconds
+global epoch 16 has been done artifficialy in 0.87 secs, the total time by now is 14.56 
+ with avg train loss 2.178, val loss 2.160, avg val acc 34.58%
+iteration: 17
+user 5, emp_avg: 0.6822355543616834, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.07328847006043426, data_size = 200
+user 9, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 24, emp_avg: 0.5385040114336348, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.09284981901413747, data_size = 200
+user 41, emp_avg: 0.27966694709351403, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17878408771445264, data_size = 200
+user 42, emp_avg: 0.7028241769567953, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.07114154811306904, data_size = 200
+user 68, emp_avg: 0.4719414587359765, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.10594534358968463, data_size = 200
+user 80, emp_avg: 0.6877635155681749, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.07269940738088443, data_size = 200
+user 92, emp_avg: 0.3558418150060291, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1405118732298306, data_size = 200
+user 104, emp_avg: 0.3140356370313366, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1592175985906041, data_size = 200
+user 141, emp_avg: 0.2569366824741773, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.19460047323147453, data_size = 200
+user 143, emp_avg: 0.2985734075327622, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.16746300487096644, data_size = 200
+user 213, emp_avg: 0.05984649440058461, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8354708241609483, data_size = 200
+user 216, emp_avg: 0.06784296103120985, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.736996134013055, data_size = 200
+user 261, emp_avg: 0.0570286386371114, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8767524737555719, data_size = 200
+user 298, emp_avg: 0.053896195022847725, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9277092748162269, data_size = 200
+num of fast users chosen: 11, num of slow users chosen: 4
+max_delay = 0.93 seconds
+global epoch 17 has been done artifficialy in 0.93 secs, the total time by now is 15.48 
+ with avg train loss 2.132, val loss 2.149, avg val acc 31.03%
+iteration: 18
+user 0, emp_avg: 0.3720896654794936, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.13437621261414898, data_size = 200
+user 1, emp_avg: 0.5103769276612886, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.09796681097853718, data_size = 200
+user 83, emp_avg: 0.3221261016586511, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.15521871634290518, data_size = 200
+user 89, emp_avg: 0.2802564830897429, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17840800487027147, data_size = 200
+user 134, emp_avg: 0.3432596481867947, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.14566232956339525, data_size = 200
+user 162, emp_avg: 0.06762874210374359, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7393306225228793, data_size = 200
+user 175, emp_avg: 0.06746411567460299, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7411347425224253, data_size = 200
+user 187, emp_avg: 0.06978138666361504, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7165234511751352, data_size = 200
+user 207, emp_avg: 0.06634330927901884, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.753655501110382, data_size = 200
+user 225, emp_avg: 0.06701931377187192, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7460535953888722, data_size = 200
+user 227, emp_avg: 0.0656952215542212, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7610903626945343, data_size = 200
+user 249, emp_avg: 0.05720971302210162, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8739774656915983, data_size = 200
+user 255, emp_avg: 0.05642616070906251, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8861138055768799, data_size = 200
+user 271, emp_avg: 0.06192316365419734, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8074522852097666, data_size = 200
+user 282, emp_avg: 0.05492290279344102, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9103670319109769, data_size = 200
+num of fast users chosen: 5, num of slow users chosen: 10
+max_delay = 0.91 seconds
+global epoch 18 has been done artifficialy in 0.91 secs, the total time by now is 16.40 
+ with avg train loss 2.139, val loss 2.130, avg val acc 36.80%
+iteration: 19
+user 4, emp_avg: 0.3065000092351422, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1631321321156658, data_size = 200
+user 13, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 78, emp_avg: 0.24875255900773693, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.20100295731407875, data_size = 200
+user 94, emp_avg: 0.42282069167406644, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.11825343694045788, data_size = 200
+user 116, emp_avg: 0.22189796169678225, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.22532879354846752, data_size = 200
+user 124, emp_avg: 0.3906050490213677, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.12800653787059674, data_size = 200
+user 129, emp_avg: 0.27103488020911404, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1844781009788225, data_size = 200
+user 130, emp_avg: 0.24157371215226697, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.2069761629050282, data_size = 200
+user 131, emp_avg: 0.2467502446954701, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.20263404424059692, data_size = 200
+user 139, emp_avg: 0.16558952330426324, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.30195147013091683, data_size = 200
+user 169, emp_avg: 0.07545172197116083, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6626753994973237, data_size = 200
+user 173, emp_avg: 0.0685600633396193, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7292875409452276, data_size = 200
+user 246, emp_avg: 0.05717377214553574, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8745268699907554, data_size = 200
+user 263, emp_avg: 0.05365769290518635, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.9318328331475316, data_size = 200
+user 286, emp_avg: 0.06325144180666863, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7904958143535706, data_size = 200
+num of fast users chosen: 10, num of slow users chosen: 5
+max_delay = 0.93 seconds
+global epoch 19 has been done artifficialy in 0.93 secs, the total time by now is 17.33 
+ with avg train loss 2.148, val loss 2.118, avg val acc 36.98%
+iteration: 20
+user 10, emp_avg: 0.5801686027821279, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.08618184396782434, data_size = 200
+user 14, emp_avg: 1.0, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.05, data_size = 200
+user 71, emp_avg: 0.4149125490195764, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1205073216468102, data_size = 200
+user 82, emp_avg: 0.28051459175478277, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.178243847092662, data_size = 200
+user 93, emp_avg: 0.3268421136510081, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.1529790620965952, data_size = 200
+user 109, emp_avg: 0.32561580031673015, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.15355520202448542, data_size = 200
+user 111, emp_avg: 0.2782869549466706, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.17967065689292455, data_size = 200
+user 166, emp_avg: 0.07245077980993214, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.6901236968210741, data_size = 200
+user 183, emp_avg: 0.06312981147988432, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7920188390857463, data_size = 200
+user 210, emp_avg: 0.06413441123597499, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7796126765088854, data_size = 200
+user 217, emp_avg: 0.06089491011948722, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.821086686915058, data_size = 200
+user 235, emp_avg: 0.06532908836051021, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7653558507365265, data_size = 200
+user 256, emp_avg: 0.06424147404894374, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.7783133986294652, data_size = 200
+user 257, emp_avg: 0.058009366153371815, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8619297764399678, data_size = 200
+user 284, emp_avg: 0.06206175730693798, h: 0, ucb: inf,num_of_obs: 0, privacy reward: 0.9607894391523232, g: 0.0025000000000000005, curr_delay = 0.8056491174221138, data_size = 200
+num of fast users chosen: 7, num of slow users chosen: 8
+max_delay = 0.86 seconds
+global epoch 20 has been done artifficialy in 0.86 secs, the total time by now is 18.19 
+ with avg train loss 2.133, val loss 2.106, avg val acc 35.31%
+iteration: 21
+user 6, emp_avg: 0.8066714994797797, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.08152045443547445, data_size = 200
+user 7, emp_avg: 0.9189567687622122, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.0596720279131933, data_size = 200
+user 8, emp_avg: 0.7361669510123096, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.10585731785433833, data_size = 200
+user 13, emp_avg: 1.0, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.05, data_size = 200
+user 14, emp_avg: 0.8559416467910197, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.07023623176828755, data_size = 200
+user 17, emp_avg: 0.6937222774953042, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.12905072314466257, data_size = 200
+user 20, emp_avg: 0.7032933870841303, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.12297497896305934, data_size = 200
+user 28, emp_avg: 0.726694846780746, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.1102804071421148, data_size = 200
+user 29, emp_avg: 0.7138651085310135, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.1168961134975163, data_size = 200
+user 31, emp_avg: 0.6906127254980367, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.13115598622641544, data_size = 200
+user 34, emp_avg: 0.9894749277104176, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.05107513906164866, data_size = 200
+user 39, emp_avg: 0.7766724581085409, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.09035955429359105, data_size = 200
+user 69, emp_avg: 0.703130041355166, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.12307386850913082, data_size = 200
+user 72, emp_avg: 0.6860384547330955, h: 6.979423973622377, ucb: 9.979423973622378,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 5.668934240362837e-06, curr_delay = 0.1343808194701834, data_size = 200
+num of fast users chosen: 14, num of slow users chosen: 0
+max_delay = 0.13 seconds
+global epoch 21 has been done artifficialy in 0.13 secs, the total time by now is 18.32 
+ with avg train loss 1.962, val loss 2.084, avg val acc 36.03%
+iteration: 22
+user 1, emp_avg: 0.6869357599474006, h: 7.032544294473591, ucb: 8.563675077457457,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.057904242191801285, data_size = 200
+user 2, emp_avg: 0.7958939420088985, h: 7.032544294473591, ucb: 8.807907946526981,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.05, data_size = 200
+user 9, emp_avg: 0.821076413193581, h: 7.032544294473591, ucb: 10.032544294473592,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.07786308483808553, data_size = 200
+user 10, emp_avg: 0.5635512193391676, h: 7.032544294473591, ucb: 8.773050102819974,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.09141873608545331, data_size = 200
+user 15, emp_avg: 1.0, h: 7.032544294473591, ucb: 10.032544294473592,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.05, data_size = 200
+user 32, emp_avg: 0.5844563416915047, h: 7.032544294473591, ucb: 9.009743754136823,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.09806879076673612, data_size = 200
+user 45, emp_avg: 0.7634171400133185, h: 7.032544294473591, ucb: 8.6130471345535,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.05, data_size = 200
+user 46, emp_avg: 0.48988534733796807, h: 7.032544294473591, ucb: 8.830251146685265,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.1313939318247263, data_size = 200
+user 48, emp_avg: 0.6029213378517113, h: 7.032544294473591, ucb: 8.607386975784104,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.07343274886092249, data_size = 200
+user 60, emp_avg: 0.43624935189614367, h: 7.032544294473591, ucb: 8.817949196202186,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.18026869922518052, data_size = 200
+user 74, emp_avg: 0.5220253616967074, h: 7.032544294473591, ucb: 9.087379142669878,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.1392347425768336, data_size = 200
+user 79, emp_avg: 0.43204564938946616, h: 7.032544294473591, ucb: 8.635696918916397,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.15164975646795725, data_size = 200
+user 80, emp_avg: 0.5260299280109776, h: 7.032544294473591, ucb: 9.095834841178116,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.13725089836949297, data_size = 200
+user 90, emp_avg: 0.5254756680063346, h: 7.032544294473591, ucb: 8.623342277814455,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.09602728559565107, data_size = 200
+user 123, emp_avg: 0.3976821227767119, h: 7.032544294473591, ucb: 8.611148685991488,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 2.0661157024793404e-05, curr_delay = 0.18576119507155525, data_size = 200
+num of fast users chosen: 15, num of slow users chosen: 0
+max_delay = 0.19 seconds
+global epoch 22 has been done artifficialy in 0.19 secs, the total time by now is 18.51 
+ with avg train loss 1.973, val loss 2.066, avg val acc 36.04%
+iteration: 23
+user 5, emp_avg: 0.8411177771808417, h: 7.082930710861599, ucb: 9.12963737394665,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.05, data_size = 200
+user 11, emp_avg: 0.6225512012041946, h: 7.082930710861599, ucb: 9.007577389411072,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.08284269614564854, data_size = 200
+user 16, emp_avg: 0.6453061203612875, h: 7.082930710861599, ucb: 10.0829307108616,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.17205056426969678, data_size = 200
+user 36, emp_avg: 0.7329920384207098, h: 7.082930710861599, ucb: 8.480882941385858,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.05, data_size = 200
+user 42, emp_avg: 0.8514120884783977, h: 7.082930710861599, ucb: 9.191403241731985,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.05, data_size = 200
+user 44, emp_avg: 0.4632163034011212, h: 7.082930710861599, ucb: 8.53510795640713,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.11302665548357463, data_size = 200
+user 47, emp_avg: 0.6926562932783823, h: 7.082930710861599, ucb: 10.0829307108616,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.12976477214723417, data_size = 200
+user 53, emp_avg: 0.5213245419267549, h: 7.082930710861599, ucb: 8.59119295603261,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.09261059984395918, data_size = 200
+user 63, emp_avg: 0.7201206261908992, h: 7.082930710861599, ucb: 10.0829307108616,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.11357409086379212, data_size = 200
+user 68, emp_avg: 0.6710195773979406, h: 7.082930710861599, ucb: 8.49875508706953,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.05746481139579708, data_size = 200
+user 73, emp_avg: 0.5160796799675664, h: 7.082930710861599, ucb: 8.563489897791836,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.092826441142172, data_size = 200
+user 76, emp_avg: 0.5083352994834456, h: 7.082930710861599, ucb: 8.552810405055524,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.0949287719318225, data_size = 200
+user 84, emp_avg: 0.4636397141188562, h: 7.082930710861599, ucb: 8.555840444911924,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.11459754615639135, data_size = 200
+user 87, emp_avg: 0.7018800197742786, h: 7.082930710861599, ucb: 9.527949397375899,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.08492514033949826, data_size = 200
+user 94, emp_avg: 0.33390421566919687, h: 7.082930710861599, ucb: 8.351392785883798,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 4.2533081285444285e-05, curr_delay = 0.20409184585525816, data_size = 200
+num of fast users chosen: 15, num of slow users chosen: 0
+max_delay = 0.20 seconds
+global epoch 23 has been done artifficialy in 0.20 secs, the total time by now is 18.71 
+ with avg train loss 1.928, val loss 2.050, avg val acc 36.92%
+iteration: 24
+user 3, emp_avg: 1.0, h: 7.130838750495424, ucb: 10.130838750495425,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.05, data_size = 200
+user 22, emp_avg: 0.7038262915784774, h: 7.130838750495424, ucb: 10.130838750495425,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.12265346048536857, data_size = 200
+user 23, emp_avg: 0.4713706200222223, h: 7.130838750495424, ucb: 8.442851143117272,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.09893080026396499, data_size = 200
+user 27, emp_avg: 0.6960690981852048, h: 7.130838750495424, ucb: 8.307253339606653,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.05, data_size = 200
+user 33, emp_avg: 0.4471216887445293, h: 7.130838750495424, ucb: 8.319005747454675,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.10036377616728975, data_size = 200
+user 40, emp_avg: 0.6221525983579232, h: 7.130838750495424, ucb: 8.539918936221744,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.06454846144206992, data_size = 200
+user 49, emp_avg: 0.415964481388349, h: 7.130838750495424, ucb: 8.323955014073302,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.11514806363928869, data_size = 200
+user 51, emp_avg: 0.3611691104228648, h: 7.130838750495424, ucb: 8.207192279671663,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.1375312600878739, data_size = 200
+user 52, emp_avg: 0.6421887724997667, h: 7.130838750495424, ucb: 8.980202004110135,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.07485891410138405, data_size = 200
+user 58, emp_avg: 0.3919965042602438, h: 7.130838750495424, ucb: 8.298565597530345,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.12666221157948937, data_size = 200
+user 62, emp_avg: 0.6731949708393967, h: 7.130838750495424, ucb: 8.293177879175227,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.05214071171792302, data_size = 200
+user 88, emp_avg: 0.3099794926283856, h: 7.130838750495424, ucb: 8.201750521381438,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.19012245771275374, data_size = 200
+user 110, emp_avg: 0.36949898708136625, h: 7.130838750495424, ucb: 8.434683998020208,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.16426678821607033, data_size = 200
+user 124, emp_avg: 0.2954180965603631, h: 7.130838750495424, ucb: 8.302653897559527,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.24971140341279296, data_size = 200
+user 128, emp_avg: 0.3833676558999866, h: 7.130838750495424, ucb: 8.277905689083351,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 6.944444444444453e-05, curr_delay = 0.13007972188495495, data_size = 200
+num of fast users chosen: 15, num of slow users chosen: 0
+max_delay = 0.25 seconds
+global epoch 24 has been done artifficialy in 0.25 secs, the total time by now is 18.96 
+ with avg train loss 1.929, val loss 2.033, avg val acc 36.75%
+iteration: 25
+user 18, emp_avg: 0.3745456588608561, h: 7.176490311976406, ucb: 8.141861331866842,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.11701353987607765, data_size = 200
+user 19, emp_avg: 0.5298592002717923, h: 7.176490311976406, ucb: 9.159967887445125,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.12545187491839244, data_size = 200
+user 24, emp_avg: 0.5268313173703923, h: 7.176490311976406, ucb: 8.792002346277311,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.09705748431233928, data_size = 200
+user 66, emp_avg: 0.4819199682808598, h: 7.176490311976406, ucb: 8.755933523337859,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.11432259381170147, data_size = 200
+user 67, emp_avg: 0.680076809067141, h: 7.176490311976406, ucb: 8.256951166379253,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.05, data_size = 200
+user 70, emp_avg: 0.5125930695151455, h: 7.176490311976406, ucb: 8.536520528416965,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.08743662735659996, data_size = 200
+user 71, emp_avg: 0.33890432912298535, h: 7.176490311976406, ucb: 8.421227959035136,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.19018919734921697, data_size = 200
+user 85, emp_avg: 0.4208645857767401, h: 7.176490311976406, ucb: 8.47083500174167,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.12186771289240317, data_size = 200
+user 99, emp_avg: 0.3738641068090233, h: 7.176490311976406, ucb: 8.374757531712671,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.14355201374624113, data_size = 200
+user 107, emp_avg: 0.5732043748333768, h: 7.176490311976406, ucb: 8.140607361353574,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.06060338672040887, data_size = 200
+user 109, emp_avg: 0.2851376614527905, h: 7.176490311976406, ucb: 8.153337712926596,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.20436564034347743, data_size = 200
+user 122, emp_avg: 0.3505973046345269, h: 7.176490311976406, ucb: 8.228421067692294,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.14263258861757164, data_size = 200
+user 127, emp_avg: 0.5649997547623511, h: 7.176490311976406, ucb: 8.184593583854905,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.06297506138372108, data_size = 200
+user 134, emp_avg: 0.28513225127088115, h: 7.176490311976406, ucb: 8.20626925653679,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.22025960696776542, data_size = 200
+user 143, emp_avg: 0.2629939846991101, h: 7.176490311976406, ucb: 8.072210534574692,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00010000000000000005, curr_delay = 0.21986278974334444, data_size = 200
+num of fast users chosen: 15, num of slow users chosen: 0
+max_delay = 0.22 seconds
+global epoch 25 has been done artifficialy in 0.22 secs, the total time by now is 19.18 
+ with avg train loss 1.877, val loss 2.017, avg val acc 34.64%
+iteration: 26
+user 38, emp_avg: 0.6536681439524177, h: 7.220079266070679, ucb: 8.142088129785185,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.05, data_size = 200
+user 54, emp_avg: 0.47603721825165607, h: 7.220079266070679, ucb: 7.97965153890323,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.0715426636936725, data_size = 200
+user 82, emp_avg: 0.44291924125225046, h: 7.220079266070679, ucb: 8.061623041335027,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.08260040742497868, data_size = 200
+user 95, emp_avg: 0.26670437615681525, h: 7.220079266070679, ucb: 7.92610427215416,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.16774747279336902, data_size = 200
+user 118, emp_avg: 0.33313714328710275, h: 7.220079266070679, ucb: 8.109814360857467,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.13524628504821612, data_size = 200
+user 130, emp_avg: 0.2763430353809968, h: 7.220079266070679, ucb: 7.9448004025274805,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.16071364128199828, data_size = 200
+user 152, emp_avg: 0.07204648028912519, h: 7.220079266070679, ucb: 7.452707385918119,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.7513119338090206, data_size = 200
+user 154, emp_avg: 0.0701046536203857, h: 7.220079266070679, ucb: 7.429285991260354,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.7094842071657792, data_size = 200
+user 159, emp_avg: 0.07423520552026477, h: 7.220079266070679, ucb: 7.439861321542703,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.6648076350877447, data_size = 200
+user 170, emp_avg: 0.06700362251652525, h: 7.220079266070679, ucb: 7.4207568965110315,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.7449932554727251, data_size = 200
+user 178, emp_avg: 0.06643885189696933, h: 7.220079266070679, ucb: 7.421824959973256,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.7618567093847776, data_size = 200
+user 181, emp_avg: 0.07025121979427854, h: 7.220079266070679, ucb: 7.443936010583126,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.7589150730613328, data_size = 200
+user 189, emp_avg: 0.06865388582084897, h: 7.220079266070679, ucb: 7.431918657246827,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.7496854179459794, data_size = 200
+user 196, emp_avg: 0.06985393994103485, h: 7.220079266070679, ucb: 7.421057349612396,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.6876142823104291, data_size = 200
+user 229, emp_avg: 0.06569848940298459, h: 7.220079266070679, ucb: 7.430492018732371,num_of_obs: 1, privacy reward: 0.9231163463866358, g: 0.00013313609467455623, curr_delay = 0.816201340845642, data_size = 200
+num of fast users chosen: 6, num of slow users chosen: 9
+max_delay = 0.82 seconds
+global epoch 26 has been done artifficialy in 0.82 secs, the total time by now is 20.00 
+ with avg train loss 1.872, val loss 2.001, avg val acc 34.00%
+iteration: 27

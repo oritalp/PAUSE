@@ -138,8 +138,8 @@ class CNN3LayerCifar(nn.Module):
         return x
     
 
-#only for cifar10 because it mnist has different resulution and greyscale images
-#TODO: try and add nn.dropout2d() to the conv layers    
+# only for cifar10 because it mnist has different resulution and greyscale images
+
 class CNN5Layer(nn.Module):
     def __init__(self, input, output):
         super(CNN5Layer, self).__init__()
@@ -149,12 +149,12 @@ class CNN5Layer(nn.Module):
         self.conv4 = nn.Conv2d(64, 64, 3)
         self.conv5 = nn.Conv2d(64, 128, 4)
         self.pool = nn.MaxPool2d(2, 2)
+        self.batch_norm_1d_1 = nn.BatchNorm1d(128)
+        self.batch_norm_1d_2 = nn.BatchNorm1d(64)
+        self.batch_norm_1d_3 = nn.BatchNorm1d(32)
         self.fc1 = nn.Linear(128, 64)
         self.fc2 = nn.Linear(64, 32)
         self.fc3 = nn.Linear(32, output)
-        self.dropout1 = nn.Dropout(p=0.2, inplace=False)
-        self.dropout2 = nn.Dropout(p=0.2, inplace=False)
-        self.dropout3 = nn.Dropout(p=0.2, inplace=False)
         self.batch_norm1 = nn.BatchNorm2d(32)
         self.batch_norm2 = nn.BatchNorm2d(64)
         self.batch_norm3 = nn.BatchNorm2d(64)
@@ -170,11 +170,11 @@ class CNN5Layer(nn.Module):
         x = self.batch_norm3(x)
         x = self.pool(F.relu(self.conv5(x)))
         x = x.view(-1, 128)
-        x = self.dropout1(x)
+        x = self.batch_norm_1d_1(x)
         x = F.relu(self.fc1(x))
-        x = self.dropout2(x)
+        x = self.batch_norm_1d_2(x)
         x = F.relu(self.fc2(x))
-        x = self.dropout3(x)
+        x = self.batch_norm_1d_3(x)
         x = self.fc3(x)
         return x
 

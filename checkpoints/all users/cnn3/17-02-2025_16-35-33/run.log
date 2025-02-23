@@ -1,0 +1,827 @@
+Namespace(full_exp=False, data='cifar10', i_i_d=False, wandb=True, method_choosing_users='all users', model='cnn3', num_users=300, num_users_per_round=15, global_epochs=400, max_seconds=600, epsilon_bar=50, epsilon_sum_deascent_coeff=0.04, delta_f=0.004, alpha=20, beta=2, gamma=20, alternative_privacy_reward=False, choosing_users_verbose=False, sa_pause_verbose=False, snr_verbose=False, dirichlet_coeff=3, label_dominance=0.25, bar_plot_interval=30, max_iterations_sa_pause=3000, sa_pause_simulation=False, max_time_sa_pause=600, pre_sa_pause_rounds=1, beta_max_reduction=70, accel_ucb_coeff=3, data_truncation=None, tau_min=0.05, production=False, privacy_noise='laplace', privacy=True, save_best_model=False, seed=1, norm_mean=0.5, norm_std=0.5, train_batch_size=20, test_batch_size=1000, local_epochs=1, local_iterations=100, lr=0.01, momentum=0.5, lr_scheduler=False, optimizer='adam', device=device(type='cuda'))
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+CNN3LayerCifar                           --
+├─Conv2d: 1-1                            896
+├─BatchNorm2d: 1-2                       64
+├─Conv2d: 1-3                            18,496
+├─BatchNorm2d: 1-4                       128
+├─Conv2d: 1-5                            73,856
+├─BatchNorm2d: 1-6                       256
+├─MaxPool2d: 1-7                         --
+├─Linear: 1-8                            65,664
+├─BatchNorm1d: 1-9                       256
+├─Linear: 1-10                           8,256
+├─BatchNorm1d: 1-11                      128
+├─Linear: 1-12                           2,080
+├─BatchNorm1d: 1-13                      64
+├─Linear: 1-14                           330
+├─Dropout: 1-15                          --
+├─Dropout: 1-16                          --
+├─Dropout: 1-17                          --
+=================================================================
+Total params: 170,474
+Trainable params: 170,474
+Non-trainable params: 0
+=================================================================
+global epoch 1 has been done artifficialy in 1.00 secs, the total time by now is 1.00 
+ with avg train loss 2.341, val loss 2.310, avg val acc 10.00%
+global epoch 2 has been done artifficialy in 0.99 secs, the total time by now is 1.99 
+ with avg train loss 2.160, val loss 2.318, avg val acc 10.00%
+global epoch 3 has been done artifficialy in 0.96 secs, the total time by now is 2.95 
+ with avg train loss 2.051, val loss 2.324, avg val acc 10.81%
+global epoch 4 has been done artifficialy in 0.99 secs, the total time by now is 3.93 
+ with avg train loss 1.970, val loss 2.324, avg val acc 11.31%
+global epoch 5 has been done artifficialy in 1.01 secs, the total time by now is 4.95 
+ with avg train loss 1.906, val loss 2.318, avg val acc 14.80%
+global epoch 6 has been done artifficialy in 0.99 secs, the total time by now is 5.94 
+ with avg train loss 1.855, val loss 2.310, avg val acc 16.18%
+global epoch 7 has been done artifficialy in 0.98 secs, the total time by now is 6.92 
+ with avg train loss 1.804, val loss 2.300, avg val acc 19.52%
+global epoch 8 has been done artifficialy in 0.95 secs, the total time by now is 7.87 
+ with avg train loss 1.767, val loss 2.288, avg val acc 19.23%
+global epoch 9 has been done artifficialy in 1.02 secs, the total time by now is 8.89 
+ with avg train loss 1.725, val loss 2.274, avg val acc 18.40%
+global epoch 10 has been done artifficialy in 0.95 secs, the total time by now is 9.84 
+ with avg train loss 1.695, val loss 2.260, avg val acc 17.99%
+global epoch 11 has been done artifficialy in 0.95 secs, the total time by now is 10.79 
+ with avg train loss 1.669, val loss 2.247, avg val acc 17.78%
+global epoch 12 has been done artifficialy in 0.99 secs, the total time by now is 11.78 
+ with avg train loss 1.643, val loss 2.235, avg val acc 17.45%
+global epoch 13 has been done artifficialy in 0.99 secs, the total time by now is 12.77 
+ with avg train loss 1.615, val loss 2.219, avg val acc 17.61%
+global epoch 14 has been done artifficialy in 0.98 secs, the total time by now is 13.75 
+ with avg train loss 1.600, val loss 2.211, avg val acc 17.39%
+global epoch 15 has been done artifficialy in 0.98 secs, the total time by now is 14.74 
+ with avg train loss 1.575, val loss 2.193, avg val acc 17.43%
+global epoch 16 has been done artifficialy in 1.04 secs, the total time by now is 15.77 
+ with avg train loss 1.557, val loss 2.176, avg val acc 17.66%
+global epoch 17 has been done artifficialy in 0.96 secs, the total time by now is 16.74 
+ with avg train loss 1.536, val loss 2.166, avg val acc 17.61%
+global epoch 18 has been done artifficialy in 0.98 secs, the total time by now is 17.71 
+ with avg train loss 1.513, val loss 2.155, avg val acc 17.68%
+global epoch 19 has been done artifficialy in 1.01 secs, the total time by now is 18.73 
+ with avg train loss 1.508, val loss 2.142, avg val acc 17.79%
+global epoch 20 has been done artifficialy in 1.00 secs, the total time by now is 19.72 
+ with avg train loss 1.485, val loss 2.132, avg val acc 18.07%
+global epoch 21 has been done artifficialy in 0.97 secs, the total time by now is 20.70 
+ with avg train loss 1.480, val loss 2.118, avg val acc 18.42%
+global epoch 22 has been done artifficialy in 0.97 secs, the total time by now is 21.67 
+ with avg train loss 1.462, val loss 2.111, avg val acc 18.59%
+global epoch 23 has been done artifficialy in 0.97 secs, the total time by now is 22.63 
+ with avg train loss 1.443, val loss 2.095, avg val acc 19.12%
+global epoch 24 has been done artifficialy in 0.97 secs, the total time by now is 23.61 
+ with avg train loss 1.433, val loss 2.096, avg val acc 19.02%
+global epoch 25 has been done artifficialy in 0.98 secs, the total time by now is 24.59 
+ with avg train loss 1.422, val loss 2.086, avg val acc 19.22%
+global epoch 26 has been done artifficialy in 0.99 secs, the total time by now is 25.58 
+ with avg train loss 1.405, val loss 2.071, avg val acc 19.74%
+global epoch 27 has been done artifficialy in 0.96 secs, the total time by now is 26.55 
+ with avg train loss 1.394, val loss 2.067, avg val acc 20.06%
+global epoch 28 has been done artifficialy in 0.97 secs, the total time by now is 27.52 
+ with avg train loss 1.386, val loss 2.059, avg val acc 20.35%
+global epoch 29 has been done artifficialy in 1.00 secs, the total time by now is 28.51 
+ with avg train loss 1.373, val loss 2.057, avg val acc 20.74%
+global epoch 30 has been done artifficialy in 0.95 secs, the total time by now is 29.46 
+ with avg train loss 1.370, val loss 2.044, avg val acc 21.33%
+global epoch 31 has been done artifficialy in 1.02 secs, the total time by now is 30.48 
+ with avg train loss 1.348, val loss 2.034, avg val acc 21.65%
+global epoch 32 has been done artifficialy in 1.01 secs, the total time by now is 31.48 
+ with avg train loss 1.337, val loss 2.026, avg val acc 22.25%
+global epoch 33 has been done artifficialy in 0.98 secs, the total time by now is 32.46 
+ with avg train loss 1.322, val loss 2.016, avg val acc 22.66%
+global epoch 34 has been done artifficialy in 0.96 secs, the total time by now is 33.43 
+ with avg train loss 1.322, val loss 2.009, avg val acc 23.60%
+global epoch 35 has been done artifficialy in 0.99 secs, the total time by now is 34.42 
+ with avg train loss 1.311, val loss 1.999, avg val acc 23.66%
+global epoch 36 has been done artifficialy in 0.97 secs, the total time by now is 35.39 
+ with avg train loss 1.290, val loss 1.992, avg val acc 23.99%
+global epoch 37 has been done artifficialy in 0.96 secs, the total time by now is 36.35 
+ with avg train loss 1.285, val loss 1.984, avg val acc 24.56%
+global epoch 38 has been done artifficialy in 1.00 secs, the total time by now is 37.35 
+ with avg train loss 1.288, val loss 1.977, avg val acc 24.46%
+global epoch 39 has been done artifficialy in 0.95 secs, the total time by now is 38.30 
+ with avg train loss 1.277, val loss 1.978, avg val acc 24.64%
+global epoch 40 has been done artifficialy in 0.97 secs, the total time by now is 39.27 
+ with avg train loss 1.260, val loss 1.967, avg val acc 24.82%
+global epoch 41 has been done artifficialy in 0.97 secs, the total time by now is 40.24 
+ with avg train loss 1.254, val loss 1.960, avg val acc 25.54%
+global epoch 42 has been done artifficialy in 1.01 secs, the total time by now is 41.26 
+ with avg train loss 1.238, val loss 1.958, avg val acc 25.52%
+global epoch 43 has been done artifficialy in 1.00 secs, the total time by now is 42.25 
+ with avg train loss 1.239, val loss 1.969, avg val acc 24.98%
+global epoch 44 has been done artifficialy in 0.99 secs, the total time by now is 43.24 
+ with avg train loss 1.236, val loss 1.959, avg val acc 25.76%
+global epoch 45 has been done artifficialy in 0.98 secs, the total time by now is 44.22 
+ with avg train loss 1.220, val loss 1.955, avg val acc 25.65%
+global epoch 46 has been done artifficialy in 0.97 secs, the total time by now is 45.19 
+ with avg train loss 1.217, val loss 1.944, avg val acc 26.61%
+global epoch 47 has been done artifficialy in 0.98 secs, the total time by now is 46.17 
+ with avg train loss 1.204, val loss 1.947, avg val acc 26.95%
+global epoch 48 has been done artifficialy in 1.00 secs, the total time by now is 47.17 
+ with avg train loss 1.194, val loss 1.942, avg val acc 27.73%
+global epoch 49 has been done artifficialy in 0.95 secs, the total time by now is 48.11 
+ with avg train loss 1.193, val loss 1.929, avg val acc 28.02%
+global epoch 50 has been done artifficialy in 0.97 secs, the total time by now is 49.09 
+ with avg train loss 1.177, val loss 1.925, avg val acc 27.32%
+global epoch 51 has been done artifficialy in 0.99 secs, the total time by now is 50.07 
+ with avg train loss 1.171, val loss 1.925, avg val acc 28.17%
+global epoch 52 has been done artifficialy in 0.96 secs, the total time by now is 51.04 
+ with avg train loss 1.159, val loss 1.913, avg val acc 29.05%
+global epoch 53 has been done artifficialy in 0.97 secs, the total time by now is 52.00 
+ with avg train loss 1.160, val loss 1.899, avg val acc 29.35%
+global epoch 54 has been done artifficialy in 0.98 secs, the total time by now is 52.99 
+ with avg train loss 1.152, val loss 1.898, avg val acc 29.60%
+global epoch 55 has been done artifficialy in 0.98 secs, the total time by now is 53.97 
+ with avg train loss 1.151, val loss 1.901, avg val acc 29.55%
+global epoch 56 has been done artifficialy in 0.98 secs, the total time by now is 54.95 
+ with avg train loss 1.141, val loss 1.883, avg val acc 30.19%
+global epoch 57 has been done artifficialy in 0.98 secs, the total time by now is 55.93 
+ with avg train loss 1.132, val loss 1.874, avg val acc 30.37%
+global epoch 58 has been done artifficialy in 0.97 secs, the total time by now is 56.90 
+ with avg train loss 1.135, val loss 1.877, avg val acc 30.45%
+global epoch 59 has been done artifficialy in 1.00 secs, the total time by now is 57.89 
+ with avg train loss 1.131, val loss 1.876, avg val acc 30.78%
+global epoch 60 has been done artifficialy in 1.01 secs, the total time by now is 58.90 
+ with avg train loss 1.118, val loss 1.868, avg val acc 31.06%
+global epoch 61 has been done artifficialy in 0.96 secs, the total time by now is 59.86 
+ with avg train loss 1.106, val loss 1.873, avg val acc 30.84%
+global epoch 62 has been done artifficialy in 0.95 secs, the total time by now is 60.82 
+ with avg train loss 1.106, val loss 1.856, avg val acc 31.77%
+global epoch 63 has been done artifficialy in 1.00 secs, the total time by now is 61.82 
+ with avg train loss 1.099, val loss 1.853, avg val acc 31.86%
+global epoch 64 has been done artifficialy in 0.94 secs, the total time by now is 62.76 
+ with avg train loss 1.097, val loss 1.846, avg val acc 31.77%
+global epoch 65 has been done artifficialy in 0.97 secs, the total time by now is 63.73 
+ with avg train loss 1.095, val loss 1.848, avg val acc 31.67%
+global epoch 66 has been done artifficialy in 1.01 secs, the total time by now is 64.74 
+ with avg train loss 1.094, val loss 1.830, avg val acc 31.86%
+global epoch 67 has been done artifficialy in 0.95 secs, the total time by now is 65.69 
+ with avg train loss 1.083, val loss 1.830, avg val acc 31.81%
+global epoch 68 has been done artifficialy in 0.96 secs, the total time by now is 66.65 
+ with avg train loss 1.085, val loss 1.814, avg val acc 32.57%
+global epoch 69 has been done artifficialy in 1.00 secs, the total time by now is 67.66 
+ with avg train loss 1.084, val loss 1.822, avg val acc 32.15%
+global epoch 70 has been done artifficialy in 0.97 secs, the total time by now is 68.63 
+ with avg train loss 1.072, val loss 1.817, avg val acc 32.49%
+global epoch 71 has been done artifficialy in 0.97 secs, the total time by now is 69.60 
+ with avg train loss 1.066, val loss 1.789, avg val acc 33.85%
+global epoch 72 has been done artifficialy in 0.97 secs, the total time by now is 70.58 
+ with avg train loss 1.059, val loss 1.776, avg val acc 34.05%
+global epoch 73 has been done artifficialy in 0.98 secs, the total time by now is 71.56 
+ with avg train loss 1.060, val loss 1.774, avg val acc 34.06%
+global epoch 74 has been done artifficialy in 0.95 secs, the total time by now is 72.51 
+ with avg train loss 1.067, val loss 1.770, avg val acc 34.34%
+global epoch 75 has been done artifficialy in 0.96 secs, the total time by now is 73.47 
+ with avg train loss 1.059, val loss 1.771, avg val acc 35.10%
+global epoch 76 has been done artifficialy in 1.01 secs, the total time by now is 74.48 
+ with avg train loss 1.051, val loss 1.771, avg val acc 34.55%
+global epoch 77 has been done artifficialy in 0.95 secs, the total time by now is 75.44 
+ with avg train loss 1.051, val loss 1.777, avg val acc 33.65%
+global epoch 78 has been done artifficialy in 0.98 secs, the total time by now is 76.41 
+ with avg train loss 1.048, val loss 1.757, avg val acc 34.86%
+global epoch 79 has been done artifficialy in 0.99 secs, the total time by now is 77.41 
+ with avg train loss 1.053, val loss 1.746, avg val acc 35.55%
+global epoch 80 has been done artifficialy in 0.99 secs, the total time by now is 78.39 
+ with avg train loss 1.033, val loss 1.741, avg val acc 36.52%
+global epoch 81 has been done artifficialy in 0.99 secs, the total time by now is 79.38 
+ with avg train loss 1.042, val loss 1.726, avg val acc 37.63%
+global epoch 82 has been done artifficialy in 0.96 secs, the total time by now is 80.34 
+ with avg train loss 1.046, val loss 1.729, avg val acc 37.01%
+global epoch 83 has been done artifficialy in 0.99 secs, the total time by now is 81.34 
+ with avg train loss 1.045, val loss 1.746, avg val acc 35.99%
+global epoch 84 has been done artifficialy in 0.98 secs, the total time by now is 82.32 
+ with avg train loss 1.035, val loss 1.735, avg val acc 36.56%
+global epoch 85 has been done artifficialy in 0.97 secs, the total time by now is 83.29 
+ with avg train loss 1.047, val loss 1.732, avg val acc 36.97%
+global epoch 86 has been done artifficialy in 0.96 secs, the total time by now is 84.25 
+ with avg train loss 1.041, val loss 1.735, avg val acc 37.24%
+global epoch 87 has been done artifficialy in 0.97 secs, the total time by now is 85.22 
+ with avg train loss 1.045, val loss 1.728, avg val acc 37.72%
+global epoch 88 has been done artifficialy in 0.98 secs, the total time by now is 86.20 
+ with avg train loss 1.036, val loss 1.723, avg val acc 37.22%
+global epoch 89 has been done artifficialy in 0.96 secs, the total time by now is 87.16 
+ with avg train loss 1.030, val loss 1.704, avg val acc 38.45%
+global epoch 90 has been done artifficialy in 1.02 secs, the total time by now is 88.18 
+ with avg train loss 1.042, val loss 1.691, avg val acc 39.20%
+global epoch 91 has been done artifficialy in 1.00 secs, the total time by now is 89.18 
+ with avg train loss 1.043, val loss 1.687, avg val acc 39.65%
+global epoch 92 has been done artifficialy in 0.98 secs, the total time by now is 90.16 
+ with avg train loss 1.035, val loss 1.678, avg val acc 39.35%
+global epoch 93 has been done artifficialy in 0.97 secs, the total time by now is 91.13 
+ with avg train loss 1.038, val loss 1.692, avg val acc 40.05%
+global epoch 94 has been done artifficialy in 1.00 secs, the total time by now is 92.13 
+ with avg train loss 1.056, val loss 1.698, avg val acc 40.04%
+global epoch 95 has been done artifficialy in 0.97 secs, the total time by now is 93.10 
+ with avg train loss 1.044, val loss 1.711, avg val acc 39.37%
+global epoch 96 has been done artifficialy in 1.03 secs, the total time by now is 94.13 
+ with avg train loss 1.052, val loss 1.728, avg val acc 39.33%
+global epoch 97 has been done artifficialy in 1.01 secs, the total time by now is 95.15 
+ with avg train loss 1.062, val loss 1.709, avg val acc 39.18%
+global epoch 98 has been done artifficialy in 0.98 secs, the total time by now is 96.13 
+ with avg train loss 1.058, val loss 1.680, avg val acc 41.12%
+global epoch 99 has been done artifficialy in 0.96 secs, the total time by now is 97.09 
+ with avg train loss 1.068, val loss 1.683, avg val acc 42.43%
+global epoch 100 has been done artifficialy in 0.96 secs, the total time by now is 98.05 
+ with avg train loss 1.074, val loss 1.687, avg val acc 41.02%
+global epoch 101 has been done artifficialy in 0.96 secs, the total time by now is 99.01 
+ with avg train loss 1.083, val loss 1.723, avg val acc 39.38%
+global epoch 102 has been done artifficialy in 0.98 secs, the total time by now is 99.99 
+ with avg train loss 1.077, val loss 1.745, avg val acc 38.64%
+global epoch 103 has been done artifficialy in 0.98 secs, the total time by now is 100.97 
+ with avg train loss 1.086, val loss 1.739, avg val acc 39.21%
+global epoch 104 has been done artifficialy in 0.98 secs, the total time by now is 101.94 
+ with avg train loss 1.084, val loss 1.691, avg val acc 38.95%
+global epoch 105 has been done artifficialy in 1.02 secs, the total time by now is 102.96 
+ with avg train loss 1.102, val loss 1.719, avg val acc 37.46%
+global epoch 106 has been done artifficialy in 1.02 secs, the total time by now is 103.98 
+ with avg train loss 1.109, val loss 1.721, avg val acc 37.65%
+global epoch 107 has been done artifficialy in 0.99 secs, the total time by now is 104.97 
+ with avg train loss 1.131, val loss 1.709, avg val acc 38.96%
+global epoch 108 has been done artifficialy in 1.01 secs, the total time by now is 105.98 
+ with avg train loss 1.134, val loss 1.719, avg val acc 38.27%
+global epoch 109 has been done artifficialy in 0.97 secs, the total time by now is 106.95 
+ with avg train loss 1.147, val loss 1.711, avg val acc 37.97%
+global epoch 110 has been done artifficialy in 1.00 secs, the total time by now is 107.96 
+ with avg train loss 1.169, val loss 1.702, avg val acc 40.10%
+global epoch 111 has been done artifficialy in 1.07 secs, the total time by now is 109.03 
+ with avg train loss 1.183, val loss 1.716, avg val acc 39.50%
+global epoch 112 has been done artifficialy in 0.99 secs, the total time by now is 110.02 
+ with avg train loss 1.195, val loss 1.710, avg val acc 39.18%
+global epoch 113 has been done artifficialy in 1.04 secs, the total time by now is 111.07 
+ with avg train loss 1.210, val loss 1.723, avg val acc 39.11%
+global epoch 114 has been done artifficialy in 0.97 secs, the total time by now is 112.04 
+ with avg train loss 1.226, val loss 1.759, avg val acc 37.93%
+global epoch 115 has been done artifficialy in 0.97 secs, the total time by now is 113.01 
+ with avg train loss 1.258, val loss 1.800, avg val acc 35.69%
+global epoch 116 has been done artifficialy in 1.01 secs, the total time by now is 114.01 
+ with avg train loss 1.282, val loss 1.790, avg val acc 35.78%
+global epoch 117 has been done artifficialy in 0.99 secs, the total time by now is 115.01 
+ with avg train loss 1.292, val loss 1.804, avg val acc 35.26%
+global epoch 118 has been done artifficialy in 1.02 secs, the total time by now is 116.02 
+ with avg train loss 1.305, val loss 1.773, avg val acc 36.58%
+global epoch 119 has been done artifficialy in 0.96 secs, the total time by now is 116.99 
+ with avg train loss 1.319, val loss 1.830, avg val acc 35.15%
+global epoch 120 has been done artifficialy in 0.99 secs, the total time by now is 117.98 
+ with avg train loss 1.352, val loss 1.802, avg val acc 35.83%
+global epoch 121 has been done artifficialy in 1.00 secs, the total time by now is 118.98 
+ with avg train loss 1.378, val loss 1.799, avg val acc 35.54%
+global epoch 122 has been done artifficialy in 0.96 secs, the total time by now is 119.94 
+ with avg train loss 1.376, val loss 1.824, avg val acc 32.28%
+global epoch 123 has been done artifficialy in 1.02 secs, the total time by now is 120.96 
+ with avg train loss 1.415, val loss 1.863, avg val acc 31.37%
+global epoch 124 has been done artifficialy in 0.99 secs, the total time by now is 121.95 
+ with avg train loss 1.423, val loss 1.848, avg val acc 32.63%
+global epoch 125 has been done artifficialy in 1.01 secs, the total time by now is 122.96 
+ with avg train loss 1.446, val loss 1.872, avg val acc 30.93%
+global epoch 126 has been done artifficialy in 1.02 secs, the total time by now is 123.98 
+ with avg train loss 1.489, val loss 1.886, avg val acc 30.63%
+global epoch 127 has been done artifficialy in 0.96 secs, the total time by now is 124.94 
+ with avg train loss 1.497, val loss 1.895, avg val acc 29.99%
+global epoch 128 has been done artifficialy in 0.98 secs, the total time by now is 125.92 
+ with avg train loss 1.527, val loss 1.919, avg val acc 28.94%
+global epoch 129 has been done artifficialy in 1.02 secs, the total time by now is 126.94 
+ with avg train loss 1.564, val loss 1.962, avg val acc 28.22%
+global epoch 130 has been done artifficialy in 0.96 secs, the total time by now is 127.90 
+ with avg train loss 1.556, val loss 2.018, avg val acc 26.77%
+global epoch 131 has been done artifficialy in 0.99 secs, the total time by now is 128.89 
+ with avg train loss 1.611, val loss 2.026, avg val acc 25.71%
+global epoch 132 has been done artifficialy in 1.00 secs, the total time by now is 129.90 
+ with avg train loss 1.610, val loss 2.000, avg val acc 27.23%
+global epoch 133 has been done artifficialy in 0.97 secs, the total time by now is 130.87 
+ with avg train loss 1.618, val loss 1.996, avg val acc 26.60%
+global epoch 134 has been done artifficialy in 0.97 secs, the total time by now is 131.84 
+ with avg train loss 1.653, val loss 2.088, avg val acc 25.19%
+global epoch 135 has been done artifficialy in 0.97 secs, the total time by now is 132.81 
+ with avg train loss 1.699, val loss 2.108, avg val acc 24.33%
+global epoch 136 has been done artifficialy in 0.97 secs, the total time by now is 133.79 
+ with avg train loss 1.723, val loss 2.208, avg val acc 23.40%
+global epoch 137 has been done artifficialy in 0.95 secs, the total time by now is 134.74 
+ with avg train loss 1.757, val loss 2.162, avg val acc 22.74%
+global epoch 138 has been done artifficialy in 1.00 secs, the total time by now is 135.73 
+ with avg train loss 1.801, val loss 2.149, avg val acc 22.75%
+global epoch 139 has been done artifficialy in 1.00 secs, the total time by now is 136.74 
+ with avg train loss 1.804, val loss 2.175, avg val acc 20.43%
+global epoch 140 has been done artifficialy in 0.97 secs, the total time by now is 137.71 
+ with avg train loss 1.845, val loss 2.189, avg val acc 20.01%
+global epoch 141 has been done artifficialy in 0.97 secs, the total time by now is 138.69 
+ with avg train loss 1.854, val loss 2.302, avg val acc 18.01%
+global epoch 142 has been done artifficialy in 1.00 secs, the total time by now is 139.69 
+ with avg train loss 1.866, val loss 2.342, avg val acc 17.60%
+global epoch 143 has been done artifficialy in 0.97 secs, the total time by now is 140.66 
+ with avg train loss 1.888, val loss 2.321, avg val acc 17.77%
+global epoch 144 has been done artifficialy in 0.97 secs, the total time by now is 141.63 
+ with avg train loss 1.916, val loss 2.338, avg val acc 18.11%
+global epoch 145 has been done artifficialy in 1.01 secs, the total time by now is 142.64 
+ with avg train loss 1.948, val loss 2.258, avg val acc 18.75%
+global epoch 146 has been done artifficialy in 1.04 secs, the total time by now is 143.68 
+ with avg train loss 1.956, val loss 2.424, avg val acc 17.40%
+global epoch 147 has been done artifficialy in 1.00 secs, the total time by now is 144.68 
+ with avg train loss 1.990, val loss 2.394, avg val acc 17.23%
+global epoch 148 has been done artifficialy in 1.01 secs, the total time by now is 145.68 
+ with avg train loss 2.016, val loss 2.452, avg val acc 16.57%
+global epoch 149 has been done artifficialy in 0.98 secs, the total time by now is 146.66 
+ with avg train loss 2.023, val loss 2.328, avg val acc 19.58%
+global epoch 150 has been done artifficialy in 0.96 secs, the total time by now is 147.62 
+ with avg train loss 1.999, val loss 2.432, avg val acc 16.66%
+global epoch 151 has been done artifficialy in 0.99 secs, the total time by now is 148.61 
+ with avg train loss 2.055, val loss 2.416, avg val acc 16.99%
+global epoch 152 has been done artifficialy in 0.99 secs, the total time by now is 149.60 
+ with avg train loss 2.069, val loss 2.367, avg val acc 16.98%
+global epoch 153 has been done artifficialy in 0.96 secs, the total time by now is 150.56 
+ with avg train loss 2.041, val loss 2.332, avg val acc 18.87%
+global epoch 154 has been done artifficialy in 1.02 secs, the total time by now is 151.57 
+ with avg train loss 2.038, val loss 2.437, avg val acc 16.71%
+global epoch 155 has been done artifficialy in 1.00 secs, the total time by now is 152.57 
+ with avg train loss 2.100, val loss 2.417, avg val acc 15.56%
+global epoch 156 has been done artifficialy in 1.02 secs, the total time by now is 153.59 
+ with avg train loss 2.106, val loss 2.443, avg val acc 14.63%
+global epoch 157 has been done artifficialy in 0.95 secs, the total time by now is 154.54 
+ with avg train loss 2.156, val loss 2.639, avg val acc 13.77%
+global epoch 158 has been done artifficialy in 1.08 secs, the total time by now is 155.62 
+ with avg train loss 2.168, val loss 2.355, avg val acc 15.11%
+global epoch 159 has been done artifficialy in 0.96 secs, the total time by now is 156.58 
+ with avg train loss 2.147, val loss 2.545, avg val acc 13.54%
+global epoch 160 has been done artifficialy in 0.99 secs, the total time by now is 157.57 
+ with avg train loss 2.195, val loss 2.506, avg val acc 13.51%
+global epoch 161 has been done artifficialy in 0.97 secs, the total time by now is 158.53 
+ with avg train loss 2.187, val loss 2.461, avg val acc 12.99%
+global epoch 162 has been done artifficialy in 0.98 secs, the total time by now is 159.51 
+ with avg train loss 2.172, val loss 2.323, avg val acc 15.10%
+global epoch 163 has been done artifficialy in 0.97 secs, the total time by now is 160.48 
+ with avg train loss 2.140, val loss 2.374, avg val acc 17.33%
+global epoch 164 has been done artifficialy in 0.96 secs, the total time by now is 161.43 
+ with avg train loss 2.150, val loss 2.475, avg val acc 14.29%
+global epoch 165 has been done artifficialy in 1.03 secs, the total time by now is 162.47 
+ with avg train loss 2.174, val loss 2.443, avg val acc 15.18%
+global epoch 166 has been done artifficialy in 0.99 secs, the total time by now is 163.46 
+ with avg train loss 2.186, val loss 2.473, avg val acc 15.60%
+global epoch 167 has been done artifficialy in 1.01 secs, the total time by now is 164.48 
+ with avg train loss 2.181, val loss 2.405, avg val acc 14.01%
+global epoch 168 has been done artifficialy in 1.01 secs, the total time by now is 165.48 
+ with avg train loss 2.203, val loss 2.525, avg val acc 14.97%
+global epoch 169 has been done artifficialy in 1.06 secs, the total time by now is 166.54 
+ with avg train loss 2.201, val loss 2.338, avg val acc 16.24%
+global epoch 170 has been done artifficialy in 0.99 secs, the total time by now is 167.53 
+ with avg train loss 2.196, val loss 2.442, avg val acc 15.57%
+global epoch 171 has been done artifficialy in 0.98 secs, the total time by now is 168.51 
+ with avg train loss 2.186, val loss 2.456, avg val acc 14.15%
+global epoch 172 has been done artifficialy in 1.01 secs, the total time by now is 169.53 
+ with avg train loss 2.209, val loss 2.460, avg val acc 13.42%
+global epoch 173 has been done artifficialy in 0.97 secs, the total time by now is 170.49 
+ with avg train loss 2.238, val loss 2.420, avg val acc 12.45%
+global epoch 174 has been done artifficialy in 0.96 secs, the total time by now is 171.46 
+ with avg train loss 2.224, val loss 2.379, avg val acc 14.45%
+global epoch 175 has been done artifficialy in 0.99 secs, the total time by now is 172.45 
+ with avg train loss 2.217, val loss 2.381, avg val acc 15.09%
+global epoch 176 has been done artifficialy in 0.99 secs, the total time by now is 173.44 
+ with avg train loss 2.222, val loss 2.509, avg val acc 11.65%
+global epoch 177 has been done artifficialy in 1.01 secs, the total time by now is 174.45 
+ with avg train loss 2.281, val loss 2.368, avg val acc 13.20%
+global epoch 178 has been done artifficialy in 0.97 secs, the total time by now is 175.42 
+ with avg train loss 2.223, val loss 2.495, avg val acc 14.10%
+global epoch 179 has been done artifficialy in 0.96 secs, the total time by now is 176.38 
+ with avg train loss 2.253, val loss 2.343, avg val acc 15.21%
+global epoch 180 has been done artifficialy in 0.97 secs, the total time by now is 177.35 
+ with avg train loss 2.232, val loss 2.532, avg val acc 12.65%
+global epoch 181 has been done artifficialy in 1.04 secs, the total time by now is 178.39 
+ with avg train loss 2.265, val loss 2.372, avg val acc 14.36%
+global epoch 182 has been done artifficialy in 0.97 secs, the total time by now is 179.35 
+ with avg train loss 2.264, val loss 2.399, avg val acc 13.86%
+global epoch 183 has been done artifficialy in 1.00 secs, the total time by now is 180.35 
+ with avg train loss 2.244, val loss 2.441, avg val acc 11.90%
+global epoch 184 has been done artifficialy in 0.97 secs, the total time by now is 181.33 
+ with avg train loss 2.264, val loss 2.695, avg val acc 12.75%
+global epoch 185 has been done artifficialy in 0.97 secs, the total time by now is 182.29 
+ with avg train loss 2.272, val loss 2.551, avg val acc 13.44%
+global epoch 186 has been done artifficialy in 1.07 secs, the total time by now is 183.36 
+ with avg train loss 2.269, val loss 2.493, avg val acc 11.44%
+global epoch 187 has been done artifficialy in 0.97 secs, the total time by now is 184.33 
+ with avg train loss 2.297, val loss 2.403, avg val acc 14.88%
+global epoch 188 has been done artifficialy in 1.03 secs, the total time by now is 185.36 
+ with avg train loss 2.268, val loss 2.397, avg val acc 15.32%
+global epoch 189 has been done artifficialy in 0.99 secs, the total time by now is 186.35 
+ with avg train loss 2.304, val loss 2.527, avg val acc 12.47%
+global epoch 190 has been done artifficialy in 1.01 secs, the total time by now is 187.37 
+ with avg train loss 2.356, val loss 2.649, avg val acc 15.83%
+global epoch 191 has been done artifficialy in 1.01 secs, the total time by now is 188.37 
+ with avg train loss 2.416, val loss 2.460, avg val acc 11.14%
+global epoch 192 has been done artifficialy in 1.03 secs, the total time by now is 189.40 
+ with avg train loss 2.326, val loss 2.623, avg val acc 11.66%
+global epoch 193 has been done artifficialy in 1.01 secs, the total time by now is 190.41 
+ with avg train loss 2.397, val loss 2.580, avg val acc 12.04%
+global epoch 194 has been done artifficialy in 1.00 secs, the total time by now is 191.41 
+ with avg train loss 2.420, val loss 2.544, avg val acc 13.45%
+global epoch 195 has been done artifficialy in 0.98 secs, the total time by now is 192.40 
+ with avg train loss 2.412, val loss 2.549, avg val acc 11.86%
+global epoch 196 has been done artifficialy in 1.00 secs, the total time by now is 193.40 
+ with avg train loss 2.347, val loss 2.614, avg val acc 12.64%
+global epoch 197 has been done artifficialy in 0.97 secs, the total time by now is 194.38 
+ with avg train loss 2.451, val loss 2.595, avg val acc 14.85%
+global epoch 198 has been done artifficialy in 0.99 secs, the total time by now is 195.37 
+ with avg train loss 2.425, val loss 2.607, avg val acc 14.49%
+global epoch 199 has been done artifficialy in 0.97 secs, the total time by now is 196.34 
+ with avg train loss 2.415, val loss 2.639, avg val acc 14.07%
+global epoch 200 has been done artifficialy in 1.02 secs, the total time by now is 197.36 
+ with avg train loss 2.381, val loss 2.623, avg val acc 11.18%
+global epoch 201 has been done artifficialy in 1.00 secs, the total time by now is 198.36 
+ with avg train loss 2.378, val loss 2.802, avg val acc 9.70%
+global epoch 202 has been done artifficialy in 1.00 secs, the total time by now is 199.36 
+ with avg train loss 2.558, val loss 2.529, avg val acc 13.99%
+global epoch 203 has been done artifficialy in 1.00 secs, the total time by now is 200.36 
+ with avg train loss 2.394, val loss 2.922, avg val acc 12.04%
+global epoch 204 has been done artifficialy in 0.97 secs, the total time by now is 201.33 
+ with avg train loss 2.518, val loss 2.531, avg val acc 11.26%
+global epoch 205 has been done artifficialy in 1.04 secs, the total time by now is 202.37 
+ with avg train loss 2.373, val loss 2.851, avg val acc 13.07%
+global epoch 206 has been done artifficialy in 1.00 secs, the total time by now is 203.37 
+ with avg train loss 2.549, val loss 3.715, avg val acc 10.55%
+global epoch 207 has been done artifficialy in 1.00 secs, the total time by now is 204.37 
+ with avg train loss 2.892, val loss 2.862, avg val acc 13.10%
+global epoch 208 has been done artifficialy in 1.00 secs, the total time by now is 205.37 
+ with avg train loss 2.638, val loss 2.774, avg val acc 14.48%
+global epoch 209 has been done artifficialy in 0.97 secs, the total time by now is 206.34 
+ with avg train loss 2.511, val loss 2.662, avg val acc 14.24%
+global epoch 210 has been done artifficialy in 0.98 secs, the total time by now is 207.32 
+ with avg train loss 2.527, val loss 2.843, avg val acc 10.91%
+global epoch 211 has been done artifficialy in 1.02 secs, the total time by now is 208.34 
+ with avg train loss 2.493, val loss 2.846, avg val acc 11.43%
+global epoch 212 has been done artifficialy in 0.99 secs, the total time by now is 209.32 
+ with avg train loss 2.629, val loss 3.351, avg val acc 10.16%
+global epoch 213 has been done artifficialy in 0.98 secs, the total time by now is 210.31 
+ with avg train loss 2.904, val loss 3.351, avg val acc 12.58%
+global epoch 214 has been done artifficialy in 0.95 secs, the total time by now is 211.26 
+ with avg train loss 2.795, val loss 4.003, avg val acc 11.37%
+global epoch 215 has been done artifficialy in 1.01 secs, the total time by now is 212.26 
+ with avg train loss 3.237, val loss 4.658, avg val acc 10.02%
+global epoch 216 has been done artifficialy in 0.96 secs, the total time by now is 213.22 
+ with avg train loss 3.850, val loss 3.373, avg val acc 10.56%
+global epoch 217 has been done artifficialy in 0.98 secs, the total time by now is 214.20 
+ with avg train loss 3.029, val loss 3.328, avg val acc 10.85%
+global epoch 218 has been done artifficialy in 1.01 secs, the total time by now is 215.22 
+ with avg train loss 3.017, val loss 3.793, avg val acc 9.92%
+global epoch 219 has been done artifficialy in 0.97 secs, the total time by now is 216.19 
+ with avg train loss 3.106, val loss 4.466, avg val acc 10.11%
+global epoch 220 has been done artifficialy in 0.99 secs, the total time by now is 217.18 
+ with avg train loss 3.358, val loss 3.204, avg val acc 14.52%
+global epoch 221 has been done artifficialy in 1.02 secs, the total time by now is 218.20 
+ with avg train loss 2.896, val loss 4.665, avg val acc 11.14%
+global epoch 222 has been done artifficialy in 0.95 secs, the total time by now is 219.15 
+ with avg train loss 3.616, val loss 4.996, avg val acc 11.09%
+global epoch 223 has been done artifficialy in 0.99 secs, the total time by now is 220.14 
+ with avg train loss 4.260, val loss 5.043, avg val acc 11.55%
+global epoch 224 has been done artifficialy in 0.99 secs, the total time by now is 221.13 
+ with avg train loss 4.124, val loss 6.257, avg val acc 10.03%
+global epoch 225 has been done artifficialy in 0.98 secs, the total time by now is 222.11 
+ with avg train loss 4.509, val loss 5.311, avg val acc 10.91%
+global epoch 226 has been done artifficialy in 1.00 secs, the total time by now is 223.10 
+ with avg train loss 4.132, val loss 3.949, avg val acc 13.91%
+global epoch 227 has been done artifficialy in 0.99 secs, the total time by now is 224.09 
+ with avg train loss 4.031, val loss 5.146, avg val acc 11.62%
+global epoch 228 has been done artifficialy in 0.97 secs, the total time by now is 225.06 
+ with avg train loss 4.220, val loss 5.098, avg val acc 9.56%
+global epoch 229 has been done artifficialy in 1.00 secs, the total time by now is 226.05 
+ with avg train loss 4.098, val loss 3.787, avg val acc 11.51%
+global epoch 230 has been done artifficialy in 1.00 secs, the total time by now is 227.06 
+ with avg train loss 3.468, val loss 3.734, avg val acc 12.04%
+global epoch 231 has been done artifficialy in 0.97 secs, the total time by now is 228.02 
+ with avg train loss 3.246, val loss 3.714, avg val acc 10.83%
+global epoch 232 has been done artifficialy in 0.96 secs, the total time by now is 228.99 
+ with avg train loss 3.236, val loss 5.133, avg val acc 12.65%
+global epoch 233 has been done artifficialy in 0.97 secs, the total time by now is 229.96 
+ with avg train loss 4.123, val loss 7.481, avg val acc 10.13%
+global epoch 234 has been done artifficialy in 1.02 secs, the total time by now is 230.98 
+ with avg train loss 5.235, val loss 5.570, avg val acc 10.90%
+global epoch 235 has been done artifficialy in 1.00 secs, the total time by now is 231.97 
+ with avg train loss 4.899, val loss 7.840, avg val acc 10.68%
+global epoch 236 has been done artifficialy in 0.99 secs, the total time by now is 232.96 
+ with avg train loss 6.286, val loss 6.740, avg val acc 9.94%
+global epoch 237 has been done artifficialy in 0.98 secs, the total time by now is 233.94 
+ with avg train loss 5.074, val loss 6.525, avg val acc 13.36%
+global epoch 238 has been done artifficialy in 1.02 secs, the total time by now is 234.96 
+ with avg train loss 4.876, val loss 5.606, avg val acc 13.39%
+global epoch 239 has been done artifficialy in 0.97 secs, the total time by now is 235.93 
+ with avg train loss 4.388, val loss 7.423, avg val acc 10.07%
+global epoch 240 has been done artifficialy in 1.06 secs, the total time by now is 236.99 
+ with avg train loss 5.599, val loss 7.691, avg val acc 11.17%
+global epoch 241 has been done artifficialy in 0.95 secs, the total time by now is 237.94 
+ with avg train loss 6.449, val loss 4.906, avg val acc 12.46%
+global epoch 242 has been done artifficialy in 0.94 secs, the total time by now is 238.88 
+ with avg train loss 4.199, val loss 8.119, avg val acc 9.89%
+global epoch 243 has been done artifficialy in 0.99 secs, the total time by now is 239.88 
+ with avg train loss 6.186, val loss 8.025, avg val acc 10.01%
+global epoch 244 has been done artifficialy in 0.98 secs, the total time by now is 240.86 
+ with avg train loss 6.003, val loss 7.383, avg val acc 10.87%
+global epoch 245 has been done artifficialy in 0.99 secs, the total time by now is 241.85 
+ with avg train loss 5.668, val loss 10.122, avg val acc 10.00%
+global epoch 246 has been done artifficialy in 0.98 secs, the total time by now is 242.84 
+ with avg train loss 7.702, val loss 11.398, avg val acc 11.75%
+global epoch 247 has been done artifficialy in 0.99 secs, the total time by now is 243.83 
+ with avg train loss 9.233, val loss 7.577, avg val acc 9.56%
+global epoch 248 has been done artifficialy in 0.98 secs, the total time by now is 244.80 
+ with avg train loss 6.747, val loss 10.199, avg val acc 10.87%
+global epoch 249 has been done artifficialy in 0.99 secs, the total time by now is 245.79 
+ with avg train loss 8.526, val loss 17.569, avg val acc 10.00%
+global epoch 250 has been done artifficialy in 0.96 secs, the total time by now is 246.76 
+ with avg train loss 13.135, val loss 8.857, avg val acc 10.90%
+global epoch 251 has been done artifficialy in 1.00 secs, the total time by now is 247.76 
+ with avg train loss 7.491, val loss 17.094, avg val acc 10.74%
+global epoch 252 has been done artifficialy in 1.02 secs, the total time by now is 248.78 
+ with avg train loss 12.671, val loss 23.827, avg val acc 10.00%
+global epoch 253 has been done artifficialy in 0.99 secs, the total time by now is 249.77 
+ with avg train loss 15.591, val loss 12.187, avg val acc 11.26%
+global epoch 254 has been done artifficialy in 0.99 secs, the total time by now is 250.76 
+ with avg train loss 9.984, val loss 21.857, avg val acc 10.00%
+global epoch 255 has been done artifficialy in 0.98 secs, the total time by now is 251.74 
+ with avg train loss 15.794, val loss 13.372, avg val acc 10.08%
+global epoch 256 has been done artifficialy in 1.01 secs, the total time by now is 252.75 
+ with avg train loss 10.296, val loss 14.899, avg val acc 10.00%
+global epoch 257 has been done artifficialy in 1.00 secs, the total time by now is 253.75 
+ with avg train loss 10.862, val loss 19.964, avg val acc 11.22%
+global epoch 258 has been done artifficialy in 0.96 secs, the total time by now is 254.70 
+ with avg train loss 16.820, val loss 13.511, avg val acc 12.06%
+global epoch 259 has been done artifficialy in 0.95 secs, the total time by now is 255.66 
+ with avg train loss 10.832, val loss 8.368, avg val acc 11.96%
+global epoch 260 has been done artifficialy in 0.96 secs, the total time by now is 256.62 
+ with avg train loss 7.001, val loss 16.973, avg val acc 10.00%
+global epoch 261 has been done artifficialy in 1.01 secs, the total time by now is 257.63 
+ with avg train loss 11.159, val loss 11.541, avg val acc 10.09%
+global epoch 262 has been done artifficialy in 0.97 secs, the total time by now is 258.60 
+ with avg train loss 10.210, val loss 10.037, avg val acc 10.48%
+global epoch 263 has been done artifficialy in 1.00 secs, the total time by now is 259.60 
+ with avg train loss 7.876, val loss 14.239, avg val acc 9.93%
+global epoch 264 has been done artifficialy in 0.98 secs, the total time by now is 260.59 
+ with avg train loss 10.677, val loss 20.985, avg val acc 9.95%
+global epoch 265 has been done artifficialy in 1.05 secs, the total time by now is 261.64 
+ with avg train loss 15.172, val loss 27.632, avg val acc 11.14%
+global epoch 266 has been done artifficialy in 0.94 secs, the total time by now is 262.58 
+ with avg train loss 20.894, val loss 27.640, avg val acc 9.98%
+global epoch 267 has been done artifficialy in 1.00 secs, the total time by now is 263.58 
+ with avg train loss 19.499, val loss 16.168, avg val acc 10.80%
+global epoch 268 has been done artifficialy in 1.01 secs, the total time by now is 264.59 
+ with avg train loss 10.993, val loss 16.080, avg val acc 10.98%
+global epoch 269 has been done artifficialy in 0.98 secs, the total time by now is 265.57 
+ with avg train loss 11.888, val loss 49.524, avg val acc 10.00%
+global epoch 270 has been done artifficialy in 0.99 secs, the total time by now is 266.56 
+ with avg train loss 34.291, val loss 28.539, avg val acc 10.61%
+global epoch 271 has been done artifficialy in 0.98 secs, the total time by now is 267.54 
+ with avg train loss 21.648, val loss 28.733, avg val acc 10.02%
+global epoch 272 has been done artifficialy in 0.97 secs, the total time by now is 268.51 
+ with avg train loss 26.132, val loss 30.096, avg val acc 10.09%
+global epoch 273 has been done artifficialy in 0.97 secs, the total time by now is 269.48 
+ with avg train loss 22.077, val loss 32.738, avg val acc 12.69%
+global epoch 274 has been done artifficialy in 0.95 secs, the total time by now is 270.43 
+ with avg train loss 25.855, val loss 29.652, avg val acc 13.18%
+global epoch 275 has been done artifficialy in 1.02 secs, the total time by now is 271.45 
+ with avg train loss 23.439, val loss 52.084, avg val acc 9.93%
+global epoch 276 has been done artifficialy in 1.12 secs, the total time by now is 272.57 
+ with avg train loss 39.295, val loss 66.465, avg val acc 10.42%
+global epoch 277 has been done artifficialy in 1.00 secs, the total time by now is 273.58 
+ with avg train loss 38.960, val loss 36.013, avg val acc 10.51%
+global epoch 278 has been done artifficialy in 0.97 secs, the total time by now is 274.55 
+ with avg train loss 29.598, val loss 53.710, avg val acc 11.61%
+global epoch 279 has been done artifficialy in 1.06 secs, the total time by now is 275.61 
+ with avg train loss 45.221, val loss 38.847, avg val acc 10.01%
+global epoch 280 has been done artifficialy in 1.00 secs, the total time by now is 276.61 
+ with avg train loss 30.208, val loss 55.479, avg val acc 10.05%
+global epoch 281 has been done artifficialy in 0.99 secs, the total time by now is 277.60 
+ with avg train loss 39.103, val loss 50.325, avg val acc 10.57%
+global epoch 282 has been done artifficialy in 1.00 secs, the total time by now is 278.61 
+ with avg train loss 37.426, val loss 57.034, avg val acc 10.01%
+global epoch 283 has been done artifficialy in 0.98 secs, the total time by now is 279.58 
+ with avg train loss 33.353, val loss 61.033, avg val acc 10.01%
+global epoch 284 has been done artifficialy in 1.00 secs, the total time by now is 280.58 
+ with avg train loss 45.331, val loss 41.640, avg val acc 11.27%
+global epoch 285 has been done artifficialy in 1.05 secs, the total time by now is 281.63 
+ with avg train loss 31.791, val loss 40.791, avg val acc 9.70%
+global epoch 286 has been done artifficialy in 1.03 secs, the total time by now is 282.66 
+ with avg train loss 32.990, val loss 58.846, avg val acc 10.02%
+global epoch 287 has been done artifficialy in 0.99 secs, the total time by now is 283.64 
+ with avg train loss 44.085, val loss 35.310, avg val acc 10.09%
+global epoch 288 has been done artifficialy in 1.00 secs, the total time by now is 284.64 
+ with avg train loss 26.527, val loss 33.961, avg val acc 10.41%
+global epoch 289 has been done artifficialy in 0.98 secs, the total time by now is 285.63 
+ with avg train loss 24.382, val loss 64.937, avg val acc 10.00%
+global epoch 290 has been done artifficialy in 0.97 secs, the total time by now is 286.59 
+ with avg train loss 47.829, val loss 53.148, avg val acc 10.51%
+global epoch 291 has been done artifficialy in 1.00 secs, the total time by now is 287.59 
+ with avg train loss 38.580, val loss 37.867, avg val acc 10.06%
+global epoch 292 has been done artifficialy in 0.99 secs, the total time by now is 288.58 
+ with avg train loss 28.080, val loss 72.377, avg val acc 12.52%
+global epoch 293 has been done artifficialy in 1.04 secs, the total time by now is 289.62 
+ with avg train loss 53.769, val loss 72.219, avg val acc 10.12%
+global epoch 294 has been done artifficialy in 0.98 secs, the total time by now is 290.60 
+ with avg train loss 51.659, val loss 147.678, avg val acc 10.00%
+global epoch 295 has been done artifficialy in 0.99 secs, the total time by now is 291.60 
+ with avg train loss 111.334, val loss 82.931, avg val acc 14.21%
+global epoch 296 has been done artifficialy in 1.00 secs, the total time by now is 292.59 
+ with avg train loss 71.879, val loss 133.513, avg val acc 10.01%
+global epoch 297 has been done artifficialy in 0.99 secs, the total time by now is 293.58 
+ with avg train loss 92.848, val loss 92.743, avg val acc 10.74%
+global epoch 298 has been done artifficialy in 1.00 secs, the total time by now is 294.59 
+ with avg train loss 67.972, val loss 118.079, avg val acc 10.48%
+global epoch 299 has been done artifficialy in 0.97 secs, the total time by now is 295.55 
+ with avg train loss 91.776, val loss 116.385, avg val acc 10.05%
+global epoch 300 has been done artifficialy in 1.02 secs, the total time by now is 296.57 
+ with avg train loss 82.149, val loss 118.243, avg val acc 10.04%
+global epoch 301 has been done artifficialy in 0.96 secs, the total time by now is 297.53 
+ with avg train loss 81.457, val loss 93.874, avg val acc 11.25%
+global epoch 302 has been done artifficialy in 0.98 secs, the total time by now is 298.51 
+ with avg train loss 72.416, val loss 107.626, avg val acc 11.06%
+global epoch 303 has been done artifficialy in 1.01 secs, the total time by now is 299.52 
+ with avg train loss 79.125, val loss 153.840, avg val acc 10.00%
+global epoch 304 has been done artifficialy in 0.95 secs, the total time by now is 300.47 
+ with avg train loss 101.010, val loss 92.082, avg val acc 11.77%
+global epoch 305 has been done artifficialy in 0.96 secs, the total time by now is 301.43 
+ with avg train loss 73.942, val loss 60.283, avg val acc 10.06%
+global epoch 306 has been done artifficialy in 0.97 secs, the total time by now is 302.40 
+ with avg train loss 45.384, val loss 177.965, avg val acc 10.24%
+global epoch 307 has been done artifficialy in 0.97 secs, the total time by now is 303.37 
+ with avg train loss 132.853, val loss 208.591, avg val acc 10.00%
+global epoch 308 has been done artifficialy in 1.03 secs, the total time by now is 304.40 
+ with avg train loss 146.575, val loss 173.499, avg val acc 11.29%
+global epoch 309 has been done artifficialy in 1.03 secs, the total time by now is 305.43 
+ with avg train loss 148.571, val loss 117.771, avg val acc 13.11%
+global epoch 310 has been done artifficialy in 0.97 secs, the total time by now is 306.40 
+ with avg train loss 89.790, val loss 146.398, avg val acc 9.96%
+global epoch 311 has been done artifficialy in 0.97 secs, the total time by now is 307.37 
+ with avg train loss 104.780, val loss 209.625, avg val acc 10.00%
+global epoch 312 has been done artifficialy in 0.98 secs, the total time by now is 308.35 
+ with avg train loss 156.914, val loss 241.890, avg val acc 9.95%
+global epoch 313 has been done artifficialy in 1.01 secs, the total time by now is 309.36 
+ with avg train loss 182.123, val loss 184.881, avg val acc 10.08%
+global epoch 314 has been done artifficialy in 0.94 secs, the total time by now is 310.30 
+ with avg train loss 147.436, val loss 284.382, avg val acc 9.98%
+global epoch 315 has been done artifficialy in 1.01 secs, the total time by now is 311.30 
+ with avg train loss 210.288, val loss 179.401, avg val acc 9.80%
+global epoch 316 has been done artifficialy in 1.00 secs, the total time by now is 312.30 
+ with avg train loss 146.298, val loss 92.701, avg val acc 11.29%
+global epoch 317 has been done artifficialy in 0.98 secs, the total time by now is 313.28 
+ with avg train loss 68.875, val loss 290.728, avg val acc 10.00%
+global epoch 318 has been done artifficialy in 0.99 secs, the total time by now is 314.27 
+ with avg train loss 197.286, val loss 222.707, avg val acc 10.40%
+global epoch 319 has been done artifficialy in 1.03 secs, the total time by now is 315.30 
+ with avg train loss 162.074, val loss 252.493, avg val acc 11.38%
+global epoch 320 has been done artifficialy in 0.95 secs, the total time by now is 316.25 
+ with avg train loss 208.594, val loss 272.467, avg val acc 10.01%
+global epoch 321 has been done artifficialy in 1.02 secs, the total time by now is 317.27 
+ with avg train loss 176.879, val loss 327.000, avg val acc 10.82%
+global epoch 322 has been done artifficialy in 0.95 secs, the total time by now is 318.22 
+ with avg train loss 254.116, val loss 183.666, avg val acc 13.13%
+global epoch 323 has been done artifficialy in 1.00 secs, the total time by now is 319.22 
+ with avg train loss 130.842, val loss 198.144, avg val acc 10.00%
+global epoch 324 has been done artifficialy in 1.06 secs, the total time by now is 320.28 
+ with avg train loss 127.410, val loss 193.198, avg val acc 12.19%
+global epoch 325 has been done artifficialy in 0.99 secs, the total time by now is 321.28 
+ with avg train loss 150.121, val loss 198.052, avg val acc 10.00%
+global epoch 326 has been done artifficialy in 1.02 secs, the total time by now is 322.29 
+ with avg train loss 140.311, val loss 358.981, avg val acc 10.05%
+global epoch 327 has been done artifficialy in 0.95 secs, the total time by now is 323.24 
+ with avg train loss 283.882, val loss 187.922, avg val acc 13.74%
+global epoch 328 has been done artifficialy in 0.98 secs, the total time by now is 324.22 
+ with avg train loss 131.717, val loss 334.528, avg val acc 13.89%
+global epoch 329 has been done artifficialy in 0.99 secs, the total time by now is 325.21 
+ with avg train loss 220.430, val loss 160.522, avg val acc 11.92%
+global epoch 330 has been done artifficialy in 1.01 secs, the total time by now is 326.22 
+ with avg train loss 150.961, val loss 208.256, avg val acc 10.94%
+global epoch 331 has been done artifficialy in 0.99 secs, the total time by now is 327.21 
+ with avg train loss 159.214, val loss 358.609, avg val acc 13.95%
+global epoch 332 has been done artifficialy in 0.97 secs, the total time by now is 328.19 
+ with avg train loss 230.091, val loss 288.498, avg val acc 10.28%
+global epoch 333 has been done artifficialy in 1.02 secs, the total time by now is 329.21 
+ with avg train loss 222.883, val loss 265.071, avg val acc 11.06%
+global epoch 334 has been done artifficialy in 0.99 secs, the total time by now is 330.20 
+ with avg train loss 213.086, val loss 303.672, avg val acc 10.08%
+global epoch 335 has been done artifficialy in 0.95 secs, the total time by now is 331.15 
+ with avg train loss 194.065, val loss 239.846, avg val acc 10.30%
+global epoch 336 has been done artifficialy in 1.01 secs, the total time by now is 332.16 
+ with avg train loss 192.121, val loss 211.194, avg val acc 9.51%
+global epoch 337 has been done artifficialy in 0.97 secs, the total time by now is 333.12 
+ with avg train loss 164.516, val loss 255.259, avg val acc 9.18%
+global epoch 338 has been done artifficialy in 1.01 secs, the total time by now is 334.13 
+ with avg train loss 204.092, val loss 137.075, avg val acc 10.40%
+global epoch 339 has been done artifficialy in 1.02 secs, the total time by now is 335.15 
+ with avg train loss 116.164, val loss 529.988, avg val acc 10.09%
+global epoch 340 has been done artifficialy in 0.99 secs, the total time by now is 336.14 
+ with avg train loss 350.113, val loss 520.136, avg val acc 10.03%
+global epoch 341 has been done artifficialy in 0.95 secs, the total time by now is 337.09 
+ with avg train loss 372.666, val loss 597.953, avg val acc 10.96%
+global epoch 342 has been done artifficialy in 1.03 secs, the total time by now is 338.12 
+ with avg train loss 451.631, val loss 335.016, avg val acc 11.39%
+global epoch 343 has been done artifficialy in 0.97 secs, the total time by now is 339.09 
+ with avg train loss 232.824, val loss 446.686, avg val acc 11.05%
+global epoch 344 has been done artifficialy in 0.97 secs, the total time by now is 340.06 
+ with avg train loss 336.520, val loss 467.007, avg val acc 10.60%
+global epoch 345 has been done artifficialy in 0.97 secs, the total time by now is 341.03 
+ with avg train loss 295.512, val loss 710.451, avg val acc 10.10%
+global epoch 346 has been done artifficialy in 0.99 secs, the total time by now is 342.02 
+ with avg train loss 539.850, val loss 561.816, avg val acc 10.51%
+global epoch 347 has been done artifficialy in 0.97 secs, the total time by now is 343.00 
+ with avg train loss 444.973, val loss 559.338, avg val acc 12.37%
+global epoch 348 has been done artifficialy in 0.99 secs, the total time by now is 343.98 
+ with avg train loss 411.769, val loss 794.758, avg val acc 10.20%
+global epoch 349 has been done artifficialy in 1.01 secs, the total time by now is 345.00 
+ with avg train loss 513.601, val loss 1002.245, avg val acc 10.00%
+global epoch 350 has been done artifficialy in 0.95 secs, the total time by now is 345.95 
+ with avg train loss 710.250, val loss 1070.033, avg val acc 10.00%
+global epoch 351 has been done artifficialy in 0.98 secs, the total time by now is 346.93 
+ with avg train loss 753.850, val loss 748.986, avg val acc 10.46%
+global epoch 352 has been done artifficialy in 1.01 secs, the total time by now is 347.94 
+ with avg train loss 569.711, val loss 806.040, avg val acc 10.86%
+global epoch 353 has been done artifficialy in 0.99 secs, the total time by now is 348.93 
+ with avg train loss 580.841, val loss 641.590, avg val acc 10.02%
+global epoch 354 has been done artifficialy in 1.01 secs, the total time by now is 349.94 
+ with avg train loss 417.796, val loss 895.921, avg val acc 10.00%
+global epoch 355 has been done artifficialy in 0.97 secs, the total time by now is 350.91 
+ with avg train loss 618.327, val loss 565.400, avg val acc 9.84%
+global epoch 356 has been done artifficialy in 1.00 secs, the total time by now is 351.91 
+ with avg train loss 503.732, val loss 522.869, avg val acc 10.40%
+global epoch 357 has been done artifficialy in 1.02 secs, the total time by now is 352.93 
+ with avg train loss 421.920, val loss 840.940, avg val acc 9.99%
+global epoch 358 has been done artifficialy in 0.96 secs, the total time by now is 353.90 
+ with avg train loss 623.855, val loss 687.469, avg val acc 10.44%
+global epoch 359 has been done artifficialy in 0.96 secs, the total time by now is 354.86 
+ with avg train loss 511.169, val loss 480.054, avg val acc 12.19%
+global epoch 360 has been done artifficialy in 0.97 secs, the total time by now is 355.83 
+ with avg train loss 395.678, val loss 1046.259, avg val acc 10.00%
+global epoch 361 has been done artifficialy in 1.00 secs, the total time by now is 356.82 
+ with avg train loss 647.406, val loss 887.254, avg val acc 11.37%
+global epoch 362 has been done artifficialy in 1.00 secs, the total time by now is 357.83 
+ with avg train loss 679.289, val loss 730.313, avg val acc 12.76%
+global epoch 363 has been done artifficialy in 1.02 secs, the total time by now is 358.85 
+ with avg train loss 533.961, val loss 1059.014, avg val acc 10.00%
+global epoch 364 has been done artifficialy in 1.00 secs, the total time by now is 359.85 
+ with avg train loss 695.641, val loss 607.820, avg val acc 11.45%
+global epoch 365 has been done artifficialy in 1.00 secs, the total time by now is 360.84 
+ with avg train loss 516.233, val loss 1176.409, avg val acc 10.17%
+global epoch 366 has been done artifficialy in 0.99 secs, the total time by now is 361.83 
+ with avg train loss 871.315, val loss 784.695, avg val acc 13.63%
+global epoch 367 has been done artifficialy in 1.00 secs, the total time by now is 362.84 
+ with avg train loss 704.863, val loss 1685.642, avg val acc 10.00%
+global epoch 368 has been done artifficialy in 0.96 secs, the total time by now is 363.80 
+ with avg train loss 1261.957, val loss 1478.842, avg val acc 10.02%
+global epoch 369 has been done artifficialy in 1.08 secs, the total time by now is 364.88 
+ with avg train loss 1140.065, val loss 1063.303, avg val acc 12.51%
+global epoch 370 has been done artifficialy in 0.95 secs, the total time by now is 365.83 
+ with avg train loss 813.611, val loss 2096.643, avg val acc 10.00%
+global epoch 371 has been done artifficialy in 0.95 secs, the total time by now is 366.78 
+ with avg train loss 1211.419, val loss 1825.918, avg val acc 10.00%
+global epoch 372 has been done artifficialy in 0.98 secs, the total time by now is 367.76 
+ with avg train loss 1441.317, val loss 2517.048, avg val acc 10.00%
+global epoch 373 has been done artifficialy in 0.99 secs, the total time by now is 368.75 
+ with avg train loss 1934.740, val loss 1068.461, avg val acc 11.50%
+global epoch 374 has been done artifficialy in 0.98 secs, the total time by now is 369.73 
+ with avg train loss 909.226, val loss 1382.867, avg val acc 12.58%
+global epoch 375 has been done artifficialy in 0.98 secs, the total time by now is 370.71 
+ with avg train loss 1128.620, val loss 2431.925, avg val acc 10.00%
+global epoch 376 has been done artifficialy in 0.95 secs, the total time by now is 371.66 
+ with avg train loss 1770.485, val loss 1865.336, avg val acc 11.38%
+global epoch 377 has been done artifficialy in 0.99 secs, the total time by now is 372.65 
+ with avg train loss 1535.752, val loss 2742.572, avg val acc 9.90%
+global epoch 378 has been done artifficialy in 1.06 secs, the total time by now is 373.71 
+ with avg train loss 2135.228, val loss 3124.344, avg val acc 10.76%
+global epoch 379 has been done artifficialy in 1.02 secs, the total time by now is 374.73 
+ with avg train loss 2578.178, val loss 2539.049, avg val acc 10.10%
+global epoch 380 has been done artifficialy in 1.03 secs, the total time by now is 375.76 
+ with avg train loss 1894.646, val loss 1621.610, avg val acc 11.78%
+global epoch 381 has been done artifficialy in 0.99 secs, the total time by now is 376.75 
+ with avg train loss 1237.653, val loss 1340.684, avg val acc 11.80%
+global epoch 382 has been done artifficialy in 1.01 secs, the total time by now is 377.76 
+ with avg train loss 1016.611, val loss 1067.066, avg val acc 8.69%
+global epoch 383 has been done artifficialy in 1.02 secs, the total time by now is 378.78 
+ with avg train loss 959.692, val loss 2039.498, avg val acc 9.55%
+global epoch 384 has been done artifficialy in 1.00 secs, the total time by now is 379.78 
+ with avg train loss 1574.837, val loss 2190.479, avg val acc 10.25%
+global epoch 385 has been done artifficialy in 0.98 secs, the total time by now is 380.76 
+ with avg train loss 1691.410, val loss 2662.576, avg val acc 9.16%
+global epoch 386 has been done artifficialy in 1.00 secs, the total time by now is 381.76 
+ with avg train loss 2027.422, val loss 2724.936, avg val acc 9.82%
+global epoch 387 has been done artifficialy in 0.99 secs, the total time by now is 382.75 
+ with avg train loss 1908.783, val loss 2154.222, avg val acc 10.07%
+global epoch 388 has been done artifficialy in 0.98 secs, the total time by now is 383.73 
+ with avg train loss 1511.447, val loss 3376.489, avg val acc 10.00%
+global epoch 389 has been done artifficialy in 0.98 secs, the total time by now is 384.71 
+ with avg train loss 2499.724, val loss 1690.540, avg val acc 11.57%
+global epoch 390 has been done artifficialy in 0.98 secs, the total time by now is 385.69 
+ with avg train loss 1539.597, val loss 1325.987, avg val acc 13.00%
+global epoch 391 has been done artifficialy in 1.02 secs, the total time by now is 386.71 
+ with avg train loss 1033.157, val loss 2080.045, avg val acc 10.77%
+global epoch 392 has been done artifficialy in 0.97 secs, the total time by now is 387.69 
+ with avg train loss 1551.693, val loss 2641.229, avg val acc 11.23%
+global epoch 393 has been done artifficialy in 1.01 secs, the total time by now is 388.69 
+ with avg train loss 2053.074, val loss 2507.620, avg val acc 13.62%
+global epoch 394 has been done artifficialy in 1.00 secs, the total time by now is 389.69 
+ with avg train loss 2002.738, val loss 2224.151, avg val acc 13.97%
+global epoch 395 has been done artifficialy in 0.99 secs, the total time by now is 390.68 
+ with avg train loss 1908.258, val loss 4621.896, avg val acc 10.07%
+global epoch 396 has been done artifficialy in 1.00 secs, the total time by now is 391.68 
+ with avg train loss 2963.274, val loss 3079.665, avg val acc 10.24%
+global epoch 397 has been done artifficialy in 0.98 secs, the total time by now is 392.66 
+ with avg train loss 2566.089, val loss 4015.363, avg val acc 10.15%
+global epoch 398 has been done artifficialy in 1.00 secs, the total time by now is 393.65 
+ with avg train loss 3041.056, val loss 4219.879, avg val acc 9.87%
+global epoch 399 has been done artifficialy in 0.98 secs, the total time by now is 394.63 
+ with avg train loss 2897.457, val loss 6306.756, avg val acc 10.62%
+global epoch 400 has been done artifficialy in 1.04 secs, the total time by now is 395.67 
+ with avg train loss 4566.177, val loss 4323.713, avg val acc 10.14%

@@ -17,7 +17,7 @@ def args_parser():
 
     # store_true suprisingly means that if the argument is not given, it is False
 
-    parser.add_argument("--full_exp", type=str2bool, default=True,
+    parser.add_argument("--full_exp", type=str2bool, default=False,
                         help=("if true, runs all the methods in the defined environment, else, running only the experiment \
                               defined in method_choosing_users") )
     parser.add_argument('--data', type=str, default='cifar10',
@@ -31,29 +31,27 @@ def args_parser():
                         choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
                         help="method to choose users for each round")
     parser.add_argument('--model', type=str, default='cnn3',
-                        choices=['cnn2', 'cnn3', 'mlp', 'linear'],
-                        help="model to use (cnn2, cnn3, mlp, linear)")
-    parser.add_argument('--num_users', type=int, default=30,
+                        choices=['cnn2', 'cnn3', "cnn5", 'mlp', 'linear'],
+                        help="model to use (cnn2, cnn3, cnn5, mlp, linear)")
+    parser.add_argument('--num_users', type=int, default=300,
                         help="number of users participating in the federated learning")
-    parser.add_argument('--num_users_per_round', type=int, default=5,
+    parser.add_argument('--num_users_per_round', type=int, default=15,
                         help="number of users participating in each round")
-    parser.add_argument('--global_epochs', type=int, default=400,
+    parser.add_argument('--global_epochs', type=int, default=300,
                         help="number of global epochs")
     parser.add_argument('--max_seconds', type=float, default=600,
                         help="max seconds to run the learning process")
-    parser.add_argument('--epsilon_bar', type=float, default=100,
+    parser.add_argument('--epsilon_bar', type=float, default=50,
                         help="privacy budget (epsilon)")
     parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.04,
                         help="the coefficient for the deascent of the epsilon sum")
-    parser.add_argument('--delta_f', type=float, default=0.012,
+    parser.add_argument('--delta_f', type=float, default=0.008,
                         help="constant delta f, the sensitivity for the laplace noise")
-    parser.add_argument('--accel_ucb_coeff', type=float, default=1,
-                        help="the coefficient for the acceleration of the ucb")
     parser.add_argument('--alpha', type=float, default=20,
                         help="alpha parameter for the MAB")
-    parser.add_argument('--beta', type=float, default=2,
+    parser.add_argument('--beta', type=float, default=1,
                         help="beta parameter for the MAB")
-    parser.add_argument('--gamma', type=float, default=40,
+    parser.add_argument('--gamma', type=float, default=20,
                         help="gamma parameter for the MAB")
     parser.add_argument("--alternative_privacy_reward", action='store_true',
                         help="if True, uses the variance reward instead of accumulated reward for the privacy reward")
@@ -79,7 +77,7 @@ def args_parser():
                          help="the interval to plot the bar plot of the chosen users")
     
     #sa-pause arguments
-    parser.add_argument('--max_iterations_sa_pause', type=int, default=500,
+    parser.add_argument('--max_iterations_sa_pause', type=int, default=3000,
                         help="maximum number of iterations for the sa_pause algorithm")
     parser.add_argument('--sa_pause_simulation', action='store_true',
                         help="weather to perform sa_pause in simulation mode (outside the main code) or not")
@@ -91,6 +89,8 @@ def args_parser():
                               changed in simulations if the number of users is very large and the sa_pause algorithm is very slow"))
     parser.add_argument('--beta_max_reduction', type=float, default=70,
                         help="the acount we divide the beta_max we compute in sa_pause to accelerate the convergence")
+    parser.add_argument('--accel_ucb_coeff', type=float, default=3,
+                        help="the coefficient for the acceleration of the ucb")
 
     #things that I don't touch often:
     parser.add_argument('--data_truncation', default=None,
@@ -100,7 +100,7 @@ def args_parser():
     parser.add_argument("--production", action='store_true',
                         help="if True, the code will run in production mode, if False, it will run in development mode")
     parser.add_argument('--privacy_noise', type=str, default='laplace')
-    parser.add_argument('--privacy', action='store_false',
+    parser.add_argument('--privacy', type=str2bool, default=True,
                         help="weather to perform privacy or not")
     parser.add_argument('--save_best_model', action='store_true',
                         help="weather to save the model eith the best accuracy on the validation set")
