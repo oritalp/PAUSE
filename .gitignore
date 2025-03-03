@@ -7,12 +7,12 @@ data/
 *.sbatch
 
 
-# # Ignore everything in checkpoints directory
-# checkpoints/*
+# Ignore everything in checkpoints directory
+checkpoints/*
 
-# # But keep the archive subdirectory
-# !checkpoints/archive/
-# !checkpoints/archive/**
+# But keep the archive subdirectory
+!checkpoints/archive/
+!checkpoints/archive/**
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

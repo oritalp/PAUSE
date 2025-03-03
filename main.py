@@ -36,14 +36,14 @@ def main():
         exp_path.mkdir(parents=True, exist_ok=True)
         if args.num_users <= 100:
             if args.i_i_d:
-                methods=["sa_pause", 'pause brute', 'random', "fraboni", 'all users', "fastest ones"]
+                methods=['random', "fraboni", "sa_pause", 'pause brute', 'all users', "fastest ones"]
             else:
-                methods=["sa_pause", 'pause brute', 'all users', "fastest ones"]
+                methods=["fraboni", "sa_pause", 'pause brute', 'all users', "fastest ones"]
         else:
             if args.i_i_d:
                 methods = ['random', "fraboni", "sa_pause", 'all users', "fastest ones"]
             else:
-                methods = ['random', "fraboni", "sa_pause", 'all users', "fastest ones"]
+                methods = ["fraboni", "sa_pause", 'all users', "fastest ones"]
 
         paths_dict = {}
         for method in methods:
@@ -69,6 +69,7 @@ def main():
                         "data": args.data,
                         "alpha": args.alpha,
                         "gamma": args.gamma,
+                        "accel_ucb_coeff": args.accel_ucb_coeff,
                         "method": method  # Add method to config for easier filtering
                     }
                 )
@@ -104,6 +105,7 @@ def main():
                     "data": args.data,
                     "alpha": args.alpha,
                     "gamma": args.gamma,
+                    "accel_ucb_coeff": args.accel_ucb_coeff,
                     "method": method  # Add method to config for easier filtering
                 }
             )
@@ -142,6 +144,7 @@ def main():
                     "data": args.data,
                     "alpha": args.alpha,
                     "gamma": args.gamma,
+                    "accel_ucb_coeff": args.accel_ucb_coeff,
                     "method": args.method_choosing_users
                 }
             )

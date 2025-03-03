@@ -769,7 +769,8 @@ def plot_graphs(paths_dict: dict, x_axis_time = True, path_to_save = None, print
         plt.show()
 
 
-def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, moving_average = None):
+def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, moving_average = None,
+ x_axis_trunc=None):
 
     father_path = Path(father_path)
     paths_dict = {}
@@ -778,34 +779,56 @@ def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, m
         if subdir.is_dir():
             if subdir.name == "fraboni":
                 name = "Clusterd Sampling"
+                color = "orange"
+                ls = ":"
             elif subdir.name == "sa_pause":
                 name = "SA-PAUSE"
+                color = "C0"
+                ls = "-"
             elif subdir.name == "pause brute":
                 name = "Brute Force PAUSE Search"
+                color = "green"
+                ls = "--"
+            elif subdir.name == "random":
+                name = "Random"
+                color = "indigo"
+                ls = "-."
             elif subdir.name == "fastest ones":
                 name = "Fastest in expectation"
-            else:
-                # assign name as the name of the subdir with capital letter at the begining of each word (case)
+                color = "magenta"
+                ls = "-"
+            elif subdir.name == "all users":
                 name = subdir.name.title()
+                color = "gray"
+                ls = "-."
+            elif subdir.name == "all users - no privacy":
+                name = "All users - no privacy"
+                color = "green"
+                ls = "--"
 
-            paths_dict[name] = subdir / "last_model.pth.tar"
+            paths_dict[name] = [subdir / "last_model.pth.tar", color, ls]
 
     paths_dict_copy = paths_dict.copy()
 
     for key, value in paths_dict_copy.items():
+        ls = value[2]
+        color = value[1]
+        value = value[0]
         #check if the value is an absolute path or a relative path
         if not value.is_absolute():
-            paths_dict_copy[key] = torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
+            paths_dict_copy[key] = [torch.load(Path.cwd() / value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
-                                                                                torch.device('cpu')), weights_only=False)
+                                                                                torch.device('cpu')), weights_only=False)]
+            paths_dict_copy[key].append(color)
+            paths_dict_copy[key].append(ls)
         else:
-            paths_dict_copy[key] = torch.load(value, map_location=(torch.device('cuda') if 
+            paths_dict_copy[key] = [torch.load(value, map_location=(torch.device('cuda') if 
                                                                             torch.cuda.is_available() else
-                                                                                torch.device('cpu')),weights_only=False)
+                                                                                torch.device('cpu')),weights_only=False)]
+            paths_dict_copy[key].append(color)
+            paths_dict_copy[key].append(ls)
 
 
-    colors_list = ["C0", "orange", "green", "indigo", "olive", "brown", "pink", "gray", "red", "purple"]
-    line_styles = ["-", "--", "-.", ":"]
     
     fig, ax = plt.subplots(1,1)
     max_acc =  0
@@ -814,18 +837,23 @@ def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, m
 
     for idx, zipped_key_value in enumerate(paths_dict_copy.items()):
         key, value = zipped_key_value
+        ls = value[2]
+        color = value[1]
+        value = value[0]
         x_var = value["global_epochs_time_list"] if x_axis_time else list(range(1, value["global_epoch"]+1))
         if graph == "accuracy":
-            # if moving average is not None, we plot the moving average of the validation accuracy in casual manner with a window of moving_average
+            # if moving average is not None,, plot the moving average of the validation accuracy in casual manner.
+            # make sure to have at least 10 epochs before starting the moving average
             if moving_average is not None:
-                value['val_acc_list'] = np.convolve(value['val_acc_list'], np.ones(moving_average)/moving_average, mode='valid')
-                x_var = x_var[:len(value['val_acc_list'])]
+                value["val_acc_list"] = custom_moving_average(value["val_acc_list"], window_size=moving_average)
             ax.plot(x_var, value['val_acc_list'], label = f"{key}",
-                ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+                ls = ls, color = color)
             
         elif graph == "privacy":
+            if "no privacy" in key.lower():
+                continue
             ax.stairs(value["privacy_violations_list"],edges=[0] + x_var, baseline=None,
-                       label = f"{key}", ls = line_styles[idx%len(line_styles)], color = colors_list[idx])
+                       label = f"{key}", ls = ls, color = color)
         
         if max(value['val_acc_list']) > max_acc:
             max_acc = max(value['val_acc_list'])
@@ -837,19 +865,49 @@ def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, m
         ax.set_ylabel("Validation accuracy [%]")
         ax.set_yticks(list(np.arange(0,int(max_acc) + 5,5)))
         ax.set_ylim(min_acc-1, max_acc + 1)
+        if x_axis_trunc is not None:
+            ax.set_xlim(0,x_axis_trunc)
 
     elif graph == "privacy":
         ax.set_xlabel("Time [sec]", fontsize=10) if x_axis_time else ax.set_xlabel("Epochs", fontsize=10)
-        ax.set_ylabel("System's privacy violation")
-        if not x_axis_time:
-            ax.set_xlim(0,300)
+        ax.set_ylabel("System's maximum privacy violation")
+        if x_axis_trunc is not None:
+            ax.set_xlim(0,x_axis_trunc)
     
     ax.legend(fontsize=8)
 
     fig.tight_layout()
     plt.show()
 
+def custom_moving_average(series, window_size=10):
+    """
+    Apply a moving average to a series with:
+    - Progressive window sizes (1, 2, ..., window_size) at the beginning
+    - Full window_size for all elements with complete overlap ('valid' convolution)
+    - Returns array of same length as input
+    
+    Parameters:
+    series (array-like): Input data series
+    window_size (int): Size of the moving average window, defaults to 10
+    
+    Returns:
+    numpy.ndarray: Series with the custom moving average applied, same length as input
+    """
+    series = np.asarray(series)
+    result = np.zeros_like(series, dtype=float)
+    
+    # Handle the first window_size-1 elements with increasing window sizes
+    for i in range(window_size - 1):
+        current_window = i + 1
+        window = np.ones(current_window) / current_window
+        result[i] = np.sum(series[:current_window] * window)
+    
+    window = np.ones(window_size) / window_size
+    valid_convolution = np.convolve(series, window, mode='valid')
 
+    result[window_size-1:] = valid_convolution
+    
+    return result
 
 def users_partition(global_model, train_data: torch.utils.data.Dataset, args, i_i_d=True, verbose=True):
     """
@@ -1138,6 +1196,10 @@ def plot_layered_user_selections(choices_table, save_path, args, interval=30, fi
     # Create x-axis labels
     users_idxs = [str(x) for x in range(1, args.num_users + 1)]
     
+    # Define hatching patterns for different layers
+    # These patterns work well for distinguishing layers in grayscale
+    hatches = ['/', 'x', '+', '*', 'o', 'O', '.', '-', '|']
+    
     # Plot each layer
     bottom = np.zeros(args.num_users)
     for i in range(num_intervals):
@@ -1148,13 +1210,18 @@ def plot_layered_user_selections(choices_table, save_path, args, interval=30, fi
             layer_data = cumulative_counts[end_idx - 1]
         else:
             layer_data = cumulative_counts[end_idx - 1] - cumulative_counts[start_idx - 1]
-            
+        
+        # Use both color and hatching pattern for each layer
         plt.bar(users_idxs, layer_data, bottom=bottom, 
                label=f'Epochs {start_idx + 1}-{end_idx}',
-               alpha=0.7)
+               alpha=0.7,
+               hatch=hatches[i % len(hatches)],  # Cycle through hatching patterns
+               edgecolor='black')
+        
         bottom += layer_data
     
     plt.title("Cumulative Number of Times Each User Was Chosen")
+    plt.xlabel("User Index")
     plt.ylabel("Number of times")
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     
@@ -1164,6 +1231,5 @@ def plot_layered_user_selections(choices_table, save_path, args, interval=30, fi
         plt.xticks(rotation=45, fontsize=10)
     
     plt.tight_layout()
-
     plt.savefig(save_path)
     plt.close()
