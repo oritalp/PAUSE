@@ -180,3 +180,18 @@ class CNN5Layer(nn.Module):
 
 
 
+class MobileNetV2(nn.Module):
+    """MobileNetV2 model adapted for different numbers of classes"""
+    def __init__(self, num_classes=100, pretrained=False):
+        super(MobileNetV2, self).__init__()
+        import torchvision.models as models
+        
+        if pretrained:
+            self.mobilenet = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1)
+            self.mobilenet.classifier[1] = nn.Linear(
+                self.mobilenet.classifier[1].in_features, num_classes)
+        else:
+            self.mobilenet = models.mobilenet_v2(weights=None, num_classes=num_classes)
+    
+    def forward(self, x):
+        return self.mobilenet(x)

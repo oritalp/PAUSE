@@ -21,18 +21,18 @@ def args_parser():
                         help=("if true, runs all the methods in the defined environment, else, running only the experiment \
                               defined in method_choosing_users") )
     parser.add_argument('--data', type=str, default='cifar10',
-                        choices=['mnist', 'cifar10', "fashion mnist"],
-                        help="dataset to use (mnist, cifar10, fashion mnist)")
+                        choices=['mnist', 'cifar10', "fashion mnist", "imagenet100", "imagewoof", "tiny_imagenet"],
+                        help="dataset to use (mnist, cifar10, fashion mnist, imagenet100, imagewoof, tiny_imagenet)")
     parser.add_argument("--i_i_d", type = str2bool, default=False,
                         help="if True, the data is distributed i.i.d, if False, the data is non-i.i.d")
     parser.add_argument("--wandb", type=str2bool, default=True,
                          help="use wandb for logging")
     parser.add_argument('--method_choosing_users', type=str, default='sa_pause',
-                        choices=["sa_pause",'pause brute', 'random', 'all users', "fastest ones", "fraboni"],
+                        choices=["sa_pause",'pause brute', "pivot_fill" ,'random', 'all users', "fastest ones", "fraboni"],
                         help="method to choose users for each round")
     parser.add_argument('--model', type=str, default='cnn3',
-                        choices=['cnn2', 'cnn3', "cnn5", 'mlp', 'linear'],
-                        help="model to use (cnn2, cnn3, cnn5, mlp, linear)")
+                        choices=['cnn2', 'cnn3', "cnn5", 'mlp', 'linear', 'mobilenetv2'],
+                        help="model to use (cnn2, cnn3, cnn5, mlp, linear, mobilenetv2)")
     parser.add_argument('--num_users', type=int, default=300,
                         help="number of users participating in the federated learning")
     parser.add_argument('--num_users_per_round', type=int, default=15,
@@ -41,32 +41,33 @@ def args_parser():
                         help="number of global epochs")
     parser.add_argument('--max_seconds', type=float, default=600,
                         help="max seconds to run the learning process")
-    parser.add_argument('--epsilon_bar', type=float, default=50,
+    parser.add_argument('--epsilon_bar', type=float, default=10,
                         help="privacy budget (epsilon)")
     parser.add_argument('--epsilon_sum_deascent_coeff', type=float, default=0.04,
                         help="the coefficient for the deascent of the epsilon sum")
-    parser.add_argument('--delta_f', type=float, default=0.008,
+    parser.add_argument('--delta_f', type=float, default=0.004,
                         help="constant delta f, the sensitivity for the laplace noise")
-    parser.add_argument('--alpha', type=float, default=20,
+    parser.add_argument('--alpha', type=float, default=10,
                         help="alpha parameter for the MAB")
-    parser.add_argument('--beta', type=float, default=1,
+    parser.add_argument('--beta', type=float, default=2,
                         help="beta parameter for the MAB")
-    parser.add_argument('--gamma', type=float, default=20,
+    parser.add_argument('--gamma', type=float, default=10,
                         help="gamma parameter for the MAB")
-    parser.add_argument("--alternative_privacy_reward", action='store_true',
+    parser.add_argument("--alternative_privacy_reward", type=str2bool, default=False,
                         help="if True, uses the variance reward instead of accumulated reward for the privacy reward")
-
+    parser.add_argument("--mixed_precision", type=str2bool, default=True,
+                    help="if True, uses mixed precision training (AMP)")
 
     #verbose arguments
     parser.add_argument('--choosing_users_verbose', action='store_true',
-                        help="weather to print the chosen users for each round with their g, delay, and ucb values")
-    parser.add_argument('--sa_pause_verbose', action='store_true',
-                        help="weather to print the sa_pause algorithm's progress")
+                        help="whether to print the chosen users for each round with their g, delay, and ucb values")
+    parser.add_argument('--sa_pause_verbose', type=str2bool, default=True,
+                        help="whether to print the sa_pause algorithm's progress")
     parser.add_argument('--snr_verbose', action='store_true',
-                        help="weather to print the snr of the deltas theta for each user")
+                        help="wheter to print the snr of the deltas theta for each user")
 
     #non-i.i.d arguments
-    parser.add_argument("--dirichlet_coeff", type=float, default=3,
+    parser.add_argument("--dirichlet_coeff", type=float, default=2,
                         help = ("the coefficient for the dirichlet distribution that generates the data distribution, \
                                 The larger the coeffiecient, the more uniform is the distribution")) 
     parser.add_argument("--label_dominance", type=float, default=0.25,
@@ -77,24 +78,44 @@ def args_parser():
                          help="the interval to plot the bar plot of the chosen users")
     
     #sa-pause arguments
-    parser.add_argument('--max_iterations_sa_pause', type=int, default=3000,
+    parser.add_argument('--save_data_global_epochs', type=str, default='20,40',
+                    help="Range of global epochs to save SA-PAUSE data for analysis (format: '80,85' for epochs 80-85)")
+
+    parser.add_argument("--sa_pause_accelerated", type=str2bool, default=False,
+                        help="if True, the sa process is accalerated by a stochastic approximation of the algorithm")
+    parser.add_argument('--ucb_neighbors_only', type=str2bool, default=True,
+                        help="if True, the neigboring condition is only ucb-based.")
+    parser.add_argument('--max_iterations_sa_pause', type=int, default=10000,
                         help="maximum number of iterations for the sa_pause algorithm")
-    parser.add_argument('--sa_pause_simulation', action='store_true',
-                        help="weather to perform sa_pause in simulation mode (outside the main code) or not")
+    parser.add_argument('--sa_pause_simulation', type=str2bool, default=False,
+                        help="whether to perform sa_pause in simulation mode (outside the main code) or not")
     parser.add_argument('--max_time_sa_pause', type=float, default=600,
                         help="maximum seconds for the sa_pause algorithm")
     parser.add_argument('--pre_sa_pause_rounds', type=int, default=1,
                         help=("in the (num_of_users/num_of_users_per_round)*pre_sa_pause_rounds, sa_pause is not performed\
                               and the users are chosen uniformly. this value is deafult equal to 1 and should only be\
                               changed in simulations if the number of users is very large and the sa_pause algorithm is very slow"))
-    parser.add_argument('--beta_max_reduction', type=float, default=70,
+    parser.add_argument('--beta_max_reduction', type=float, default=10,
                         help="the acount we divide the beta_max we compute in sa_pause to accelerate the convergence")
-    parser.add_argument('--accel_ucb_coeff', type=float, default=3,
+    parser.add_argument('--accel_ucb_coeff', type=float, default=4,
                         help="the coefficient for the acceleration of the ucb")
+    parser.add_argument('--add_tiny_noise', type=str2bool, default=True,
+                        help="if True, adds a tiny noise to the 9 and p values to break ties")
+    parser.add_argument("--higher_threshold", type=str2bool, default=False,
+                        help="if True, makes the threshold for moving to next neighbor higher")
+    parser.add_argument('--max_neighbors', type=int, default=None,
+                   help="maximum number of neighbors to generate per iteration in sa_pause. If None, no limit is applied")
+    parser.add_argument("--sa_informed_sampling", type=str2bool, default=False,
+                        help="if True, uses informed sampling with softmax probability distribution for neighbor selection, works only in ucb_neigbors_only for now")
+    parser.add_argument('--sampling_temp', type=float, default=0.1,
+                        help="temperature parameter for softmax sampling in informed neighbor selection, works only in ucb_neigbors_only for now")
+
 
     #things that I don't touch often:
     parser.add_argument('--data_truncation', default=None,
                         help="if None, the data is not truncated, if a number is given, the data is truncated to that number")
+    parser.add_argument('--num_classes_subset', type=int, default=None,
+                    help="For Tiny ImageNet: number of classes to use (subset of 200). If None, uses all classes")
     parser.add_argument('--tau_min', type=float, default=0.05,
                         help = "minimum communication time for all users")
     parser.add_argument("--production", action='store_true',
@@ -104,15 +125,15 @@ def args_parser():
                         help="weather to perform privacy or not")
     parser.add_argument('--save_best_model', action='store_true',
                         help="weather to save the model eith the best accuracy on the validation set")
-    parser.add_argument('--seed', type=float, default=1,
+    parser.add_argument('--seed', type=float, default=3,
                         help="manual seed for reproducibility")    
     parser.add_argument('--norm_mean', type=float, default=0.5,
                         help="normalize the data to norm_mean")
     parser.add_argument('--norm_std', type=float, default=0.5,
                         help="normalize the data to norm_std")
-    parser.add_argument('--train_batch_size', type=int, default=20,
+    parser.add_argument('--train_batch_size', type=int, default=32,
                         help="trainset batch size")
-    parser.add_argument('--test_batch_size', type=int, default=1000,
+    parser.add_argument('--test_batch_size', type=int, default=256,
                         help="testset batch size")
     parser.add_argument('--local_epochs', type=int, default=1,
                         help="number of local epochs")

@@ -6,23 +6,34 @@ import copy
 import numpy as np
 from torch.distributions.laplace import Laplace
 
-
-def train_one_epoch(user, train_criterion ,args):
+def train_one_epoch(user, train_criterion, args, scaler=None):
+    """Updated to support mixed precision training"""
     user.model.train()
     losses_per_local_epoch = []
     if args.local_iterations is not None:
         local_iteration = 0
+    
     for batch_idx, (data, label) in enumerate(user.data_loader):
-        # perform a local iteration only if it completes the batch size or if the whole data size is smaller than the batch 
-        # size and it's still not only one sample (since we use batch norm layers). The reason we do it instead drop_last
-        # is that we want to perform at least one local iteration for each chosen user in each round.
         if (local_iteration == 0 and len(data) < args.train_batch_size and len(data) > 1) or len(data) == args.train_batch_size:
             data, label = data.to(args.device), label.to(args.device)
-            output = user.model(data)
-            loss = train_criterion(output, label)
+            
             user.opt.zero_grad()
-            loss.backward()
-            user.opt.step()
+            
+            # Mixed precision training
+            if args.mixed_precision and scaler is not None:
+                with torch.cuda.amp.autocast():
+                    output = user.model(data)
+                    loss = train_criterion(output, label)
+                
+                scaler.scale(loss).backward()
+                scaler.step(user.opt)
+                scaler.update()
+            else:
+                # Standard training
+                output = user.model(data)
+                loss = train_criterion(output, label)
+                loss.backward()
+                user.opt.step()
 
             losses_per_local_epoch.append(loss.item())
 
@@ -30,7 +41,8 @@ def train_one_epoch(user, train_criterion ,args):
             local_iteration += 1    
             if local_iteration == args.local_iterations:
                 break
-    return mean(losses_per_local_epoch)
+    
+    return mean(losses_per_local_epoch) if losses_per_local_epoch else 0.0
 
 
 def distribute_model(local_models, global_model):

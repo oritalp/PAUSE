@@ -36,14 +36,14 @@ def main():
         exp_path.mkdir(parents=True, exist_ok=True)
         if args.num_users <= 100:
             if args.i_i_d:
-                methods=['random', "fraboni", "sa_pause", 'pause brute', 'all users', "fastest ones"]
+                methods=['random', "fraboni", "sa_pause", 'pause brute', "pivot_fill" ,'all users', "fastest ones"]
             else:
-                methods=["fraboni", "sa_pause", 'pause brute', 'all users', "fastest ones"]
+                methods=["fraboni", "sa_pause", 'pause brute', "pivot_fill" ,'all users', "fastest ones"]
         else:
             if args.i_i_d:
-                methods = ['random', "fraboni", "sa_pause", 'all users', "fastest ones"]
+                methods = ["sa_pause", "pivot_fill" , 'random', "fraboni", 'all users', "fastest ones"]
             else:
-                methods = ["fraboni", "sa_pause", 'all users', "fastest ones"]
+                methods = ["sa_pause", "pivot_fill" , "fraboni", "fastest ones", 'all users']
 
         paths_dict = {}
         for method in methods:

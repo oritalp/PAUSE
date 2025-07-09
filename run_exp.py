@@ -49,13 +49,49 @@ def run_exp(args):
         global_model = models.CNN5Layer(input_var, output)
     elif args.model == 'linear':
         global_model = models.Linear(input_var, output)
-
+    elif args.model == 'mobilenetv2':
+        if args.data == 'imagenet100':
+            global_model = models.MobileNetV2(num_classes=output, pretrained=False)
+        elif args.data in ['imagewoof', 'tiny_imagenet']:
+            print(f"Creating MobileNetV2 for {args.data} with dynamic feature calculation...")
+            
+            # Create a temporary standard torchvision model to calculate feature size
+            import torchvision.models as torchvision_models
+            temp_model = torchvision_models.mobilenet_v2(weights=None)
+            temp_model.eval()
+            
+            # Test with 64x64 input size (both ImageWoof and Tiny ImageNet use 64x64)
+            with torch.no_grad():
+                test_input = torch.randn(1, 3, 64, 64)
+                # Get features before the final classifier
+                features = temp_model.features(test_input)
+                # MobileNetV2 uses adaptive average pooling
+                pooled_features = torch.nn.functional.adaptive_avg_pool2d(features, (1, 1))
+                flattened_features = torch.flatten(pooled_features, 1)
+                calculated_features = flattened_features.shape[1]
+            
+            print(f"🔧 MobileNetV2 backbone output for {args.data} (64x64): {flattened_features.shape}")
+            print(f"🔧 Calculated in_features for final layer: {calculated_features}")
+            
+            # Now create the actual model using your custom MobileNetV2 class
+            global_model = models.MobileNetV2(num_classes=output, pretrained=False)
+            # Update the classifier with the dynamically calculated size
+            global_model.mobilenet.classifier[1] = torch.nn.Linear(calculated_features, output)
+            
+            print(f"✅ MobileNetV2 configured for {args.data}: {calculated_features} -> {output} classes")
+        else:
+            raise ValueError('MobileNetV2 is currently only supported for ImageNet-100, ImageWoof, and Tiny ImageNet')
 
     textio.cprint(str(summary(global_model, verbose=0)).encode('utf-8', errors='ignore').decode('utf-8', errors='ignore'))
     global_model = global_model.to(args.device)
     print(f"global model's device: {next(global_model.parameters()).device}")
 
-    
+    scaler = None
+    if args.mixed_precision and torch.cuda.is_available():
+        scaler = torch.amp.GradScaler('cuda')
+        textio.cprint("Using mixed precision training (AMP)")
+    else:
+        textio.cprint("Using standard precision training")
 
     train_criterion = torch.nn.CrossEntropyLoss(reduction='mean')
     test_criterion = torch.nn.CrossEntropyLoss(reduction='sum')
@@ -105,7 +141,8 @@ def run_exp(args):
         if args.choosing_users_verbose:
             textio.cprint(f"iteration: {global_epoch}")
         
-        rounds_choise = utils.choose_users(local_models, args, global_epoch, textio, method=args.method_choosing_users)
+        rounds_choise = utils.choose_users(local_models, args, global_epoch, textio,
+                                            method=args.method_choosing_users)
         # create a version of rounds_choise without repetitions
         rounds_choise_no_rep = tuple(set(rounds_choise))
 
@@ -160,7 +197,7 @@ def run_exp(args):
             user_loss = []
             for local_epoch in range(args.local_epochs):
                 user = local_models[user_idx]
-                train_loss = learning_utils.train_one_epoch(user, train_criterion, args)
+                train_loss = learning_utils.train_one_epoch(user, train_criterion, args, scaler)
                 if args.lr_scheduler:
                     user.scheduler.step(train_loss)
                 user_loss.append(train_loss)
@@ -175,6 +212,12 @@ def run_exp(args):
         
 
         val_acc, val_loss = learning_utils.test(test_loader, global_model, test_criterion, args)
+        if global_epoch == 1:  # Only print on first epoch
+            print("Debug: Checking class indices in validation set...")
+            for i, (data, labels) in enumerate(test_loader):
+                print(f"Batch {i}: label range = {labels.min().item()} to {labels.max().item()}")
+                if i >= 2:  # Just check first few batches
+                    break
         val_acc_list.append(val_acc) ; val_losses_list.append(val_loss)
         
 

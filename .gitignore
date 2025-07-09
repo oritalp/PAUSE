@@ -2,11 +2,12 @@ wandb/
 __pycache__/
 unified_results/
 data/
-
+dirichlet_test_results/
+running_time_comparison/
 *.out
-*.sbatch
-
-
+interactive.sh
+imagewoof2-160.tgz
+*tiny-imagenet-200*
 # Ignore everything in checkpoints directory
 checkpoints/*
 
