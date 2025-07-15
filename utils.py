@@ -516,7 +516,7 @@ def choose_users(local_models, args, global_epoch, textio, num_users=1,
 
             # Update energy scale and threshold calculations
             energy_scale = float(beta_max)
-            min_improvement_threshold = max(1e-6, energy_scale * 1e-4)  # 0.01% of energy scale or 1e-6, whichever is larger
+            min_improvement_threshold = max(1e-8, energy_scale * 1e-8)  # 0.01% of energy scale or 1e-6, whichever is larger
 
             if args.sa_pause_verbose:
                 print(f"Energy scale (beta_max): {energy_scale:.6f}")
@@ -904,8 +904,8 @@ def choose_users(local_models, args, global_epoch, textio, num_users=1,
                     continue
 
                 # Choose neighbor (with informed sampling if enabled)
-                if args.sa_informed_sampling and args.ucb_neighbors_only:
-                    # Informed neighbor sampling logic
+                if args.sa_informed_sampling:
+                    # Informed neighbor sampling logic - now works for both UCB-only and full mode
                     neighbors_list = list(all_neighbors)
                     
                     # Pre-compute current state arrays for efficiency
@@ -1166,108 +1166,118 @@ def choose_users_pivot_fill(local_models, args, global_epoch, textio, num_users=
     if K < m:
         raise ValueError(f"Cannot select {m} users from {K} available users")
     
-    # Extract UCB, g, and p values for all users
-    ucb_values = [local_models[i].ucb for i in range(K)]
-    g_values = [local_models[i].g for i in range(K)]
-    p_values = [local_models[i].privacy_reward for i in range(K)]
-    
-    # Sort candidate pool in descending order of UCB
-    sorted_indices = sorted(range(K), key=lambda i: ucb_values[i], reverse=True)
-    
-    # Initialize min-heap H keyed by s(ℓ) = αg_ℓ + γp_ℓ
-    # Python's heapq is a min-heap, so we store (s_value, user_index)
-    alpha = args.alpha
-    gamma = args.gamma if args.privacy else 0
-    
-    # Step 3: Initialize variables
-    S_star = set()
-    R_star = float('-inf')
-    
-    # Compute initial sums for the first m users
-    initial_users = sorted_indices[:m]
-    G_H = sum(g_values[k] for k in initial_users)
-    P_H = sum(p_values[k] for k in initial_users)
-    
-    # Initialize heap with first m users
-    H = []
-    for k in initial_users:
-        s_k = alpha * g_values[k] + gamma * p_values[k]
-        heapq.heappush(H, (s_k, k))
-    
-    # For simulation mode, track energy at each step (similar to SA-PAUSE)
-    energy_list = []
-    
-    # Main algorithm loop (steps 4-13)
-    for i in range(m, K):
-        # Step 5: Get current pivot (user with minimum s value)
-        current_pivot_s, current_pivot = H[0]  # Peek at min without popping
+    condition = (global_epoch <= (args.pre_sa_pause_rounds * K/m)
+                      if not args.sa_pause_simulation else False)
         
-        # Step 6: Current subset S_k
-        S_k = {user for _, user in H}
-        
-        # Step 7: Compute fast reward R_k
-        min_ucb_in_S_k = min(ucb_values[k] for k in S_k)
-        R_k = min_ucb_in_S_k + (alpha/m) * G_H + (gamma/m) * P_H
-        
-        # Track energy for simulation mode
-        if args.sa_pause_simulation:
-            energy_list.append(R_k)
-        
-        # Step 8-9: Update best solution if better
-        if R_k > R_star:
-            R_star = R_k
-            S_star = S_k.copy()
-        
-        # Step 10-13: Update partner heap for next pivot if not at end
-        if i < K:  # We still have users to process
-            next_user = sorted_indices[i]
-            next_s = alpha * g_values[next_user] + gamma * p_values[next_user]
-            
-            # Step 10: Check if we should add the next user
-            if next_s > current_pivot_s:
-                # Step 11: Remove user with minimum s value and add next user
-                removed_s, removed_user = heapq.heappop(H)
-                
-                # Step 12: Add next user to heap
-                s_next = alpha * g_values[next_user] + gamma * p_values[next_user]
-                heapq.heappush(H, (s_next, next_user))
-                
-                # Step 13: Update sums
-                G_H = G_H - g_values[removed_user] + g_values[next_user]
-                P_H = P_H - p_values[removed_user] + p_values[next_user]
-    
-    # Final check for the last configuration
-    final_S_k = {user for _, user in H}
-    final_min_ucb = min(ucb_values[k] for k in final_S_k)
-    final_R_k = final_min_ucb + (alpha/m) * G_H + (gamma/m) * P_H
-    
-    # Track final energy for simulation mode
-    if args.sa_pause_simulation:
-        energy_list.append(final_R_k)
-    
-    if final_R_k > R_star:
-        R_star = final_R_k
-        S_star = final_S_k.copy()
-    
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    
-    if args.choosing_users_verbose and textio is not None:
-        textio.cprint(f"Pivot-Fill algorithm completed in {elapsed_time:.6f} seconds")
-        textio.cprint(f"Selected users: {sorted(S_star)}")
-        textio.cprint(f"Maximum energy found: {R_star:.6f}")
-    
-    # Return format consistent with SA-PAUSE simulation mode
-    if args.sa_pause_simulation:
-        return energy_list, tuple(sorted(S_star)), R_star
+    if condition: # Needed because otherwise it will choose not reallt randomly due to implementation + initialization
+        round_no = (global_epoch-1) // (K/m)
+        list_of_unchosen_users = [i for i in range(K) if local_models[i].num_of_obs == round_no]
+        result = tuple(np.random.choice(list_of_unchosen_users, m, replace=False))
+        return result, np.inf
+
     else:
-        return tuple(sorted(S_star)), R_star
+        # Extract UCB, g, and p values for all users
+        ucb_values = [local_models[i].ucb for i in range(K)]
+        g_values = [local_models[i].g for i in range(K)]
+        p_values = [local_models[i].privacy_reward for i in range(K)]
+        
+        # Sort candidate pool in descending order of UCB
+        sorted_indices = sorted(range(K), key=lambda i: ucb_values[i], reverse=True)
+        
+        # Initialize min-heap H keyed by s(ℓ) = αg_ℓ + γp_ℓ
+        # Python's heapq is a min-heap, so we store (s_value, user_index)
+        alpha = args.alpha
+        gamma = args.gamma if args.privacy else 0
+        
+        # Step 3: Initialize variables
+        S_star = set()
+        R_star = float('-inf')
+        
+        # Compute initial sums for the first m users
+        initial_users = sorted_indices[:m]
+        G_H = sum(g_values[k] for k in initial_users)
+        P_H = sum(p_values[k] for k in initial_users)
+        
+        # Initialize heap with first m users
+        H = []
+        for k in initial_users:
+            s_k = alpha * g_values[k] + gamma * p_values[k]
+            heapq.heappush(H, (s_k, k))
+        
+        # For simulation mode, track energy at each step (similar to SA-PAUSE)
+        energy_list = []
+        
+        # Main algorithm loop (steps 4-13)
+        for i in range(m, K):
+            # Step 5: Get current pivot (user with minimum s value)
+            current_pivot_s, current_pivot = H[0]  # Peek at min without popping
+            
+            # Step 6: Current subset S_k
+            S_k = {user for _, user in H}
+            
+            # Step 7: Compute fast reward R_k
+            min_ucb_in_S_k = min(ucb_values[k] for k in S_k)
+            R_k = min_ucb_in_S_k + (alpha/m) * G_H + (gamma/m) * P_H
+            
+            # Track energy for simulation mode
+            if args.sa_pause_simulation:
+                energy_list.append(R_k)
+            
+            # Step 8-9: Update best solution if better
+            if R_k > R_star:
+                R_star = R_k
+                S_star = S_k.copy()
+            
+            # Step 10-13: Update partner heap for next pivot if not at end
+            if i < K:  # We still have users to process
+                next_user = sorted_indices[i]
+                next_s = alpha * g_values[next_user] + gamma * p_values[next_user]
+                
+                # Step 10: Check if we should add the next user
+                if next_s > current_pivot_s:
+                    # Step 11: Remove user with minimum s value and add next user
+                    removed_s, removed_user = heapq.heappop(H)
+                    
+                    # Step 12: Add next user to heap
+                    s_next = alpha * g_values[next_user] + gamma * p_values[next_user]
+                    heapq.heappush(H, (s_next, next_user))
+                    
+                    # Step 13: Update sums
+                    G_H = G_H - g_values[removed_user] + g_values[next_user]
+                    P_H = P_H - p_values[removed_user] + p_values[next_user]
+        
+        # Final check for the last configuration
+        final_S_k = {user for _, user in H}
+        final_min_ucb = min(ucb_values[k] for k in final_S_k)
+        final_R_k = final_min_ucb + (alpha/m) * G_H + (gamma/m) * P_H
+        
+        # Track final energy for simulation mode
+        if args.sa_pause_simulation:
+            energy_list.append(final_R_k)
+        
+        if final_R_k > R_star:
+            R_star = final_R_k
+            S_star = final_S_k.copy()
+        
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        
+        if args.choosing_users_verbose and textio is not None:
+            textio.cprint(f"Pivot-Fill algorithm completed in {elapsed_time:.6f} seconds")
+            textio.cprint(f"Selected users: {sorted(S_star)}")
+            textio.cprint(f"Maximum energy found: {R_star:.6f}")
+        
+        # Return format consistent with SA-PAUSE simulation mode
+        if args.sa_pause_simulation:
+            return energy_list, tuple(sorted(S_star)), R_star
+        else:
+            return tuple(sorted(S_star)), R_star
 
 
 def initializations(args):
     """
-    Sets the experiment deterministicly as possible for reproducibility, 
-    create the relevant folders and perform necessary initializations for the experiment
+    Create the relevant folders and perform necessary initializations for the experiment.
+    Note: Seed setting is now handled in main.py to ensure consistent seeding across methods.
 
     Args:
         args: An object containing the experiment arguments.
@@ -1279,15 +1289,8 @@ def initializations(args):
         path_best_model: Path to save the best model.
 
     """
-    #  reproducibility
-    seed = int(args.seed)   
-    torch.backends.cudnn.deterministic = True
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    np.random.seed(seed)
-
+    
     #  documentation
-
     now = datetime.datetime.now()
     now = str(now.strftime("%d-%m-%Y_%H-%M-%S"))
     base_path = Path.cwd() / 'checkpoints' / args.method_choosing_users / args.model / now
@@ -1297,9 +1300,7 @@ def initializations(args):
     path_best_model = base_path  /'best_model.pth.tar'
     last_model_path = base_path  /'last_model.pth.tar'
 
-
     return base_path, textio, best_val_acc, path_best_model, last_model_path
-
 
 class IOStream:
     """A class for input/output operations.
@@ -1836,10 +1837,10 @@ def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, m
                 ls = "--"
                 line_dict = {"color": "green", "ls": "-", "lw": 1}
             elif subdir.name == "pivot_fill" or subdir.name == "pivot fill":
-                name = "Pivot-Fill"
-                color = "purple"
+                name = "PAUSE"
+                color = "green"
                 ls = "-"
-                line_dict = {"color": "purple", "ls": "-", "lw": 2}
+                line_dict = {"color": "green", "ls": "--", "lw": 2}
 
             paths_dict[name] = [subdir / "last_model.pth.tar", line_dict]
 
@@ -1881,7 +1882,7 @@ def plot_graphs_for_paper(father_path, graph = "accuracy", x_axis_time = True, m
                 ls = line_dict["ls"], color = line_dict["color"], lw = line_dict["lw"])
             
         elif graph == "privacy":
-            if "no privacy" in key.lower():
+            if "no privacy" in key.lower() or "w.o. privacy" in key.lower():
                 continue
             ax.stairs(value["privacy_violations_list"],edges=[0] + x_var, baseline=None,
                        label = f"{key}", ls = line_dict["ls"], color = line_dict["color"], lw = line_dict["lw"])

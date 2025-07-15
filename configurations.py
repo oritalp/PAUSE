@@ -78,14 +78,14 @@ def args_parser():
                          help="the interval to plot the bar plot of the chosen users")
     
     #sa-pause arguments
-    parser.add_argument('--save_data_global_epochs', type=str, default='20,40',
+    parser.add_argument('--save_data_global_epochs', type=str, default=None,
                     help="Range of global epochs to save SA-PAUSE data for analysis (format: '80,85' for epochs 80-85)")
 
     parser.add_argument("--sa_pause_accelerated", type=str2bool, default=False,
                         help="if True, the sa process is accalerated by a stochastic approximation of the algorithm")
     parser.add_argument('--ucb_neighbors_only', type=str2bool, default=True,
                         help="if True, the neigboring condition is only ucb-based.")
-    parser.add_argument('--max_iterations_sa_pause', type=int, default=10000,
+    parser.add_argument('--max_iterations_sa_pause', type=int, default=100,
                         help="maximum number of iterations for the sa_pause algorithm")
     parser.add_argument('--sa_pause_simulation', type=str2bool, default=False,
                         help="whether to perform sa_pause in simulation mode (outside the main code) or not")
@@ -95,7 +95,7 @@ def args_parser():
                         help=("in the (num_of_users/num_of_users_per_round)*pre_sa_pause_rounds, sa_pause is not performed\
                               and the users are chosen uniformly. this value is deafult equal to 1 and should only be\
                               changed in simulations if the number of users is very large and the sa_pause algorithm is very slow"))
-    parser.add_argument('--beta_max_reduction', type=float, default=10,
+    parser.add_argument('--beta_max_reduction', type=float, default=1,
                         help="the acount we divide the beta_max we compute in sa_pause to accelerate the convergence")
     parser.add_argument('--accel_ucb_coeff', type=float, default=4,
                         help="the coefficient for the acceleration of the ucb")
@@ -105,9 +105,9 @@ def args_parser():
                         help="if True, makes the threshold for moving to next neighbor higher")
     parser.add_argument('--max_neighbors', type=int, default=None,
                    help="maximum number of neighbors to generate per iteration in sa_pause. If None, no limit is applied")
-    parser.add_argument("--sa_informed_sampling", type=str2bool, default=False,
+    parser.add_argument("--sa_informed_sampling", type=str2bool, default=True,
                         help="if True, uses informed sampling with softmax probability distribution for neighbor selection, works only in ucb_neigbors_only for now")
-    parser.add_argument('--sampling_temp', type=float, default=0.1,
+    parser.add_argument('--sampling_temp', type=float, default=0.0001,
                         help="temperature parameter for softmax sampling in informed neighbor selection, works only in ucb_neigbors_only for now")
 
 

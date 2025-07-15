@@ -31,12 +31,13 @@ def single_run_comparison(num_users=300, num_users_per_round=15,
         Comparison results
     """
     args = args_parser()
-    args.beta_max_reduction = 10  # Set to a high value for simulation
-    args.max_iterations_sa_pause = 200  # Set to a high value for simulation
+    args.beta_max_reduction = 70 
+    args.max_iterations_sa_pause = 4000  
     args.sa_pause_accelerated = False
-    args.ucb_neighbors_only = True
-    args.sa_informed_sampling = True
-    args.sampling_temp = 10**-4
+    args.ucb_neighbors_only = False
+    args.sa_informed_sampling = False
+    args.sampling_temp = 10**-2
+    args.add_tiny_noise = False  # Disable tiny noise addition for simulation
     args.sa_pause_simulation = True  # Set to True to run in simulation mode
     args.sa_pause_verbose = True  # Enable verbose output for simulation
     
@@ -546,7 +547,7 @@ if __name__ == "__main__":
     res = single_run_comparison(num_users=300, num_users_per_round=15,
                           brute_force_comparison=False, pivot_fill_comparison=True,
                           use_dummy_data=False,
-                            real_data_path="data_gathering_exp/20,40_2025-07-09_14-49-17/epoch_33.pkl")
+                            real_data_path="data_gathering_exp/20,50_2025-07-13_11-20-37/epoch_29.pkl")
     
     # # Option 2: Complete timing analysis
     # run_complete_timing_analysis(max_time_seconds=600)

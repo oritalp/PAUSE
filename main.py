@@ -25,6 +25,21 @@ from configurations import args_parser
 from run_exp import run_exp
 
 
+def set_reproducible_seed(seed):
+    """
+    Sets the seed for all random number generators to ensure reproducibility.
+    This should be called before each experiment run.
+    """
+    seed = int(seed)   
+    torch.backends.cudnn.deterministic = True
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    # Also set Python's random seed for completeness
+    import random
+    random.seed(seed)
+
+
 def main():
     args = args_parser()
     start_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -41,12 +56,15 @@ def main():
                 methods=["fraboni", "sa_pause", 'pause brute', "pivot_fill" ,'all users', "fastest ones"]
         else:
             if args.i_i_d:
-                methods = ["sa_pause", "pivot_fill" , 'random', "fraboni", 'all users', "fastest ones"]
+                methods = ["pivot_fill", "sa_pause", 'random', "fraboni", 'all users', "fastest ones"]
             else:
-                methods = ["sa_pause", "pivot_fill" , "fraboni", "fastest ones", 'all users']
+                methods = ["pivot_fill", "fraboni", "sa_pause", "fastest ones", 'all users']
 
         paths_dict = {}
         for method in methods:
+            # IMPORTANT: Reset seed before each method to ensure reproducibility
+            set_reproducible_seed(args.seed)
+            
             args.method_choosing_users = method
             if args.wandb:
                 # assure the previous run is finished
@@ -81,6 +99,9 @@ def main():
             paths_dict[method] = new_path / "last_model.pth.tar"
 
         # add a baseline of all users without privacy
+        # IMPORTANT: Reset seed before this run too
+        set_reproducible_seed(args.seed)
+        
         args.method_choosing_users = "all users"
         method = "all users - no privacy"
         args.privacy = False
@@ -128,6 +149,9 @@ def main():
         # utils.plot_graphs(paths_dict, path_to_save=exp_path, x_axis_time=False, print_graph=False)
 
     else:
+        # IMPORTANT: Set seed for single experiment runs too
+        set_reproducible_seed(args.seed)
+        
         if args.wandb:
             wandb.init(
                 project=wandb_project_name,
@@ -156,4 +180,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
