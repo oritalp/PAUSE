@@ -58,6 +58,20 @@ def args_parser():
     parser.add_argument("--mixed_precision", type=str2bool, default=True,
                     help="if True, uses mixed precision training (AMP)")
 
+    # Shared Resource Constraint Parameters
+    parser.add_argument('--shared_res_constraint', type=str2bool, default=False,
+                        help="if True, adds latency and reward penalties when multiple users from same resource cluster are chosen")
+    parser.add_argument('--clusters_partition_level', type=int, default=None,
+                        help="cluster size parameter (S). If None, uses S=floor(sqrt(num_users)/2). Controls granularity of clustering")
+    parser.add_argument('--resources_cluster_num', type=int, default=None,
+                        help="number of resource clusters with constraints (J). Must be <= ceil(num_users/S). If None, will be set to ceil(num_users/S)")
+    parser.add_argument('--rho', type=float, default=1.0,
+                        help="hyperparameter for the shared resource constraint reward penalty")
+    parser.add_argument('--shared_res_constraint_verbose', type=str2bool, default=False,
+                        help="if True, prints shared resource constraint penalties and cluster collisions")
+
+
+
     #verbose arguments
     parser.add_argument('--choosing_users_verbose', action='store_true',
                         help="whether to print the chosen users for each round with their g, delay, and ucb values")
@@ -148,6 +162,7 @@ def args_parser():
     parser.add_argument('--optimizer', type=str, default='adam',
                         choices=['sgd', 'adam'],
                         help="optimizer to use (sgd or adam)")
+
 
     args = parser.parse_args()
     return args

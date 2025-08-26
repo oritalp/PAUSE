@@ -126,7 +126,7 @@ def run_exp(args):
 
 
         if args.alternative_privacy_reward:
-            # for the alternative privacy reward we manage the upate of teh reward here instead of in the update_privacy_terms_and_violations
+            # for the alternative privacy reward we manage the update of the reward here instead of in the update_privacy_terms_and_violations
             variance_terms = np.array([local_models[usr_idx].compute_var_term(local_models[usr_idx].num_of_obs + 1) for usr_idx in range(args.num_users)])
 
             if (max(variance_terms) > 1) and (max(variance_terms) - min(variance_terms) != 0):
@@ -181,6 +181,21 @@ def run_exp(args):
             textio.cprint(f"num of fast users chosen: {num_fast_users}, num of slow users chosen: {num_slow_users}")
         
         max_delay = max([local_models[i].last_access_time for i in rounds_choise_no_rep])
+        
+        # Add shared resource constraint latency penalty
+        if args.shared_res_constraint:
+            latency_penalty, shared_res_penalty = utils.compute_resource_constraint_penalty(rounds_choise_no_rep, args)
+            max_delay += latency_penalty
+            
+            if args.shared_res_constraint_verbose:
+                verbose_info = utils.get_resource_constraint_verbose_info(rounds_choise_no_rep, args)
+                textio.cprint(f"Shared resource constraint latency penalty: {latency_penalty:.4f} seconds")
+                textio.cprint(f"Shared resource constraint reward penalty: {shared_res_penalty:.4f}")
+                if verbose_info['collisions']:
+                    textio.cprint("Resource cluster collisions:")
+                    for cluster_id, info in verbose_info['collisions'].items():
+                        textio.cprint(f"  Cluster {cluster_id}: {info['count']} users {info['users']} (excess: {info['excess']})")
+        
         if args.choosing_users_verbose:
             textio.cprint(f"max_delay = {max_delay:.2f} seconds")
 

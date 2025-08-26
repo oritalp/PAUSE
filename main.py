@@ -42,6 +42,31 @@ def set_reproducible_seed(seed):
 
 def main():
     args = args_parser()
+    
+    # Validation: shared_res_constraint requires ucb_neighbors_only
+    if args.shared_res_constraint and not args.ucb_neighbors_only:
+        raise ValueError("shared_res_constraint=True requires ucb_neighbors_only=True for SA-PAUSE compatibility")
+    
+    # Set default resources_cluster_num if not provided and validate constraints
+    if args.shared_res_constraint:
+        # Use clusters_partition_level if specified, otherwise use default formula
+        if args.clusters_partition_level is not None:
+            S = args.clusters_partition_level
+            print(f"Using custom clusters_partition_level (S): {S}")
+        else:
+            S = int(np.floor(np.sqrt(args.num_users) / 2))
+            print(f"Using default clusters_partition_level (S): {S}")
+        
+        total_clusters = int(np.ceil(args.num_users / S))  # Total number of clusters
+        
+        if args.resources_cluster_num is None:
+            args.resources_cluster_num = total_clusters  # Default: all clusters are constrained
+            print(f"Setting resources_cluster_num to default value (total_clusters): {args.resources_cluster_num}")
+        elif args.resources_cluster_num > total_clusters:
+            raise ValueError(f"resources_cluster_num ({args.resources_cluster_num}), i.e., number of active resources clusters cannot be greater than the total number of clusters ({total_clusters})")
+        else:
+            print(f"Using resources_cluster_num: {args.resources_cluster_num} out of {total_clusters} total clusters")
+    
     start_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     wandb_project_name = "PAUSE"
     args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -51,7 +76,8 @@ def main():
         exp_path.mkdir(parents=True, exist_ok=True)
         if args.num_users <= 100:
             if args.i_i_d:
-                methods=['random', "fraboni", "sa_pause", 'pause brute', "pivot_fill" ,'all users', "fastest ones"]
+                # methods=['random', "fraboni", "sa_pause", 'pause brute', "pivot_fill" ,'all users', "fastest ones"]
+                methods=['pause brute', 'random', "fraboni", "sa_pause", 'all users', "fastest ones"]
             else:
                 methods=["fraboni", "sa_pause", 'pause brute', "pivot_fill" ,'all users', "fastest ones"]
         else:

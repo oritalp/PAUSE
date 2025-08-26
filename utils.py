@@ -157,6 +157,114 @@ def update_data_equility_partititon(local_models, args):
                                                    *args.num_users_per_round/sum)
 
 
+def get_user_resource_cluster(user_idx, args):
+    """
+    Get the resource cluster ID for a given user.
+    
+    Args:
+        user_idx: Index of the user
+        args: Arguments containing num_users and clustering parameters
+    
+    Returns:
+        int: Resource cluster ID (0 to ceil(N/S)-1), or None if feature disabled
+    """
+    if not args.shared_res_constraint:
+        return None
+    
+    # Use clusters_partition_level if specified, otherwise use default formula
+    if args.clusters_partition_level is not None:
+        S = args.clusters_partition_level
+    else:
+        S = int(np.floor(np.sqrt(args.num_users) / 2))
+    
+    total_clusters = int(np.ceil(args.num_users / S))
+    cluster_id = user_idx % total_clusters
+    return cluster_id
+
+
+def compute_resource_constraint_penalty(users_idxes, args):
+    """
+    Compute the resource constraint penalty for a given set of users.
+    
+    Args:
+        users_idxes: List or array of user indices
+        args: Arguments containing shared resource constraint parameters
+    
+    Returns:
+        tuple: (latency_penalty, reward_penalty) both as float
+    """
+    if not args.shared_res_constraint:
+        return 0.0, 0.0
+    
+    # Only count users in constrained clusters (0 to J-1)
+    J = args.resources_cluster_num
+    cluster_counts = np.zeros(J, dtype=int)
+    
+    for user_idx in users_idxes:
+        cluster_id = get_user_resource_cluster(user_idx, args)
+        # Only count if cluster is constrained (cluster_id < J)
+        if cluster_id < J:
+            cluster_counts[cluster_id] += 1
+    
+    # Calculate penalties: sum over constrained clusters of max(0, count-1)
+    excess_users_per_cluster = np.maximum(0, cluster_counts - 1)
+    total_excess_users = np.sum(excess_users_per_cluster)
+    
+    latency_penalty = 0.05 * total_excess_users
+    reward_penalty = args.rho * total_excess_users
+    
+    return latency_penalty, reward_penalty
+
+
+def get_resource_constraint_verbose_info(users_idxes, args):
+    """
+    Get verbose information about resource constraint violations.
+    
+    Args:
+        users_idxes: List or array of user indices
+        args: Arguments containing shared resource constraint parameters
+    
+    Returns:
+        dict: Information about cluster collisions and penalties
+    """
+    if not args.shared_res_constraint:
+        return {}
+    
+    # Only track constrained clusters (0 to J-1)
+    J = args.resources_cluster_num
+    cluster_counts = {}
+    cluster_users = {}
+    
+    for user_idx in users_idxes:
+        cluster_id = get_user_resource_cluster(user_idx, args)
+        # Only track if cluster is constrained (cluster_id < J)
+        if cluster_id < J:
+            if cluster_id not in cluster_counts:
+                cluster_counts[cluster_id] = 0
+                cluster_users[cluster_id] = []
+            cluster_counts[cluster_id] += 1
+            cluster_users[cluster_id].append(user_idx)
+    
+    # Find clusters with collisions (more than 1 user)
+    collisions = {}
+    for cluster_id, count in cluster_counts.items():
+        if count > 1:
+            collisions[cluster_id] = {
+                'users': cluster_users[cluster_id],
+                'count': count,
+                'excess': count - 1
+            }
+    
+    latency_penalty, reward_penalty = compute_resource_constraint_penalty(users_idxes, args)
+    
+    return {
+        'collisions': collisions,
+        'latency_penalty': latency_penalty,
+        'reward_penalty': reward_penalty,
+        'total_excess_users': sum(info['excess'] for info in collisions.values())
+    }
+
+
 def compute_energy(users_idxes, local_models, args, num_users=None, num_users_per_round=None):
     """An auxilary function for the sa_pause method, 
     computes the energy of a given group of users according to the sa_pause
@@ -178,8 +286,14 @@ def compute_energy(users_idxes, local_models, args, num_users=None, num_users_pe
     
     sum_g = alpha_f64 * (np.sum(g_vals) / num_users_f64)
     sum_privacy_reward = (gamma_f64 * np.sum(p_vals) / num_users_f64) if args.privacy else np.float64(0.0)
+    
+    # Add shared resource constraint penalty
+    resource_constraint_penalty = np.float64(0.0)
+    if args.shared_res_constraint:
+        _, reward_penalty = compute_resource_constraint_penalty(users_idxes, args)
+        resource_constraint_penalty = np.float64(reward_penalty)
 
-    return float(min_ucb + sum_g + sum_privacy_reward)
+    return float(min_ucb + sum_g + sum_privacy_reward - resource_constraint_penalty)
 
 def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without_replaced_user,
                                         current_state, local_models, args, current_energy, neigbors_dict):
@@ -196,6 +310,15 @@ def compute_relative_energy_of_neighbor(new_user, replaced_user, min_ucb_without
     if args.privacy:
         new_energy += (args.gamma * (local_models[new_user].privacy_reward - local_models[replaced_user].privacy_reward)
                         / args.num_users_per_round)
+
+    # Add shared resource constraint penalty difference
+    if args.shared_res_constraint:
+        # Calculate penalty for current state
+        _, current_penalty = compute_resource_constraint_penalty(current_state, args)
+        # Calculate penalty for new state
+        _, new_penalty = compute_resource_constraint_penalty(copied_current_state, args)
+        # Add the difference (penalty reduces energy, so we subtract)
+        new_energy = new_energy + current_penalty - new_penalty
 
     if local_models[new_user].ucb < min_ucb_without_replaced_user:
         new_energy += (local_models[new_user].ucb - min_ucb_without_replaced_user)
@@ -366,8 +489,14 @@ def compute_energy_numpy(state_tuple, ucb_values, g_values, p_values, args, num_
     sum_g = (alpha_f64 / num_users_f64) * np.sum(g_vals)
     sum_p = (gamma_f64 / num_users_f64) * np.sum(p_vals) if privacy and args.privacy else np.float64(0.0)
     
+    # Add shared resource constraint penalty
+    resource_constraint_penalty = np.float64(0.0)
+    if args.shared_res_constraint:
+        _, reward_penalty = compute_resource_constraint_penalty(state_tuple, args)
+        resource_constraint_penalty = np.float64(reward_penalty)
+    
     # Return as Python float (which is float64)
-    return float(min_ucb + sum_g + sum_p)
+    return float(min_ucb + sum_g + sum_p - resource_constraint_penalty)
 
 def save_sapause_data(global_epoch, local_models, args, num_users, timestamp):
     """
