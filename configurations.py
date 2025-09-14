@@ -69,6 +69,8 @@ def args_parser():
                         help="hyperparameter for the shared resource constraint reward penalty")
     parser.add_argument('--shared_res_constraint_verbose', type=str2bool, default=False,
                         help="if True, prints shared resource constraint penalties and cluster collisions")
+    parser.add_argument("--latency_penalty_coeff", type=float, default=0.01,
+                        help="coefficient for the latency penalty when adding to \\tau_{total}")
 
 
 

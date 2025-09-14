@@ -6,15 +6,15 @@
 ################################################################################################
 
 #SBATCH --partition main			### specify partition name where to run a job. change only if you have a matching qos!! main: all nodes; gtx1080: 1080 gpu card nodes; rtx2080: 2080 nodes; teslap100: p100 nodes; titanrtx: titan nodes
-#SBATCH --time 0-10:30:00			### limit the time of job running. Make sure it is not greater than the partition time limit!! Format: D-H:MM:SS
-#SBATCH --job-name res_cons_small_iid			### name of the job
+#SBATCH --time 0-20:30:00			### limit the time of job running. Make sure it is not greater than the partition time limit!! Format: D-H:MM:SS
+#SBATCH --job-name constr_lar_cifar_non_iid			### name of the job
 #SBATCH --output job-%J.out			### output log for running job - %J for job number
 #SBATCH --gpus=rtx_4090:1				### number of GPUs, allocating more than 1 requires IT team's permission. Example to request 3090 gpu: #SBATCH --gpus=rtx_3090:1
 
 # Note: the following 4 lines are commented out
 #SBATCH --mail-user=user@post.bgu.ac.il	### user's email for sending job status messages
 ##SBATCH --mail-type=ALL			### conditions for sending the email. ALL,BEGIN,END,FAIL, REQUEU, NONE
-#SBATCH --mem=48G				### ammount of RAM memory, allocating more than 60G requires IT team's permission
+#SBATCH --mem=60G				### ammount of RAM memory, allocating more than 60G requires IT team's permission
 
 ################  Following lines will be executed by a compute node    #######################
 
@@ -26,20 +26,21 @@ echo -e "SLURM_JOB_NODELIST:\t" $SLURM_JOB_NODELIST "\n\n"
 ### Start your code below ####
 module load anaconda				### load anaconda module (must be present when working with conda environments)
 source activate PAUSE				### activate a conda environment, replace my_env with your conda environment
-python main.py --full_exp True --data cifar10 --model cnn3 --num_users 30 --num_users_per_round 5 \
-         --i_i_d True --wandb True \
-         --global_epochs 300 --max_seconds 600 --epsilon_bar 40.0 --epsilon_sum_deascent_coeff 0.04 \
-         --delta_f 0.012 --alpha 100.0 --beta 2.0 --gamma 5.0 \
-         --alternative_privacy_reward False \
-         --dirichlet_coeff 1.0 --label_dominance 0.25 --bar_plot_interval 30 \
+python main.py --full_exp True --data cifar10 --model cnn3 --num_users 300 --num_users_per_round 15 \
+         --i_i_d False --wandb True --method_choosing_users "sa_pause" \
+         --global_epochs 600 --max_seconds 300 --epsilon_bar 10.0 --epsilon_sum_deascent_coeff 0.04 \
+         --delta_f 0.004 --alpha 10.0 --beta 2.0 --gamma 20.0 \
+         --alternative_privacy_reward False --choosing_users_verbose \
+         --dirichlet_coeff 2.0 --label_dominance 0.25 --bar_plot_interval 30 \
          --sa_pause_simulation False \
          --max_time_sa_pause 600 --pre_sa_pause_rounds 1 \
          --accel_ucb_coeff 1.0 \
          --tau_min 0.05 --privacy_noise laplace --privacy True \
-         --seed 5.0 --norm_mean 0.5 --norm_std 0.5 \
+         --seed 3.0 --norm_mean 0.5 --norm_std 0.5 \
          --train_batch_size 20 --test_batch_size 1000 \
          --local_epochs 1 --local_iterations 100 --lr 0.01 --momentum 0.5 \
          --optimizer adam \
+         --higher_threshold False \
          --sa_pause_accelerated False \
          --ucb_neighbors_only True \
          --sa_informed_sampling True \
@@ -47,8 +48,9 @@ python main.py --full_exp True --data cifar10 --model cnn3 --num_users 30 --num_
          --beta_max_reduction 1 \
          --sampling_temp 0.0001 \
          --shared_res_constraint True \
-         --rho 0.05 \
+         --rho 0.01 \
          --shared_res_constraint_verbose True \
          --choosing_users_verbose \
-         --clusters_partition_level 5 \
-         --latency_penalty_coeff 0.05 \
+         --clusters_partition_level 15 \
+         --latency_penalty_coeff 0.01 \
+         

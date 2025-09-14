@@ -84,7 +84,8 @@ def main():
             if args.i_i_d:
                 methods = ["pivot_fill", "sa_pause", 'random', "fraboni", 'all users', "fastest ones"]
             else:
-                methods = ["pivot_fill", "fraboni", "sa_pause", "fastest ones", 'all users']
+                # methods = ["pivot_fill", "fraboni", "sa_pause", "fastest ones", 'all users']
+                methods = ["sa_pause", "fraboni", "fastest ones", 'all users']
 
         paths_dict = {}
         for method in methods:

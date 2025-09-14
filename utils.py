@@ -209,8 +209,8 @@ def compute_resource_constraint_penalty(users_idxes, args):
     # Calculate penalties: sum over constrained clusters of max(0, count-1)
     excess_users_per_cluster = np.maximum(0, cluster_counts - 1)
     total_excess_users = np.sum(excess_users_per_cluster)
-    
-    latency_penalty = 0.05 * total_excess_users
+
+    latency_penalty = args.latency_penalty_coeff * total_excess_users
     reward_penalty = args.rho * total_excess_users
     
     return latency_penalty, reward_penalty
